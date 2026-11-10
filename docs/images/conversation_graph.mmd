@@ -1,0 +1,31 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	read(read)
+	classify_intent(classify_intent)
+	plan_reply(plan_reply)
+	draft_reply(draft_reply)
+	preview_reply(preview_reply)
+	approval(approval)
+	recheck(recheck)
+	send(send)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> read;
+	approval -.-> __end__;
+	approval -.-> recheck;
+	approval -.-> send;
+	classify_intent --> plan_reply;
+	draft_reply --> preview_reply;
+	plan_reply --> draft_reply;
+	preview_reply --> approval;
+	read -.-> __end__;
+	read -.-> classify_intent;
+	recheck --> preview_reply;
+	send --> __end__;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc
