@@ -30,8 +30,8 @@ dependencies = [
   "langgraph-supervisor==0.0.27",
   "langchain-core==0.3.65",
   "langchain-openai==0.3.24",
-  "langchain-mcp-adapters==0.1.7",
-  "mcp==1.9.4",
+  "langchain-mcp-adapters==0.1.9",
+  "mcp==1.12.4",
   "langfuse==2.60.8",
   # rag
   "numpy==2.2.6",
@@ -55,7 +55,7 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-include = ["agent*", "apps*", "rag*", "mcp_servers*", "worker*", "evals*", "gigsim*"]
+include = ["agent*", "apps*", "rag*", "mcp_servers*", "worker*", "evals*", "gigsim*", "common*", "tools*"]
 
 [tool.ruff]
 line-length = 110
