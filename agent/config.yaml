@@ -123,8 +123,9 @@ rag:
   shipped_variant: v8_corrective   # chosen by evals/results/rag_variants.json (see docs/DATA_CARD.md)
   k: 8
   corrective:
-    base: v3_rerank
-    weak_threshold: -7.1           # calibrated: evals/results/grader_calibration.json (F1 0.986)
+    base: v9_skill_graph           # best retriever by evals/results/rag_variants.json
+    cos_threshold: 0.83            # calibrated: evals/results/grader_calibration_v9.json (F1 0.985)
+    weak_threshold: -7.1           # only used with base v3_rerank: evals/results/grader_calibration.json
     max_requeries: 1
 
 # ------------------------------------------------------------------------------------ budgets

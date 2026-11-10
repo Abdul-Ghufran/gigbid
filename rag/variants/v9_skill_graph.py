@@ -14,6 +14,10 @@ from rag.variants.base import RetrievalResult, Variant, merge_round_robin, to_it
 ORDER = {"case_study": 0, "readme": 1, "code": 2, "review": 3}
 
 
+def mask_types_only_dense(opts) -> bool:
+    return opts.get("graph", True) is False
+
+
 class V9SkillGraph(Variant):
     name = "v9_skill_graph"
 
@@ -43,6 +47,8 @@ class V9SkillGraph(Variant):
                     if nb[0] == "project":
                         score[nb[1]] += 1.0
         for proj in list(score):
+            if not self.opts.get("boosts", True):
+                continue
             if industry and self.g.has_edge(("industry", industry), ("project", proj)):
                 score[proj] += 0.5
             if self.g.has_edge(("outcome", "won"), ("project", proj)):
@@ -57,18 +63,23 @@ class V9SkillGraph(Variant):
                        and self.c.by_id[n[1]].type in ORDER], key=lambda i: ORDER[self.c.by_id[i].type])
 
     async def retrieve(self, job, k=10, requirements=None, filters=None):
-        reqs = decompose(job, requirements)
+        reqs = decompose(job, requirements) if self.opts.get("decompose", True) else [f"{job.get('title', '')} {job.get('description', '')}"]
         idx, chunks = self.c.dense("structured")
         mask = self.c.mask(chunks, filters)
         per = {}
         for r in reqs:
             sks = extract_skills(r)
-            if sks:
+            if sks and (not mask_types_only_dense(self.opts)):
                 hits = []
                 for proj, s in self.projects_for(sks)[:k]:
                     for j, iid in enumerate(self._items_of(proj)):
-                        hits.append(Hit(item_id=iid, score=s - 0.01 * j, requirement=r, snippet=self.c.by_id[iid].text[:300]))
-                per[r] = hits[:k]
-            else:
-                per[r] = to_items(idx.search(r, 20, mask), chunks, r)[:k]
+                        hits.append(Hit(item_id=iid, score=s - 0.01 * j, requirement=r, snippet=self.c.by_id[iid].text[:900],
+                                        signals={"graph": s}))
+                if hits or not self.opts.get("dense_fallback", True):
+                    per[r] = hits[:k]
+                    continue
+            hits = to_items(idx.search(r, 20, mask), chunks, r)[:k]
+            for h in hits:
+                h.signals["cos"] = h.score
+            per[r] = hits
         return RetrievalResult(hits=merge_round_robin(per, k)[:k], by_requirement=per, requirements=reqs)

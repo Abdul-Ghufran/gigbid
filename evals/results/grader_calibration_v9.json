@@ -1,0 +1,14 @@
+{
+ "generated_by": "evals/runners/calibrate_grader_v9.py",
+ "n_requirements": 2051,
+ "graph_hits": 1531,
+ "best": {
+  "cos_threshold": 0.83,
+  "f1": 0.9851,
+  "precision": 0.9713,
+  "recall": 0.9993,
+  "tp": 1487,
+  "fp": 44,
+  "fn": 1
+ }
+}

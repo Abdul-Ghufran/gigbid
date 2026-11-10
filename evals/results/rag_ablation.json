@@ -1,0 +1,391 @@
+{
+ "generated_by": "evals/runners/ablation.py",
+ "results": [
+  {
+   "config": "full: corrective loop + skill graph",
+   "variant": "v8_corrective",
+   "opts": null,
+   "recall@5": 0.8901,
+   "mrr": 0.9511,
+   "ndcg@10": 0.6554,
+   "n": 444,
+   "recall@5_many_req": 0.8924,
+   "by_persona": {
+    "ai": {
+     "recall@5": 0.8874,
+     "mrr": 0.9581,
+     "ndcg@10": 0.6319,
+     "n": 148
+    },
+    "web": {
+     "recall@5": 0.9251,
+     "mrr": 0.9831,
+     "ndcg@10": 0.6825,
+     "n": 148
+    },
+    "data": {
+     "recall@5": 0.8579,
+     "mrr": 0.9122,
+     "ndcg@10": 0.6519,
+     "n": 148
+    }
+   },
+   "by_kind": {
+    "strong": {
+     "recall@5": 0.9119,
+     "mrr": 0.9704,
+     "ndcg@10": 0.6616,
+     "n": 186
+    },
+    "vague": {
+     "recall@5": 0.696,
+     "mrr": 0.9413,
+     "ndcg@10": 0.5648,
+     "n": 42
+    },
+    "partial": {
+     "recall@5": 0.9153,
+     "mrr": 0.9106,
+     "ndcg@10": 0.6816,
+     "n": 120
+    },
+    "low_budget": {
+     "recall@5": 0.8925,
+     "mrr": 0.9881,
+     "ndcg@10": 0.6778,
+     "n": 42
+    },
+    "injection": {
+     "recall@5": 0.9083,
+     "mrr": 0.9537,
+     "ndcg@10": 0.6287,
+     "n": 54
+    }
+   },
+   "p95_latency_s": 0.0742
+  },
+  {
+   "config": "- corrective loop (plain V9)",
+   "variant": "v9_skill_graph",
+   "opts": {},
+   "recall@5": 0.8946,
+   "mrr": 0.8725,
+   "ndcg@10": 0.5825,
+   "n": 444,
+   "recall@5_many_req": 0.8837,
+   "by_persona": {
+    "ai": {
+     "recall@5": 0.8613,
+     "mrr": 0.8367,
+     "ndcg@10": 0.5334,
+     "n": 148
+    },
+    "web": {
+     "recall@5": 0.9323,
+     "mrr": 0.9011,
+     "ndcg@10": 0.6139,
+     "n": 148
+    },
+    "data": {
+     "recall@5": 0.8903,
+     "mrr": 0.8795,
+     "ndcg@10": 0.6003,
+     "n": 148
+    }
+   },
+   "by_kind": {
+    "strong": {
+     "recall@5": 0.9178,
+     "mrr": 0.9216,
+     "ndcg@10": 0.6287,
+     "n": 186
+    },
+    "vague": {
+     "recall@5": 0.7722,
+     "mrr": 0.7119,
+     "ndcg@10": 0.4879,
+     "n": 42
+    },
+    "partial": {
+     "recall@5": 0.8889,
+     "mrr": 0.8317,
+     "ndcg@10": 0.5323,
+     "n": 120
+    },
+    "low_budget": {
+     "recall@5": 0.9119,
+     "mrr": 0.8968,
+     "ndcg@10": 0.6118,
+     "n": 42
+    },
+    "injection": {
+     "recall@5": 0.9093,
+     "mrr": 0.8997,
+     "ndcg@10": 0.5862,
+     "n": 54
+    }
+   },
+   "p95_latency_s": 0.004
+  },
+  {
+   "config": "- skill graph (dense per requirement)",
+   "variant": "v9_skill_graph",
+   "opts": {
+    "graph": false
+   },
+   "recall@5": 0.7621,
+   "mrr": 0.7243,
+   "ndcg@10": 0.4756,
+   "n": 444,
+   "recall@5_many_req": 0.7244,
+   "by_persona": {
+    "ai": {
+     "recall@5": 0.6382,
+     "mrr": 0.6081,
+     "ndcg@10": 0.396,
+     "n": 148
+    },
+    "web": {
+     "recall@5": 0.8267,
+     "mrr": 0.788,
+     "ndcg@10": 0.4998,
+     "n": 148
+    },
+    "data": {
+     "recall@5": 0.8214,
+     "mrr": 0.7767,
+     "ndcg@10": 0.5309,
+     "n": 148
+    }
+   },
+   "by_kind": {
+    "strong": {
+     "recall@5": 0.7745,
+     "mrr": 0.747,
+     "ndcg@10": 0.4968,
+     "n": 186
+    },
+    "vague": {
+     "recall@5": 0.702,
+     "mrr": 0.6655,
+     "ndcg@10": 0.4686,
+     "n": 42
+    },
+    "partial": {
+     "recall@5": 0.7931,
+     "mrr": 0.7006,
+     "ndcg@10": 0.4335,
+     "n": 120
+    },
+    "low_budget": {
+     "recall@5": 0.7155,
+     "mrr": 0.7012,
+     "ndcg@10": 0.4749,
+     "n": 42
+    },
+    "injection": {
+     "recall@5": 0.7336,
+     "mrr": 0.7621,
+     "ndcg@10": 0.5019,
+     "n": 54
+    }
+   },
+   "p95_latency_s": 0.0036
+  },
+  {
+   "config": "- requirement decomposition",
+   "variant": "v9_skill_graph",
+   "opts": {
+    "decompose": false
+   },
+   "recall@5": 0.6788,
+   "mrr": 0.9433,
+   "ndcg@10": 0.656,
+   "n": 444,
+   "recall@5_many_req": 0.6167,
+   "by_persona": {
+    "ai": {
+     "recall@5": 0.62,
+     "mrr": 0.9471,
+     "ndcg@10": 0.5959,
+     "n": 148
+    },
+    "web": {
+     "recall@5": 0.7114,
+     "mrr": 0.9492,
+     "ndcg@10": 0.6936,
+     "n": 148
+    },
+    "data": {
+     "recall@5": 0.705,
+     "mrr": 0.9336,
+     "ndcg@10": 0.6786,
+     "n": 148
+    }
+   },
+   "by_kind": {
+    "strong": {
+     "recall@5": 0.6562,
+     "mrr": 0.9735,
+     "ndcg@10": 0.6843,
+     "n": 186
+    },
+    "vague": {
+     "recall@5": 0.556,
+     "mrr": 0.8448,
+     "ndcg@10": 0.46,
+     "n": 42
+    },
+    "partial": {
+     "recall@5": 0.7875,
+     "mrr": 0.8992,
+     "ndcg@10": 0.6801,
+     "n": 120
+    },
+    "low_budget": {
+     "recall@5": 0.6413,
+     "mrr": 1.0,
+     "ndcg@10": 0.6658,
+     "n": 42
+    },
+    "injection": {
+     "recall@5": 0.6398,
+     "mrr": 0.9697,
+     "ndcg@10": 0.6499,
+     "n": 54
+    }
+   },
+   "p95_latency_s": 0.0281
+  },
+  {
+   "config": "- dense fallback for unrecognised skills",
+   "variant": "v9_skill_graph",
+   "opts": {
+    "dense_fallback": false
+   },
+   "recall@5": 0.9108,
+   "mrr": 0.8746,
+   "ndcg@10": 0.6036,
+   "n": 444,
+   "recall@5_many_req": 0.8992,
+   "by_persona": {
+    "ai": {
+     "recall@5": 0.877,
+     "mrr": 0.8391,
+     "ndcg@10": 0.5564,
+     "n": 148
+    },
+    "web": {
+     "recall@5": 0.9458,
+     "mrr": 0.9023,
+     "ndcg@10": 0.6284,
+     "n": 148
+    },
+    "data": {
+     "recall@5": 0.9095,
+     "mrr": 0.8825,
+     "ndcg@10": 0.626,
+     "n": 148
+    }
+   },
+   "by_kind": {
+    "strong": {
+     "recall@5": 0.9178,
+     "mrr": 0.9216,
+     "ndcg@10": 0.6287,
+     "n": 186
+    },
+    "vague": {
+     "recall@5": 0.7722,
+     "mrr": 0.7119,
+     "ndcg@10": 0.4879,
+     "n": 42
+    },
+    "partial": {
+     "recall@5": 0.9486,
+     "mrr": 0.8397,
+     "ndcg@10": 0.6102,
+     "n": 120
+    },
+    "low_budget": {
+     "recall@5": 0.9119,
+     "mrr": 0.8968,
+     "ndcg@10": 0.6118,
+     "n": 42
+    },
+    "injection": {
+     "recall@5": 0.9093,
+     "mrr": 0.8997,
+     "ndcg@10": 0.5862,
+     "n": 54
+    }
+   },
+   "p95_latency_s": 0.0077
+  },
+  {
+   "config": "- industry / outcome boosts",
+   "variant": "v9_skill_graph",
+   "opts": {
+    "boosts": false
+   },
+   "recall@5": 0.9059,
+   "mrr": 0.88,
+   "ndcg@10": 0.5909,
+   "n": 444,
+   "recall@5_many_req": 0.8899,
+   "by_persona": {
+    "ai": {
+     "recall@5": 0.8613,
+     "mrr": 0.8367,
+     "ndcg@10": 0.5391,
+     "n": 148
+    },
+    "web": {
+     "recall@5": 0.9323,
+     "mrr": 0.9011,
+     "ndcg@10": 0.6139,
+     "n": 148
+    },
+    "data": {
+     "recall@5": 0.9241,
+     "mrr": 0.902,
+     "ndcg@10": 0.6198,
+     "n": 148
+    }
+   },
+   "by_kind": {
+    "strong": {
+     "recall@5": 0.9262,
+     "mrr": 0.9252,
+     "ndcg@10": 0.6352,
+     "n": 186
+    },
+    "vague": {
+     "recall@5": 0.7683,
+     "mrr": 0.7119,
+     "ndcg@10": 0.4904,
+     "n": 42
+    },
+    "partial": {
+     "recall@5": 0.9153,
+     "mrr": 0.8497,
+     "ndcg@10": 0.5484,
+     "n": 120
+    },
+    "low_budget": {
+     "recall@5": 0.9179,
+     "mrr": 0.8968,
+     "ndcg@10": 0.6185,
+     "n": 42
+    },
+    "injection": {
+     "recall@5": 0.913,
+     "mrr": 0.909,
+     "ndcg@10": 0.5898,
+     "n": 54
+    }
+   },
+   "p95_latency_s": 0.0048
+  }
+ ]
+}

@@ -27,7 +27,15 @@ class V8Corrective(Variant):
 
     def __init__(self, corpus, **opts):
         super().__init__(corpus, **opts)
-        self.base = V3Rerank(corpus, **opts)
+        base = opts.get("base", "v3_rerank")
+        if base == "v9_skill_graph":
+            from rag.variants.v9_skill_graph import V9SkillGraph
+
+            self.base = V9SkillGraph(corpus)
+        else:
+            self.base = V3Rerank(corpus, **{k: v for k, v in opts.items() if k not in ("base",)})
+        self.base_name = base
+        self.cos_threshold = opts.get("cos_threshold", 0.6)
         self.threshold = opts.get("weak_threshold", 0.0)
         self.max_requeries = opts.get("max_requeries", 1)
         self.use_llm = opts.get("llm_rewrite", False)
@@ -47,6 +55,8 @@ class V8Corrective(Variant):
         if not hits:
             return False
         top = hits[0]
+        if self.base_name == "v9_skill_graph":  # graph match = a project demonstrably used the skill
+            return "graph" in top.signals or top.signals.get("cos", 0) >= self.cos_threshold
         if top.signals.get("ce", -99) >= self.threshold:
             return True
         req_sk = set(extract_skills(req))
