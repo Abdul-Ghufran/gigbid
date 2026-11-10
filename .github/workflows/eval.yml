@@ -21,4 +21,4 @@ jobs:
         run: .venv/bin/python -m evals.runners.smoke --jobs 30
       - uses: actions/upload-artifact@v4
         if: always()
-        with: {name: smoke-eval, path: evals/results/smoke_*.json}
+        with: {name: smoke-eval, path: evals/results/smoke_latest.json}

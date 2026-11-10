@@ -1,0 +1,14 @@
+{
+ "generated_by": "evals/runners/smoke_latest.py",
+ "generated_at": "2026-11-11 03:25",
+ "jobs": 30,
+ "bid_f1": 0.88,
+ "scams_missed": 0,
+ "unsupported_claims_per_proposal_after": 0,
+ "offline": true,
+ "thresholds": {
+  "min_bid_f1": 0.8,
+  "max_unsupported_claims_per_proposal": 0.34,
+  "max_scams_missed": 0
+ }
+}

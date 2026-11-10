@@ -1,0 +1,5 @@
+# CI eval gate (evals/runners/smoke.py). Set from evals/results/decision_eval_offline.json and
+# retrieval_outcome_test.json with headroom for the 30-job sample.
+min_bid_f1: 0.80
+max_unsupported_claims_per_proposal: 0.34
+max_scams_missed: 0
