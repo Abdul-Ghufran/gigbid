@@ -140,6 +140,14 @@ class AuditLog(Base):
     ok: Mapped[bool] = mapped_column(Boolean, default=True)
 
 
+class IdempotencyRecord(Base):
+    """Server-side idempotency for MCP write tools: same (user, tool, key) -> same stored result."""
+    __tablename__ = "idempotency"
+    key: Mapped[str] = mapped_column(String(200), primary_key=True)  # f"{user}:{tool}:{idempotency_key}"
+    result: Mapped[dict] = mapped_column(JSON)
+    created_at: Mapped[dt.datetime] = mapped_column(DateTime(timezone=True), default=_now)
+
+
 class PortfolioUpload(Base):
     __tablename__ = "portfolio_uploads"
     id: Mapped[str] = mapped_column(String(32), primary_key=True, default=_id)

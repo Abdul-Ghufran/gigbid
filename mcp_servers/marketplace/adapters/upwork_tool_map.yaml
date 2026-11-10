@@ -1,0 +1,26 @@
+# Port method -> candidate tool names on Upwork's official MCP server (first advertised name wins)
+# and argument renames.  Switching marketplaces never touches agent code: only this map + config.
+search_jobs:
+  candidates: [search_jobs, jobs_search, marketplace_job_search, find_jobs]
+  args: {query: query, limit: limit}
+get_job:
+  candidates: [get_job, get_job_details, job_details]
+  args: {job_id: job_id}
+get_client_history:
+  candidates: [get_client, get_client_details, client_details]
+  args: {client_id: client_id}
+get_connects_balance:
+  candidates: [get_connects_balance, get_connects, connects_balance]
+list_threads:
+  candidates: [list_rooms, list_conversations, list_messages]
+get_thread:
+  candidates: [get_room_messages, get_conversation, get_messages]
+  args: {thread_id: room_id}
+list_proposals:
+  candidates: [list_proposals, get_proposals, my_proposals]
+create_proposal_draft:
+  candidates: [create_proposal_draft, draft_proposal, create_proposal]
+  args: {job_id: job_id, cover_letter: cover_letter, bid_amount: amount, bid_type: rate_type, screening_answers: answers}
+send_message_draft:
+  candidates: [create_message_draft, draft_message, send_message]
+  args: {thread_id: room_id, text: message}
