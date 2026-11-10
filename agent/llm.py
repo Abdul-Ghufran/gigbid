@@ -248,6 +248,11 @@ async def _call(spec: dict, messages: list[dict], json_mode: bool, node: str, ma
                     raise last
                 await asyncio.sleep(wait)
                 continue
+            if r.status_code == 400 and "json_validate_failed" in r.text and "response_format" in body:
+                # provider-side JSON mode rejected the output: retry the same request in plain mode; the caller
+                # extracts and validates the JSON itself (_extract_json + Pydantic)
+                body.pop("response_format", None)
+                continue
             if r.status_code >= 400:
                 raise LLMUnavailable(f"{spec['model']} HTTP {r.status_code}: {r.text[:200]}")
             d = r.json()
