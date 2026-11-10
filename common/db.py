@@ -148,6 +148,17 @@ class IdempotencyRecord(Base):
     created_at: Mapped[dt.datetime] = mapped_column(DateTime(timezone=True), default=_now)
 
 
+class WorkspaceItem(Base):
+    """Mock calendar holds and email drafts behind the Workspace MCP server."""
+    __tablename__ = "workspace_items"
+    id: Mapped[str] = mapped_column(String(32), primary_key=True, default=_id)
+    user_id: Mapped[str] = mapped_column(String(32), index=True)
+    kind: Mapped[str] = mapped_column(String(20))  # hold | email_draft
+    data: Mapped[dict] = mapped_column(JSON)
+    idempotency_key: Mapped[str] = mapped_column(String(128), index=True)
+    created_at: Mapped[dt.datetime] = mapped_column(DateTime(timezone=True), default=_now)
+
+
 class PortfolioUpload(Base):
     __tablename__ = "portfolio_uploads"
     id: Mapped[str] = mapped_column(String(32), primary_key=True, default=_id)
