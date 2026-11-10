@@ -39,7 +39,7 @@ def to_items(ranked_chunks: list[tuple[str, float]], chunks: list[Chunk], requir
     for cid, s in ranked_chunks:
         c = by_chunk[cid]
         if c.item_id not in best or s > best[c.item_id].score:
-            best[c.item_id] = Hit(item_id=c.item_id, score=s, chunk_id=cid, snippet=c.raw[:400], requirement=requirement)
+            best[c.item_id] = Hit(item_id=c.item_id, score=s, chunk_id=cid, snippet=c.raw[:900], requirement=requirement)
     return sorted(best.values(), key=lambda h: -h.score)
 
 
