@@ -69,9 +69,9 @@ Retrieval metrics: `rag_variants_offline.json` (444 scoreable dev jobs), `rag_ab
 
 | Tool set | Tools | Tool-selection accuracy | Argument accuracy | Tokens / task |
 |---|---|---|---|---|
-| fine | pending | pending | pending | pending |
-| coarse | pending | pending | pending | pending |
-| best | pending | pending | pending | pending |
+| fine | 22 | 0.975 | 0.950 | 667 |
+| coarse | 2 | 0.725 | 0.575 | 285 |
+| best | 12 | 1 | 1 | 1132 |
 
 ### R&D C. Single agent vs supervisor vs hand-built graph
 

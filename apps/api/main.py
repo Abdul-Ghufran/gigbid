@@ -34,7 +34,14 @@ def seed_reviewer():
     if exists:
         return
     u = create_user(s.reviewer_email, s.reviewer_password, "Reviewer", "web")
-    onboard_user(u.id, OnboardingIn(persona_key="web", hourly_rate=40, min_project=300, weekly_connects_budget=80))
+    from apps.api.schemas.models import SavedSearch
+
+    onboard_user(u.id, OnboardingIn(persona_key="web", hourly_rate=40, min_project=300, weekly_connects_budget=80, saved_searches=[
+        SavedSearch(name="Python backends", category="web", skills=["Django", "Celery"], limit=4),
+        SavedSearch(name="React / Next.js", category="web", skills=["React", "Next.js"], limit=3),
+        # so a reviewer immediately sees the safety features: a scam post and a post with planted AI instructions
+        SavedSearch(name="Risky posts (demo)", query="paid test task", limit=1),
+        SavedSearch(name="Planted instructions (demo)", query="automated bidders", category="web", limit=1)]))
 
 
 @contextlib.asynccontextmanager

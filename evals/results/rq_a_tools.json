@@ -1,0 +1,1463 @@
+{
+ "generated_by": "evals/runners/rq_a_tools.py",
+ "generated_at": "2026-11-11 02:43",
+ "model": "openai/gpt-oss-20b",
+ "n_tasks": 40,
+ "results": {
+  "fine": {
+   "n_tools": 22,
+   "tool_selection_accuracy": 0.975,
+   "argument_accuracy": 0.95,
+   "tokens_per_task": 667.025,
+   "rows": [
+    {
+     "kind": "fine",
+     "task": "Show me the full post for job dev-ai-000.",
+     "call": {
+      "name": "get_job_description",
+      "arguments": "{\"job_id\":\"dev-ai-000\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 655,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "Is the client c0267 trustworthy? Check their history.",
+     "call": {
+      "name": "get_client_spend",
+      "arguments": "{\"client_id\":\"c0267\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 688,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "How many Connects do I have left?",
+     "call": {
+      "name": "get_connects",
+      "arguments": "{\"\":\"\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 648,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "What do comparable ai jobs usually pay?",
+     "call": {
+      "name": "get_market_price_median",
+      "arguments": "{\"category\":\"AI\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 666,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "Find open ai jobs that need Celery.",
+     "call": {
+      "name": "search_jobs_by_skill",
+      "arguments": "{\"skill\":\"Celery\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 679,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "Find proof in my portfolio that I have done Celery.",
+     "call": {
+      "name": "search_repos",
+      "arguments": "{\"query\":\"Celery\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 657,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "Open my case study ai-case-02.",
+     "call": {
+      "name": "get_case_study",
+      "arguments": "{\"id\":\"ai-case-02\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 657,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "Have any clients written to me?",
+     "call": {
+      "name": "list_unread_messages",
+      "arguments": "{}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 647,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "What would it cost to submit proposal p-1000? Preview only, do not send.",
+     "call": {
+      "name": "preview_submission_cost",
+      "arguments": "{\"proposal_id\":\"p-1000\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 672,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "Draft a reply 'Tuesday 3pm works' in thread t-p-2000 but only preview it.",
+     "call": {
+      "name": "preview_message",
+      "arguments": "{\"text\":\"Tuesday 3pm works\",\"thread_id\":\"t-p-2000\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 693,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "Show me the full post for job dev-ai-037.",
+     "call": {
+      "name": "get_job_description",
+      "arguments": "{\"job_id\":\"dev-ai-037\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 657,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "Is the client c0090 trustworthy? Check their history.",
+     "call": {
+      "name": "get_client_spend",
+      "arguments": "{\"client_id\":\"c0090\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 683,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "How many Connects do I have left?",
+     "call": {
+      "name": "get_connects",
+      "arguments": "{\"\":\" \"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 649,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "What do comparable ai jobs usually pay?",
+     "call": {
+      "name": "get_market_price_median",
+      "arguments": "{\"category\":\"Artificial Intelligence\"}"
+     },
+     "tool_ok": true,
+     "args_ok": false,
+     "tokens": 671,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "Find open ai jobs that need Power BI.",
+     "call": {
+      "name": "search_jobs_by_skill",
+      "arguments": "{\"skill\":\"Power BI\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 668,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "Find proof in my portfolio that I have done Power BI.",
+     "call": {
+      "name": "search_case_studies",
+      "arguments": "{\"query\":\"Power BI\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 679,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "Open my case study web-case-03.",
+     "call": {
+      "name": "get_case_study",
+      "arguments": "{\"id\":\"web-case-03\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 666,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "Have any clients written to me?",
+     "call": {
+      "name": "list_unread_messages",
+      "arguments": "{}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 645,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "What would it cost to submit proposal p-1001? Preview only, do not send.",
+     "call": {
+      "name": "preview_submission_cost",
+      "arguments": "{\"proposal_id\":\"p-1001\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 672,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "Draft a reply 'Tuesday 3pm works' in thread t-p-2001 but only preview it.",
+     "call": {
+      "name": "preview_message",
+      "arguments": "{\"text\":\"Tuesday 3pm works\",\"thread_id\":\"t-p-2001\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 684,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "Show me the full post for job dev-ai-074.",
+     "call": {
+      "name": "get_job_description",
+      "arguments": "{\"job_id\":\"dev-ai-074\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 656,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "Is the client c0042 trustworthy? Check their history.",
+     "call": {
+      "name": "search_reviews",
+      "arguments": "{\"query\":\"c0042\"}"
+     },
+     "tool_ok": false,
+     "args_ok": false,
+     "tokens": 664,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "How many Connects do I have left?",
+     "call": {
+      "name": "get_connects",
+      "arguments": "{\"\":\"\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 650,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "What do comparable web jobs usually pay?",
+     "call": {
+      "name": "get_market_price_median",
+      "arguments": "{\"category\":\"web development\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 679,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "Find open web jobs that need RAG.",
+     "call": {
+      "name": "search_jobs_by_skill",
+      "arguments": "{\"skill\":\"RAG\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 671,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "Find proof in my portfolio that I have done RAG.",
+     "call": {
+      "name": "search_case_studies",
+      "arguments": "{\"query\":\"RAG\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 665,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "Open my case study data-case-04.",
+     "call": {
+      "name": "get_case_study",
+      "arguments": "{\"id\":\"data-case-04\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 657,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "Have any clients written to me?",
+     "call": {
+      "name": "list_unread_messages",
+      "arguments": "{}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 644,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "What would it cost to submit proposal p-1002? Preview only, do not send.",
+     "call": {
+      "name": "preview_submission_cost",
+      "arguments": "{\"proposal_id\":\"p-1002\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 674,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "Draft a reply 'Tuesday 3pm works' in thread t-p-2002 but only preview it.",
+     "call": {
+      "name": "preview_message",
+      "arguments": "{\"text\":\"Tuesday 3pm works\",\"thread_id\":\"t-p-2002\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 685,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "Show me the full post for job dev-ai-111.",
+     "call": {
+      "name": "get_job_description",
+      "arguments": "{\"job_id\":\"dev-ai-111\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 657,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "Is the client c0439 trustworthy? Check their history.",
+     "call": {
+      "name": "get_client_spend",
+      "arguments": "{\"client_id\":\"c0439\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 734,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "How many Connects do I have left?",
+     "call": {
+      "name": "get_connects",
+      "arguments": "{\"\":\"\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 651,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "What do comparable ai jobs usually pay?",
+     "call": {
+      "name": "get_market_price_median",
+      "arguments": "{\"category\":\"AI\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 666,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "Find open ai jobs that need dbt.",
+     "call": {
+      "name": "search_jobs_by_skill",
+      "arguments": "{\"skill\":\"dbt\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 667,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "Find proof in my portfolio that I have done dbt.",
+     "call": {
+      "name": "search_case_studies",
+      "arguments": "{\"query\":\"dbt\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 658,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "Open my case study web-case-05.",
+     "call": {
+      "name": "get_case_study",
+      "arguments": "{\"id\":\"web-case-05\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 656,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "Have any clients written to me?",
+     "call": {
+      "name": "list_unread_messages",
+      "arguments": "{\"\":\"\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 655,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "What would it cost to submit proposal p-1003? Preview only, do not send.",
+     "call": {
+      "name": "preview_submission_cost",
+      "arguments": "{\"proposal_id\":\"p-1003\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 673,
+     "status": 200
+    },
+    {
+     "kind": "fine",
+     "task": "Draft a reply 'Tuesday 3pm works' in thread t-p-2003 but only preview it.",
+     "call": {
+      "name": "preview_message",
+      "arguments": "{\"text\":\"Tuesday 3pm works\",\"thread_id\":\"t-p-2003\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 683,
+     "status": 200
+    }
+   ]
+  },
+  "coarse": {
+   "n_tools": 2,
+   "tool_selection_accuracy": 0.725,
+   "argument_accuracy": 0.575,
+   "tokens_per_task": 284.9189,
+   "rows": [
+    {
+     "kind": "coarse",
+     "task": "Show me the full post for job dev-ai-000.",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"get_job\",\"params\":{\"job_id\":\"dev-ai-000\"}}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 278,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "Is the client c0267 trustworthy? Check their history.",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"get_client_history\",\"params\":{}}"
+     },
+     "tool_ok": true,
+     "args_ok": false,
+     "tokens": 272,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "How many Connects do I have left?",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"get_connects_balance\",\"params\":{}}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 271,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "What do comparable ai jobs usually pay?",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"search_jobs\",\"params\":{\"location\":\"remote\",\"max_rate\":null,\"min_rate\":null,\"query\":\"AI\"}}"
+     },
+     "tool_ok": false,
+     "args_ok": false,
+     "tokens": 288,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "Find open ai jobs that need Celery.",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"search_jobs\",\"params\":{\"keywords\":\"Celery\"}}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 278,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "Find proof in my portfolio that I have done Celery.",
+     "call": {
+      "name": "portfolio",
+      "arguments": "{\"action\":\"search_evidence\",\"params\":{\"search\":\"Celery\"}}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 280,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "Open my case study ai-case-02.",
+     "call": {
+      "name": "portfolio",
+      "arguments": "{\"action\":\"get_case_study\",\"params\":{\"id\":\"ai-case-02\"}}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 284,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "Have any clients written to me?",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"list_messages\",\"params\":{}}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 268,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "What would it cost to submit proposal p-1000? Preview only, do not send.",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"search_jobs\",\"params\":{}}"
+     },
+     "tool_ok": false,
+     "args_ok": false,
+     "tokens": 315,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "Draft a reply 'Tuesday 3pm works' in thread t-p-2000 but only preview it.",
+     "call": null,
+     "tool_ok": false,
+     "args_ok": false,
+     "tokens": null,
+     "status": 400
+    },
+    {
+     "kind": "coarse",
+     "task": "Show me the full post for job dev-ai-037.",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"get_job\",\"params\":{\"job_id\":\"dev-ai-037\"}}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 274,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "Is the client c0090 trustworthy? Check their history.",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"get_client_history\",\"params\":{}}"
+     },
+     "tool_ok": true,
+     "args_ok": false,
+     "tokens": 272,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "How many Connects do I have left?",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"get_connects_balance\",\"params\":{}}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 272,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "What do comparable ai jobs usually pay?",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"get_market_stats\",\"params\":{}}"
+     },
+     "tool_ok": true,
+     "args_ok": false,
+     "tokens": 269,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "Find open ai jobs that need Power BI.",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"search_jobs\",\"params\":{\"category\":\"AI\",\"keywords\":\"Power BI\",\"location\":\"Remote\",\"min_budget\":500}}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 287,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "Find proof in my portfolio that I have done Power BI.",
+     "call": {
+      "name": "portfolio",
+      "arguments": "{\"action\":\"search_evidence\",\"params\":{}}"
+     },
+     "tool_ok": true,
+     "args_ok": false,
+     "tokens": 275,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "Open my case study web-case-03.",
+     "call": {
+      "name": "portfolio",
+      "arguments": "{\"action\":\"get_case_study\",\"params\":{\"id\":\"web-case-03\"}}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 290,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "Have any clients written to me?",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"list_messages\",\"params\":{}}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 263,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "What would it cost to submit proposal p-1001? Preview only, do not send.",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"get_job\",\"params\":{}}"
+     },
+     "tool_ok": false,
+     "args_ok": false,
+     "tokens": 337,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "Draft a reply 'Tuesday 3pm works' in thread t-p-2001 but only preview it.",
+     "call": null,
+     "tool_ok": false,
+     "args_ok": false,
+     "tokens": null,
+     "status": 400
+    },
+    {
+     "kind": "coarse",
+     "task": "Show me the full post for job dev-ai-074.",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"get_job\",\"params\":{\"job_id\":\"dev-ai-074\"}}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 275,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "Is the client c0042 trustworthy? Check their history.",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"get_client_history\",\"params\":{\"client_id\":\"c0042\"}}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 277,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "How many Connects do I have left?",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"get_connects_balance\",\"params\":{}}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 272,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "What do comparable web jobs usually pay?",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"search_jobs\",\"params\":{}}"
+     },
+     "tool_ok": false,
+     "args_ok": false,
+     "tokens": 268,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "Find open web jobs that need RAG.",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"search_jobs\",\"params\":{}}"
+     },
+     "tool_ok": true,
+     "args_ok": false,
+     "tokens": 274,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "Find proof in my portfolio that I have done RAG.",
+     "call": {
+      "name": "portfolio",
+      "arguments": "{\"action\":\"search_evidence\",\"params\":{\"query\":\"RAG\"}}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 279,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "Open my case study data-case-04.",
+     "call": {
+      "name": "portfolio",
+      "arguments": "{\"action\":\"get_case_study\",\"params\":{\"case_id\":\"data-case-04\"}}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 280,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "Have any clients written to me?",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"list_messages\",\"params\":{}}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 263,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "What would it cost to submit proposal p-1002? Preview only, do not send.",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"get_job\",\"params\":{}}"
+     },
+     "tool_ok": false,
+     "args_ok": false,
+     "tokens": 305,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "Draft a reply 'Tuesday 3pm works' in thread t-p-2002 but only preview it.",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"list_messages\",\"params\":{\"thread_id\":\"t-p-2002\"}}"
+     },
+     "tool_ok": false,
+     "args_ok": false,
+     "tokens": 465,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "Show me the full post for job dev-ai-111.",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"get_job\",\"params\":{\"job_id\":\"dev-ai-111\"}}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 274,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "Is the client c0439 trustworthy? Check their history.",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"get_client_history\",\"params\":{}}"
+     },
+     "tool_ok": true,
+     "args_ok": false,
+     "tokens": 272,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "How many Connects do I have left?",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"get_connects_balance\",\"params\":{}}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 272,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "What do comparable ai jobs usually pay?",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"search_jobs\",\"params\":{}}"
+     },
+     "tool_ok": false,
+     "args_ok": false,
+     "tokens": 271,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "Find open ai jobs that need dbt.",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"search_jobs\",\"params\":{\"keywords\":\"dbt OpenAI\",\"location\":\"remote\",\"max_results\":5}}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 286,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "Find proof in my portfolio that I have done dbt.",
+     "call": {
+      "name": "portfolio",
+      "arguments": "{\"action\":\"search_evidence\",\"params\":{\"keywords\":\"dbt\"}}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 291,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "Open my case study web-case-05.",
+     "call": {
+      "name": "portfolio",
+      "arguments": "{\"action\":\"get_case_study\",\"params\":{\"case_id\":\"web-case-05\"}}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 282,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "Have any clients written to me?",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"list_messages\",\"params\":{}}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 263,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "What would it cost to submit proposal p-1003? Preview only, do not send.",
+     "call": {
+      "name": "marketplace",
+      "arguments": "{\"action\":\"get_job\",\"params\":{}}"
+     },
+     "tool_ok": false,
+     "args_ok": false,
+     "tokens": 300,
+     "status": 200
+    },
+    {
+     "kind": "coarse",
+     "task": "Draft a reply 'Tuesday 3pm works' in thread t-p-2003 but only preview it.",
+     "call": null,
+     "tool_ok": false,
+     "args_ok": false,
+     "tokens": null,
+     "status": 400
+    }
+   ]
+  },
+  "best": {
+   "n_tools": 12,
+   "tool_selection_accuracy": 1,
+   "argument_accuracy": 1,
+   "tokens_per_task": 1132,
+   "rows": [
+    {
+     "kind": "best",
+     "task": "Show me the full post for job dev-ai-000.",
+     "call": {
+      "name": "get_job",
+      "arguments": "{\"job_id\":\"dev-ai-000\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1122,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "Is the client c0267 trustworthy? Check their history.",
+     "call": {
+      "name": "get_client_history",
+      "arguments": "{\"client_id\":\"c0267\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1133,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "How many Connects do I have left?",
+     "call": {
+      "name": "get_connects_balance",
+      "arguments": "{}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1117,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "What do comparable ai jobs usually pay?",
+     "call": {
+      "name": "get_market_stats",
+      "arguments": "{\"category\":\"ai\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1116,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "Find open ai jobs that need Celery.",
+     "call": {
+      "name": "search_jobs",
+      "arguments": "{\"category\":\"ai\",\"limit\":20,\"query\":\"Celery\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1141,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "Find proof in my portfolio that I have done Celery.",
+     "call": {
+      "name": "search_evidence",
+      "arguments": "{\"requirement\":\"Celery\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1133,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "Open my case study ai-case-02.",
+     "call": {
+      "name": "get_case_study",
+      "arguments": "{\"id\":\"ai-case-02\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1126,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "Have any clients written to me?",
+     "call": {
+      "name": "list_messages",
+      "arguments": "{}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1109,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "What would it cost to submit proposal p-1000? Preview only, do not send.",
+     "call": {
+      "name": "submit_proposal",
+      "arguments": "{\"dry_run\":true,\"idempotency_key\":\"preview-p1000\",\"proposal_id\":\"p-1000\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1155,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "Draft a reply 'Tuesday 3pm works' in thread t-p-2000 but only preview it.",
+     "call": {
+      "name": "send_message",
+      "arguments": "{\"dry_run\":true,\"idempotency_key\":\"draft-req-001\",\"text\":\"Tuesday 3pm works\",\"thread_id\":\"t-p-2000\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1163,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "Show me the full post for job dev-ai-037.",
+     "call": {
+      "name": "get_job",
+      "arguments": "{\"job_id\":\"dev-ai-037\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1122,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "Is the client c0090 trustworthy? Check their history.",
+     "call": {
+      "name": "get_client_history",
+      "arguments": "{\"client_id\":\"c0090\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1123,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "How many Connects do I have left?",
+     "call": {
+      "name": "get_connects_balance",
+      "arguments": "{\"\":\"\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1121,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "What do comparable ai jobs usually pay?",
+     "call": {
+      "name": "get_market_stats",
+      "arguments": "{\"category\":\"ai\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1120,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "Find open ai jobs that need Power BI.",
+     "call": {
+      "name": "search_jobs",
+      "arguments": "{\"category\":\"ai\",\"limit\":10,\"skills\":[\"Power BI\"]}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1139,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "Find proof in my portfolio that I have done Power BI.",
+     "call": {
+      "name": "search_evidence",
+      "arguments": "{\"requirement\":\"Power BI\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1130,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "Open my case study web-case-03.",
+     "call": {
+      "name": "get_case_study",
+      "arguments": "{\"id\":\"web-case-03\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1130,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "Have any clients written to me?",
+     "call": {
+      "name": "list_messages",
+      "arguments": "{}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1110,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "What would it cost to submit proposal p-1001? Preview only, do not send.",
+     "call": {
+      "name": "submit_proposal",
+      "arguments": "{\"dry_run\":true,\"idempotency_key\":\"abc12345\",\"proposal_id\":\"p-1001\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1165,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "Draft a reply 'Tuesday 3pm works' in thread t-p-2001 but only preview it.",
+     "call": {
+      "name": "send_message",
+      "arguments": "{\"dry_run\":true,\"idempotency_key\":\"msg-20231110-1234\",\"text\":\"Tuesday 3pm works\",\"thread_id\":\"t-p-2001\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1166,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "Show me the full post for job dev-ai-074.",
+     "call": {
+      "name": "get_job",
+      "arguments": "{\"job_id\":\"dev-ai-074\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1124,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "Is the client c0042 trustworthy? Check their history.",
+     "call": {
+      "name": "get_client_history",
+      "arguments": "{\"client_id\":\"c0042\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1132,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "How many Connects do I have left?",
+     "call": {
+      "name": "get_connects_balance",
+      "arguments": "{}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1118,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "What do comparable web jobs usually pay?",
+     "call": {
+      "name": "get_market_stats",
+      "arguments": "{\"category\":\"web\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1124,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "Find open web jobs that need RAG.",
+     "call": {
+      "name": "search_jobs",
+      "arguments": "{\"category\":\"web\",\"limit\":20,\"min_budget\":0,\"query\":\"RAG\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1136,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "Find proof in my portfolio that I have done RAG.",
+     "call": {
+      "name": "search_evidence",
+      "arguments": "{\"requirement\":\"RAG\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1130,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "Open my case study data-case-04.",
+     "call": {
+      "name": "get_case_study",
+      "arguments": "{\"id\":\"data-case-04\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1124,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "Have any clients written to me?",
+     "call": {
+      "name": "list_messages",
+      "arguments": "{\"\":\"\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1115,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "What would it cost to submit proposal p-1002? Preview only, do not send.",
+     "call": {
+      "name": "submit_proposal",
+      "arguments": "{\"dry_run\":true,\"idempotency_key\":\"preview-p-1002-001\",\"proposal_id\":\"p-1002\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1161,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "Draft a reply 'Tuesday 3pm works' in thread t-p-2002 but only preview it.",
+     "call": {
+      "name": "send_message",
+      "arguments": "{\"dry_run\":true,\"idempotency_key\":\"draft-req-20261110-1\",\"text\":\"Tuesday 3pm works\",\"thread_id\":\"t-p-2002\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1167,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "Show me the full post for job dev-ai-111.",
+     "call": {
+      "name": "get_job",
+      "arguments": "{\"job_id\":\"dev-ai-111\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1127,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "Is the client c0439 trustworthy? Check their history.",
+     "call": {
+      "name": "get_client_history",
+      "arguments": "{\"client_id\":\"c0439\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1128,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "How many Connects do I have left?",
+     "call": {
+      "name": "get_connects_balance",
+      "arguments": "{}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1115,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "What do comparable ai jobs usually pay?",
+     "call": {
+      "name": "get_market_stats",
+      "arguments": "{\"category\":\"ai\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1118,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "Find open ai jobs that need dbt.",
+     "call": {
+      "name": "search_jobs",
+      "arguments": "{\"category\":\"ai\",\"limit\":20,\"query\":\"dbt\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1130,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "Find proof in my portfolio that I have done dbt.",
+     "call": {
+      "name": "search_evidence",
+      "arguments": "{\"requirement\":\"dbt\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1129,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "Open my case study web-case-05.",
+     "call": {
+      "name": "get_case_study",
+      "arguments": "{\"id\":\"web-case-05\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1131,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "Have any clients written to me?",
+     "call": {
+      "name": "list_messages",
+      "arguments": "{}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1111,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "What would it cost to submit proposal p-1003? Preview only, do not send.",
+     "call": {
+      "name": "submit_proposal",
+      "arguments": "{\"dry_run\":true,\"idempotency_key\":\"preview-p1003-001\",\"proposal_id\":\"p-1003\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1154,
+     "status": 200
+    },
+    {
+     "kind": "best",
+     "task": "Draft a reply 'Tuesday 3pm works' in thread t-p-2003 but only preview it.",
+     "call": {
+      "name": "send_message",
+      "arguments": "{\"dry_run\":true,\"idempotency_key\":\"reply-tp2003-1\",\"text\":\"Tuesday 3pm works\",\"thread_id\":\"t-p-2003\"}"
+     },
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 1165,
+     "status": 200
+    }
+   ]
+  }
+ }
+}
