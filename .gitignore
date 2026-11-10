@@ -10,5 +10,15 @@ node_modules/
 dist/
 build/
 data/processed/
-evals/results/*
-!evals/results/.gitkeep
+# evals/results are committed (every number cites a file)
+
+*.egg-info/
+.venv*/
+data/processed/
+gigsim/state/
+*.sqlite
+*.db
+playwright-report/
+test-results/
+.cache/
+evals/.llm_cache/

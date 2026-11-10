@@ -1,23 +1,70 @@
 [project]
-name = "gigbid-student-project"
-version = "0.1.0"
-description = "Student scaffold for the AI-4016 GigBid assignment"
-requires-python = ">=3.11"
+name = "gigbid"
+version = "0.2.0"
+description = "GigBid: a multi-agent freelancer copilot built on LangGraph, MCP and advanced RAG (AI-4016)"
+requires-python = ">=3.11,<3.13"
+authors = [{ name = "Abdul Ghufran" }]
 dependencies = [
-  "fastapi",
-  "uvicorn[standard]",
-  "pydantic",
-  "pyyaml",
-  "langgraph",
-  "langchain",
-  "langchain-mcp-adapters",
-  "mcp",
-  "httpx",
-  "python-dotenv",
+  # web / api
+  "fastapi==0.115.12",
+  "uvicorn[standard]==0.34.2",
+  "sse-starlette==2.3.3",
+  "pydantic==2.11.4",
+  "pydantic-settings==2.9.1",
+  "python-multipart==0.0.20",
+  "pyjwt==2.10.1",
+  "bcrypt==4.3.0",
+  "cryptography==44.0.3",
+  # data
+  "sqlalchemy==2.0.40",
+  "psycopg[binary,pool]==3.2.9",
+  "redis==5.2.1",
+  "arq==0.26.3",
+  "pyyaml==6.0.2",
+  "httpx==0.28.1",
+  "python-dotenv==1.1.0",
+  # agents
+  "langgraph==0.4.8",
+  "langgraph-checkpoint-postgres==2.0.21",
+  "langgraph-checkpoint-sqlite==2.0.10",
+  "langgraph-supervisor==0.0.27",
+  "langchain-core==0.3.65",
+  "langchain-openai==0.3.24",
+  "langchain-mcp-adapters==0.1.7",
+  "mcp==1.9.4",
+  "langfuse==2.60.8",
+  # rag
+  "numpy==2.2.6",
+  "fastembed==0.7.1",
+  "rank-bm25==0.2.2",
+  "networkx==3.4.2",
+  "pypdf==5.6.0",
+  "scipy==1.15.3",
 ]
 
 [project.optional-dependencies]
-dev = ["pytest", "pytest-asyncio", "ruff", "mypy"]
+dev = [
+  "pytest==8.3.5",
+  "pytest-asyncio==0.26.0",
+  "ruff==0.11.12",
+  "reportlab==4.4.1",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["agent*", "apps*", "rag*", "mcp_servers*", "worker*", "evals*", "gigsim*"]
 
 [tool.ruff]
-line-length = 100
+line-length = 110
+extend-exclude = ["apps/web", "data"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
+ignore = ["E501", "B008"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests", "mcp_servers"]
