@@ -153,6 +153,7 @@ budgets:
   max_revisions: 2                 # Critic may send a draft back at most twice
   max_tokens_per_job: 30000
   max_tokens_per_conversation_turn: 12000
+  max_auto_drafts_per_day: 8       # per user; protects the free-tier daily token cap (~12 full drafts/day on the strong model)
   declared:
     p95_latency_s_per_job_analysed: 25
     p95_latency_s_per_proposal: 90

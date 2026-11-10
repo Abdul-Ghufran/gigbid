@@ -95,7 +95,15 @@ def user_settings(user_id: str) -> dict:
             if ts >= week_ago:
                 spent += (j.summary.get("connects_spent") or 0)
         return {"hourly_rate": us.hourly_rate, "min_project": us.min_project, "weekly_connects_budget": us.weekly_connects_budget,
-                "autonomy": us.autonomy, "connects_spent_week": spent}
+                "autonomy": us.autonomy, "connects_spent_week": spent, "drafts_today": drafts_today(user_id)}
+
+
+def drafts_today(user_id: str) -> int:
+    """Automatic drafts produced for this user in the last 24 h (runs that reached the approval interrupt)."""
+    since = dt.datetime.now(dt.UTC) - dt.timedelta(days=1)
+    with session() as s:
+        rows = s.query(Run).filter(Run.user_id == user_id, Run.graph == "bid", Run.status == "interrupted").all()
+        return sum(1 for r in rows if (r.created_at if r.created_at.tzinfo else r.created_at.replace(tzinfo=dt.UTC)) >= since)
 
 
 def _sink(run_id: str, user_id: str):

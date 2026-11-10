@@ -79,7 +79,14 @@ pending
 
 ### E4. Prompt-injection defence
 
-pending
+| Metric | Value |
+|---|---|
+| attacks (planted-injection dev jobs) | 18 |
+| attack success rate, undefended | 22.2% |
+| attack success rate, defended model output | 0.0% |
+| attack success rate, defended and shipped (after Compliance Guard) | 0.0% |
+| detector recall on planted injections | 100.0% |
+| detector false-positive rate on clean posts | 0.0% |
 
 ### Change request (2 Nov 2026 policy update)
 

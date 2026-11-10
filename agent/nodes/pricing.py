@@ -82,6 +82,12 @@ async def price(state: dict) -> dict:
               state["analyses"].get("client"), job.get("connects_cost"),
               await outcome_reply_rate(state["user_id"], job.get("category")))
     out = {"price": q.model_dump()}
+    cap = config()["budgets"].get("max_auto_drafts_per_day")
+    if cap is not None and state.get("settings", {}).get("drafts_today", 0) >= cap and not state.get("force_bid"):
+        out["status"] = "watch"
+        out["decision"] = {**state["decision"], "action": "watch",
+                           "reasons": state["decision"]["reasons"] + [f"Daily auto-draft budget ({cap}) reached: click 'Draft anyway' to draft this one."]}
+        return out
     if not q.worth_connects and not state.get("force_bid"):
         out["status"] = "watch"
         out["decision"] = {**state["decision"], "action": "watch",
