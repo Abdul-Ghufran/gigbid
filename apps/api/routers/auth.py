@@ -80,7 +80,7 @@ async def onboarding(body: OnboardingIn, u: User = Depends(current_user)):
 
 @router.get("/upwork/start")
 async def upwork_start(request: Request, u: User = Depends(current_user)):
-    redirect = f"{get_settings().public_api_url}/auth/upwork/callback"
+    redirect = f"{get_settings().public_api_url}/api/auth/upwork/callback"
     try:
         return {"authorize_url": await upwork_authorize_url(u.id, redirect)}
     except Exception as e:

@@ -95,7 +95,7 @@ async def health():
 
 
 for r in (auth, jobs, proposals, messages, runs, analytics, settings):
-    app.include_router(r.router)
+    app.include_router(r.router, prefix="/api")
 
 # Single-service deployments can serve the built web app from the API container.
 WEB_DIST = Path(__file__).resolve().parents[1] / "web" / "dist"
