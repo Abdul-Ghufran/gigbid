@@ -10,9 +10,9 @@
 from __future__ import annotations
 
 import asyncio
-import os
 import contextvars
 import functools
+import os
 import time
 from typing import Any, Callable
 
