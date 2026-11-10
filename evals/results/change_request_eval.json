@@ -1,0 +1,22 @@
+{
+ "generated_by": "evals/runners/change_request_eval.py",
+ "generated_at": "2026-11-11 01:34",
+ "gigsim_policy": "2026-11-02",
+ "before_change (config 2026-10-27)": {
+  "jobs": 282,
+  "connects_prediction_wrong": 95,
+  "connects_prediction_error_rate": 0.3369,
+  "jobs_with_screening_questions": 177,
+  "blank_answers_caught_before_submit": 0,
+  "rejected_by_marketplace": 177
+ },
+ "after_change (config 2026-11-02)": {
+  "jobs": 282,
+  "connects_prediction_wrong": 0,
+  "connects_prediction_error_rate": 0.0,
+  "jobs_with_screening_questions": 177,
+  "blank_answers_caught_before_submit": 177,
+  "rejected_by_marketplace": 0
+ },
+ "diff": "git show <change-request commit>: agent/config.yaml +4/-4, data/policy_pack/marketplace_policy.md +2; no Python changed"
+}
