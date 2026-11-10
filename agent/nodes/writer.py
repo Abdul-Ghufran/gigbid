@@ -27,7 +27,7 @@ def evidence_block(fit: dict) -> tuple[str, list[str]]:
     return "\n".join(lines) or "(no evidence)", unsupported
 
 
-def template_draft(job: dict, spec: dict, fit: dict, price: dict, version: int) -> ProposalDraft:
+def template_draft(job: dict, spec: dict, fit: dict, price: dict, version: int, strategy: str = "proof_first") -> ProposalDraft:
     """Deterministic grounded fallback used when no LLM is reachable (offline / outage)."""
     proofs = []
     for m in fit.get("matrix", []):
@@ -50,7 +50,20 @@ def template_draft(job: dict, spec: dict, fit: dict, price: dict, version: int) 
         a = proofs[0][1] if proofs else "I would approach this step by step and agree on checkpoints with you."
         answers.append(f"{a} For this job I would apply the same approach, adapted to your requirements.")
     text = f"{opening}\n\n{body}\n\n{approach} {nxt}"
-    return ProposalDraft(job_id=job["job_id"], cover_letter=text, screening_answers=answers, version=version, strategy="template")
+    if strategy != "proof_first":
+        text = f"{opening}\n\n{approach}\n\n{body} {nxt}"
+    return ProposalDraft(job_id=job["job_id"], cover_letter=text, screening_answers=answers, version=version, strategy=strategy)
+
+
+def pick_strategy(job_id: str) -> str:
+    """X2: stable per-job assignment so a job always gets the same arm (and re-drafts stay in it)."""
+    import hashlib
+
+    ex = config().get("experiments", {})
+    names = sorted(ex.get("strategies", {})) or ["proof_first"]
+    if not ex.get("ab_enabled"):
+        return names[-1] if "proof_first" not in names else "proof_first"
+    return names[int(hashlib.sha1(job_id.encode()).hexdigest(), 16) % len(names)]
 
 
 @node("writer")
@@ -87,7 +100,9 @@ async def write(state: dict) -> dict:
     t = config()["thresholds"]
     clean, _ = strip_injection(job.get("description", ""))
     p = prompt("writer")
+    strategy = pick_strategy(job["job_id"])
     sys = render(p["system"], min_words=str(t["proposal_min_words"]), max_words=str(t["proposal_max_words"]),
+                 strategy=config().get("experiments", {}).get("strategies", {}).get(strategy, ""),
                  style_rules=("Learned style rules from this freelancer's edits (follow them):\n- " + "\n- ".join(r["rule"] for r in style)) if style else "")
     lesson_lines = [lx["lesson"] for lx in lessons.get("lessons", [])] + [f"Winning example ({e['outcome']}): {e['text'][:300]}" for e in examples]
     user = render(p["user"], job_spec=spec, evidence=ev_text, unsupported=unsupported or ["(none)"],
@@ -95,8 +110,8 @@ async def write(state: dict) -> dict:
                   screening_questions=job.get("screening_questions") or ["(none)"], revision_notes=revision_notes,
                   job_post=delimit(f"{job.get('title', '')}\n\n{clean}"))
     draft = await llm.structured("writer", sys, user, ProposalDraft, max_tokens=1300,
-                                 offline=lambda: template_draft(job, spec, fit, price, version))
-    draft.job_id, draft.version = job["job_id"], version
+                                 offline=lambda: template_draft(job, spec, fit, price, version, strategy))
+    draft.job_id, draft.version, draft.strategy = job["job_id"], version, strategy
     qs = job.get("screening_questions") or []
     draft.screening_answers = (draft.screening_answers + [""] * len(qs))[: len(qs)] if qs else []
     draft.claims = [Claim(text=s, evidence_ids=CITE.findall(s)) for s in re.split(r"(?<=[.!?])\s+", draft.cover_letter) if CITE.search(s)]

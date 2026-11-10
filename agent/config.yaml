@@ -188,6 +188,12 @@ platform_policy:
     high_competition_threshold: 20
     high_competition_multiplier: 1.5
 
+experiments:                        # signature extension X2 (docs/EXTENSION.md)
+  ab_enabled: true                  # each job is assigned a strategy by a stable hash of its id; analytics compares them
+  strategies:
+    proof_first: "Structure: open with the client's problem in one sentence, then immediately the single most relevant past result with its number and citation, then your approach, then a next step."
+    plan_first: "Structure: open with the client's problem in one sentence, then a concrete 3-step plan for THIS job, then the supporting past results with citations, then a next step."
+
 memory:
   style_promotion:
     min_occurrences: 3            # same edit pattern seen in >= 3 distinct drafts

@@ -209,6 +209,7 @@ def _update_job(user_id, job_id, v: dict, run_status, err, run_id, led, latency)
                 j.pipeline_stage = "submitted"
                 summ["connects_spent"] = sub.get("connects_spent")
                 pr = v.get("price", {})
+                summ["strategy"] = v["draft"].get("strategy")
                 summ["features"] = proposal_features(v["draft"]["cover_letter"], pr.get("amount"), pr.get("market_p50"),
                                                      v.get("job", {}).get("category"))
             elif st == "awaiting_approval" or run_status == "interrupted":

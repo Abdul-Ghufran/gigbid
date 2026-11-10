@@ -25,6 +25,7 @@ def analytics(u: User = Depends(current_user)):
         by_cat = defaultdict(lambda: {"submitted": 0, "replied": 0, "hired": 0, "connects": 0})
         funnel = Counter()
         rejections = Counter()
+        by_strategy = defaultdict(lambda: {"submitted": 0, "replied": 0})
         for j in jobs:
             funnel["seen"] += 1
             sm = j.summary or {}
@@ -41,6 +42,9 @@ def analytics(u: User = Depends(current_user)):
                 c["submitted"] += 1
                 c["connects"] += sm.get("connects_spent") or 0
                 funnel["submitted"] += 1
+                st = by_strategy[sm.get("strategy") or "unknown"]
+                st["submitted"] += 1
+                st["replied"] += int(j.pipeline_stage in REPLIED)
                 if j.pipeline_stage in REPLIED:
                     c["replied"] += 1
                     funnel["replied"] += 1
@@ -58,4 +62,6 @@ def analytics(u: User = Depends(current_user)):
                              "mean_cost_per_proposal_usd": round(statistics.mean(cost), 5) if cost else None,
                              "total_cost_usd": round(sum(r.cost_usd for r in runs), 5), "total_tokens": sum(r.tokens for r in runs)},
             "connects_spent": sum(c["connects"] for c in cats),
+            "ab_test": [{"strategy": k, **v, "reply_rate": round(v["replied"] / v["submitted"], 3) if v["submitted"] else None}
+                        for k, v in by_strategy.items()],
         }

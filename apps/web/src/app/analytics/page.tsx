@@ -35,6 +35,11 @@ export default function AnalyticsPage() {
             <tbody>{data.by_category.map((c: Any) => <tr key={c.category}><td>{c.category}</td><td>{c.submitted}</td><td>{pct(c.reply_rate)}</td><td>{pct(c.hire_rate)}</td><td>{c.connects}</td></tr>)}</tbody></table>
           {data.by_category.length === 0 && <p className="muted">No submitted proposals yet.</p>}</section>
       </div>
+      <section className="card"><h2>Proposal A/B test (X2)</h2>
+        <table className="table"><thead><tr><th>Strategy</th><th>Submitted</th><th>Replied</th><th>Reply rate</th></tr></thead>
+          <tbody>{(data.ab_test || []).map((s: Any) => <tr key={s.strategy}><td>{s.strategy.replace("_", " ")}</td><td>{s.submitted}</td><td>{s.replied}</td><td>{pct(s.reply_rate)}</td></tr>)}</tbody></table>
+        {(data.ab_test || []).length === 0 && <p className="muted">Each job is assigned proof-first or plan-first by a stable hash; results appear after submissions.</p>}
+        <p className="muted small">Offline paired evaluation with McNemar's test: evals/results/ab_test.json.</p></section>
       <section className="card"><h2>Top rejection / skip reasons</h2>
         <ul>{data.top_rejection_reasons.map(([r, n]: [string, number]) => <li key={r}>{r} <span className="muted">×{n}</span></li>)}</ul>
         {data.top_rejection_reasons.length === 0 && <p className="muted">None yet.</p>}
