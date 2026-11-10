@@ -99,7 +99,9 @@ def values():
         "live_reply": pct(live.get("gigsim_reply_rate")),
         "dec_p95": num(get(dec, "overall.p95_latency_s"), 1),
         "kappa": num(kap.get("cohen_kappa"), 2), "wkappa": num(kap.get("quadratic_weighted_kappa"), 2), "kappa_n": str(kap.get("n_labelled", "pending")),
-        "prof_open_cost": num(get(prof, "open.mean_cost_usd_per_proposal"), 5), "prof_mid_cost": num(get(prof, "open_mid.mean_cost_usd_per_proposal"), 5),
+        "panel_win": pct(j("human_panel").get("shipped_win_rate")), "panel_n": str(j("human_panel").get("votes", "pending")),
+        "panel_raters": str(j("human_panel").get("raters", "pending")), "panel_p": num(j("human_panel").get("binomial_p"), 3),
+        "prof_open_cost":num(get(prof, "open.mean_cost_usd_per_proposal"), 5), "prof_mid_cost": num(get(prof, "open_mid.mean_cost_usd_per_proposal"), 5),
     }
     return out
 
