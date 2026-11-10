@@ -60,6 +60,22 @@ profiles:
     rag_aux: small
     fallback_small: strong
     fallback_strong: strong
+  open_strong:     # every node on gpt-oss-120b: same model for all R&D C architectures; used when 20b's daily quota is spent
+    scout: strong
+    analyst: strong
+    risk_assessor: strong
+    fit_matcher: strong
+    pricing: strong
+    writer: strong
+    verifier: strong
+    critic: strong
+    compliance: strong
+    liaison: strong
+    intent: strong
+    judge: strong
+    rag_aux: strong
+    fallback_small: strong
+    fallback_strong: strong
   eval_qwen:       # same-model setting for R&D question C (every LLM call on Qwen; separate daily quota)
     scout: qwen
     analyst: qwen

@@ -1,4 +1,4 @@
-"""Unattended finisher for the live-model evaluations that need fresh Groq daily quota.
+"""Unattended finisher (120b steps first, then 20b steps) for the live-model evaluations that need fresh Groq daily quota.
 
 Waits until each model accepts a large request, then runs (strict mode: wait on quota, no fallback models):
   1. LLM judge on the 30-item calibration sheet + both proposal sets        (gpt-oss-20b, profile open_mid)
@@ -69,16 +69,24 @@ def run(args, env_extra=None, timeout_h=6):
 
 def main():
     log("finisher started")
+    # 120b-only steps first (gpt-oss-20b's daily budget may be spent)
+    if not (RES / "proposals_best_live.json").exists() and wait_for("openai/gpt-oss-120b"):
+        run(["-m", "evals.runners.gigsim_outcomes", "--profile", "open_strong", "--per-persona", "1", "--tag", "best_live"])
+    if not (RES / "rq_c_architectures.json").exists() and wait_for("openai/gpt-oss-120b"):
+        run(["-m", "evals.runners.rq_c_architectures", "--profile", "open_strong", "--per-persona", "2"])
+    finalize("Live-model evaluations: live proposals and R&D C (gpt-oss-120b)")
+    # then the steps that need gpt-oss-20b
     if not (RES / "judge_scores.json").exists() and wait_for("openai/gpt-oss-20b"):
         run(["-m", "evals.runners.judge_calibration", "--judge"], {"MODEL_PROFILE": "open_mid"})
-    if not (RES / "proposals_best_live.json").exists() and wait_for("openai/gpt-oss-120b"):
-        run(["-m", "evals.runners.gigsim_outcomes", "--profile", "open", "--per-persona", "1", "--tag", "best_live"])
-    if not (RES / "rq_c_architectures.json").exists() and wait_for("openai/gpt-oss-120b"):
-        run(["-m", "evals.runners.rq_c_architectures", "--profile", "open", "--per-persona", "2"])
     if not (RES / "proposals_best_live_mid.json").exists() and wait_for("openai/gpt-oss-20b"):
         run(["-m", "evals.runners.gigsim_outcomes", "--profile", "open_mid", "--per-persona", "1", "--tag", "best_live_mid"])
+    finalize("Judge scores and all-20b profile comparison")
+    log("finisher done")
+
+
+def finalize(message):
     profiles = {}
-    for tag, prof in (("best_live", "open"), ("best_live_mid", "open_mid")):
+    for tag, prof in (("best_live", "open_strong"), ("best_live_mid", "open_mid")):
         p = RES / f"proposals_{tag}.json"
         if p.exists():
             profiles[prof] = json.loads(p.read_text(encoding="utf-8"))["summary"]
@@ -90,13 +98,12 @@ def main():
     subprocess.run(["node", "scripts/render_pdf.mjs"], cwd=ROOT / "apps" / "web")
     run(["-m", "tools.ci_checks"])
     subprocess.run(["git", "add", "-A"], cwd=ROOT)
-    subprocess.run(["git", "commit", "-q", "-m", "Live-model evaluations (judge, live proposals, R&D C, model profiles); regenerate results, README and report"], cwd=ROOT)
+    subprocess.run(["git", "commit", "-q", "-m", message + "; regenerate results, README and report"], cwd=ROOT)
     for _ in range(5):
         if subprocess.run(["git", "push", "-q", "origin", "main"], cwd=ROOT).returncode == 0:
-            log("pushed")
+            log("pushed: " + message)
             break
         time.sleep(30)
-    log("finisher done")
 
 
 if __name__ == "__main__":
