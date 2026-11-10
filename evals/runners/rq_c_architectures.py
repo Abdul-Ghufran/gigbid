@@ -63,7 +63,15 @@ async def invoke_counted(agent, inp, cfg):
 
     with get_usage_metadata_callback() as cb:
         try:
-            out = await agent.ainvoke(inp, {**cfg, "callbacks": [cb]})
+            for attempt in range(40):  # daily-quota 429s: wait, do not record a failure
+                try:
+                    out = await agent.ainvoke(inp, {**cfg, "callbacks": [cb]})
+                    break
+                except Exception as e:  # noqa: PERF203
+                    if "rate_limit" in str(e) and "tokens per day" in str(e) and attempt < 39:
+                        await asyncio.sleep(150)
+                        continue
+                    raise
             raw = out["messages"][-1].content
             final = parse_final(raw) or {"_raw": raw[-1500:]}
         except Exception as e:

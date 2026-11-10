@@ -86,9 +86,10 @@ async def main():
             "proposal": d["cover_letter"], "answers": d.get("screening_answers", []),
         })
         print(i + 1, len(jobs), job["job_id"], "replied" if react["replied"] else "-", f"{secs:.0f}s", flush=True)
-    ok = [r for r in rows if "error" not in r]
+    degraded = [r for r in rows if "error" not in r and (r["offline_fallbacks"] or r["fallbacks"]) and os.getenv("LLM_OFFLINE") != "1"]
+    ok = [r for r in rows if "error" not in r and r not in degraded]
     summary = {
-        "variant": variant, "profile": a.profile, "n_jobs": len(jobs), "n_drafted": len(ok), "errors": len(rows) - len(ok),
+        "variant": variant, "profile": a.profile, "n_jobs": len(jobs), "n_drafted": len(ok), "errors": len([r for r in rows if "error" in r]), "n_degraded_excluded": len(degraded),
         "unsupported_per_proposal_before": H.mean([r["unsupported_before"] for r in ok]),
         "unsupported_per_proposal_after": H.mean([r["unsupported_final_audit"] for r in ok]),
         "claims_per_proposal": H.mean([r["claims_before"] for r in ok]),

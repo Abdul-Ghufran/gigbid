@@ -88,7 +88,7 @@ profiles:
     compliance: mid
     liaison: mid
     intent: mid
-    judge: strong
+    judge: mid
     rag_aux: small
     fallback_small: small
     fallback_strong: small

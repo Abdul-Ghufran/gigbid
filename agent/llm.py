@@ -230,7 +230,8 @@ async def _call(spec: dict, messages: list[dict], json_mode: bool, node: str, ma
     est = sum(len(m["content"]) for m in messages) // 3 + max_tokens // 2
     t0 = time.perf_counter()
     last: Exception | None = None
-    for attempt in range(config()["llm"]["max_retries"] + 1):
+    n_attempts = 45 if os.getenv("LLM_WAIT_ON_QUOTA") == "1" else config()["llm"]["max_retries"] + 1
+    for attempt in range(n_attempts):
         await _limiter(spec).wait(est)
         try:
             async with httpx.AsyncClient(timeout=config()["llm"]["timeout_s"]) as http:
@@ -239,6 +240,10 @@ async def _call(spec: dict, messages: list[dict], json_mode: bool, node: str, ma
             if r.status_code == 429 or r.status_code >= 500:
                 wait = float(r.headers.get("retry-after", 2 ** attempt * 2))
                 last = LLMUnavailable(f"{spec['model']} HTTP {r.status_code}")
+                if os.getenv("LLM_WAIT_ON_QUOTA") == "1" and attempt < 40:
+                    # evaluation mode: wait for quota instead of failing over, so measurements use the intended model
+                    await asyncio.sleep(min(max(wait, 5.0), 180.0))
+                    continue
                 if wait > 20:  # daily quota or long throttle: fail over to the fallback model now, do not stall the run
                     raise last
                 await asyncio.sleep(wait)
@@ -310,6 +315,9 @@ async def structured(node: str, system: str, user: str, schema: type[T], *, offl
         raise LLMUnavailable("offline mode and no offline fallback")
     specs = [model_for(node, profile),
              model_for("fallback_strong" if node in ("writer", "critic", "liaison", "judge") else "fallback_small", profile)]
+    if os.getenv("LLM_NO_FALLBACK") == "1":  # evaluation mode: measure the configured model only
+        specs = specs[:1]
+        offline = None
     last_err: Exception | None = None
     for i, spec in enumerate(specs):
         if i:

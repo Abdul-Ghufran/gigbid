@@ -15,7 +15,7 @@ Copy `.env.example` to `.env`. Secrets only come from environment variables.
 Render's free web service has 0.1 CPU and 512 MB RAM and sleeps after 15 idle minutes. GigBid therefore deploys as **one
 container** (`infra/docker/render.Dockerfile`, blueprint `render.yaml`): FastAPI + in-process worker + the three MCP
 servers over the in-memory MCP transport (real JSON-RPC, no extra processes) + GigSim in-process, serving the built web
-app. Measured idle RSS ≈ 260 MB after removing the cross-encoder from the runtime path (verification uses the bi-encoder,
+app. Measured RSS 337 MB after a full demo session (scouting, 9 analyses, approvals, a client conversation) once the cross-encoder was removed from the runtime path (verification uses the bi-encoder,
 same F1 — `evals/results/verifier_eval.json`). Postgres is Neon (free); GigSim persists its state in the same database
 (`GIGSIM_STATE_DB`) because Render's disk is ephemeral. Redis (Upstash) is optional: with `REDIS_URL` set the API enqueues
 to Arq, but a separate worker process does not fit in 512 MB, so production leaves it unset and uses the in-process worker.
