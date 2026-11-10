@@ -78,7 +78,7 @@ def negotiate_counter(state: dict) -> float:
     """Walk-away rule: never below the user's floor; meet the client ~10% above their offer, capped at our budget max."""
     floor = state.get("settings", {}).get("min_project", 0)
     offer = state["intent"].get("counter_offer") or 0
-    cap = (state.get("job", {}).get("budget") or {}).get("max") or offer * 1.1
+    cap =(state.get("job", {}).get("budget") or {}).get("max") or offer * 1.1
     return round(max(floor, min(offer * 1.1, max(cap, offer))), 0)
 
 
@@ -90,7 +90,6 @@ def _template_reply(state: dict) -> ReplyDraft:
         return ReplyDraft(text=f"Thanks for getting back to me about {title}. I'd be glad to talk. I'm free at: {slots}. "
                                f"Please pick whichever suits you and we can do the call through the platform.", proposed_slots=state.get("slots", []))
     if it == "negotiation":
-        floor = state.get("settings", {}).get("min_project", 0)
         counter = negotiate_counter(state)
         return ReplyDraft(text=f"Thanks for the open discussion. I can work within {counter:,.0f} USD if we trim the scope to the "
                                f"core deliverables first; happy to propose that split here on the platform.", counter_price=counter)
@@ -109,7 +108,6 @@ async def draft(state: dict) -> dict:
     it = state["intent"]
     convo = "\n".join(f"{m['sender'].upper()}: {strip_injection(m['text'])[0] if m['sender'] == 'client' else m['text']}"
                       for m in state["messages"][-8:])
-    floor = state.get("settings", {}).get("min_project", 0)
     counter = None
     if it["intent"] == "negotiation":
         counter = negotiate_counter(state)

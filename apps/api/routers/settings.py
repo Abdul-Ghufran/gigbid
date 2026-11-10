@@ -8,11 +8,18 @@ import uuid
 from fastapi import APIRouter, Depends, HTTPException
 
 from agent.config import config, profile_name
-from agent.memory.store import delete_memory, list_memory
 from agent.mcp_client import Toolbox
+from agent.memory.store import delete_memory, list_memory
 from apps.api.auth.token_store import connected_accounts, disconnect
 from apps.api.auth.users import current_user
-from apps.api.schemas.models import MemoryOut, PortfolioItemIn, PortfolioItemOut, SettingsIn, SettingsOut, SystemStatus
+from apps.api.schemas.models import (
+    MemoryOut,
+    PortfolioItemIn,
+    PortfolioItemOut,
+    SettingsIn,
+    SettingsOut,
+    SystemStatus,
+)
 from common.db import Edit, PortfolioUpload, User, UserSettings, session
 from common.settings import get_settings
 from common.tracing import langfuse

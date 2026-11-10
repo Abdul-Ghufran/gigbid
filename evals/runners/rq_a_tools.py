@@ -11,12 +11,10 @@ Scores: tool-selection accuracy, argument accuracy (required values present and 
 import argparse
 import asyncio
 import json
-import time
 
 import httpx
 
 from evals.runners import harness as H
-from agent.config import model_for  # noqa: E402
 from agent.llm import _api_key, _base_url  # noqa: E402
 from agent.mcp_client import load_schemas  # noqa: E402
 

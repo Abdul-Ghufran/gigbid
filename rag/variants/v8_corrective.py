@@ -81,7 +81,6 @@ class V8Corrective(Variant):
             elif self.use_llm:
                 try:
                     from agent import llm
-
                     from agent.config import prompt, render
 
                     pr = prompt("rag_rewrite")

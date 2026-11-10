@@ -42,7 +42,7 @@ def build_claims(seed=7):
                 wrong = outcome.replace(n, str(int(n) * 3 + 7), 1)
                 rows.append({"claim": f"In the {title} project, the work {wrong} [{it.id}].", "label": "unsupported", "kind": "wrong_number", "persona": p})
             rows.append({"claim": f"I built the {title} project with {rng.choice(foreign)} [{it.id}].", "label": "unsupported", "kind": "wrong_tool", "persona": p})
-            rows.append({"claim": f"I have 12 years of experience delivering projects like this for Fortune 500 clients.", "label": "unsupported", "kind": "invented", "persona": p})
+            rows.append({"claim": "I have 12 years of experience delivering projects like this for Fortune 500 clients.", "label": "unsupported", "kind": "invented", "persona": p})
             other = rng.choice([x for x in c.evidence if x.type == "case_study" and x.id != it.id])
             rows.append({"claim": f"In the {title} project, the work {outcome} [{other.id}].", "label": "unsupported", "kind": "wrong_citation", "persona": p})
             rows[-1]["evidence"] = None

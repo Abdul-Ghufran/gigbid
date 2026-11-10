@@ -7,7 +7,6 @@ from rag.variants.base import Variant
 from rag.variants.v2_hybrid import V2Hybrid
 
 
-
 class V6Contextual(Variant):
     name = "v6_contextual"
     uses_llm = True

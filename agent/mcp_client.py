@@ -14,7 +14,6 @@ import json
 import os
 import random
 import time
-from typing import Any
 
 from common.security import sign_user_token
 from common.settings import get_settings

@@ -75,7 +75,13 @@ extend-exclude = ["apps/web", "data"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B"]
-ignore = ["E501", "B008"]
+ignore = ["E501", "B008", "B007", "B905"]
+
+[tool.ruff.lint.per-file-ignores]
+# eval runners import evals.runners.harness FIRST on purpose: it sets the isolation env vars before settings load
+"evals/runners/*.py" = ["I001", "E402"]
+"tools/*.py" = ["E402"]
+"gigsim/*.py" = ["B023"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"

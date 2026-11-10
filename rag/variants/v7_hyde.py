@@ -4,7 +4,6 @@ from rag.query import decompose, job_text
 from rag.variants.base import RetrievalResult, Variant, to_items
 
 
-
 class V7HyDE(Variant):
     name = "v7_hyde"
     uses_llm = True

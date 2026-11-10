@@ -7,9 +7,9 @@ from functools import lru_cache
 
 import numpy as np
 
+from rag.index.core import CACHE, BM25Index, DenseIndex, embeddings
 from rag.ingest import chunkers
 from rag.ingest.loaders import load_persona, load_uploads
-from rag.index.core import CACHE, BM25Index, DenseIndex, embeddings
 from rag.types import Chunk, Item
 
 EVIDENCE_TYPES = {"case_study", "readme", "code", "review", "cv", "upload"}

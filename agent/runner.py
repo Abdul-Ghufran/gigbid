@@ -48,11 +48,11 @@ async def persistence():
             cp = await stack.enter_async_context(AsyncPostgresSaver.from_conn_string(pg))
             st = await stack.enter_async_context(AsyncPostgresStore.from_conn_string(pg))
         else:
-            from langgraph.checkpoint.sqlite.aio import AsyncSqliteSaver
-            from langgraph.store.sqlite.aio import AsyncSqliteStore
-
             import os
             from pathlib import Path
+
+            from langgraph.checkpoint.sqlite.aio import AsyncSqliteSaver
+            from langgraph.store.sqlite.aio import AsyncSqliteStore
 
             from common.settings import ROOT
 

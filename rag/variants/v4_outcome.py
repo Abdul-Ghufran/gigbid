@@ -2,7 +2,7 @@
 the writer also receives the most similar *winning* past proposals as phrasing examples."""
 from collections import defaultdict
 
-from rag.variants.base import RetrievalResult, Variant
+from rag.variants.base import Variant
 from rag.variants.v3_rerank import V3Rerank
 
 OUTCOME_W = {"won": 1.0, "replied": 0.5, "ignored": 0.0}

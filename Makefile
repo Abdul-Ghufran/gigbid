@@ -2,7 +2,7 @@
 PY ?= $(if $(wildcard .venv/Scripts/python.exe),.venv/Scripts/python.exe,$(if $(wildcard .venv/bin/python),.venv/bin/python,python))
 COMPOSE = docker compose -f infra/docker-compose.yml
 
-.PHONY: install dev up down test unit contract e2e eval eval-smoke seed demo lint openapi freeze-gigsim
+.PHONY: install dev up down test unit contract e2e eval eval-smoke seed demo lint openapi freeze-gigsim zip
 
 install:            ## Python + web dependencies
 	uv venv --python 3.12 .venv && uv pip install --python $(PY) -e ".[dev]"
@@ -55,3 +55,6 @@ openapi:            ## regenerate the typed TypeScript client from FastAPI
 
 freeze-gigsim:
 	$(PY) -m tools.ci_checks --freeze-gigsim
+
+zip:                ## submission ZIP of the committed source (never includes .env)
+	git archive --format=zip -o gigbid_submission.zip HEAD

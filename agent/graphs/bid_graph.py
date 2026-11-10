@@ -12,7 +12,19 @@ from langgraph.types import RetryPolicy, Send
 
 from agent.config import config
 from agent.llm import LLMUnavailable
-from agent.nodes import analyst, approval, compliance, critic, decision, fit_matcher, pricing, risk_assessor, scout, verifier, writer
+from agent.nodes import (
+    analyst,
+    approval,
+    compliance,
+    critic,
+    decision,
+    fit_matcher,
+    pricing,
+    risk_assessor,
+    scout,
+    verifier,
+    writer,
+)
 from agent.state import BidState
 
 RETRY = RetryPolicy(max_attempts=3, initial_interval=1.0, backoff_factor=2.0, max_interval=10.0,
