@@ -1,0 +1,2884 @@
+{
+ "ai-case-01": {
+  "project": "ai-01",
+  "skills": [
+   "FastAPI",
+   "LangChain",
+   "Pinecone",
+   "RAG"
+  ]
+ },
+ "ai-repo-01": {
+  "project": "ai-01",
+  "skills": [
+   "LangChain",
+   "Pinecone",
+   "RAG"
+  ]
+ },
+ "ai-code-01": {
+  "project": "ai-01",
+  "skills": [
+   "Docker",
+   "FastAPI"
+  ]
+ },
+ "ai-case-02": {
+  "project": "ai-02",
+  "skills": [
+   "XGBoost",
+   "pandas",
+   "scikit-learn"
+  ]
+ },
+ "ai-repo-02": {
+  "project": "ai-02",
+  "skills": [
+   "XGBoost",
+   "pandas"
+  ]
+ },
+ "ai-code-02": {
+  "project": "ai-02",
+  "skills": [
+   "MLflow",
+   "pandas"
+  ]
+ },
+ "ai-case-03": {
+  "project": "ai-03",
+  "skills": [
+   "Computer vision",
+   "PyTorch"
+  ]
+ },
+ "ai-repo-03": {
+  "project": "ai-03",
+  "skills": [
+   "Computer vision"
+  ]
+ },
+ "ai-code-03": {
+  "project": "ai-03",
+  "skills": [
+   "Docker",
+   "PyTorch"
+  ]
+ },
+ "ai-case-04": {
+  "project": "ai-04",
+  "skills": [
+   "FastAPI",
+   "Hugging Face",
+   "NLP"
+  ]
+ },
+ "ai-repo-04": {
+  "project": "ai-04",
+  "skills": [
+   "Hugging Face",
+   "NLP"
+  ]
+ },
+ "ai-code-04": {
+  "project": "ai-04",
+  "skills": [
+   "FastAPI",
+   "PyTorch"
+  ]
+ },
+ "ai-case-05": {
+  "project": "ai-05",
+  "skills": [
+   "Python",
+   "Time-series forecasting",
+   "pandas"
+  ]
+ },
+ "ai-repo-05": {
+  "project": "ai-05",
+  "skills": [
+   "Python",
+   "pandas"
+  ]
+ },
+ "ai-code-05": {
+  "project": "ai-05",
+  "skills": [
+   "MLflow",
+   "pandas"
+  ]
+ },
+ "ai-case-06": {
+  "project": "ai-06",
+  "skills": [
+   "Python",
+   "Recommendation systems"
+  ]
+ },
+ "ai-repo-06": {
+  "project": "ai-06",
+  "skills": [
+   "Python"
+  ]
+ },
+ "ai-code-06": {
+  "project": "ai-06",
+  "skills": [
+   "FAISS",
+   "Recommendation systems"
+  ]
+ },
+ "ai-case-07": {
+  "project": "ai-07",
+  "skills": [
+   "Hugging Face",
+   "LLM fine-tuning",
+   "PyTorch"
+  ]
+ },
+ "ai-repo-07": {
+  "project": "ai-07",
+  "skills": [
+   "Hugging Face",
+   "LLM fine-tuning"
+  ]
+ },
+ "ai-code-07": {
+  "project": "ai-07",
+  "skills": [
+   "Hugging Face"
+  ]
+ },
+ "ai-case-08": {
+  "project": "ai-08",
+  "skills": [
+   "FAISS",
+   "FastAPI",
+   "Hugging Face"
+  ]
+ },
+ "ai-repo-08": {
+  "project": "ai-08",
+  "skills": [
+   "FastAPI",
+   "Hugging Face"
+  ]
+ },
+ "ai-code-08": {
+  "project": "ai-08",
+  "skills": [
+   "Docker",
+   "FAISS"
+  ]
+ },
+ "ai-case-09": {
+  "project": "ai-09",
+  "skills": [
+   "AWS",
+   "Docker",
+   "MLOps",
+   "MLflow"
+  ]
+ },
+ "ai-repo-09": {
+  "project": "ai-09",
+  "skills": [
+   "Docker",
+   "MLOps",
+   "MLflow"
+  ]
+ },
+ "ai-code-09": {
+  "project": "ai-09",
+  "skills": [
+   "AWS",
+   "CI/CD"
+  ]
+ },
+ "ai-case-10": {
+  "project": "ai-10",
+  "skills": [
+   "Computer vision",
+   "NLP",
+   "Python"
+  ]
+ },
+ "ai-case-11": {
+  "project": "ai-11",
+  "skills": [
+   "LangChain",
+   "Python",
+   "RAG"
+  ]
+ },
+ "ai-repo-11": {
+  "project": "ai-11",
+  "skills": [
+   "LangChain",
+   "Python"
+  ]
+ },
+ "ai-code-11": {
+  "project": "ai-11",
+  "skills": [
+   "FastAPI",
+   "Python"
+  ]
+ },
+ "ai-case-12": {
+  "project": "ai-12",
+  "skills": [
+   "Statistics",
+   "pandas",
+   "scikit-learn"
+  ]
+ },
+ "ai-case-13": {
+  "project": "ai-13",
+  "skills": [
+   "Data visualization",
+   "NLP",
+   "Python"
+  ]
+ },
+ "ai-repo-13": {
+  "project": "ai-13",
+  "skills": [
+   "Data visualization",
+   "NLP"
+  ]
+ },
+ "ai-code-13": {
+  "project": "ai-13",
+  "skills": [
+   "Hugging Face",
+   "NLP"
+  ]
+ },
+ "ai-case-14": {
+  "project": "ai-14",
+  "skills": [
+   "FastAPI",
+   "LangChain",
+   "RAG"
+  ]
+ },
+ "ai-repo-14": {
+  "project": "ai-14",
+  "skills": [
+   "LangChain",
+   "RAG"
+  ]
+ },
+ "ai-code-14": {
+  "project": "ai-14",
+  "skills": [
+   "FastAPI",
+   "Redis"
+  ]
+ },
+ "ai-case-15": {
+  "project": "ai-15",
+  "skills": [
+   "AWS",
+   "Python",
+   "XGBoost"
+  ]
+ },
+ "ai-repo-15": {
+  "project": "ai-15",
+  "skills": [
+   "AWS",
+   "XGBoost"
+  ]
+ },
+ "ai-code-15": {
+  "project": "ai-15",
+  "skills": [
+   "MLflow",
+   "XGBoost"
+  ]
+ },
+ "ai-case-16": {
+  "project": "ai-16",
+  "skills": [
+   "FastAPI",
+   "Hugging Face",
+   "NLP"
+  ]
+ },
+ "ai-case-17": {
+  "project": "ai-17",
+  "skills": [
+   "CI/CD",
+   "pandas",
+   "scikit-learn"
+  ]
+ },
+ "ai-repo-17": {
+  "project": "ai-17",
+  "skills": [
+   "pandas",
+   "scikit-learn"
+  ]
+ },
+ "ai-code-17": {
+  "project": "ai-17",
+  "skills": [
+   "XGBoost",
+   "scikit-learn"
+  ]
+ },
+ "ai-case-18": {
+  "project": "ai-18",
+  "skills": [
+   "Python",
+   "Statistics",
+   "Time-series forecasting"
+  ]
+ },
+ "ai-review-01": {
+  "project": "ai-01",
+  "skills": []
+ },
+ "ai-review-02": {
+  "project": "ai-02",
+  "skills": []
+ },
+ "ai-review-03": {
+  "project": "ai-03",
+  "skills": []
+ },
+ "ai-review-04": {
+  "project": "ai-04",
+  "skills": []
+ },
+ "ai-review-05": {
+  "project": "ai-05",
+  "skills": []
+ },
+ "ai-review-06": {
+  "project": "ai-06",
+  "skills": []
+ },
+ "ai-review-07": {
+  "project": "ai-07",
+  "skills": []
+ },
+ "ai-review-08": {
+  "project": "ai-08",
+  "skills": []
+ },
+ "ai-cv": {
+  "project": null,
+  "skills": [
+   "AWS",
+   "CI/CD",
+   "Computer vision",
+   "Data visualization",
+   "Docker",
+   "FAISS",
+   "FastAPI",
+   "Hugging Face",
+   "LLM fine-tuning",
+   "LangChain",
+   "MLOps",
+   "MLflow",
+   "NLP",
+   "Pinecone",
+   "PyTorch",
+   "Python",
+   "RAG",
+   "Recommendation systems",
+   "Statistics",
+   "Time-series forecasting",
+   "XGBoost",
+   "pandas",
+   "scikit-learn"
+  ]
+ },
+ "ai-prop-001": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-002": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-003": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-004": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-005": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-006": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-007": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-008": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-009": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-010": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-011": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-012": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-013": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-014": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-015": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-016": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-017": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-018": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-019": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-020": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-021": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-022": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-023": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-024": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-025": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-026": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-027": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-028": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-029": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-030": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-031": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-032": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-033": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-034": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-035": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-036": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-037": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-038": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-039": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-040": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-041": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-042": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-043": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-044": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-045": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-046": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-047": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-048": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-049": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-050": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-051": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-052": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-053": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-054": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-055": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-056": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-057": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-058": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-059": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-060": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-061": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-062": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-063": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-064": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-065": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-066": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-067": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-068": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-069": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-070": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-071": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-072": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-073": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-074": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-075": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-076": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-077": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-078": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-079": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-080": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-081": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-082": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-083": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-084": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-085": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-086": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-087": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-088": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-089": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-090": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-091": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-092": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-093": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-094": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-095": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-096": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-097": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-098": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-099": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-100": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-101": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-102": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-103": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-104": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-105": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-106": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-107": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-108": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-109": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-110": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-111": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-112": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-113": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-114": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-115": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-116": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-117": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-118": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-119": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-120": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-121": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-122": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-123": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-124": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-125": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-126": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-127": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-128": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-129": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-130": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-131": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-132": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-133": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-134": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-135": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-136": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-137": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-138": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-139": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-140": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-141": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-142": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-143": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-144": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-145": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-146": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-147": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-148": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-149": {
+  "project": null,
+  "skills": []
+ },
+ "ai-prop-150": {
+  "project": null,
+  "skills": []
+ },
+ "web-case-01": {
+  "project": "web-01",
+  "skills": [
+   "Next.js",
+   "PostgreSQL",
+   "Stripe",
+   "TypeScript"
+  ]
+ },
+ "web-repo-01": {
+  "project": "web-01",
+  "skills": [
+   "Next.js",
+   "Stripe",
+   "TypeScript"
+  ]
+ },
+ "web-code-01": {
+  "project": "web-01",
+  "skills": [
+   "Redis",
+   "TypeScript"
+  ]
+ },
+ "web-case-02": {
+  "project": "web-02",
+  "skills": [
+   "Celery",
+   "Django",
+   "PostgreSQL"
+  ]
+ },
+ "web-repo-02": {
+  "project": "web-02",
+  "skills": [
+   "Celery",
+   "PostgreSQL"
+  ]
+ },
+ "web-code-02": {
+  "project": "web-02",
+  "skills": [
+   "PostgreSQL",
+   "Redis"
+  ]
+ },
+ "web-case-03": {
+  "project": "web-03",
+  "skills": [
+   "Node.js",
+   "React",
+   "WebSockets"
+  ]
+ },
+ "web-repo-03": {
+  "project": "web-03",
+  "skills": [
+   "Node.js",
+   "React"
+  ]
+ },
+ "web-code-03": {
+  "project": "web-03",
+  "skills": [
+   "Node.js",
+   "Redis"
+  ]
+ },
+ "web-case-04": {
+  "project": "web-04",
+  "skills": [
+   "Node.js",
+   "React",
+   "Stripe",
+   "TypeScript"
+  ]
+ },
+ "web-repo-04": {
+  "project": "web-04",
+  "skills": [
+   "React",
+   "Stripe",
+   "TypeScript"
+  ]
+ },
+ "web-code-04": {
+  "project": "web-04",
+  "skills": [
+   "Node.js",
+   "Playwright"
+  ]
+ },
+ "web-case-05": {
+  "project": "web-05",
+  "skills": [
+   "MongoDB",
+   "Node.js",
+   "React",
+   "Tailwind CSS"
+  ]
+ },
+ "web-repo-05": {
+  "project": "web-05",
+  "skills": [
+   "Node.js",
+   "React",
+   "Tailwind CSS"
+  ]
+ },
+ "web-code-05": {
+  "project": "web-05",
+  "skills": [
+   "Tailwind CSS"
+  ]
+ },
+ "web-case-06": {
+  "project": "web-06",
+  "skills": [
+   "GraphQL",
+   "Node.js",
+   "PostgreSQL"
+  ]
+ },
+ "web-repo-06": {
+  "project": "web-06",
+  "skills": [
+   "GraphQL",
+   "PostgreSQL"
+  ]
+ },
+ "web-code-06": {
+  "project": "web-06",
+  "skills": [
+   "GraphQL",
+   "Redis"
+  ]
+ },
+ "web-case-07": {
+  "project": "web-07",
+  "skills": [
+   "Node.js",
+   "React",
+   "Shopify"
+  ]
+ },
+ "web-repo-07": {
+  "project": "web-07",
+  "skills": [
+   "React",
+   "Shopify"
+  ]
+ },
+ "web-code-07": {
+  "project": "web-07",
+  "skills": [
+   "React",
+   "TypeScript"
+  ]
+ },
+ "web-case-08": {
+  "project": "web-08",
+  "skills": [
+   "Next.js",
+   "PostgreSQL",
+   "Tailwind CSS"
+  ]
+ },
+ "web-repo-08": {
+  "project": "web-08",
+  "skills": [
+   "Next.js",
+   "PostgreSQL"
+  ]
+ },
+ "web-code-08": {
+  "project": "web-08",
+  "skills": [
+   "Docker",
+   "Tailwind CSS"
+  ]
+ },
+ "web-case-09": {
+  "project": "web-09",
+  "skills": [
+   "AWS",
+   "Celery",
+   "Django",
+   "Redis"
+  ]
+ },
+ "web-repo-09": {
+  "project": "web-09",
+  "skills": [
+   "AWS",
+   "Celery",
+   "Redis"
+  ]
+ },
+ "web-code-09": {
+  "project": "web-09",
+  "skills": [
+   "Docker",
+   "Redis"
+  ]
+ },
+ "web-case-10": {
+  "project": "web-10",
+  "skills": [
+   "CI/CD",
+   "Playwright",
+   "TypeScript"
+  ]
+ },
+ "web-repo-10": {
+  "project": "web-10",
+  "skills": [
+   "Playwright",
+   "TypeScript"
+  ]
+ },
+ "web-code-10": {
+  "project": "web-10",
+  "skills": [
+   "CI/CD"
+  ]
+ },
+ "web-case-11": {
+  "project": "web-11",
+  "skills": [
+   "MongoDB",
+   "Next.js",
+   "Stripe"
+  ]
+ },
+ "web-case-12": {
+  "project": "web-12",
+  "skills": [
+   "Django",
+   "PostgreSQL",
+   "React"
+  ]
+ },
+ "web-case-13": {
+  "project": "web-13",
+  "skills": [
+   "Node.js",
+   "React",
+   "Redis",
+   "WebSockets"
+  ]
+ },
+ "web-repo-13": {
+  "project": "web-13",
+  "skills": [
+   "Node.js",
+   "Redis",
+   "WebSockets"
+  ]
+ },
+ "web-code-13": {
+  "project": "web-13",
+  "skills": [
+   "WebSockets"
+  ]
+ },
+ "web-case-14": {
+  "project": "web-14",
+  "skills": [
+   "AWS",
+   "Docker",
+   "Next.js",
+   "TypeScript"
+  ]
+ },
+ "web-case-15": {
+  "project": "web-15",
+  "skills": [
+   "Django",
+   "React",
+   "Stripe"
+  ]
+ },
+ "web-repo-15": {
+  "project": "web-15",
+  "skills": [
+   "Django",
+   "React"
+  ]
+ },
+ "web-code-15": {
+  "project": "web-15",
+  "skills": [
+   "Celery",
+   "React"
+  ]
+ },
+ "web-case-16": {
+  "project": "web-16",
+  "skills": [
+   "Docker",
+   "Node.js",
+   "PostgreSQL"
+  ]
+ },
+ "web-repo-16": {
+  "project": "web-16",
+  "skills": [
+   "Docker",
+   "PostgreSQL"
+  ]
+ },
+ "web-code-16": {
+  "project": "web-16",
+  "skills": [
+   "PostgreSQL",
+   "Redis"
+  ]
+ },
+ "web-case-17": {
+  "project": "web-17",
+  "skills": [
+   "Playwright",
+   "React",
+   "TypeScript"
+  ]
+ },
+ "web-review-01": {
+  "project": "web-01",
+  "skills": []
+ },
+ "web-review-02": {
+  "project": "web-02",
+  "skills": []
+ },
+ "web-review-03": {
+  "project": "web-03",
+  "skills": []
+ },
+ "web-review-04": {
+  "project": "web-04",
+  "skills": []
+ },
+ "web-review-05": {
+  "project": "web-05",
+  "skills": []
+ },
+ "web-review-06": {
+  "project": "web-06",
+  "skills": []
+ },
+ "web-review-07": {
+  "project": "web-07",
+  "skills": []
+ },
+ "web-cv": {
+  "project": null,
+  "skills": [
+   "AWS",
+   "CI/CD",
+   "Celery",
+   "Django",
+   "Docker",
+   "GraphQL",
+   "MongoDB",
+   "Next.js",
+   "Node.js",
+   "Playwright",
+   "PostgreSQL",
+   "React",
+   "Redis",
+   "Shopify",
+   "Stripe",
+   "Tailwind CSS",
+   "TypeScript",
+   "WebSockets"
+  ]
+ },
+ "web-prop-001": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-002": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-003": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-004": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-005": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-006": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-007": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-008": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-009": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-010": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-011": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-012": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-013": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-014": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-015": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-016": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-017": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-018": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-019": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-020": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-021": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-022": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-023": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-024": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-025": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-026": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-027": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-028": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-029": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-030": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-031": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-032": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-033": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-034": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-035": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-036": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-037": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-038": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-039": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-040": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-041": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-042": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-043": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-044": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-045": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-046": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-047": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-048": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-049": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-050": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-051": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-052": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-053": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-054": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-055": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-056": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-057": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-058": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-059": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-060": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-061": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-062": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-063": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-064": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-065": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-066": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-067": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-068": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-069": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-070": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-071": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-072": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-073": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-074": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-075": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-076": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-077": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-078": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-079": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-080": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-081": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-082": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-083": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-084": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-085": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-086": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-087": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-088": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-089": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-090": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-091": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-092": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-093": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-094": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-095": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-096": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-097": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-098": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-099": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-100": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-101": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-102": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-103": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-104": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-105": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-106": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-107": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-108": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-109": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-110": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-111": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-112": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-113": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-114": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-115": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-116": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-117": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-118": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-119": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-120": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-121": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-122": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-123": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-124": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-125": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-126": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-127": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-128": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-129": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-130": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-131": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-132": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-133": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-134": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-135": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-136": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-137": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-138": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-139": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-140": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-141": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-142": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-143": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-144": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-145": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-146": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-147": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-148": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-149": {
+  "project": null,
+  "skills": []
+ },
+ "web-prop-150": {
+  "project": null,
+  "skills": []
+ },
+ "data-case-01": {
+  "project": "data-01",
+  "skills": [
+   "Excel",
+   "Power BI",
+   "SQL"
+  ]
+ },
+ "data-repo-01": {
+  "project": "data-01",
+  "skills": [
+   "Excel",
+   "SQL"
+  ]
+ },
+ "data-code-01": {
+  "project": "data-01",
+  "skills": [
+   "SQL"
+  ]
+ },
+ "data-case-02": {
+  "project": "data-02",
+  "skills": [
+   "Data visualization",
+   "Google Analytics",
+   "SQL"
+  ]
+ },
+ "data-repo-02": {
+  "project": "data-02",
+  "skills": [
+   "Google Analytics",
+   "SQL"
+  ]
+ },
+ "data-code-02": {
+  "project": "data-02",
+  "skills": [
+   "BigQuery",
+   "SQL"
+  ]
+ },
+ "data-case-03": {
+  "project": "data-03",
+  "skills": [
+   "SQL",
+   "Snowflake",
+   "dbt"
+  ]
+ },
+ "data-repo-03": {
+  "project": "data-03",
+  "skills": [
+   "SQL",
+   "dbt"
+  ]
+ },
+ "data-code-03": {
+  "project": "data-03",
+  "skills": [
+   "Airflow",
+   "SQL"
+  ]
+ },
+ "data-case-04": {
+  "project": "data-04",
+  "skills": [
+   "A/B testing",
+   "Python",
+   "Statistics"
+  ]
+ },
+ "data-repo-04": {
+  "project": "data-04",
+  "skills": [
+   "Python",
+   "Statistics"
+  ]
+ },
+ "data-code-04": {
+  "project": "data-04",
+  "skills": [
+   "Python",
+   "pandas"
+  ]
+ },
+ "data-case-05": {
+  "project": "data-05",
+  "skills": [
+   "SQL",
+   "Tableau"
+  ]
+ },
+ "data-case-06": {
+  "project": "data-06",
+  "skills": [
+   "Data visualization",
+   "SQL",
+   "pandas"
+  ]
+ },
+ "data-repo-06": {
+  "project": "data-06",
+  "skills": [
+   "Data visualization",
+   "pandas"
+  ]
+ },
+ "data-code-06": {
+  "project": "data-06",
+  "skills": [
+   "BigQuery",
+   "Data visualization"
+  ]
+ },
+ "data-case-07": {
+  "project": "data-07",
+  "skills": [
+   "Excel",
+   "Statistics"
+  ]
+ },
+ "data-case-08": {
+  "project": "data-08",
+  "skills": [
+   "BigQuery",
+   "Looker",
+   "SQL"
+  ]
+ },
+ "data-repo-08": {
+  "project": "data-08",
+  "skills": [
+   "BigQuery",
+   "Looker"
+  ]
+ },
+ "data-code-08": {
+  "project": "data-08",
+  "skills": [
+   "BigQuery"
+  ]
+ },
+ "data-case-09": {
+  "project": "data-09",
+  "skills": [
+   "Airflow",
+   "ETL",
+   "Python"
+  ]
+ },
+ "data-repo-09": {
+  "project": "data-09",
+  "skills": [
+   "Airflow",
+   "ETL"
+  ]
+ },
+ "data-code-09": {
+  "project": "data-09",
+  "skills": [
+   "Airflow",
+   "pandas"
+  ]
+ },
+ "data-case-10": {
+  "project": "data-10",
+  "skills": [
+   "Data visualization",
+   "Python",
+   "Statistics"
+  ]
+ },
+ "data-case-11": {
+  "project": "data-11",
+  "skills": [
+   "ETL",
+   "Power BI",
+   "SQL"
+  ]
+ },
+ "data-repo-11": {
+  "project": "data-11",
+  "skills": [
+   "Power BI",
+   "SQL"
+  ]
+ },
+ "data-code-11": {
+  "project": "data-11",
+  "skills": [
+   "Power BI"
+  ]
+ },
+ "data-case-12": {
+  "project": "data-12",
+  "skills": [
+   "Data visualization",
+   "Google Analytics"
+  ]
+ },
+ "data-case-13": {
+  "project": "data-13",
+  "skills": [
+   "Excel",
+   "Time-series forecasting"
+  ]
+ },
+ "data-case-14": {
+  "project": "data-14",
+  "skills": [
+   "SQL",
+   "Statistics",
+   "Tableau"
+  ]
+ },
+ "data-repo-14": {
+  "project": "data-14",
+  "skills": [
+   "SQL",
+   "Tableau"
+  ]
+ },
+ "data-code-14": {
+  "project": "data-14",
+  "skills": [
+   "SQL",
+   "pandas"
+  ]
+ },
+ "data-case-15": {
+  "project": "data-15",
+  "skills": [
+   "BigQuery",
+   "SQL",
+   "dbt"
+  ]
+ },
+ "data-repo-15": {
+  "project": "data-15",
+  "skills": [
+   "BigQuery",
+   "dbt"
+  ]
+ },
+ "data-code-15": {
+  "project": "data-15",
+  "skills": [
+   "BigQuery"
+  ]
+ },
+ "data-case-16": {
+  "project": "data-16",
+  "skills": [
+   "Data visualization",
+   "Excel",
+   "Tableau"
+  ]
+ },
+ "data-review-01": {
+  "project": "data-01",
+  "skills": []
+ },
+ "data-review-02": {
+  "project": "data-02",
+  "skills": []
+ },
+ "data-review-03": {
+  "project": "data-03",
+  "skills": []
+ },
+ "data-review-04": {
+  "project": "data-04",
+  "skills": []
+ },
+ "data-review-05": {
+  "project": "data-05",
+  "skills": []
+ },
+ "data-review-06": {
+  "project": "data-06",
+  "skills": []
+ },
+ "data-cv": {
+  "project": null,
+  "skills": [
+   "A/B testing",
+   "Airflow",
+   "BigQuery",
+   "Data visualization",
+   "ETL",
+   "Excel",
+   "Google Analytics",
+   "Looker",
+   "Power BI",
+   "Python",
+   "SQL",
+   "Snowflake",
+   "Statistics",
+   "Tableau",
+   "Time-series forecasting",
+   "dbt",
+   "pandas"
+  ]
+ },
+ "data-prop-001": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-002": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-003": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-004": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-005": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-006": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-007": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-008": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-009": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-010": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-011": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-012": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-013": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-014": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-015": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-016": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-017": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-018": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-019": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-020": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-021": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-022": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-023": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-024": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-025": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-026": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-027": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-028": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-029": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-030": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-031": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-032": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-033": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-034": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-035": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-036": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-037": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-038": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-039": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-040": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-041": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-042": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-043": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-044": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-045": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-046": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-047": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-048": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-049": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-050": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-051": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-052": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-053": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-054": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-055": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-056": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-057": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-058": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-059": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-060": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-061": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-062": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-063": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-064": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-065": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-066": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-067": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-068": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-069": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-070": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-071": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-072": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-073": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-074": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-075": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-076": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-077": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-078": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-079": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-080": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-081": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-082": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-083": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-084": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-085": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-086": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-087": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-088": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-089": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-090": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-091": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-092": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-093": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-094": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-095": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-096": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-097": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-098": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-099": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-100": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-101": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-102": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-103": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-104": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-105": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-106": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-107": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-108": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-109": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-110": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-111": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-112": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-113": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-114": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-115": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-116": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-117": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-118": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-119": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-120": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-121": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-122": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-123": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-124": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-125": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-126": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-127": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-128": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-129": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-130": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-131": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-132": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-133": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-134": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-135": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-136": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-137": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-138": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-139": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-140": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-141": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-142": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-143": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-144": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-145": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-146": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-147": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-148": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-149": {
+  "project": null,
+  "skills": []
+ },
+ "data-prop-150": {
+  "project": null,
+  "skills": []
+ }
+}

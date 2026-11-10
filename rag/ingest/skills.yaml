@@ -1,0 +1,355 @@
+A/B testing:
+  code_signals:
+  - def ab_test(
+  domain: data
+  synonyms:
+  - experimentation
+  - split testing
+AWS:
+  code_signals:
+  - import boto3
+  domain: general
+  synonyms:
+  - amazon web services
+  - s3
+  - ec2
+  - lambda
+Airflow:
+  code_signals:
+  - from airflow import DAG
+  domain: data
+  synonyms:
+  - dag scheduling
+  - orchestration
+BigQuery:
+  code_signals:
+  - from google.cloud import bigquery
+  domain: data
+  synonyms:
+  - bigquery warehouse
+CI/CD:
+  code_signals:
+  - 'runs-on: ubuntu-latest'
+  domain: general
+  synonyms:
+  - github actions
+  - continuous integration
+Celery:
+  code_signals:
+  - from celery import Celery
+  domain: web
+  synonyms:
+  - task queue
+Computer vision:
+  code_signals:
+  - import cv2
+  domain: ai
+  synonyms:
+  - opencv
+  - image classification
+  - object detection
+Data visualization:
+  code_signals:
+  - import matplotlib.pyplot as plt
+  domain: data
+  synonyms:
+  - dashboards
+  - charts
+  - matplotlib
+Django:
+  code_signals:
+  - from django.db import models
+  domain: web
+  synonyms:
+  - django rest framework
+  - drf
+Docker:
+  code_signals:
+  - 'FROM python:'
+  - 'FROM node:'
+  domain: general
+  synonyms:
+  - containers
+  - docker-compose
+ETL:
+  code_signals:
+  - def extract(
+  domain: data
+  synonyms:
+  - data pipelines
+  - elt
+Excel:
+  code_signals:
+  - import openpyxl
+  domain: data
+  synonyms:
+  - spreadsheets
+  - pivot tables
+  - vlookup
+FAISS:
+  code_signals:
+  - import faiss
+  domain: ai
+  synonyms:
+  - similarity search
+FastAPI:
+  code_signals:
+  - from fastapi import FastAPI
+  domain: ai
+  synonyms:
+  - fastapi backend
+Google Analytics:
+  code_signals:
+  - gtag(
+  domain: data
+  synonyms:
+  - ga4
+  - web analytics
+GraphQL:
+  code_signals:
+  - gql`
+  - import { buildSchema } from 'graphql'
+  domain: web
+  synonyms:
+  - apollo
+Hugging Face:
+  code_signals:
+  - from transformers import AutoModel
+  domain: ai
+  synonyms:
+  - transformers
+  - huggingface
+LLM fine-tuning:
+  code_signals:
+  - from peft import LoraConfig
+  domain: ai
+  synonyms:
+  - fine-tuning
+  - lora
+  - qlora
+LangChain:
+  code_signals:
+  - from langchain_core.prompts import ChatPromptTemplate
+  domain: ai
+  synonyms:
+  - langgraph
+  - llm orchestration
+Looker:
+  code_signals:
+  - 'explore:'
+  domain: data
+  synonyms:
+  - lookml
+  - looker studio
+MLOps:
+  code_signals:
+  - from evidently.report import Report
+  domain: ai
+  synonyms:
+  - model deployment
+  - model monitoring
+MLflow:
+  code_signals:
+  - import mlflow
+  domain: ai
+  synonyms:
+  - experiment tracking
+  - model registry
+MongoDB:
+  code_signals:
+  - mongoose.connect
+  domain: web
+  synonyms:
+  - mongo
+  - mongoose
+NLP:
+  code_signals:
+  - import spacy
+  domain: ai
+  synonyms:
+  - natural language processing
+  - text classification
+  - spacy
+Next.js:
+  code_signals:
+  - import Link from 'next/link'
+  domain: web
+  synonyms:
+  - nextjs
+  - next
+Node.js:
+  code_signals:
+  - require('express')
+  - import express from 'express'
+  domain: web
+  synonyms:
+  - nodejs
+  - express
+Pinecone:
+  code_signals:
+  - from pinecone import Pinecone
+  domain: ai
+  synonyms:
+  - vector database
+Playwright:
+  code_signals:
+  - import { test, expect } from '@playwright/test'
+  domain: web
+  synonyms:
+  - e2e testing
+  - end-to-end tests
+PostgreSQL:
+  code_signals:
+  - import psycopg
+  - postgresql://
+  domain: web
+  synonyms:
+  - postgres
+  - psql
+Power BI:
+  code_signals:
+  - CALCULATE(
+  domain: data
+  synonyms:
+  - powerbi
+  - dax
+PyTorch:
+  code_signals:
+  - import torch
+  - from torch import nn
+  domain: ai
+  synonyms:
+  - torch
+Python:
+  code_signals:
+  - import os
+  - def main(
+  domain: general
+  synonyms:
+  - python3
+RAG:
+  code_signals:
+  - def retrieve(
+  domain: ai
+  synonyms:
+  - retrieval-augmented generation
+  - retrieval augmented generation
+React:
+  code_signals:
+  - import React
+  - import { useState } from 'react'
+  domain: web
+  synonyms:
+  - reactjs
+  - react.js
+Recommendation systems:
+  code_signals:
+  - from implicit.als import AlternatingLeastSquares
+  domain: ai
+  synonyms:
+  - recommender
+  - collaborative filtering
+Redis:
+  code_signals:
+  - import redis
+  - new Redis(
+  domain: web
+  synonyms:
+  - caching layer
+SQL:
+  code_signals:
+  - 'SELECT '
+  - GROUP BY
+  domain: data
+  synonyms:
+  - sql queries
+  - window functions
+Shopify:
+  code_signals:
+  - import { shopifyApi } from '@shopify/shopify-api'
+  domain: web
+  synonyms:
+  - shopify app
+  - liquid
+Snowflake:
+  code_signals:
+  - import snowflake.connector
+  domain: data
+  synonyms:
+  - snowflake warehouse
+Statistics:
+  code_signals:
+  - from scipy import stats
+  domain: data
+  synonyms:
+  - hypothesis testing
+  - regression analysis
+Stripe:
+  code_signals:
+  - import Stripe
+  - stripe.checkout
+  domain: web
+  synonyms:
+  - payments integration
+  - stripe checkout
+Tableau:
+  code_signals:
+  - import tableauserverclient
+  domain: data
+  synonyms:
+  - tableau dashboards
+Tailwind CSS:
+  code_signals:
+  - '@tailwind base'
+  domain: web
+  synonyms:
+  - tailwind
+Time-series forecasting:
+  code_signals:
+  - from prophet import Prophet
+  domain: ai
+  synonyms:
+  - forecasting
+  - prophet
+  - arima
+TypeScript:
+  code_signals:
+  - interface Props
+  - ': string'
+  domain: web
+  synonyms:
+  - ts
+WebSockets:
+  code_signals:
+  - new WebSocket(
+  - socket.io
+  domain: web
+  synonyms:
+  - socket.io
+  - real-time
+XGBoost:
+  code_signals:
+  - import xgboost
+  domain: ai
+  synonyms:
+  - gradient boosting
+  - lightgbm
+dbt:
+  code_signals:
+  - '{{ ref('
+  domain: data
+  synonyms:
+  - data build tool
+  - dbt models
+pandas:
+  code_signals:
+  - import pandas as pd
+  domain: data
+  synonyms:
+  - dataframes
+scikit-learn:
+  code_signals:
+  - from sklearn.ensemble import RandomForestClassifier
+  domain: ai
+  synonyms:
+  - sklearn

@@ -1,0 +1,28 @@
+{
+  "persona_id": "data_analyst",
+  "name": "Hira Baig",
+  "headline": "Data analyst: SQL, BI dashboards and experimentation",
+  "hourly_rate": 30,
+  "min_project": 150,
+  "location": "Islamabad, Pakistan",
+  "years": 4,
+  "skills": [
+    "A/B testing",
+    "Airflow",
+    "BigQuery",
+    "Data visualization",
+    "ETL",
+    "Excel",
+    "Google Analytics",
+    "Looker",
+    "Power BI",
+    "Python",
+    "SQL",
+    "Snowflake",
+    "Statistics",
+    "Tableau",
+    "Time-series forecasting",
+    "dbt",
+    "pandas"
+  ]
+}

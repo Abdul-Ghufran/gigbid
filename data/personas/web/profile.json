@@ -1,0 +1,29 @@
+{
+  "persona_id": "fullstack_web_dev",
+  "name": "Omar Siddiqui",
+  "headline": "Full-stack developer: React, Next.js, Node and Django",
+  "hourly_rate": 40,
+  "min_project": 300,
+  "location": "Karachi, Pakistan",
+  "years": 6,
+  "skills": [
+    "AWS",
+    "CI/CD",
+    "Celery",
+    "Django",
+    "Docker",
+    "GraphQL",
+    "MongoDB",
+    "Next.js",
+    "Node.js",
+    "Playwright",
+    "PostgreSQL",
+    "React",
+    "Redis",
+    "Shopify",
+    "Stripe",
+    "Tailwind CSS",
+    "TypeScript",
+    "WebSockets"
+  ]
+}
