@@ -21,7 +21,7 @@ models:
   small:   {provider: groq, model: "openai/gpt-oss-20b", price_in: 0.075, price_out: 0.30, rpm: 30, tpm: 8000, reasoning_effort: low}
   mid:     {provider: groq, model: "openai/gpt-oss-20b", price_in: 0.075, price_out: 0.30, rpm: 30, tpm: 8000, reasoning_effort: medium}
   strong:  {provider: groq, model: "openai/gpt-oss-120b", price_in: 0.15, price_out: 0.60, rpm: 30, tpm: 8000, reasoning_effort: low}
-  qwen:    {provider: groq, model: "qwen/qwen3.8-27b", price_in: 0.29, price_out: 0.59, rpm: 2, tpm: 6000, max_output: 950}  # Groq caps Qwen at 1000 output tokens/min
+  qwen:    {provider: groq, model: "qwen/qwen3.8-27b", price_in: 0.29, price_out: 0.59, rpm: 2, tpm: 6000, max_output: 950, reasoning_effort: none}  # Groq caps Qwen at 1000 output tokens/min
   guard:   {provider: groq, model: "meta-llama/llama-prompt-guard-2-86m", price_in: 0.04, price_out: 0.04, rpm: 30, tpm: 15000}
   local_small: {provider: ollama, model: "qwen3:4b", price_in: 0, price_out: 0}
   local_mid:   {provider: ollama, model: "gpt-oss:20b", price_in: 0, price_out: 0}

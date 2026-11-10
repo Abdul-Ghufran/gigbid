@@ -34,8 +34,12 @@ def template_draft(job: dict, spec: dict, fit: dict, price: dict, version: int, 
         if m["supported"] and m["evidence"]:
             e = m["evidence"][0]
             out = re.search(r"The work ([^.]+)\.", e["snippet"])
+            # v2 (evals/results/reply_gap_analysis.json): name the client's requirement next to the proof that covers it
+            req = m["requirement"].rstrip(".")
+            req = re.sub(r"^(you should be comfortable with|experience with|the work involves|ideally you have done|"
+                         r"we need someone strong in)\s+", "", req, flags=re.I).rstrip(" before")
             if out and e["item_id"] not in {p[0] for p in proofs}:
-                proofs.append((e["item_id"], f"In {e['title'].lower()}, the work {out.group(1)} [{e['item_id']}]."))
+                proofs.append((e["item_id"], f"For {req}: in {e['title'].lower()}, the work {out.group(1)} [{e['item_id']}]."))
             elif e["item_id"] not in {p[0] for p in proofs}:
                 proofs.append((e["item_id"], f"My {e['type'].replace('_', ' ')} \"{e['title']}\" covers {m['requirement'].lower().rstrip('.')} [{e['item_id']}]."))
     skills = ", ".join((spec.get("required_skills") or job.get("skills_listed") or [])[:3])

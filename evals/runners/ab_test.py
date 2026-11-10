@@ -13,14 +13,20 @@ from scipy import stats
 from evals.runners import harness as H
 
 
-def to_plan_first(text: str) -> str:
-    paras = [p for p in re.split(r"\n\s*\n", text) if p.strip()]
-    if len(paras) < 3:
-        return text
-    last = paras[-1]
-    m = re.split(r"(?<=[.!?])\s+(?=My bid|Shall we|Happy to|Next)", last, maxsplit=1)
-    approach, nxt = (m[0], m[1]) if len(m) == 2 else (last, "")
-    return "\n\n".join([paras[0], approach, " ".join(paras[1:-1]) + (" " + nxt if nxt else "")])
+def arms(text: str) -> tuple[str, str] | None:
+    """Same sentences, two structures.  proof_first: opening, cited proof, approach, next step.
+    plan_first: opening, approach, cited proof, next step."""
+    sents = [x for x in re.split(r"(?<=[.!?])\s+", re.sub(r"\s+", " ", text).strip()) if x]
+    if len(sents) < 4:
+        return None
+    opening, nxt = sents[0], sents[-1]
+    proof = [x for x in sents[1:-1] if "[" in x]
+    plan = [x for x in sents[1:-1] if "[" not in x]
+    if not proof or not plan:
+        return None
+    a = "\n\n".join([opening, " ".join(proof), " ".join(plan) + " " + nxt])
+    b = "\n\n".join([opening, " ".join(plan), " ".join(proof) + " " + nxt])
+    return a, b
 
 
 def main():
@@ -31,10 +37,10 @@ def main():
         if "error" in r:
             continue
         p, job = jobs[r["job_id"]]
-        a_text = r["proposal"]
-        b_text = to_plan_first(a_text)
-        if b_text == a_text:
+        pair = arms(r["proposal"])
+        if not pair:
             continue
+        a_text, b_text = pair
         bid = job["budget"]["max"] * 0.9
         a = H.client_reaction(job["job_id"], p, a_text, r["answers"], bid, job["budget"]["type"])
         b = H.client_reaction(job["job_id"], p, b_text, r["answers"], bid, job["budget"]["type"])

@@ -1,0 +1,27 @@
+{
+ "generated_by": "evals/runners/reply_gap_analysis.py",
+ "generated_at": "2026-11-11 01:49",
+ "best_fixedwriter": {
+  "n": 90,
+  "must_cov": 0.2,
+  "personal": 0.1941,
+  "specific": 0.7444,
+  "words": 117.6222,
+  "cites_cv": 0,
+  "n_cited": 2.5556,
+  "unsupported_before": 1.1333,
+  "replied": 0.1556
+ },
+ "v0_fixedwriter": {
+  "n": 90,
+  "must_cov": 0.4667,
+  "personal": 0.3541,
+  "specific": 0.4111,
+  "words": 94.2,
+  "cites_cv": 0,
+  "n_cited": 1.8222,
+  "unsupported_before": 2.0667,
+  "replied": 0.3778
+ },
+ "explanation": "GigSim's simulated client rewards proposals that NAME the client's must-have skills.  V0 retrieves the CV and loosely related items for every requirement, so the template letter names more required skills (higher must_cov) even when the evidence for them is weak - which is also why it produces more unsupported claims before verification.  The shipped corrective pipeline refuses to claim requirements it cannot prove, so letters are more honest but mention fewer must-haves.  The simulator measures keyword coverage, not truth: a client who checked the claims would penalise V0."
+}

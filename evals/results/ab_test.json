@@ -1,0 +1,728 @@
+{
+ "generated_by": "evals/runners/ab_test.py",
+ "generated_at": "2026-11-11 01:49",
+ "design": "paired, same facts, two structures",
+ "n_pairs": 88,
+ "arms": {
+  "proof_first": {
+   "reply_rate": 0.1932,
+   "mean_client_score": 0.4027
+  },
+  "plan_first": {
+   "reply_rate": 0.2159,
+   "mean_client_score": 0.4027
+  }
+ },
+ "discordant": {
+  "only_plan_first_replied": 11,
+  "only_proof_first_replied": 9
+ },
+ "mcnemar_exact_p": 0.8238,
+ "paired_t_on_client_score": null,
+ "pairs": [
+  {
+   "job_id": "dev-ai-184",
+   "persona": "ai",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.639,
+   "b_score": 0.639
+  },
+  {
+   "job_id": "dev-ai-100",
+   "persona": "ai",
+   "a_replied": false,
+   "b_replied": true,
+   "a_score": 0.397,
+   "b_score": 0.397
+  },
+  {
+   "job_id": "dev-ai-048",
+   "persona": "ai",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.302,
+   "b_score": 0.302
+  },
+  {
+   "job_id": "dev-ai-127",
+   "persona": "ai",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.45,
+   "b_score": 0.45
+  },
+  {
+   "job_id": "dev-ai-015",
+   "persona": "ai",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.149,
+   "b_score": 0.149
+  },
+  {
+   "job_id": "dev-ai-072",
+   "persona": "ai",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.261,
+   "b_score": 0.261
+  },
+  {
+   "job_id": "dev-ai-003",
+   "persona": "ai",
+   "a_replied": false,
+   "b_replied": true,
+   "a_score": 0.307,
+   "b_score": 0.307
+  },
+  {
+   "job_id": "dev-ai-148",
+   "persona": "ai",
+   "a_replied": true,
+   "b_replied": false,
+   "a_score": 0.895,
+   "b_score": 0.895
+  },
+  {
+   "job_id": "dev-ai-163",
+   "persona": "ai",
+   "a_replied": true,
+   "b_replied": true,
+   "a_score": 0.882,
+   "b_score": 0.882
+  },
+  {
+   "job_id": "dev-ai-054",
+   "persona": "ai",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.136,
+   "b_score": 0.136
+  },
+  {
+   "job_id": "dev-ai-081",
+   "persona": "ai",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.233,
+   "b_score": 0.233
+  },
+  {
+   "job_id": "dev-ai-066",
+   "persona": "ai",
+   "a_replied": true,
+   "b_replied": false,
+   "a_score": 1.367,
+   "b_score": 1.367
+  },
+  {
+   "job_id": "dev-ai-078",
+   "persona": "ai",
+   "a_replied": false,
+   "b_replied": true,
+   "a_score": 0.128,
+   "b_score": 0.128
+  },
+  {
+   "job_id": "dev-ai-038",
+   "persona": "ai",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.224,
+   "b_score": 0.224
+  },
+  {
+   "job_id": "dev-ai-136",
+   "persona": "ai",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.134,
+   "b_score": 0.134
+  },
+  {
+   "job_id": "dev-ai-171",
+   "persona": "ai",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.349,
+   "b_score": 0.349
+  },
+  {
+   "job_id": "dev-ai-168",
+   "persona": "ai",
+   "a_replied": false,
+   "b_replied": true,
+   "a_score": 1.108,
+   "b_score": 1.108
+  },
+  {
+   "job_id": "dev-ai-191",
+   "persona": "ai",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.498,
+   "b_score": 0.498
+  },
+  {
+   "job_id": "dev-ai-090",
+   "persona": "ai",
+   "a_replied": true,
+   "b_replied": false,
+   "a_score": 0.949,
+   "b_score": 0.949
+  },
+  {
+   "job_id": "dev-ai-080",
+   "persona": "ai",
+   "a_replied": false,
+   "b_replied": true,
+   "a_score": 0.77,
+   "b_score": 0.77
+  },
+  {
+   "job_id": "dev-ai-096",
+   "persona": "ai",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.275,
+   "b_score": 0.275
+  },
+  {
+   "job_id": "dev-ai-032",
+   "persona": "ai",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.157,
+   "b_score": 0.157
+  },
+  {
+   "job_id": "dev-ai-176",
+   "persona": "ai",
+   "a_replied": true,
+   "b_replied": true,
+   "a_score": 0.733,
+   "b_score": 0.733
+  },
+  {
+   "job_id": "dev-ai-178",
+   "persona": "ai",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.34,
+   "b_score": 0.34
+  },
+  {
+   "job_id": "dev-ai-095",
+   "persona": "ai",
+   "a_replied": true,
+   "b_replied": false,
+   "a_score": 0.899,
+   "b_score": 0.899
+  },
+  {
+   "job_id": "dev-ai-194",
+   "persona": "ai",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": -0.048,
+   "b_score": -0.048
+  },
+  {
+   "job_id": "dev-ai-035",
+   "persona": "ai",
+   "a_replied": true,
+   "b_replied": true,
+   "a_score": 0.781,
+   "b_score": 0.781
+  },
+  {
+   "job_id": "dev-ai-104",
+   "persona": "ai",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.772,
+   "b_score": 0.772
+  },
+  {
+   "job_id": "dev-ai-106",
+   "persona": "ai",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.302,
+   "b_score": 0.302
+  },
+  {
+   "job_id": "dev-web-009",
+   "persona": "web",
+   "a_replied": true,
+   "b_replied": true,
+   "a_score": 1.246,
+   "b_score": 1.246
+  },
+  {
+   "job_id": "dev-web-072",
+   "persona": "web",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.239,
+   "b_score": 0.239
+  },
+  {
+   "job_id": "dev-web-029",
+   "persona": "web",
+   "a_replied": true,
+   "b_replied": true,
+   "a_score": 0.321,
+   "b_score": 0.321
+  },
+  {
+   "job_id": "dev-web-091",
+   "persona": "web",
+   "a_replied": true,
+   "b_replied": false,
+   "a_score": 0.378,
+   "b_score": 0.378
+  },
+  {
+   "job_id": "dev-web-143",
+   "persona": "web",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": -0.038,
+   "b_score": -0.038
+  },
+  {
+   "job_id": "dev-web-087",
+   "persona": "web",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.022,
+   "b_score": 0.022
+  },
+  {
+   "job_id": "dev-web-039",
+   "persona": "web",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.147,
+   "b_score": 0.147
+  },
+  {
+   "job_id": "dev-web-153",
+   "persona": "web",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.689,
+   "b_score": 0.689
+  },
+  {
+   "job_id": "dev-web-081",
+   "persona": "web",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.248,
+   "b_score": 0.248
+  },
+  {
+   "job_id": "dev-web-154",
+   "persona": "web",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.379,
+   "b_score": 0.379
+  },
+  {
+   "job_id": "dev-web-025",
+   "persona": "web",
+   "a_replied": false,
+   "b_replied": true,
+   "a_score": 0.23,
+   "b_score": 0.23
+  },
+  {
+   "job_id": "dev-web-125",
+   "persona": "web",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.17,
+   "b_score": 0.17
+  },
+  {
+   "job_id": "dev-web-012",
+   "persona": "web",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.219,
+   "b_score": 0.219
+  },
+  {
+   "job_id": "dev-web-063",
+   "persona": "web",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.208,
+   "b_score": 0.208
+  },
+  {
+   "job_id": "dev-web-149",
+   "persona": "web",
+   "a_replied": false,
+   "b_replied": true,
+   "a_score": 0.389,
+   "b_score": 0.389
+  },
+  {
+   "job_id": "dev-web-080",
+   "persona": "web",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.383,
+   "b_score": 0.383
+  },
+  {
+   "job_id": "dev-web-013",
+   "persona": "web",
+   "a_replied": false,
+   "b_replied": true,
+   "a_score": 0.921,
+   "b_score": 0.921
+  },
+  {
+   "job_id": "dev-web-112",
+   "persona": "web",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.245,
+   "b_score": 0.245
+  },
+  {
+   "job_id": "dev-web-137",
+   "persona": "web",
+   "a_replied": true,
+   "b_replied": false,
+   "a_score": 0.214,
+   "b_score": 0.214
+  },
+  {
+   "job_id": "dev-web-178",
+   "persona": "web",
+   "a_replied": true,
+   "b_replied": false,
+   "a_score": 0.344,
+   "b_score": 0.344
+  },
+  {
+   "job_id": "dev-web-107",
+   "persona": "web",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": -0.029,
+   "b_score": -0.029
+  },
+  {
+   "job_id": "dev-web-026",
+   "persona": "web",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.187,
+   "b_score": 0.187
+  },
+  {
+   "job_id": "dev-web-001",
+   "persona": "web",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.273,
+   "b_score": 0.273
+  },
+  {
+   "job_id": "dev-web-077",
+   "persona": "web",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.278,
+   "b_score": 0.278
+  },
+  {
+   "job_id": "dev-web-045",
+   "persona": "web",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.322,
+   "b_score": 0.322
+  },
+  {
+   "job_id": "dev-web-067",
+   "persona": "web",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.177,
+   "b_score": 0.177
+  },
+  {
+   "job_id": "dev-web-176",
+   "persona": "web",
+   "a_replied": true,
+   "b_replied": true,
+   "a_score": 1.544,
+   "b_score": 1.544
+  },
+  {
+   "job_id": "dev-web-120",
+   "persona": "web",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.354,
+   "b_score": 0.354
+  },
+  {
+   "job_id": "dev-web-036",
+   "persona": "web",
+   "a_replied": false,
+   "b_replied": true,
+   "a_score": 0.229,
+   "b_score": 0.229
+  },
+  {
+   "job_id": "dev-web-105",
+   "persona": "web",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.239,
+   "b_score": 0.239
+  },
+  {
+   "job_id": "dev-data-165",
+   "persona": "data",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.416,
+   "b_score": 0.416
+  },
+  {
+   "job_id": "dev-data-169",
+   "persona": "data",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.1,
+   "b_score": 0.1
+  },
+  {
+   "job_id": "dev-data-166",
+   "persona": "data",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.22,
+   "b_score": 0.22
+  },
+  {
+   "job_id": "dev-data-023",
+   "persona": "data",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.085,
+   "b_score": 0.085
+  },
+  {
+   "job_id": "dev-data-160",
+   "persona": "data",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.396,
+   "b_score": 0.396
+  },
+  {
+   "job_id": "dev-data-142",
+   "persona": "data",
+   "a_replied": true,
+   "b_replied": false,
+   "a_score": 0.826,
+   "b_score": 0.826
+  },
+  {
+   "job_id": "dev-data-047",
+   "persona": "data",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.412,
+   "b_score": 0.412
+  },
+  {
+   "job_id": "dev-data-139",
+   "persona": "data",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.28,
+   "b_score": 0.28
+  },
+  {
+   "job_id": "dev-data-152",
+   "persona": "data",
+   "a_replied": true,
+   "b_replied": true,
+   "a_score": 1.578,
+   "b_score": 1.578
+  },
+  {
+   "job_id": "dev-data-021",
+   "persona": "data",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": -0.23,
+   "b_score": -0.23
+  },
+  {
+   "job_id": "dev-data-173",
+   "persona": "data",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.163,
+   "b_score": 0.163
+  },
+  {
+   "job_id": "dev-data-181",
+   "persona": "data",
+   "a_replied": false,
+   "b_replied": true,
+   "a_score": 0.671,
+   "b_score": 0.671
+  },
+  {
+   "job_id": "dev-data-164",
+   "persona": "data",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.177,
+   "b_score": 0.177
+  },
+  {
+   "job_id": "dev-data-155",
+   "persona": "data",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.539,
+   "b_score": 0.539
+  },
+  {
+   "job_id": "dev-data-191",
+   "persona": "data",
+   "a_replied": true,
+   "b_replied": true,
+   "a_score": 1.032,
+   "b_score": 1.032
+  },
+  {
+   "job_id": "dev-data-079",
+   "persona": "data",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.808,
+   "b_score": 0.808
+  },
+  {
+   "job_id": "dev-data-198",
+   "persona": "data",
+   "a_replied": false,
+   "b_replied": true,
+   "a_score": 0.347,
+   "b_score": 0.347
+  },
+  {
+   "job_id": "dev-data-149",
+   "persona": "data",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": -0.005,
+   "b_score": -0.005
+  },
+  {
+   "job_id": "dev-data-000",
+   "persona": "data",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.883,
+   "b_score": 0.883
+  },
+  {
+   "job_id": "dev-data-102",
+   "persona": "data",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.078,
+   "b_score": 0.078
+  },
+  {
+   "job_id": "dev-data-195",
+   "persona": "data",
+   "a_replied": true,
+   "b_replied": false,
+   "a_score": 0.146,
+   "b_score": 0.146
+  },
+  {
+   "job_id": "dev-data-044",
+   "persona": "data",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.595,
+   "b_score": 0.595
+  },
+  {
+   "job_id": "dev-data-171",
+   "persona": "data",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.295,
+   "b_score": 0.295
+  },
+  {
+   "job_id": "dev-data-067",
+   "persona": "data",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.472,
+   "b_score": 0.472
+  },
+  {
+   "job_id": "dev-data-130",
+   "persona": "data",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": -0.015,
+   "b_score": -0.015
+  },
+  {
+   "job_id": "dev-data-006",
+   "persona": "data",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.052,
+   "b_score": 0.052
+  },
+  {
+   "job_id": "dev-data-070",
+   "persona": "data",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": -0.054,
+   "b_score": -0.054
+  },
+  {
+   "job_id": "dev-data-110",
+   "persona": "data",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": 0.391,
+   "b_score": 0.391
+  },
+  {
+   "job_id": "dev-data-042",
+   "persona": "data",
+   "a_replied": false,
+   "b_replied": false,
+   "a_score": -0.14,
+   "b_score": -0.14
+  }
+ ]
+}

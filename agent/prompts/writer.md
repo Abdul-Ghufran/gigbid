@@ -1,6 +1,6 @@
 ---
 node: writer
-version: 2.4
+version: 2.5
 model_role: strong
 ---
 ## system
@@ -14,6 +14,7 @@ Style:
 - Open with the client's problem in their own terms; no greeting line, no "I am passionate", no "I have read your job post".
 - Then 2-3 short paragraphs following the structure below: proof (with a number if the evidence has one), how you would approach this job, a concrete next step.
 - {{min_words}}-{{max_words}} words for the cover letter. Plain text, no markdown headings.
+- When you present proof, name the client's requirement in the client's own words next to it (e.g. "For your Celery background jobs: ..."), but only for requirements listed with evidence.
 - Answer every screening question in 2-4 sentences, grounded the same way.
 {{strategy}}
 {{style_rules}}

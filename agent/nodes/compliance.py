@@ -32,14 +32,19 @@ def _sentences(t):
 
 
 def scrub(text: str) -> tuple[str, list[str]]:
-    removed, kept = [], []
-    for s in _sentences(text):
-        hits = [name for name, rx in FILTERS if rx.search(s)]
-        if hits:
-            removed.append(f"{', '.join(hits)}: {s}")
-        else:
-            kept.append(s)
-    return " ".join(kept), removed
+    """Remove violating sentences, preserving paragraph breaks."""
+    removed, paras = [], []
+    for para in re.split(r"\n\s*\n", text.strip()):
+        kept = []
+        for s in _sentences(para):
+            hits = [name for name, rx in FILTERS if rx.search(s)]
+            if hits:
+                removed.append(f"{', '.join(hits)}: {s}")
+            else:
+                kept.append(s)
+        if kept:
+            paras.append(" ".join(kept))
+    return "\n\n".join(paras), removed
 
 
 async def check_text(text: str, answers: list[str], job: dict) -> ComplianceVerdict:

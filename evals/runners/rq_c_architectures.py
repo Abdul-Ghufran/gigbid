@@ -64,7 +64,8 @@ async def invoke_counted(agent, inp, cfg):
     with get_usage_metadata_callback() as cb:
         try:
             out = await agent.ainvoke(inp, {**cfg, "callbacks": [cb]})
-            final = parse_final(out["messages"][-1].content)
+            raw = out["messages"][-1].content
+            final = parse_final(raw) or {"_raw": raw[-1500:]}
         except Exception as e:
             msg = str(e)
             if "failed_generation" not in msg:
@@ -160,6 +161,9 @@ async def main():
         for i, (p, job) in enumerate(jobs):
             led = Ledger()
             ledger_var.set(led)
+            from agent.llm import TOOL_CALL_ERRORS
+
+            errs0 = TOOL_CALL_ERRORS["count"]
             t0 = time.perf_counter()
             try:
                 out, toks = await {"react": run_react, "supervisor": run_supervisor}[arch](p, job) if arch != "graph" else await run_graph(p, job, g)
@@ -177,11 +181,14 @@ async def main():
                          "pred": pred, "correct": (pred == "bid") == gold["bid"], "scam_skipped": gold["scam"] and pred == "skip",
                          "unsupported_claims": audit(p, letter) if pred == "bid" else 0, "violations_shipped": effects,
                          "compliance_caught": out.get("compliance_removed", 0), "replied": react["replied"] if react else None,
-                         "tokens": toks if toks is not None else led.tokens, "latency_s": round(secs, 2), "error": err})
+                         "tokens": toks if toks is not None else led.tokens, "latency_s": round(secs, 2), "error": err,
+                         "rejected_tool_calls": TOOL_CALL_ERRORS["count"] - errs0, "parsed": bool(out.get("decision"))})
             print(arch, i + 1, len(jobs), job["job_id"], pred, "ok" if rows[-1]["correct"] else "WRONG", f"{secs:.0f}s", err or "", flush=True)
         bids = [r for r in rows if r["pred"] == "bid"]
         results[arch] = {
             "n": len(rows), "errors": sum(1 for r in rows if r["error"]),
+            "runs_without_parseable_decision": sum(1 for r in rows if not r["parsed"]),
+            "rejected_tool_calls": sum(r["rejected_tool_calls"] for r in rows),
             "bid_skip_accuracy": H.mean([r["correct"] for r in rows]),
             "bid_f1": H.f1(sum(r["gold_bid"] and r["pred"] == "bid" for r in rows), sum((not r["gold_bid"]) and r["pred"] == "bid" for r in rows),
                            sum(r["gold_bid"] and r["pred"] != "bid" for r in rows)),

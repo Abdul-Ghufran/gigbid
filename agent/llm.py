@@ -154,9 +154,33 @@ def _base_url(spec: dict) -> str:
     return prov.get("base_url") or os.getenv(prov.get("base_url_env", ""), get_settings().ollama_base_url)
 
 
+TOOL_CALL_ERRORS = {"count": 0}
+
+
+def _retrying_chat_class():
+    """ChatOpenAI that retries (max 3 attempts) when the provider rejects a malformed tool call (tool_use_failed),
+    counting each rejection - used by the tool-calling baselines in R&D question C."""
+    from langchain_openai import ChatOpenAI
+
+    class RetryingChat(ChatOpenAI):
+        async def _agenerate(self, *a, **kw):
+            for attempt in range(3):
+                try:
+                    return await super()._agenerate(*a, **kw)
+                except Exception as e:
+                    if "tool_use_failed" in str(e) and "failed_generation" in str(e) and '"name": "JSON"' not in str(e) and attempt < 2:
+                        TOOL_CALL_ERRORS["count"] += 1
+                        continue
+                    if "tool_use_failed" in str(e):
+                        TOOL_CALL_ERRORS["count"] += 1
+                    raise
+
+    return RetryingChat
+
+
 def chat_model(node: str, profile: str | None = None, **kw):
     """LangChain chat model for a node (used by tool-calling baselines and the supervisor)."""
-    from langchain_openai import ChatOpenAI
+    ChatOpenAI = _retrying_chat_class()
 
     spec = model_for(node, profile)
     key = _api_key(spec)
@@ -192,7 +216,7 @@ async def _call(spec: dict, messages: list[dict], json_mode: bool, node: str, ma
         body["response_format"] = {"type": "json_object"}
     if spec.get("reasoning_effort"):
         body["reasoning_effort"] = spec["reasoning_effort"]
-    if "qwen3" in spec["model"] and spec["provider"] == "groq":
+    if "qwen3" in spec["model"] and spec["provider"] == "groq" and spec.get("reasoning_effort") != "none":
         body["reasoning_format"] = "hidden"
     use_cache = config()["llm"]["cache"] and os.getenv("LLM_CACHE", "1") == "1"
     ck = hashlib.sha256(json.dumps(body, sort_keys=True).encode()).hexdigest()
