@@ -31,7 +31,7 @@ test("approve a proposal: evidence on hover, dry-run preview, submitted exactly 
   await expect(page.getByTestId("run-timeline")).toContainText("Submitting", { timeout: 120_000 });
   await expect(page.getByText(/Run done/)).toBeVisible({ timeout: 120_000 });
   await page.goto(`/jobs/${jobId}`);
-  await expect(page.getByText("Submitted").first()).toBeVisible({ timeout: 30_000 });
+  await expect(page.getByTestId("job-status")).toHaveText("submitted", { timeout: 30_000 });
 });
 
 test("reject a proposal with a reason", async ({ page }) => {

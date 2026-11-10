@@ -28,6 +28,8 @@ export default function JobDetailPage() {
       <div className="page-head">
         <h1>{job.title}</h1>
         <div className="row gap wrap">
+          <Badge tone={data.card.status === "submitted" ? "good" : data.card.status === "awaiting_approval" ? "info" : "neutral"}>
+            <span data-testid="job-status">{data.card.status.replace(/_/g, " ")}</span></Badge>
           <DecisionBadge decision={dec?.action} /><RiskBadge risk={risk?.score} scam={risk?.scam} flags={risk?.flags} />
           {data.pending_approval && <Link className="btn btn-primary" to={`/studio/${id}`} data-testid="open-studio">Open proposal studio</Link>}
           {!data.pending_approval && dec?.action !== "bid" && <button className="btn" onClick={() => analyze(true)}>Draft anyway</button>}

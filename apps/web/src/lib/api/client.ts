@@ -73,7 +73,7 @@ export async function streamRun(runId: string, onEvent: (e: StreamEvent) => void
       for (;;) {
         const { value, done } = await reader.read();
         if (done) break;
-        buf += dec.decode(value, { stream: true });
+        buf += dec.decode(value, { stream: true }).replace(/\r\n/g, "\n"); // sse-starlette uses CRLF
         let idx;
         while ((idx = buf.indexOf("\n\n")) >= 0) {
           const block = buf.slice(0, idx); buf = buf.slice(idx + 2);
