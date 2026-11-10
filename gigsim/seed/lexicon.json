@@ -1,0 +1,300 @@
+{
+ "Python": [
+  "a python codebase",
+  "python",
+  "python3"
+ ],
+ "Docker": [
+  "containerised the stack",
+  "containers",
+  "docker",
+  "docker-compose",
+  "shipped it as an image"
+ ],
+ "AWS": [
+  "amazon web services",
+  "amazon's cloud",
+  "aws",
+  "ec2",
+  "lambda",
+  "s3",
+  "serverless functions on amazon"
+ ],
+ "CI/CD": [
+  "automated build-and-deploy pipeline",
+  "ci/cd",
+  "continuous integration",
+  "github actions"
+ ],
+ "PyTorch": [
+  "a deep-learning framework from meta",
+  "pytorch",
+  "torch"
+ ],
+ "scikit-learn": [
+  "classical ml toolkit",
+  "scikit-learn",
+  "sklearn"
+ ],
+ "XGBoost": [
+  "boosted trees",
+  "gradient boosting",
+  "lightgbm",
+  "xgboost"
+ ],
+ "LangChain": [
+  "chained llm calls",
+  "langchain",
+  "langgraph",
+  "llm orchestration"
+ ],
+ "RAG": [
+  "answers grounded in the client's own documents",
+  "document q&a bot",
+  "rag",
+  "retrieval augmented generation",
+  "retrieval-augmented generation"
+ ],
+ "LLM fine-tuning": [
+  "adapted an open model to their tone",
+  "fine-tuning",
+  "llm fine-tuning",
+  "lora",
+  "qlora"
+ ],
+ "Hugging Face": [
+  "hugging face",
+  "huggingface",
+  "pretrained models from the hub",
+  "transformers"
+ ],
+ "Computer vision": [
+  "computer vision",
+  "image classification",
+  "object detection",
+  "opencv",
+  "read defects off camera frames",
+  "spotted items in photos"
+ ],
+ "NLP": [
+  "made sense of free-text tickets",
+  "natural language processing",
+  "nlp",
+  "spacy",
+  "text classification"
+ ],
+ "Pinecone": [
+  "a managed vector index",
+  "pinecone",
+  "vector database"
+ ],
+ "FAISS": [
+  "faiss",
+  "nearest-neighbour lookups",
+  "similarity search"
+ ],
+ "MLflow": [
+  "experiment tracking",
+  "kept every run reproducible and comparable",
+  "mlflow",
+  "model registry"
+ ],
+ "Time-series forecasting": [
+  "arima",
+  "forecasting",
+  "predicted next month's demand",
+  "prophet",
+  "time-series forecasting"
+ ],
+ "Recommendation systems": [
+  "collaborative filtering",
+  "recommendation systems",
+  "recommender",
+  "suggested what each shopper should see next"
+ ],
+ "FastAPI": [
+  "a typed python web api",
+  "fastapi",
+  "fastapi backend"
+ ],
+ "MLOps": [
+  "kept the model healthy in production",
+  "mlops",
+  "model deployment",
+  "model monitoring"
+ ],
+ "React": [
+  "component-based front end",
+  "react",
+  "react.js",
+  "reactjs"
+ ],
+ "Next.js": [
+  "next",
+  "next.js",
+  "nextjs",
+  "server-rendered react"
+ ],
+ "TypeScript": [
+  "strictly typed javascript",
+  "ts",
+  "typescript"
+ ],
+ "Node.js": [
+  "a javascript server",
+  "express",
+  "node.js",
+  "nodejs"
+ ],
+ "Django": [
+  "batteries-included python web framework",
+  "django",
+  "django rest framework",
+  "drf"
+ ],
+ "PostgreSQL": [
+  "a relational database",
+  "postgres",
+  "postgresql",
+  "psql"
+ ],
+ "Redis": [
+  "caching layer",
+  "in-memory cache",
+  "redis"
+ ],
+ "Celery": [
+  "background jobs that run off the request path",
+  "celery",
+  "queue workers",
+  "task queue"
+ ],
+ "GraphQL": [
+  "apollo",
+  "graphql",
+  "one flexible query endpoint"
+ ],
+ "Tailwind CSS": [
+  "tailwind",
+  "tailwind css",
+  "utility-first styling"
+ ],
+ "Stripe": [
+  "payments integration",
+  "stripe",
+  "stripe checkout",
+  "took card payments and subscriptions"
+ ],
+ "WebSockets": [
+  "live updates pushed to the browser",
+  "real-time",
+  "socket.io",
+  "websockets"
+ ],
+ "MongoDB": [
+  "a document store",
+  "mongo",
+  "mongodb",
+  "mongoose"
+ ],
+ "Playwright": [
+  "browser tests that click through the flows",
+  "e2e testing",
+  "end-to-end tests",
+  "playwright"
+ ],
+ "Shopify": [
+  "an online-store platform plugin",
+  "liquid",
+  "shopify",
+  "shopify app"
+ ],
+ "SQL": [
+  "sql",
+  "sql queries",
+  "window functions",
+  "wrote the queries behind every number"
+ ],
+ "Excel": [
+  "a workbook the finance team lives in",
+  "excel",
+  "pivot tables",
+  "spreadsheets",
+  "vlookup"
+ ],
+ "Power BI": [
+  "dax",
+  "microsoft's bi dashboards",
+  "power bi",
+  "powerbi"
+ ],
+ "Tableau": [
+  "drag-and-drop visual analytics",
+  "tableau",
+  "tableau dashboards"
+ ],
+ "dbt": [
+  "data build tool",
+  "dbt",
+  "dbt models",
+  "version-controlled sql transformations"
+ ],
+ "pandas": [
+  "cleaned the data in notebooks",
+  "dataframes",
+  "pandas"
+ ],
+ "Looker": [
+  "google's semantic-layer bi",
+  "looker",
+  "looker studio",
+  "lookml"
+ ],
+ "Google Analytics": [
+  "ga4",
+  "google analytics",
+  "traffic and funnel tracking for the site",
+  "web analytics"
+ ],
+ "BigQuery": [
+  "bigquery",
+  "bigquery warehouse",
+  "google's serverless warehouse"
+ ],
+ "Snowflake": [
+  "a cloud data warehouse",
+  "snowflake",
+  "snowflake warehouse"
+ ],
+ "Airflow": [
+  "airflow",
+  "dag scheduling",
+  "orchestration",
+  "scheduled nightly pipelines"
+ ],
+ "Statistics": [
+  "checked whether the difference was real",
+  "hypothesis testing",
+  "regression analysis",
+  "statistics"
+ ],
+ "A/B testing": [
+  "a/b testing",
+  "compared two versions of the page on live traffic",
+  "experimentation",
+  "split testing"
+ ],
+ "Data visualization": [
+  "charts",
+  "dashboards",
+  "data visualization",
+  "matplotlib",
+  "turned the numbers into pictures executives read"
+ ],
+ "ETL": [
+  "data pipelines",
+  "elt",
+  "etl",
+  "moved data from the crm into one place every night"
+ ]
+}

@@ -487,6 +487,9 @@ def main(seed: int = 4016):
                             "connects_weekly": 80, "token": f"gigsim-dev-token-{pkey}"})
     (seed_dir / "freelancers.json").write_text(json.dumps(freelancers, indent=1), encoding="utf-8")
 
+    # ---- GigSim's private lexicon (clients understand every paraphrase, including the hard ones)
+    lex = {s: sorted({s.lower(), *[x.lower() for x in v["syn"]], *[x.lower() for x in v["hard"]]}) for s, v in SKILLS.items()}
+    (seed_dir / "lexicon.json").write_text(json.dumps(lex, indent=1), encoding="utf-8")
     # ---- GigBid's own skill normaliser (no 'hard' paraphrases: the system must not see those)
     norm = {s: {"domain": v["domain"], "synonyms": v["syn"], "code_signals": v["imports"]} for s, v in SKILLS.items()}
     (ROOT / "rag" / "ingest" / "skills.yaml").write_text(yaml.safe_dump(norm, sort_keys=True), encoding="utf-8")
