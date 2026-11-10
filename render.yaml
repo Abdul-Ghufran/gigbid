@@ -1,0 +1,51 @@
+# Render blueprint: one free web service (see docs/RUNBOOK.md for why it is a single container).
+services:
+  - type: web
+    name: gigbid
+    runtime: docker
+    plan: free
+    dockerfilePath: infra/docker/render.Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_SECRET_KEY
+        generateValue: true
+      - key: MCP_SHARED_SECRET
+        generateValue: true
+      - key: GIGSIM_ADMIN_TOKEN
+        generateValue: true
+      - key: GIGSIM_POLICY_VERSION
+        value: "2026-11-02"
+      - key: MODEL_PROFILE
+        value: open
+      - key: MARKETPLACE_MODE
+        value: gigsim
+      - key: MCP_TRANSPORT
+        value: memory
+      - key: GIGSIM_INPROCESS
+        value: "1"
+      - key: REVIEWER_EMAIL
+        value: reviewer@gigbid.app
+      - key: DATABASE_URL          # Neon connection string (sslmode=require)
+        sync: false
+      - key: GIGSIM_STATE_DB       # same Neon URL: GigSim state survives restarts
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: REVIEWER_PASSWORD
+        sync: false
+      - key: LANGFUSE_PUBLIC_KEY
+        sync: false
+      - key: LANGFUSE_SECRET_KEY
+        sync: false
+      - key: LANGFUSE_HOST
+        value: https://cloud.langfuse.com
+      - key: PUBLIC_WEB_URL
+        sync: false
+      - key: PUBLIC_API_URL
+        sync: false
+      - key: GITHUB_TOKEN
+        sync: false

@@ -139,12 +139,14 @@ async def main():
                     {"role": "user", "content": t["text"]}], "tools": tools, "tool_choice": "required", "max_tokens": 400}
                 if spec.get("reasoning_effort"):
                     body["reasoning_effort"] = "low"
-                for attempt in range(6):
+                for attempt in range(30):  # a 429 is a quota wait, never a task failure
                     r = await http.post(f"{_base_url(spec)}/chat/completions", json=body, headers={"Authorization": f"Bearer {_api_key(spec)}"})
                     if r.status_code != 429:
                         break
-                    await asyncio.sleep(min(60, float(r.headers.get("retry-after", 5))))
+                    await asyncio.sleep(min(90, float(r.headers.get("retry-after", 10)) + 1))
                 d = r.json()
+                used = (d.get("usage") or {}).get("total_tokens") or 2000
+                await asyncio.sleep(max(0.0, used / 7500 * 60 - 2.2))  # pace under the 8K tokens/minute limit
                 calls = (d.get("choices") or [{}])[0].get("message", {}).get("tool_calls") or []
                 call = calls[0]["function"] if calls else None
                 tok, arg = score(kind, call, t)
