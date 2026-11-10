@@ -10,6 +10,7 @@
 from __future__ import annotations
 
 import asyncio
+import os
 import contextvars
 import functools
 import time
@@ -76,7 +77,9 @@ def node(name: str, budget_key: str = "max_tokens_per_job"):
             t0 = time.perf_counter()
             emit("node_start", name, {})
             try:
-                out = await asyncio.wait_for(fn(state, *a, **kw), NODE_TIMEOUT_S.get(name, 60))
+                # evaluation mode waits for daily quota inside LLM calls, so node timeouts must allow for it
+                limit = 4 * 3600 if os.getenv("LLM_WAIT_ON_QUOTA") == "1" else NODE_TIMEOUT_S.get(name, 60)
+                out = await asyncio.wait_for(fn(state, *a, **kw), limit)
             except asyncio.TimeoutError:
                 emit("error", name, {"error": "timeout"})
                 raise
