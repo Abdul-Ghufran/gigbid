@@ -85,6 +85,22 @@ If the build fails, open the deploy log and send me (or any AI assistant) the la
    `docs/TRACES.md` → commit and push.
    *(If you skip Langfuse, the in-app Run viewer shows the same traces, but those links need a login.)*
 
+## Step 5b — MCP Inspector screenshots (10 min) — required by A7
+I could not run the Inspector myself (the automation sandbox does not allow downloading and running npm tools).
+1. In a terminal in the project folder run `npx @modelcontextprotocol/inspector` (it opens http://localhost:6274 in your browser).
+2. Left panel: **Transport = STDIO**, **Command** = `C:\Users\MABC\Desktop\i230576_AG2\.venv\Scripts\python.exe`,
+   **Arguments** = `-m mcp_servers.portfolio.server --persona web`, **Environment**: add `AUDIT_DISABLED=1`. Click **Connect**
+   (first connect takes ~1 minute while the portfolio is indexed).
+3. **Tools → List Tools → search_evidence** → requirement `Celery background jobs` → **Run Tool** → screenshot.
+   Also screenshot **Resources** (resource templates) and **Prompts** (`answer_screening_question`).
+4. Disconnect, then the Marketplace server: Arguments `-m mcp_servers.marketplace.server`, Environment
+   `GIGSIM_INPROCESS=1`, `GIGSIM_TOKEN=gigsim-dev-token-web`, `MCP_USER_ID=persona-web`, `GIGSIM_ERROR_RATE=0` →
+   Connect → run `search_jobs` (category `web`, limit 3) and `submit_proposal` with `dry_run` true (it will say
+   "proposal not found" for a made-up id — that error is fine to show) → screenshot the tool list with annotations.
+5. Workspace server: Arguments `-m mcp_servers.workspace.server` → run `free_slots` → screenshot.
+6. Save the PNGs as `docs/images/inspector_portfolio.png`, `inspector_marketplace.png`, `inspector_workspace.png`,
+   then `git add docs/images && git commit -m "MCP Inspector screenshots" && git push`.
+
 ## Step 6 — Human panel with classmates (optional but listed in B4; 10 min of your time)
 Send `evals/datasets/human_panel_pairs.csv` to 3–5 classmates; each fills `which_would_you_reply_to_A_or_B` (A or B)
 and `rater_name`, and sends it back. Then:
