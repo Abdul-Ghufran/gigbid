@@ -165,9 +165,11 @@ def chat_model(node: str, profile: str | None = None, **kw):
     extra = {}
     if spec.get("reasoning_effort"):
         extra["reasoning_effort"] = spec["reasoning_effort"]
+    if spec.get("max_output"):
+        extra["max_tokens"] = spec["max_output"]
     return ChatOpenAI(model=spec["model"], base_url=_base_url(spec), api_key=key,
                       temperature=kw.get("temperature", config()["llm"]["temperature"]),
-                      timeout=config()["llm"]["timeout_s"], max_retries=2, **extra)
+                      timeout=config()["llm"]["timeout_s"] * 2, max_retries=10, **extra)
 
 
 def offline_mode() -> bool:
@@ -182,6 +184,8 @@ async def _call(spec: dict, messages: list[dict], json_mode: bool, node: str, ma
     """One chat completion against an OpenAI-compatible endpoint, with limiter + retries + cache."""
     import httpx
 
+    if spec.get("max_output"):  # provider caps output tokens per minute (e.g. Qwen on Groq: 1000 OTPM)
+        max_tokens = min(max_tokens, spec["max_output"])
     body: dict[str, Any] = {"model": spec["model"], "messages": messages, "temperature": config()["llm"]["temperature"],
                             "max_tokens": max_tokens}
     if json_mode:

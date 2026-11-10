@@ -22,7 +22,7 @@ def evidence_block(fit: dict) -> tuple[str, list[str]]:
             continue
         lines.append(f"- Requirement: {m['requirement']}")
         for e in m["evidence"][:2]:
-            snip = re.sub(r"\s+", " ", e["snippet"])[:500]
+            snip = re.sub(r"\s+", " ", e["snippet"])[:320]
             lines.append(f"    [{e['item_id']}] ({e['type']}) {e['title']}: {snip}")
     return "\n".join(lines) or "(no evidence)", unsupported
 
@@ -94,7 +94,7 @@ async def write(state: dict) -> dict:
                   lessons=lesson_lines or ["(no promoted lessons yet)"], price=f"{price.get('amount')} USD {price.get('bid_type')}",
                   screening_questions=job.get("screening_questions") or ["(none)"], revision_notes=revision_notes,
                   job_post=delimit(f"{job.get('title', '')}\n\n{clean}"))
-    draft = await llm.structured("writer", sys, user, ProposalDraft, max_tokens=1800,
+    draft = await llm.structured("writer", sys, user, ProposalDraft, max_tokens=1300,
                                  offline=lambda: template_draft(job, spec, fit, price, version))
     draft.job_id, draft.version = job["job_id"], version
     qs = job.get("screening_questions") or []

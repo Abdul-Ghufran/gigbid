@@ -56,6 +56,35 @@ def audit(persona: str, letter: str) -> int:
     return n
 
 
+async def invoke_counted(agent, inp, cfg):
+    """Run a prebuilt agent, counting tokens with a usage callback.  gpt-oss sometimes emits its final JSON as a call
+    to a non-existent 'JSON' tool, which Groq rejects with tool_use_failed; the answer is in failed_generation."""
+    from langchain_core.callbacks import get_usage_metadata_callback
+
+    with get_usage_metadata_callback() as cb:
+        try:
+            out = await agent.ainvoke(inp, {**cfg, "callbacks": [cb]})
+            final = parse_final(out["messages"][-1].content)
+        except Exception as e:
+            msg = str(e)
+            if "failed_generation" not in msg:
+                raise
+            gen = msg.split("'failed_generation': ", 1)[1]
+            import ast
+
+            try:
+                g = json.loads(ast.literal_eval(gen.rstrip("}").rstrip() + ""))
+            except Exception:
+                g = None
+            if isinstance(g, dict):
+                final = g.get("arguments", g)
+            else:
+                m = re.search(r'"arguments":\s*(\{.*\})\s*\}', gen.encode().decode("unicode_escape"), re.S)
+                final = parse_final(m.group(1)) if m else parse_final(gen)
+    toks = sum(v.get("total_tokens", 0) for v in cb.usage_metadata.values())
+    return final, toks
+
+
 def usage_tokens(messages) -> int:
     tot = 0
     for m in messages:
@@ -70,11 +99,10 @@ async def run_react(persona, job):
 
     tb = Toolbox("react_baseline", f"persona-{persona}")
     p = prompt("baseline_react")
-    agent = create_react_agent(chat_model("writer", "open"), tb.langchain_tools(), prompt=p["system"])
+    agent = create_react_agent(chat_model("writer", os.environ["MODEL_PROFILE"]), tb.langchain_tools(), prompt=p["system"])
     s = H.settings(persona)
-    out = await agent.ainvoke({"messages": [("user", render(p["user"], job_id=job["job_id"], rate=str(s["hourly_rate"]), floor=str(s["min_project"])))]},
-                              {"recursion_limit": 24})
-    return parse_final(out["messages"][-1].content), usage_tokens(out["messages"])
+    return await invoke_counted(agent, {"messages": [("user", render(p["user"], job_id=job["job_id"], rate=str(s["hourly_rate"]),
+                                                                       floor=str(s["min_project"])))]}, {"recursion_limit": 24})
 
 
 async def run_supervisor(persona, job):
@@ -82,7 +110,7 @@ async def run_supervisor(persona, job):
     from langgraph_supervisor import create_supervisor
 
     user = f"persona-{persona}"
-    model = chat_model("writer", "open")
+    model = chat_model("writer", os.environ["MODEL_PROFILE"])
     market = Toolbox("react_baseline", user)
     market.allowed = {"marketplace": market.allowed["marketplace"]}
     port = Toolbox("react_baseline", user)
@@ -94,9 +122,8 @@ async def run_supervisor(persona, job):
     p = prompt("baseline_react")
     sup = create_supervisor([researcher, prover], model=model, prompt=p["system"] + "\nDelegate research to your team, then write the final JSON yourself.").compile()
     s = H.settings(persona)
-    out = await sup.ainvoke({"messages": [("user", render(p["user"], job_id=job["job_id"], rate=str(s["hourly_rate"]), floor=str(s["min_project"])))]},
-                            {"recursion_limit": 40})
-    return parse_final(out["messages"][-1].content), usage_tokens(out["messages"])
+    return await invoke_counted(sup, {"messages": [("user", render(p["user"], job_id=job["job_id"], rate=str(s["hourly_rate"]),
+                                                                     floor=str(s["min_project"])))]}, {"recursion_limit": 40})
 
 
 async def run_graph(persona, job, g):
@@ -115,8 +142,9 @@ async def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--per-persona", type=int, default=10)
     ap.add_argument("--only", default="react,supervisor,graph")
+    ap.add_argument("--profile", default="eval_qwen")
     a = ap.parse_args()
-    os.environ["MODEL_PROFILE"] = "open"
+    os.environ["MODEL_PROFILE"] = a.profile
     init_db()
     await load_schemas()
     from langgraph.checkpoint.memory import InMemorySaver
@@ -166,7 +194,8 @@ async def main():
             "p95_latency_s": H.pct([r["latency_s"] for r in rows], .95),
             "accuracy_by_kind": {k: H.mean([r["correct"] for r in rows if r["kind"] == k]) for k in sorted(KINDS)},
             "rows": rows}
-        H.write("rq_c_architectures" if len(archs) == 3 else f"rq_c_{arch}", {"jobs": len(jobs), "model": "openai/gpt-oss-120b", "results": results})
+        H.write("rq_c_architectures", {"jobs": len(jobs), "profile": a.profile, "model": config()["models"][config()["profiles"][a.profile]["writer"]]["model"],
+                                         "results": results})
     print({k: {kk: v for kk, v in r.items() if kk not in ("rows", "accuracy_by_kind")} for k, r in results.items()})
 
 

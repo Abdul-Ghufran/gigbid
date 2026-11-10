@@ -29,6 +29,7 @@ dependencies = [
   "langgraph-checkpoint-sqlite==2.0.10",
   "aiosqlite==0.21.0",
   "langgraph-supervisor==0.0.27",
+  "langgraph-prebuilt==0.2.3",
   "langchain-core==0.3.65",
   "langchain-openai==0.3.24",
   "langchain-mcp-adapters==0.1.9",

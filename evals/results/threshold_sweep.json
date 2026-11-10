@@ -1,0 +1,63 @@
+{
+ "generated_by": "evals/runners/threshold_sweep.py",
+ "generated_at": "2026-11-11 01:33",
+ "source": "evals/results/decision_eval_offline.json",
+ "sweep": [
+  {
+   "threshold": 0.5,
+   "bid_f1": 0.874,
+   "precision": 0.7784,
+   "recall": 0.9965,
+   "partial_accuracy": 0.3667
+  },
+  {
+   "threshold": 0.55,
+   "bid_f1": 0.9183,
+   "precision": 0.8515,
+   "recall": 0.9965,
+   "partial_accuracy": 0.6167
+  },
+  {
+   "threshold": 0.6,
+   "bid_f1": 0.9259,
+   "precision": 0.8646,
+   "recall": 0.9965,
+   "partial_accuracy": 0.6583
+  },
+  {
+   "threshold": 0.65,
+   "bid_f1": 0.9477,
+   "precision": 0.9035,
+   "recall": 0.9965,
+   "partial_accuracy": 0.7667
+  },
+  {
+   "threshold": 0.67,
+   "bid_f1": 0.9757,
+   "precision": 0.9558,
+   "recall": 0.9965,
+   "partial_accuracy": 0.9
+  },
+  {
+   "threshold": 0.7,
+   "bid_f1": 0.9757,
+   "precision": 0.9558,
+   "recall": 0.9965,
+   "partial_accuracy": 0.9
+  },
+  {
+   "threshold": 0.75,
+   "bid_f1": 0.9757,
+   "precision": 0.9558,
+   "recall": 0.9965,
+   "partial_accuracy": 0.9
+  },
+  {
+   "threshold": 0.8,
+   "bid_f1": 0.9842,
+   "precision": 0.9723,
+   "recall": 0.9965,
+   "partial_accuracy": 0.9417
+  }
+ ]
+}

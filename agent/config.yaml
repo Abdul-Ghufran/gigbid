@@ -21,7 +21,7 @@ models:
   small:   {provider: groq, model: "openai/gpt-oss-20b", price_in: 0.075, price_out: 0.30, rpm: 30, tpm: 8000, reasoning_effort: low}
   mid:     {provider: groq, model: "openai/gpt-oss-20b", price_in: 0.075, price_out: 0.30, rpm: 30, tpm: 8000, reasoning_effort: medium}
   strong:  {provider: groq, model: "openai/gpt-oss-120b", price_in: 0.15, price_out: 0.60, rpm: 30, tpm: 8000, reasoning_effort: low}
-  qwen:    {provider: groq, model: "qwen/qwen3.8-27b", price_in: 0.29, price_out: 0.59, rpm: 30, tpm: 6000}
+  qwen:    {provider: groq, model: "qwen/qwen3.8-27b", price_in: 0.29, price_out: 0.59, rpm: 2, tpm: 6000, max_output: 950}  # Groq caps Qwen at 1000 output tokens/min
   guard:   {provider: groq, model: "meta-llama/llama-prompt-guard-2-86m", price_in: 0.04, price_out: 0.04, rpm: 30, tpm: 15000}
   local_small: {provider: ollama, model: "qwen3:4b", price_in: 0, price_out: 0}
   local_mid:   {provider: ollama, model: "gpt-oss:20b", price_in: 0, price_out: 0}
@@ -60,6 +60,22 @@ profiles:
     rag_aux: small
     fallback_small: strong
     fallback_strong: strong
+  eval_qwen:       # same-model setting for R&D question C (every LLM call on Qwen; separate daily quota)
+    scout: qwen
+    analyst: qwen
+    risk_assessor: qwen
+    fit_matcher: qwen
+    pricing: qwen
+    writer: qwen
+    verifier: qwen
+    critic: qwen
+    compliance: qwen
+    liaison: qwen
+    intent: qwen
+    judge: qwen
+    rag_aux: qwen
+    fallback_small: qwen
+    fallback_strong: qwen
   open_mid:        # second open configuration compared on the dev set
     scout: small
     analyst: mid
@@ -145,7 +161,7 @@ budgets:
 
 # --------------------------------------------------------------------------------- thresholds
 thresholds:
-  bid_min_fit: 0.55
+  bid_min_fit: 0.70               # evals/results/threshold_sweep.json: middle of the 0.67-0.75 plateau (F1 0.976), not the 0.80 peak (overfit risk)
   watch_min_fit: 0.35
   max_risk: 0.6
   scam_risk: 0.75

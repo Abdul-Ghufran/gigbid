@@ -47,6 +47,11 @@ async def critique(state: dict) -> dict:
         score = max(0.0, 10 - 1.5 * len(checks))
         return Critique(score=score, passed=score >= t["critic_pass_score"], issues=checks, instructions=checks)
 
+    hard_fail = [i for i in checks if i.startswith(("Generic", "No evidence", "Too long", "Too short", "Screening"))]
+    if hard_fail and rev <= config()["budgets"]["max_revisions"]:
+        # token budget: deterministic failures already justify a revision - no LLM review needed this round
+        return {"critiques": [Critique(score=max(0.0, 10 - 2 * len(checks)), passed=False, issues=checks, instructions=checks,
+                                       revision=rev).model_dump()]}
     p = prompt("critic")
     user = render(p["user"], job_spec=state["analyses"].get("job_spec", {}), revision=str(rev),
                   draft=f"{draft.get('cover_letter')}\n\nSCREENING ANSWERS:\n" + "\n".join(draft.get("screening_answers", [])),
