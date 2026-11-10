@@ -44,7 +44,9 @@ def current_user_id() -> str:
             return tok.client_id
     except Exception:
         pass
-    return os.getenv("MCP_USER_ID", "local")
+    from common.tracing import user_id_var
+
+    return user_id_var.get() or os.getenv("MCP_USER_ID", "local")
 
 
 def audited(server: str, log_reads: bool = True):

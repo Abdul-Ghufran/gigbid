@@ -62,6 +62,8 @@ def _adapter() -> MarketplaceAdapter:
         return _ADAPTERS[uid]
     s = get_settings()
     mode, token = s.marketplace_mode, os.getenv("GIGSIM_TOKEN", "")
+    if uid.startswith("persona-"):  # evaluation / demo users map onto the GigSim persona accounts
+        token = f"gigsim-dev-token-{uid.split('-')[1]}"
     try:
         from common.db import MarketplaceAccount, session
         from common.security import decrypt
