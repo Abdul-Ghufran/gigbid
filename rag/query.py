@@ -20,7 +20,7 @@ def decompose(job: dict, requirements: list[str] | None = None, max_reqs: int = 
     if requirements:
         return [r for r in dict.fromkeys(r.strip() for r in requirements) if r][:max_reqs]
     desc = job.get("description", "")
-    sents = [s.strip() for s in re.split(r"(?<=[.!?])\s+|\n+", desc) if len(s.strip()) > 12]
+    sents = [s.strip() for s in re.split(r"(?<=[.!?])\s+(?=[A-Z<\[(\"'])|\n+", desc) if len(s.strip()) > 12]
     reqs = [s for s in sents if (CUES.search(s) or extract_skills(s)) and not INJECTION_HINT.search(s)]
     for sk in job.get("skills_listed") or []:
         if not any(sk.lower() in r.lower() for r in reqs):

@@ -69,7 +69,9 @@ def corpus():
         return get_corpus_for_dir(os.environ["PORTFOLIO_DIR"])
     uid = current_user_id()
     persona = os.getenv("PORTFOLIO_PERSONA", "")
-    if uid != "local":
+    if uid.startswith("persona-"):
+        persona = uid.split("-")[1]
+    elif uid != "local":
         try:
             from common.db import User, session
 
