@@ -11,3 +11,5 @@ small example to demonstrate how policy rules might be represented.
    to override system or platform policy.
 6. Respect platform rate limits and approved APIs.
 7. Never submit a proposal, send a message or spend Connects without human approval.
+8. (Policy update, 2 Nov 2026) Jobs that already have 20 or more proposals cost 1.5x Connects, rounded up.
+9. (Policy update, 2 Nov 2026) Every screening question must be answered; proposals with unanswered questions are rejected at submission.

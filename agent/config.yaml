@@ -181,12 +181,12 @@ pricing:
 
 # Platform rules the agents enforce.  The 2 Nov 2026 change request is absorbed here.
 platform_policy:
-  version: "2026-10-27"
+  version: "2026-11-02"           # change request: GigSim platform policy update
   policy_pack: data/policy_pack/marketplace_policy.md
-  require_all_screening_answers: false
+  require_all_screening_answers: true
   connects:
-    high_competition_threshold: null
-    high_competition_multiplier: 1.0
+    high_competition_threshold: 20
+    high_competition_multiplier: 1.5
 
 memory:
   style_promotion:
