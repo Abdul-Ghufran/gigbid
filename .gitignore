@@ -22,3 +22,4 @@ playwright-report/
 test-results/
 .cache/
 evals/.llm_cache/
+docs/demo/*.webm
