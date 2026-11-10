@@ -37,7 +37,8 @@ def template_draft(job: dict, spec: dict, fit: dict, price: dict, version: int, 
             # v2 (evals/results/reply_gap_analysis.json): name the client's requirement next to the proof that covers it
             req = m["requirement"].rstrip(".")
             req = re.sub(r"^(you should be comfortable with|experience with|the work involves|ideally you have done|"
-                         r"we need someone strong in)\s+", "", req, flags=re.I).rstrip(" before")
+                         r"we need someone strong in)\s+", "", req, flags=re.I)
+            req = re.sub(r"\s+before$", "", req)
             if out and e["item_id"] not in {p[0] for p in proofs}:
                 proofs.append((e["item_id"], f"For {req}: in {e['title'].lower()}, the work {out.group(1)} [{e['item_id']}]."))
             elif e["item_id"] not in {p[0] for p in proofs}:
