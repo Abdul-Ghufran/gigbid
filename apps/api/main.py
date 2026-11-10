@@ -61,10 +61,10 @@ async def lifespan(app: FastAPI):
 
         async def loop():
             await recover()
-            while True:
-                await asyncio.sleep(600)
+            while True:  # scout right after start (Render wakes from sleep on the first request), then every 10 min
                 with contextlib.suppress(Exception):
                     await scout_all()
+                await asyncio.sleep(600)
 
         bg = asyncio.create_task(loop())
     yield
