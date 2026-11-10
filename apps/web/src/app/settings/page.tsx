@@ -108,6 +108,12 @@ function Portfolio() {
     } catch (err) { setMsg(String(err)); }
   }
   async function del(id: string) { await call(api.DELETE("/api/portfolio/{item_id}", { params: { path: { item_id: id } } })); reload(); }
+  const [gh, setGh] = useState("");
+  async function importGh() {
+    setMsg("Importing from GitHub...");
+    try { const r = await call(api.POST("/api/portfolio/github", { params: { query: { username: gh } } })); setMsg(`Imported ${(r as Any).imported} items from ${((r as Any).repos || []).join(", ")}.`); reload(); }
+    catch (err) { setMsg(String(err)); }
+  }
   return (
     <div className="grid2">
       <form className="card stack" onSubmit={add}><h2>Add work</h2>
@@ -118,6 +124,10 @@ function Portfolio() {
         <label>Client industry (optional)<input className="input" value={form.client_industry} onChange={(e) => setForm({ ...form, client_industry: e.target.value })} /></label>
         <label>Content<textarea className="input" rows={8} required minLength={20} value={form.content} onChange={(e) => setForm({ ...form, content: e.target.value })} /></label>
         <button className="btn btn-primary">Add and re-index</button>{msg && <p className="small" role="status">{msg}</p>}
+        <hr />
+        <label>Import public GitHub repos (via the GitHub MCP server)
+          <div className="row gap"><input className="input" placeholder="github username" value={gh} onChange={(e) => setGh(e.target.value)} />
+            <button type="button" className="btn" disabled={!gh.trim()} onClick={importGh}>Import</button></div></label>
       </form>
       <section className="card"><h2>Portfolio items</h2>{loading && !data && <Loading />}{error && <ErrorBox error={error} />}
         <ul className="small">{(data || []).map((i) => <li key={i.id}><Badge>{i.type}</Badge> {i.title} <span className="muted">{i.skills.slice(0, 4).join(", ")}</span>

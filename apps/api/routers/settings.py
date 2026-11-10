@@ -94,6 +94,27 @@ def upload(body: PortfolioItemIn, u: User = Depends(current_user)):
                             skills=extract_skills(body.content, code=body.kind == "repo"), uploaded=True)
 
 
+@router.post("/portfolio/github", response_model=dict)
+async def import_github(username: str, u: User = Depends(current_user)):
+    """Import the user's public repos (README + code) through the official GitHub MCP server, then re-index."""
+    from common.settings import get_settings
+    from rag.corpus import invalidate
+    from rag.ingest.github_mcp import ingest_github_user
+
+    if not get_settings().github_token:
+        raise HTTPException(400, "GITHUB_TOKEN is not configured on the server")
+    try:
+        items = await ingest_github_user(username.strip().lstrip("@"), persona=u.persona_key or "custom")
+    except Exception as e:
+        raise HTTPException(502, f"GitHub MCP unavailable: {type(e).__name__}") from e
+    with session() as s:
+        for it in items:
+            s.add(PortfolioUpload(user_id=u.id, kind="repo", title=it.title, content=it.text[:50000],
+                                  meta={"project": it.project, "date": it.date, "source": it.source}))
+    invalidate(u.id)
+    return {"imported": len(items), "repos": sorted({i.project for i in items})}
+
+
 @router.delete("/portfolio/{item_id}", response_model=dict)
 def delete_upload(item_id: str, u: User = Depends(current_user)):
     from rag.corpus import invalidate

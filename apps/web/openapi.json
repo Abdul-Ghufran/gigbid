@@ -1485,6 +1485,56 @@
     ]
    }
   },
+  "/api/portfolio/github": {
+   "post": {
+    "tags": [
+     "settings"
+    ],
+    "summary": "Import Github",
+    "description": "Import the user's public repos (README + code) through the official GitHub MCP server, then re-index.",
+    "operationId": "import_github_api_portfolio_github_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "username",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Username"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Import Github Api Portfolio Github Post"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/api/portfolio/{item_id}": {
    "delete": {
     "tags": [
