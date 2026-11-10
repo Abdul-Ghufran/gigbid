@@ -1,0 +1,11 @@
+.venv
+.git
+.cache
+**/node_modules
+apps/web/dist
+apps/web/playwright-report
+apps/web/test-results
+data/processed
+gigsim/state
+**/__pycache__
+.env

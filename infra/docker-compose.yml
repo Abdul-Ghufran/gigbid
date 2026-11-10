@@ -1,3 +1,95 @@
-# TODO: Define web, API, worker, MCP servers, GigSim, Postgres, Redis,
-# vector store and local model service as appropriate.
-services: {}
+# docker compose -f infra/docker-compose.yml up --build
+# Web http://localhost:8080 · API http://localhost:8000/docs · GigSim http://localhost:8081/docs
+# Vector store: pgvector-enabled Postgres (corpus vectors are also cached in-process).
+# Local open models: `docker compose --profile local up` and MODEL_PROFILE=local (Ollama pulls qwen3:4b + gpt-oss:20b).
+name: gigbid
+
+x-python: &python
+  env_file: [../.env]
+  environment: &pyenv
+    DATABASE_URL: postgresql://gigbid:gigbid@postgres:5432/gigbid
+    REDIS_URL: redis://redis:6379/0
+    GIGSIM_BASE_URL: http://gigsim:8081
+    MCP_TRANSPORT: http
+    MCP_MARKETPLACE_URL: http://mcp-marketplace:8091/mcp
+    MCP_PORTFOLIO_URL: http://mcp-portfolio:8092/mcp
+    MCP_WORKSPACE_URL: http://mcp-workspace:8093/mcp
+    OLLAMA_BASE_URL: http://ollama:11434/v1
+    PUBLIC_API_URL: http://localhost:8000
+    PUBLIC_WEB_URL: http://localhost:8080
+  depends_on:
+    postgres: {condition: service_healthy}
+    redis: {condition: service_started}
+  restart: unless-stopped
+
+services:
+  python-base:
+    build: {context: .., dockerfile: infra/docker/python-base.Dockerfile}
+    image: gigbid-python-base:latest
+    command: ["true"]
+    profiles: [build]
+
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment: {POSTGRES_USER: gigbid, POSTGRES_PASSWORD: gigbid, POSTGRES_DB: gigbid}
+    volumes: [pgdata:/var/lib/postgresql/data]
+    ports: ["5432:5432"]
+    healthcheck: {test: ["CMD-SHELL", "pg_isready -U gigbid"], interval: 5s, retries: 20}
+
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
+
+  gigsim:
+    build: {context: .., dockerfile: infra/docker/gigsim.Dockerfile}
+    environment:
+      GIGSIM_POLICY_VERSION: ${GIGSIM_POLICY_VERSION:-2026-11-02}
+      GIGSIM_ADMIN_TOKEN: ${GIGSIM_ADMIN_TOKEN:-gigsim-admin}
+      GIGSIM_STATE_PATH: /state/state.json
+    volumes: [gigsim-state:/state]
+    ports: ["8081:8081"]
+
+  mcp-marketplace:
+    <<: *python
+    build: {context: .., dockerfile: infra/docker/mcp-marketplace.Dockerfile}
+    ports: ["8091:8091"]
+  mcp-portfolio:
+    <<: *python
+    build: {context: .., dockerfile: infra/docker/mcp-portfolio.Dockerfile}
+    ports: ["8092:8092"]
+  mcp-workspace:
+    <<: *python
+    build: {context: .., dockerfile: infra/docker/mcp-workspace.Dockerfile}
+    ports: ["8093:8093"]
+
+  api:
+    <<: *python
+    build: {context: .., dockerfile: infra/docker/api.Dockerfile}
+    ports: ["8000:8000"]
+    environment:
+      <<: *pyenv
+      INPROCESS_SCHEDULER: "0"
+    depends_on:
+      postgres: {condition: service_healthy}
+      redis: {condition: service_started}
+      mcp-marketplace: {condition: service_started}
+      mcp-portfolio: {condition: service_started}
+      mcp-workspace: {condition: service_started}
+
+  worker:
+    <<: *python
+    build: {context: .., dockerfile: infra/docker/worker.Dockerfile}
+
+  web:
+    build: {context: .., dockerfile: infra/docker/web.Dockerfile}
+    ports: ["8080:80"]
+    depends_on: [api]
+
+  ollama:
+    image: ollama/ollama:0.5.4
+    profiles: [local]
+    volumes: [ollama:/root/.ollama]
+    ports: ["11434:11434"]
+    entrypoint: ["/bin/sh", "-c", "ollama serve & sleep 5 && ollama pull qwen3:4b && ollama pull gpt-oss:20b; wait"]
+
+volumes: {pgdata: {}, gigsim-state: {}, ollama: {}}

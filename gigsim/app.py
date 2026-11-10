@@ -26,6 +26,7 @@ from gigsim.policy import active_policy, connects_cost
 
 SEED = Path(__file__).parent / "seed"
 STATE_PATH = Path(os.getenv("GIGSIM_STATE_PATH", Path(__file__).parent / "state" / "state.json"))
+STATE_DB = os.getenv("GIGSIM_STATE_DB", "")  # optional Postgres URL: persist state where the disk is ephemeral
 RATE = int(os.getenv("GIGSIM_RATE_LIMIT_PER_MIN", "60"))
 ERROR_RATE = float(os.getenv("GIGSIM_ERROR_RATE", "0.02"))
 ADMIN = os.getenv("GIGSIM_ADMIN_TOKEN", "gigsim-admin")
@@ -64,24 +65,49 @@ class World:
     # ------------------------------------------------------------------ state
     def reset(self, load=False):
         with self.lock:
-            self.state = {"offset_min": 0.0, "proposals": {}, "threads": {}, "events": [], "idem": {},
+            self.state = {"offset_min": 0.0, "epoch": time.time(), "proposals": {}, "threads": {}, "events": [], "idem": {},
                           "connects": {f["freelancer_id"]: f["connects_weekly"] for f in self.freelancers.values()},
                           "connects_ledger": []}
-            if load and STATE_PATH.exists():
-                try:
-                    self.state = json.loads(STATE_PATH.read_text(encoding="utf-8"))
-                except Exception:
-                    pass
+            if load:
+                loaded = self._load()
+                if loaded:
+                    self.state = loaded
+            self.state.setdefault("epoch", time.time())
             self.save()
 
+    def _load(self):
+        try:
+            if STATE_DB:
+                import psycopg
+
+                with psycopg.connect(STATE_DB.replace("postgresql+psycopg://", "postgresql://")) as c:
+                    c.execute("CREATE TABLE IF NOT EXISTS gigsim_state (id int PRIMARY KEY, state jsonb)")
+                    row = c.execute("SELECT state FROM gigsim_state WHERE id = 1").fetchone()
+                    return row[0] if row else None
+            if STATE_PATH.exists():
+                return json.loads(STATE_PATH.read_text(encoding="utf-8"))
+        except Exception:
+            return None
+        return None
+
     def save(self):
+        if STATE_DB:
+            import psycopg
+            from psycopg.types.json import Jsonb
+
+            with psycopg.connect(STATE_DB.replace("postgresql+psycopg://", "postgresql://")) as c:
+                c.execute("CREATE TABLE IF NOT EXISTS gigsim_state (id int PRIMARY KEY, state jsonb)")
+                c.execute("INSERT INTO gigsim_state VALUES (1, %s) ON CONFLICT (id) DO UPDATE SET state = EXCLUDED.state",
+                          (Jsonb(self.state),))
+            return
         STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
         tmp = STATE_PATH.with_suffix(".tmp")
         tmp.write_text(json.dumps(self.state), encoding="utf-8")
         tmp.replace(STATE_PATH)
 
     def now_min(self) -> float:
-        return (time.time() - self.t0) / 60 * SPEED + self.state["offset_min"]
+        """Simulated minutes since the world was created (survives restarts: epoch is persisted)."""
+        return (time.time() - self.state["epoch"]) / 60 * SPEED + self.state["offset_min"]
 
     def visible(self, j: dict) -> bool:
         return j["pool"] != "live" or j["release_minute"] <= self.now_min()
@@ -458,7 +484,6 @@ def tick(minutes: float = 60):
 @app.post("/v1/admin/reset", dependencies=[Depends(admin)])
 def reset():
     WORLD.reset()
-    WORLD.t0 = time.time()
     return {"ok": True}
 
 

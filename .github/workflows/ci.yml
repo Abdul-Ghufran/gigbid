@@ -1,13 +1,49 @@
 name: CI
-on: [push, pull_request]
+on:
+  push: {branches: [main]}
+  pull_request:
 jobs:
   checks:
+    name: lint, repo rules, unit + contract tests
     runs-on: ubuntu-latest
+    env: {LLM_OFFLINE: "1", MCP_TRANSPORT: memory, GIGSIM_INPROCESS: "1", GIGSIM_ERROR_RATE: "0"}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-      - run: python -m pip install -e ".[dev]"
-      - run: ruff check .
-      - run: pytest -q
+      - uses: astral-sh/setup-uv@v5
+        with: {python-version: "3.12"}
+      - run: uv venv .venv && uv pip install --python .venv/bin/python -e ".[dev]"
+      - name: Repo rules (no secrets, gigsim frozen, prompts in agent/prompts, README results traceable)
+        run: .venv/bin/python -m tools.ci_checks
+      - run: .venv/bin/python -m ruff check .
+      - uses: actions/cache@v4
+        with: {path: .cache/fastembed, key: fastembed-${{ hashFiles('agent/config.yaml') }}}
+      - name: Unit + integration tests (MCP in-memory clients, graph against GigSim)
+        run: .venv/bin/python -m pytest -q tests/unit tests/integration mcp_servers
+      - name: Contract tests (MCP tool-schema snapshots)
+        run: .venv/bin/python -m pytest -q tests/contract
+  web:
+    name: typecheck, build, Playwright
+    runs-on: ubuntu-latest
+    env: {CI: "1", PYTHON: "${{ github.workspace }}/.venv/bin/python"}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with: {python-version: "3.12"}
+      - run: uv venv .venv && uv pip install --python .venv/bin/python -e ".[dev]"
+      - uses: actions/setup-node@v4
+        with: {node-version: 22, cache: npm, cache-dependency-path: apps/web/package-lock.json}
+      - run: npm ci
+        working-directory: apps/web
+      - name: Generated API client is up to date
+        run: |
+          .venv/bin/python tools/export_openapi.py
+          cd apps/web && npm run gen:api && git diff --exit-code src/lib/api/schema.d.ts
+      - run: npm run build
+        working-directory: apps/web
+      - run: npx playwright install --with-deps chromium
+        working-directory: apps/web
+      - run: npx playwright test
+        working-directory: apps/web
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: playwright-report, path: apps/web/playwright-report}

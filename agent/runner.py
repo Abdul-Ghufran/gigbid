@@ -51,11 +51,15 @@ async def persistence():
             from langgraph.checkpoint.sqlite.aio import AsyncSqliteSaver
             from langgraph.store.sqlite.aio import AsyncSqliteStore
 
+            import os
+            from pathlib import Path
+
             from common.settings import ROOT
 
-            (ROOT / "data" / "processed").mkdir(parents=True, exist_ok=True)
-            cp = await stack.enter_async_context(AsyncSqliteSaver.from_conn_string(str(ROOT / "data" / "processed" / "checkpoints.sqlite")))
-            st = await stack.enter_async_context(AsyncSqliteStore.from_conn_string(str(ROOT / "data" / "processed" / "store.sqlite")))
+            d = Path(os.getenv("GIGBID_STATE_DIR") or ROOT / "data" / "processed")
+            d.mkdir(parents=True, exist_ok=True)
+            cp = await stack.enter_async_context(AsyncSqliteSaver.from_conn_string(str(d / "checkpoints.sqlite")))
+            st = await stack.enter_async_context(AsyncSqliteStore.from_conn_string(str(d / "store.sqlite")))
         await cp.setup()
         await st.setup()
         memstore.set_store(st)

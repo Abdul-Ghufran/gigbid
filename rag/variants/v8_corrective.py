@@ -72,9 +72,10 @@ class V8Corrective(Variant):
                 try:
                     from agent import llm
 
-                    q = await llm.text("rag_aux", "Rewrite job requirements as portfolio search queries.",
-                                       f"Rewrite this requirement as a short search query naming concrete technologies "
-                                       f"or project types that would prove it:\n{req}", max_tokens=60)
+                    from agent.config import prompt, render
+
+                    pr = prompt("rag_rewrite")
+                    q = await llm.text("rag_aux", pr["system"], render(pr["user"], requirement=req), max_tokens=60)
                 except Exception:
                     pass
             rewrites[req] = q

@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "gigbid-offline",
+      "runtimeExecutable": ".venv/Scripts/python.exe",
+      "runtimeArgs": ["-m", "uvicorn", "apps.api.main:app", "--port", "8000"],
+      "port": 8000,
+      "env": { "LLM_OFFLINE": "1", "GIGSIM_INPROCESS": "1", "MCP_TRANSPORT": "memory", "GIGSIM_ERROR_RATE": "0", "PYTHONPATH": "." }
+    }
+  ]
+}

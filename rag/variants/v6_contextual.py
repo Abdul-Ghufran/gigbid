@@ -6,9 +6,6 @@ from rag.index.core import CACHE
 from rag.variants.base import Variant
 from rag.variants.v2_hybrid import V2Hybrid
 
-CONTEXT_PROMPT = ("Write ONE sentence (max 35 words) that situates this portfolio item for search: what project it "
-                  "belongs to, what was built, and which technologies or skills it demonstrates, including ones only "
-                  "implied by the code or wording. Item type: {type}. Title: {title}.\n---\n{text}\n---\nSentence:")
 
 
 class V6Contextual(Variant):
@@ -34,8 +31,11 @@ async def build_context_lines(corpus, limit: int | None = None) -> int:
         if it.id in cache:
             continue
         try:
-            line = await llm.text("rag_aux", "You write retrieval context lines.",
-                                  CONTEXT_PROMPT.format(type=it.type, title=it.title, text=it.text[:1500]), max_tokens=80)
+            from agent.config import prompt, render
+
+            pr = prompt("rag_context")
+            line = await llm.text("rag_aux", pr["system"], render(pr["user"], type=it.type, title=it.title, text=it.text[:1500]),
+                                  max_tokens=80)
         except Exception:
             continue
         cache[it.id] = line.strip().replace("\n", " ")[:300]
