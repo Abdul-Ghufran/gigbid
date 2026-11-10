@@ -1,0 +1,143 @@
+{
+ "generated_by": "evals/runners/failure_analysis.py",
+ "generated_at": "2026-11-11 02:46",
+ "n_cases": 12,
+ "cases": [
+  {
+   "job_id": "dev-ai-024",
+   "category": "wrong bid (partial fit)",
+   "node": "decide (Fit Matcher score)",
+   "detail": "fit 0.67 >= 0.55 but gold coverage < 0.6",
+   "fixed": true
+  },
+  {
+   "job_id": "dev-ai-039",
+   "category": "wrong bid (partial fit)",
+   "node": "decide (Fit Matcher score)",
+   "detail": "fit 1.00 >= 0.55 but gold coverage < 0.6",
+   "fixed": false
+  },
+  {
+   "job_id": "dev-ai-042",
+   "category": "wrong bid (partial fit)",
+   "node": "decide (Fit Matcher score)",
+   "detail": "fit 0.57 >= 0.55 but gold coverage < 0.6",
+   "fixed": true
+  },
+  {
+   "job_id": "dev-web-155",
+   "category": "wrong skip",
+   "node": "fit_matcher",
+   "detail": "gold bid, predicted skip (fit 0.00)",
+   "fixed": false
+  },
+  {
+   "job_id": "dev-ai-000",
+   "category": "mispriced",
+   "node": "pricing",
+   "detail": "old quote 45.0 outside band [46.8, 63.2]; new quote 57.3",
+   "fixed": true
+  },
+  {
+   "job_id": "dev-ai-001",
+   "category": "mispriced",
+   "node": "pricing",
+   "detail": "old quote 2803.6 outside band [3090.0, 4170.0]; new quote 3893.0",
+   "fixed": true
+  },
+  {
+   "job_id": "dev-web-047",
+   "category": "missed evidence",
+   "node": "fit_matcher / retrieval",
+   "detail": "Recall@5 0.00 (partial, 3 requirements)",
+   "fixed": false
+  },
+  {
+   "job_id": "dev-ai-066",
+   "category": "missed evidence",
+   "node": "fit_matcher / retrieval",
+   "detail": "Recall@5 0.33 (vague, 3 requirements)",
+   "fixed": false
+  },
+  {
+   "job_id": "dev-ai-194",
+   "category": "unsupported claim",
+   "node": "writer -> verifier",
+   "detail": "4 unsupported claims before verification, 0 after",
+   "fixed": true
+  },
+  {
+   "job_id": "dev-web-143",
+   "category": "unsupported claim",
+   "node": "writer -> verifier",
+   "detail": "4 unsupported claims before verification, 0 after",
+   "fixed": true
+  },
+  {
+   "job_id": "dev-ai-184",
+   "category": "generic opening / low coverage",
+   "node": "writer",
+   "detail": "proof never named the client's must-have skill; simulated client did not reply",
+   "fixed": false
+  },
+  {
+   "job_id": "dev-ai-167",
+   "category": "generic opening / low coverage",
+   "node": "writer",
+   "detail": "proof never named the client's must-have skill; simulated client did not reply",
+   "fixed": false
+  }
+ ],
+ "fixes": {
+  "wrong bid (partial fit)": {
+   "fix": "Raised bid_min_fit 0.55 -> 0.70 (middle of the plateau in threshold_sweep.json)",
+   "effect": "partial-fit accuracy 61.7% -> 90.0%, bid F1 0.918 -> 0.976 on the same 600 jobs"
+  },
+  "mispriced": {
+   "fix": "Pricing v2: anchor on the job's own budget range instead of the category median",
+   "effect": "price inside fair band 52.8% -> 86.2% (pricing_eval.json, 282 jobs); remaining misses are hourly jobs where the client range sits below market"
+  },
+  "missed evidence": {
+   "fix": "Skill graph (V9) + requirement decomposition; corrective grader marks the requirement unsupported instead of guessing",
+   "effect": "Recall@5 0.740 -> 0.890; residual misses are hard paraphrases with no skill keyword (e.g. 'a document store')"
+  },
+  "unsupported claim": {
+   "fix": "Strict number/tool rule + rewrite-then-reverify; fallback writer v3 opening without an uncited claim",
+   "effect": "unsupported claims per proposal 1.13 -> 0.34 before verification, 0 after (retrieval_outcome_test.json)"
+  },
+  "generic opening / low coverage": {
+   "fix": "Name the client's requirement next to the proof that covers it (writer prompt v2.5 + fallback writer)",
+   "effect": "simulated reply rate 15.6% -> 64.4% for the shipped pipeline on the same 90 jobs"
+  },
+  "wrong skip": {
+   "fix": "None yet: these are gold-bid jobs whose requirement sentences contain only hard paraphrases, so the Fit Matcher finds no skill and the dense fallback stays under the 0.83 cosine grader",
+   "effect": "not fixed - candidate fix: LLM requirement rewrite in the corrective loop (llm_rewrite option), not enabled because of the free-tier token budget"
+  }
+ },
+ "development_failures": [
+  {
+   "category": "tool error",
+   "what": "Requirement splitter cut 'Next.js' at the dot -> 0/5 evidence on dev-web-001",
+   "fix": "split only before a capital letter",
+   "worked": true
+  },
+  {
+   "category": "tool error",
+   "what": "Portfolio server resolved eval user persona-web to the AI persona -> no evidence",
+   "fix": "persona-* users map to their persona",
+   "worked": true
+  },
+  {
+   "category": "compliance miss",
+   "what": "Verifier emptied screening answers, critic rejected every draft (2 revisions burned)",
+   "fix": "rewrite-then-reverify + non-empty answer fallback",
+   "worked": true
+  },
+  {
+   "category": "injection",
+   "what": "Injection sentences could survive into the writer's evidence queries",
+   "fix": "decompose() drops instruction-like sentences; strip_injection before the writer",
+   "worked": true
+  }
+ ]
+}

@@ -26,6 +26,23 @@ resources.register(mcp)
 prompts.register(mcp)
 
 
+def warm_up():
+    """Download the embedding model and embed the portfolio BEFORE serving, so the first tool call is fast
+    (otherwise a host's request timeout can fire while the first search builds the index).  Logs go to stderr."""
+    import sys
+    import time
+
+    t0 = time.time()
+    print("gigbid-portfolio: indexing portfolio (first run downloads the ~130 MB embedding model)...", file=sys.stderr, flush=True)
+    from rag.corpus import get_corpus_for_dir
+    from rag.index.core import embeddings
+
+    c = get_corpus_for_dir(os.environ["PORTFOLIO_DIR"])
+    c.dense("structured")
+    embeddings().save()
+    print(f"gigbid-portfolio: {len(c.items)} items indexed in {time.time() - t0:.0f}s; serving.", file=sys.stderr, flush=True)
+
+
 def main():
     ap = argparse.ArgumentParser(description="GigBid Portfolio MCP server")
     ap.add_argument("--portfolio-dir", help="Folder with cv.pdf, case_studies/, repos/, reviews.jsonl, proposals.jsonl")
@@ -40,6 +57,8 @@ def main():
     if a.persona:
         os.environ["PORTFOLIO_PERSONA"] = a.persona
     os.environ.setdefault("AUDIT_DISABLED", "1" if a.portfolio_dir else os.getenv("AUDIT_DISABLED", "0"))
+    if a.portfolio_dir:
+        warm_up()
     if a.transport == "http":
         import uvicorn
 
