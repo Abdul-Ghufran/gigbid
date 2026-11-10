@@ -1,26 +1,165 @@
+# GigBid runtime configuration.  Every node's model, every budget, threshold and platform rule
+# lives here (or in agent/prompts/ and data/policy_pack/) - never in Python code.
+version: 3
+
 marketplace:
-  mode: gigsim
-  max_requests_per_minute: 20
+  mode: gigsim            # gigsim | upwork_live   (env MARKETPLACE_MODE overrides)
+  max_requests_per_minute: 40   # GigSim allows 60/min/token; we stay well under
+  live_min_search_interval_minutes: 30
+  scout_interval_minutes: {gigsim: 20, upwork_live: 180}
+
+# ------------------------------------------------------------------------------------- models
+# provider: groq | openrouter | ollama | openai.  Prices are USD per 1M tokens at the provider's
+# paid list price (the free tier we deploy on bills $0; we report list-price cost so budgets are honest).
+providers:
+  groq: {base_url: "https://api.groq.com/openai/v1", key_env: GROQ_API_KEY}
+  openrouter: {base_url: "https://openrouter.ai/api/v1", key_env: OPENROUTER_API_KEY}
+  ollama: {base_url_env: OLLAMA_BASE_URL, key_env: null}
+  openai: {base_url: "https://api.openai.com/v1", key_env: OPENAI_API_KEY}
 
 models:
-  profile: open
-  nodes:
-    scout: qwen3-4b
-    analyst: qwen3-4b
-    risk_assessor: qwen3-4b
-    fit_matcher: qwen3-4b
-    pricing: qwen3-4b
-    writer: configure-your-model
-    critic: configure-your-model
-    client_liaison: configure-your-model
-  embeddings: nomic-embed-text
-  reranker: bge-reranker-v2-m3
+  small:   {provider: groq, model: "llama-3.1-8b-instant", price_in: 0.05, price_out: 0.08, rpm: 30, tpm: 6000}
+  mid:     {provider: groq, model: "openai/gpt-oss-20b", price_in: 0.10, price_out: 0.50, rpm: 30, tpm: 8000, reasoning_effort: low}
+  strong:  {provider: groq, model: "openai/gpt-oss-120b", price_in: 0.15, price_out: 0.60, rpm: 30, tpm: 8000, reasoning_effort: low}
+  qwen:    {provider: groq, model: "qwen/qwen3-32b", price_in: 0.29, price_out: 0.59, rpm: 60, tpm: 6000}
+  local_small: {provider: ollama, model: "qwen3:4b", price_in: 0, price_out: 0}
+  local_mid:   {provider: ollama, model: "gpt-oss:20b", price_in: 0, price_out: 0}
+  paid_strong: {provider: openai, model: "gpt-4.1-mini", price_in: 0.40, price_out: 1.60}
 
+profiles:
+  open:            # REQUIRED: open-weight models only (hosted on Groq for the deployment)
+    scout: small
+    analyst: mid
+    risk_assessor: small
+    fit_matcher: small
+    pricing: small
+    writer: strong
+    verifier: mid
+    critic: strong
+    compliance: small
+    liaison: strong
+    intent: small
+    judge: strong
+    rag_aux: small        # HyDE, contextual lines, query rewrites
+    fallback_small: mid   # fallback for cheap nodes (C7)
+    fallback_strong: mid
+  open_mid:        # second open configuration compared on the dev set
+    scout: small
+    analyst: mid
+    risk_assessor: mid
+    fit_matcher: mid
+    pricing: mid
+    writer: mid
+    verifier: mid
+    critic: mid
+    compliance: mid
+    liaison: mid
+    intent: mid
+    judge: strong
+    rag_aux: small
+    fallback_small: small
+    fallback_strong: small
+  local:           # laptop / docker compose with the Ollama service
+    scout: local_small
+    analyst: local_small
+    risk_assessor: local_small
+    fit_matcher: local_small
+    pricing: local_small
+    writer: local_mid
+    verifier: local_small
+    critic: local_mid
+    compliance: local_small
+    liaison: local_mid
+    intent: local_small
+    judge: local_mid
+    rag_aux: local_small
+    fallback_small: local_small
+    fallback_strong: local_mid
+  paid:            # optional; only used where it beats `open` by enough to justify cost
+    scout: small
+    analyst: mid
+    risk_assessor: small
+    fit_matcher: small
+    pricing: small
+    writer: paid_strong
+    verifier: mid
+    critic: paid_strong
+    compliance: small
+    liaison: paid_strong
+    intent: small
+    judge: strong
+    rag_aux: small
+    fallback_small: mid
+    fallback_strong: strong
+
+embeddings: "BAAI/bge-small-en-v1.5"          # open, CPU (fastembed / ONNX), both profiles
+reranker: "Xenova/ms-marco-MiniLM-L-6-v2"      # open cross-encoder, CPU, both profiles
+
+llm:
+  timeout_s: 45
+  max_retries: 2
+  temperature: 0.2
+  cache: true
+
+# ---------------------------------------------------------------------------------------- RAG
+rag:
+  shipped_variant: v8_corrective   # chosen by evals/results/rag_variants.json (see docs/DATA_CARD.md)
+  k: 8
+  corrective:
+    base: v3_rerank
+    weak_threshold: 0.0            # cross-encoder logit below which a requirement's evidence is "weak"
+    max_requeries: 1
+
+# ------------------------------------------------------------------------------------ budgets
 budgets:
-  max_graph_steps: 30
-  max_revisions: 2
-  max_tokens_per_job: 12000
+  max_graph_steps: 40
+  max_revisions: 2                 # Critic may send a draft back at most twice
+  max_tokens_per_job: 30000
+  max_tokens_per_conversation_turn: 12000
+  declared:
+    p95_latency_s_per_job_analysed: 25
+    p95_latency_s_per_proposal: 90
+    usd_per_job_analysed: 0.002
+    usd_per_proposal: 0.01
 
+# --------------------------------------------------------------------------------- thresholds
 thresholds:
-  minimum_fit_score: 0.60
-  maximum_risk_score: 0.70
+  bid_min_fit: 0.55
+  watch_min_fit: 0.35
+  max_risk: 0.6
+  scam_risk: 0.75
+  weak_evidence_fit_cap: 0.4
+  claim_support_min: 0.0           # cross-encoder logit to count a claim as supported
+  claim_partial_min: -3.0
+  proposal_max_words: 260
+  proposal_min_words: 90
+  critic_pass_score: 7
+
+# ------------------------------------------------------------------- pricing + Connects policy
+pricing:
+  connects_usd_value: 0.15         # what one Connect costs to buy
+  min_expected_value_ratio: 3.0    # expected value of a bid must exceed 3x its Connects cost
+  base_reply_rate: 0.12
+  undercut_floor_ratio: 0.85       # never quote below 85% of market p25 (signals low quality)
+
+# Platform rules the agents enforce.  The 2 Nov 2026 change request is absorbed here.
+platform_policy:
+  version: "2026-10-27"
+  policy_pack: data/policy_pack/marketplace_policy.md
+  require_all_screening_answers: false
+  connects:
+    high_competition_threshold: null
+    high_competition_multiplier: 1.0
+
+memory:
+  style_promotion:
+    min_occurrences: 3            # same edit pattern seen in >= 3 distinct drafts
+    min_distinct_jobs: 3
+    window_days: 30
+    max_items: 25
+  outcome_promotion:
+    min_proposals_per_category: 5  # need 5 outcomes in a category before a lesson is stored
+    min_lift: 0.10                 # pattern must lift reply rate by >= 10 points over the category base
+
+autonomy:
+  allowed: [suggest, auto_skip_low_fit]   # auto-send is never allowed
