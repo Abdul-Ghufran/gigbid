@@ -22,15 +22,15 @@ from common.tracing import configure_logging
 log = logging.getLogger("gigbid.worker")
 _redis = None
 _local_tasks: set[asyncio.Task] = set()
-_slots: asyncio.Semaphore | None = None
+_slots: dict[str, asyncio.Semaphore] = {}
 
 
 async def _limited(run_id: str, payload: dict):
-    """In-process mode: at most 2 graph runs at once (retrieval + reranking are CPU-bound)."""
-    global _slots
-    if _slots is None:
-        _slots = asyncio.Semaphore(2)
-    async with _slots:
+    """In-process mode: at most 2 background analyses at once (retrieval + reranking are CPU-bound), plus a separate
+    lane so a human's approval / reply decision never waits behind background scouting."""
+    lane = "interactive" if payload.get("resume") is not None or payload.get("kind") == "conv" else "background"
+    sem = _slots.setdefault(lane, asyncio.Semaphore(2))
+    async with sem:
         return await execute(run_id, payload)
 
 

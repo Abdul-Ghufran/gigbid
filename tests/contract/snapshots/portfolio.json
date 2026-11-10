@@ -1,0 +1,434 @@
+{
+ "_prompts": [
+  "answer_screening_question",
+  "prove_requirement",
+  "skills_gap",
+  "tailored_opening"
+ ],
+ "_resource_templates": [
+  "portfolio://case/{id}",
+  "portfolio://item/{id}",
+  "portfolio://proposal/{id}"
+ ],
+ "get_case_study": {
+  "annotations": {
+   "destructiveHint": false,
+   "idempotentHint": true,
+   "openWorldHint": false,
+   "readOnlyHint": true
+  },
+  "input": {
+   "properties": {
+    "id": {
+     "maxLength": 80,
+     "minLength": 1,
+     "title": "Id",
+     "type": "string"
+    },
+    "trace_id": {
+     "default": "",
+     "title": "Trace Id",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id"
+   ],
+   "title": "get_case_studyArguments",
+   "type": "object"
+  },
+  "output": {
+   "properties": {
+    "client_industry": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "title": "Client Industry"
+    },
+    "date": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "title": "Date"
+    },
+    "id": {
+     "title": "Id",
+     "type": "string"
+    },
+    "project": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "title": "Project"
+    },
+    "related_items": {
+     "description": "README / code / review ids for the same project",
+     "items": {
+      "type": "string"
+     },
+     "title": "Related Items",
+     "type": "array"
+    },
+    "text": {
+     "title": "Text",
+     "type": "string"
+    },
+    "title": {
+     "title": "Title",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "title",
+    "project",
+    "date",
+    "client_industry",
+    "text"
+   ],
+   "title": "CaseStudy",
+   "type": "object"
+  }
+ },
+ "have_i_done": {
+  "annotations": {
+   "destructiveHint": false,
+   "idempotentHint": true,
+   "openWorldHint": false,
+   "readOnlyHint": true
+  },
+  "input": {
+   "properties": {
+    "industry": {
+     "anyOf": [
+      {
+       "maxLength": 60,
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Industry"
+    },
+    "skill": {
+     "maxLength": 80,
+     "minLength": 1,
+     "title": "Skill",
+     "type": "string"
+    },
+    "trace_id": {
+     "default": "",
+     "title": "Trace Id",
+     "type": "string"
+    }
+   },
+   "required": [
+    "skill"
+   ],
+   "title": "have_i_doneArguments",
+   "type": "object"
+  },
+  "output": {
+   "properties": {
+    "answer": {
+     "title": "Answer",
+     "type": "string"
+    },
+    "industry": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "title": "Industry"
+    },
+    "projects": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Projects",
+     "type": "array"
+    },
+    "skill": {
+     "title": "Skill",
+     "type": "string"
+    }
+   },
+   "required": [
+    "skill",
+    "industry",
+    "projects",
+    "answer"
+   ],
+   "title": "ProjectsAnswer",
+   "type": "object"
+  }
+ },
+ "list_skills": {
+  "annotations": {
+   "destructiveHint": false,
+   "idempotentHint": true,
+   "openWorldHint": false,
+   "readOnlyHint": true
+  },
+  "input": {
+   "properties": {
+    "trace_id": {
+     "default": "",
+     "title": "Trace Id",
+     "type": "string"
+    }
+   },
+   "title": "list_skillsArguments",
+   "type": "object"
+  },
+  "output": {
+   "$defs": {
+    "SkillCount": {
+     "properties": {
+      "items": {
+       "title": "Items",
+       "type": "integer"
+      },
+      "projects": {
+       "title": "Projects",
+       "type": "integer"
+      },
+      "skill": {
+       "title": "Skill",
+       "type": "string"
+      }
+     },
+     "required": [
+      "skill",
+      "items",
+      "projects"
+     ],
+     "title": "SkillCount",
+     "type": "object"
+    }
+   },
+   "properties": {
+    "persona": {
+     "title": "Persona",
+     "type": "string"
+    },
+    "skills": {
+     "items": {
+      "$ref": "#/$defs/SkillCount"
+     },
+     "title": "Skills",
+     "type": "array"
+    }
+   },
+   "required": [
+    "persona",
+    "skills"
+   ],
+   "title": "SkillList",
+   "type": "object"
+  }
+ },
+ "search_evidence": {
+  "annotations": {
+   "destructiveHint": false,
+   "idempotentHint": true,
+   "openWorldHint": false,
+   "readOnlyHint": true
+  },
+  "input": {
+   "properties": {
+    "filters": {
+     "anyOf": [
+      {
+       "additionalProperties": true,
+       "type": "object"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "Optional: {types: [case_study, readme, code, review, cv], since: 'YYYY-MM', industry: str}",
+     "title": "Filters"
+    },
+    "k": {
+     "default": 5,
+     "maximum": 20,
+     "minimum": 1,
+     "title": "K",
+     "type": "integer"
+    },
+    "requirement": {
+     "description": "One job requirement, e.g. 'background jobs with Celery'",
+     "maxLength": 500,
+     "minLength": 2,
+     "title": "Requirement",
+     "type": "string"
+    },
+    "trace_id": {
+     "default": "",
+     "maxLength": 64,
+     "title": "Trace Id",
+     "type": "string"
+    }
+   },
+   "required": [
+    "requirement"
+   ],
+   "title": "search_evidenceArguments",
+   "type": "object"
+  },
+  "output": {
+   "$defs": {
+    "Evidence": {
+     "properties": {
+      "client_industry": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Client Industry"
+      },
+      "date": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Date"
+      },
+      "id": {
+       "description": "Evidence item id; load the full item with resource portfolio://item/{id}",
+       "title": "Id",
+       "type": "string"
+      },
+      "outcome": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "description": "won | replied | ignored (past proposals only)",
+       "title": "Outcome"
+      },
+      "project": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Project"
+      },
+      "score": {
+       "title": "Score",
+       "type": "number"
+      },
+      "skills": {
+       "items": {
+        "type": "string"
+       },
+       "title": "Skills",
+       "type": "array"
+      },
+      "snippet": {
+       "description": "Most relevant passage",
+       "title": "Snippet",
+       "type": "string"
+      },
+      "source": {
+       "title": "Source",
+       "type": "string"
+      },
+      "title": {
+       "title": "Title",
+       "type": "string"
+      },
+      "type": {
+       "description": "case_study | readme | code | review | cv | upload",
+       "title": "Type",
+       "type": "string"
+      }
+     },
+     "required": [
+      "id",
+      "type",
+      "title",
+      "source",
+      "score",
+      "snippet"
+     ],
+     "title": "Evidence",
+     "type": "object"
+    }
+   },
+   "properties": {
+    "items": {
+     "items": {
+      "$ref": "#/$defs/Evidence"
+     },
+     "title": "Items",
+     "type": "array"
+    },
+    "requirement": {
+     "title": "Requirement",
+     "type": "string"
+    },
+    "supported": {
+     "description": "False when no evidence passed the grader: do not claim this requirement.",
+     "title": "Supported",
+     "type": "boolean"
+    },
+    "variant": {
+     "title": "Variant",
+     "type": "string"
+    }
+   },
+   "required": [
+    "requirement",
+    "variant",
+    "items",
+    "supported"
+   ],
+   "title": "EvidenceResult",
+   "type": "object"
+  }
+ }
+}
