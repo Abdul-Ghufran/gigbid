@@ -103,7 +103,9 @@ def _sink(run_id: str, user_id: str):
 
 def create_run(user_id: str, graph: str, thread_id: str) -> Run:
     with session() as s:
-        r = Run(user_id=user_id, graph=graph, thread_id=thread_id, trace_id=uuid.uuid4().hex, status="queued")
+        from common.tracing import trace_id_var as _t
+
+        r = Run(user_id=user_id, graph=graph, thread_id=thread_id, trace_id=_t.get() or uuid.uuid4().hex, status="queued")
         s.add(r)
         s.flush()
         return r

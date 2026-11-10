@@ -21,7 +21,7 @@ from common.security import mask_obj
 
 event_sink: contextvars.ContextVar[Callable[[str, str, dict], None] | None] = contextvars.ContextVar("event_sink", default=None)
 
-NODE_TIMEOUT_S = {"writer": 120, "critic": 90, "verifier": 120, "liaison": 90, "fit_matcher": 90}
+NODE_TIMEOUT_S = {"writer": 150, "critic": 120, "verifier": 180, "liaison_draft": 120, "fit_matcher": 180}
 
 
 class BudgetExceeded(Exception):

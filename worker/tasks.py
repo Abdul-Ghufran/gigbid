@@ -22,6 +22,16 @@ from common.tracing import configure_logging
 log = logging.getLogger("gigbid.worker")
 _redis = None
 _local_tasks: set[asyncio.Task] = set()
+_slots: asyncio.Semaphore | None = None
+
+
+async def _limited(run_id: str, payload: dict):
+    """In-process mode: at most 2 graph runs at once (retrieval + reranking are CPU-bound)."""
+    global _slots
+    if _slots is None:
+        _slots = asyncio.Semaphore(2)
+    async with _slots:
+        return await execute(run_id, payload)
 
 
 async def _pool():
@@ -39,7 +49,7 @@ async def enqueue(run_id: str, payload: dict):
     if pool:
         await pool.enqueue_job("run_graph", run_id, payload, _job_id=f"run:{run_id}")
     else:
-        t = asyncio.create_task(execute(run_id, payload))
+        t = asyncio.create_task(_limited(run_id, payload))
         _local_tasks.add(t)
         t.add_done_callback(_local_tasks.discard)
 
@@ -208,7 +218,7 @@ def _cron():
 class WorkerSettings:
     functions = [run_graph]
     on_startup = startup
-    max_jobs = 4
+    max_jobs = 2
     job_timeout = 900
 
     @staticmethod

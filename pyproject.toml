@@ -27,6 +27,7 @@ dependencies = [
   "langgraph==0.4.8",
   "langgraph-checkpoint-postgres==2.0.21",
   "langgraph-checkpoint-sqlite==2.0.10",
+  "aiosqlite==0.21.0",
   "langgraph-supervisor==0.0.27",
   "langchain-core==0.3.65",
   "langchain-openai==0.3.24",
