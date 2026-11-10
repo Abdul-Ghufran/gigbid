@@ -62,6 +62,12 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools.packages.find]
 include = ["agent*", "apps*", "rag*", "mcp_servers*", "worker*", "evals*", "gigsim*", "common*", "tools*"]
 
+[tool.setuptools.package-data]
+agent = ["config.yaml", "prompts/*.md"]
+rag = ["ingest/*.yaml"]
+mcp_servers = ["marketplace/adapters/*.yaml"]
+gigsim = ["seed/*", "MANIFEST.sha256"]
+
 [tool.ruff]
 line-length = 110
 extend-exclude = ["apps/web", "data"]

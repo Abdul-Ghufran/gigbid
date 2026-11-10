@@ -34,7 +34,9 @@ def main():
     ap.add_argument("--port", type=int, default=int(os.getenv("PORT", 8092)))
     a = ap.parse_args()
     if a.portfolio_dir:
-        os.environ["PORTFOLIO_DIR"] = a.portfolio_dir
+        os.environ["PORTFOLIO_DIR"] = os.path.abspath(a.portfolio_dir)
+        # installed via uvx/pip: keep model + embedding caches in the user's cache dir, not site-packages
+        os.environ.setdefault("GIGBID_CACHE_DIR", os.path.join(os.path.expanduser("~"), ".cache", "gigbid"))
     if a.persona:
         os.environ["PORTFOLIO_PERSONA"] = a.persona
     os.environ.setdefault("AUDIT_DISABLED", "1" if a.portfolio_dir else os.getenv("AUDIT_DISABLED", "0"))
