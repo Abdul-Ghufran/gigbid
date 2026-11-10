@@ -18,10 +18,11 @@ providers:
   openai: {base_url: "https://api.openai.com/v1", key_env: OPENAI_API_KEY}
 
 models:
-  small:   {provider: groq, model: "llama-3.1-8b-instant", price_in: 0.05, price_out: 0.08, rpm: 30, tpm: 6000}
-  mid:     {provider: groq, model: "openai/gpt-oss-20b", price_in: 0.10, price_out: 0.50, rpm: 30, tpm: 8000, reasoning_effort: low}
+  small:   {provider: groq, model: "openai/gpt-oss-20b", price_in: 0.075, price_out: 0.30, rpm: 30, tpm: 8000, reasoning_effort: low}
+  mid:     {provider: groq, model: "openai/gpt-oss-20b", price_in: 0.075, price_out: 0.30, rpm: 30, tpm: 8000, reasoning_effort: medium}
   strong:  {provider: groq, model: "openai/gpt-oss-120b", price_in: 0.15, price_out: 0.60, rpm: 30, tpm: 8000, reasoning_effort: low}
-  qwen:    {provider: groq, model: "qwen/qwen3-32b", price_in: 0.29, price_out: 0.59, rpm: 60, tpm: 6000}
+  qwen:    {provider: groq, model: "qwen/qwen3.8-27b", price_in: 0.29, price_out: 0.59, rpm: 30, tpm: 6000}
+  guard:   {provider: groq, model: "meta-llama/llama-prompt-guard-2-86m", price_in: 0.04, price_out: 0.04, rpm: 30, tpm: 15000}
   local_small: {provider: ollama, model: "qwen3:4b", price_in: 0, price_out: 0}
   local_mid:   {provider: ollama, model: "gpt-oss:20b", price_in: 0, price_out: 0}
   paid_strong: {provider: openai, model: "gpt-4.1-mini", price_in: 0.40, price_out: 1.60}
@@ -41,8 +42,24 @@ profiles:
     intent: small
     judge: strong
     rag_aux: small        # HyDE, contextual lines, query rewrites
-    fallback_small: mid   # fallback for cheap nodes (C7)
-    fallback_strong: mid
+    fallback_small: strong  # fallback for cheap nodes (C7): a different model, not a retry of the same one
+    fallback_strong: qwen
+  open_qwen:       # third open configuration: Qwen for the writing roles
+    scout: small
+    analyst: small
+    risk_assessor: small
+    fit_matcher: small
+    pricing: small
+    writer: qwen
+    verifier: small
+    critic: qwen
+    compliance: small
+    liaison: qwen
+    intent: small
+    judge: strong
+    rag_aux: small
+    fallback_small: strong
+    fallback_strong: strong
   open_mid:        # second open configuration compared on the dev set
     scout: small
     analyst: mid
