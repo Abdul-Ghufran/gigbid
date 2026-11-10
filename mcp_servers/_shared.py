@@ -66,7 +66,7 @@ def audited(server: str, log_reads: bool = True):
                 ok, result = False, {"error": f"{type(e).__name__}: {e}"}
                 raise
             finally:
-                if log_reads or not ok or fn.__name__ in WRITE_TOOLS:
+                if os.getenv("AUDIT_DISABLED") != "1" and (log_reads or not ok or fn.__name__ in WRITE_TOOLS):
                     try:
                         from common.db import audit
 

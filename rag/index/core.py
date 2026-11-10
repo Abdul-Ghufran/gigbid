@@ -11,7 +11,7 @@ from pathlib import Path
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[2]
-CACHE = ROOT / ".cache"
+CACHE = Path(os.getenv("GIGBID_CACHE_DIR", str(ROOT / ".cache")))
 EMB_MODEL = os.getenv("EMBEDDING_MODEL", "BAAI/bge-small-en-v1.5")
 RERANK_MODEL = os.getenv("RERANKER_MODEL", "Xenova/ms-marco-MiniLM-L-6-v2")
 _lock = threading.Lock()

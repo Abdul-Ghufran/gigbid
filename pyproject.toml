@@ -50,6 +50,9 @@ dev = [
   "reportlab==4.4.1",
 ]
 
+[project.scripts]
+gigbid-portfolio-mcp = "mcp_servers.portfolio.server:main"
+
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"

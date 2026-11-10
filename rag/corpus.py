@@ -115,6 +115,16 @@ def _persona_items(persona: str) -> tuple[Item, ...]:
     return tuple(load_persona(persona))
 
 
+def get_corpus_for_dir(path: str, persona: str = "custom") -> Corpus:
+    """Standalone Portfolio MCP usage: any folder with the persona layout."""
+    from rag.ingest.loaders import load_dir
+
+    key = f"dir|{path}"
+    if key not in _CORPORA:
+        _CORPORA[key] = Corpus(persona, load_dir(path, persona))
+    return _CORPORA[key]
+
+
 def invalidate(user_id: str):
     for k in [k for k in _CORPORA if f"|{user_id}|" in k]:
         _CORPORA.pop(k, None)
