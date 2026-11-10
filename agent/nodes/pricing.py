@@ -33,14 +33,17 @@ def quote(job: dict, stats: dict, fit: float, settings: dict, client: dict | Non
     p25, p50, p75 = s.get("p25"), s.get("p50"), s.get("p75")
     rationale = []
     floor = settings.get("hourly_rate", 30) if hourly else settings.get("min_project", 200)
+    # v2 rule (evals/results/pricing_eval.json): anchor on THIS job's budget range, which encodes its size;
+    # the category-wide median ignores scope and pulled quotes out of the fair band.
+    mid = ((b.get("min") or 0) + (b.get("max") or 0)) / 2
     if hourly:
-        anchor = settings.get("hourly_rate", 30) * LEVEL.get(job.get("experience_level") or "intermediate", 1.0)
-        rationale.append(f"Your rate {settings.get('hourly_rate')} USD/h adjusted for {job.get('experience_level', 'intermediate')} level.")
+        own = settings.get("hourly_rate", 30) * LEVEL.get(job.get("experience_level") or "intermediate", 1.0)
+        anchor = max(own, mid * 1.05) if mid else own
+        rationale.append(f"Client's hourly range midpoint {mid:,.1f} USD/h vs your {own:,.1f} USD/h for {job.get('experience_level', 'intermediate')} level.")
     else:
-        mid = ((b.get("min") or 0) + (b.get("max") or 0)) / 2 or (p50 or floor)
-        anchor = 0.6 * mid + 0.4 * (p50 or mid)
-        rationale.append(f"Budget midpoint {mid:,.0f} blended with market median {p50 or 'n/a'}.")
-    amount = anchor * (0.95 + 0.1 * fit)  # stronger proof supports a slightly higher price
+        anchor = (mid or (p50 or floor)) * 1.05
+        rationale.append(f"Anchored on this job's budget midpoint {mid:,.0f} (market median for the category: {p50 or 'n/a'}).")
+    amount = anchor * (0.97 + 0.06 * fit)  # stronger proof supports a slightly higher price
     if p25:
         amount = max(amount, p25 * pc["undercut_floor_ratio"])
     if b.get("max"):

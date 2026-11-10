@@ -1,0 +1,3405 @@
+{
+ "generated_by": "evals/runners/pricing_eval.py",
+ "generated_at": "2026-11-11 00:52",
+ "n": 282,
+ "old_rule_in_band": 0.5284,
+ "new_rule_in_band": 0.8617,
+ "by_type": {
+  "fixed": {
+   "n": 196,
+   "old": 0.4898,
+   "new": 0.9184
+  },
+  "hourly": {
+   "n": 86,
+   "old": 0.6163,
+   "new": 0.7326
+  }
+ },
+ "rows": [
+  {
+   "job_id": "dev-ai-000",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 45.0,
+   "new": 57.3,
+   "band": [
+    46.8,
+    63.2
+   ]
+  },
+  {
+   "job_id": "dev-ai-001",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2803.6,
+   "new": 3893.0,
+   "band": [
+    3090.0,
+    4170.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-002",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2668.6,
+   "new": 3650.0,
+   "band": [
+    3030.0,
+    4100.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-003",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1723.6,
+   "new": 1947.0,
+   "band": [
+    1640.0,
+    2220.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-004",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2680.6,
+   "new": 3672.0,
+   "band": [
+    2850.0,
+    3860.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-005",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": false,
+   "old": 54.0,
+   "new": 87.6,
+   "band": [
+    63.1,
+    85.4
+   ]
+  },
+  {
+   "job_id": "dev-ai-015",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": false,
+   "old": 1849.6,
+   "new": 2174.0,
+   "band": [
+    1590.0,
+    2150.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-018",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 54.0,
+   "new": 77.9,
+   "band": [
+    63.1,
+    85.4
+   ]
+  },
+  {
+   "job_id": "dev-ai-019",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 45.0,
+   "new": 55.2,
+   "band": [
+    46.8,
+    63.2
+   ]
+  },
+  {
+   "job_id": "dev-ai-020",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": false,
+   "old": 967.6,
+   "new": 704.0,
+   "band": [
+    510.0,
+    700.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-022",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1708.6,
+   "new": 1920.0,
+   "band": [
+    1590.0,
+    2150.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-023",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1585.6,
+   "new": 1698.0,
+   "band": [
+    1390.0,
+    1880.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-026",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1903.6,
+   "new": 2271.0,
+   "band": [
+    1960.0,
+    2650.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-027",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2659.6,
+   "new": 3634.0,
+   "band": [
+    3090.0,
+    4170.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-029",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2182.6,
+   "new": 2774.0,
+   "band": [
+    2460.0,
+    3330.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-030",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1903.6,
+   "new": 2271.0,
+   "band": [
+    1700.0,
+    2310.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-032",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": false,
+   "old": 38.2,
+   "new": 45.0,
+   "band": [
+    32.7,
+    44.3
+   ]
+  },
+  {
+   "job_id": "dev-ai-035",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2248.6,
+   "new": 2893.0,
+   "band": [
+    2290.0,
+    3100.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-036",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 45.0,
+   "new": 59.5,
+   "band": [
+    46.8,
+    63.2
+   ]
+  },
+  {
+   "job_id": "dev-ai-038",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1348.6,
+   "new": 1271.0,
+   "band": [
+    950.0,
+    1280.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-048",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": false,
+   "old": 38.2,
+   "new": 45.0,
+   "band": [
+    32.7,
+    44.3
+   ]
+  },
+  {
+   "job_id": "dev-ai-053",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1381.6,
+   "new": 1330.0,
+   "band": [
+    1110.0,
+    1510.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-054",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1213.6,
+   "new": 1027.0,
+   "band": [
+    850.0,
+    1150.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-056",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2629.6,
+   "new": 3580.0,
+   "band": [
+    2780.0,
+    3760.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-063",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1780.6,
+   "new": 2049.0,
+   "band": [
+    1640.0,
+    2210.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-064",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1777.6,
+   "new": 2044.0,
+   "band": [
+    1590.0,
+    2150.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-066",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": false,
+   "old": 1717.6,
+   "new": 1936.0,
+   "band": [
+    1390.0,
+    1880.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-071",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2248.6,
+   "new": 2893.0,
+   "band": [
+    2650.0,
+    3590.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-072",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1531.6,
+   "new": 1601.0,
+   "band": [
+    1410.0,
+    1900.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-073",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2005.6,
+   "new": 2455.0,
+   "band": [
+    2100.0,
+    2850.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-076",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2341.6,
+   "new": 3061.0,
+   "band": [
+    2570.0,
+    3480.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-077",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2533.6,
+   "new": 3407.0,
+   "band": [
+    2800.0,
+    3790.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-078",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 45.0,
+   "new": 60.0,
+   "band": [
+    46.8,
+    63.2
+   ]
+  },
+  {
+   "job_id": "dev-ai-080",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1933.6,
+   "new": 2325.0,
+   "band": [
+    1870.0,
+    2530.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-081",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1975.6,
+   "new": 2401.0,
+   "band": [
+    2060.0,
+    2780.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-083",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1348.6,
+   "new": 1271.0,
+   "band": [
+    980.0,
+    1330.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-084",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1126.6,
+   "new": 905.0,
+   "band": [
+    720.0,
+    970.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-088",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1186.6,
+   "new": 979.0,
+   "band": [
+    760.0,
+    1020.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-089",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 54.0,
+   "new": 78.4,
+   "band": [
+    63.1,
+    85.4
+   ]
+  },
+  {
+   "job_id": "dev-ai-090",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1417.6,
+   "new": 1395.0,
+   "band": [
+    1240.0,
+    1680.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-092",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1465.6,
+   "new": 1482.0,
+   "band": [
+    1170.0,
+    1580.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-093",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 45.0,
+   "new": 57.9,
+   "band": [
+    46.8,
+    63.2
+   ]
+  },
+  {
+   "job_id": "dev-ai-094",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2227.6,
+   "new": 2855.0,
+   "band": [
+    2240.0,
+    3040.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-095",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1333.6,
+   "new": 1244.0,
+   "band": [
+    1010.0,
+    1370.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-096",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1300.6,
+   "new": 1184.0,
+   "band": [
+    940.0,
+    1260.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-100",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1930.6,
+   "new": 2320.0,
+   "band": [
+    2090.0,
+    2830.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-101",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2017.6,
+   "new": 2477.0,
+   "band": [
+    2270.0,
+    3070.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-102",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 45.0,
+   "new": 60.0,
+   "band": [
+    46.8,
+    63.2
+   ]
+  },
+  {
+   "job_id": "dev-ai-104",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 2035.6,
+   "new": 2509.0,
+   "band": [
+    2010.0,
+    2720.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-105",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2128.6,
+   "new": 2677.0,
+   "band": [
+    2240.0,
+    3040.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-106",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 45.0,
+   "new": 55.2,
+   "band": [
+    46.8,
+    63.2
+   ]
+  },
+  {
+   "job_id": "dev-ai-108",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2557.6,
+   "new": 3450.0,
+   "band": [
+    2710.0,
+    3670.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-110",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 45.0,
+   "new": 60.6,
+   "band": [
+    46.8,
+    63.2
+   ]
+  },
+  {
+   "job_id": "dev-ai-114",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1066.6,
+   "new": 905.0,
+   "band": [
+    690.0,
+    930.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-117",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2083.6,
+   "new": 2596.0,
+   "band": [
+    2150.0,
+    2900.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-119",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 45.0,
+   "new": 60.0,
+   "band": [
+    46.8,
+    63.2
+   ]
+  },
+  {
+   "job_id": "dev-ai-121",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 994.6,
+   "new": 714.0,
+   "band": [
+    560.0,
+    760.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-123",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1423.6,
+   "new": 1406.0,
+   "band": [
+    1360.0,
+    1830.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-125",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": false,
+   "old": 38.2,
+   "new": 45.0,
+   "band": [
+    32.7,
+    44.3
+   ]
+  },
+  {
+   "job_id": "dev-ai-127",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1780.6,
+   "new": 2049.0,
+   "band": [
+    1730.0,
+    2340.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-128",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1315.6,
+   "new": 1211.0,
+   "band": [
+    940.0,
+    1260.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-132",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1384.6,
+   "new": 1336.0,
+   "band": [
+    1080.0,
+    1450.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-136",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": false,
+   "old": 54.0,
+   "new": 89.2,
+   "band": [
+    63.1,
+    85.4
+   ]
+  },
+  {
+   "job_id": "dev-ai-138",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1627.6,
+   "new": 1774.0,
+   "band": [
+    1570.0,
+    2130.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-139",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2977.6,
+   "new": 4207.0,
+   "band": [
+    3410.0,
+    4610.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-140",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2239.6,
+   "new": 2877.0,
+   "band": [
+    2380.0,
+    3230.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-141",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": false,
+   "old": 38.2,
+   "new": 45.0,
+   "band": [
+    32.7,
+    44.3
+   ]
+  },
+  {
+   "job_id": "dev-ai-143",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1165.6,
+   "new": 941.0,
+   "band": [
+    840.0,
+    1140.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-144",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1984.6,
+   "new": 2417.0,
+   "band": [
+    2030.0,
+    2750.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-148",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2446.6,
+   "new": 3250.0,
+   "band": [
+    3130.0,
+    4240.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-150",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1750.6,
+   "new": 1995.0,
+   "band": [
+    1510.0,
+    2040.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-153",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1633.6,
+   "new": 1784.0,
+   "band": [
+    1360.0,
+    1830.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-155",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1984.6,
+   "new": 2417.0,
+   "band": [
+    2100.0,
+    2850.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-163",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": false,
+   "old": 1288.6,
+   "new": 1163.0,
+   "band": [
+    850.0,
+    1150.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-166",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1642.6,
+   "new": 1801.0,
+   "band": [
+    1450.0,
+    1960.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-167",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": false,
+   "old": 991.6,
+   "new": 704.0,
+   "band": [
+    510.0,
+    700.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-168",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": false,
+   "old": 38.2,
+   "new": 45.0,
+   "band": [
+    32.7,
+    44.3
+   ]
+  },
+  {
+   "job_id": "dev-ai-169",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 45.0,
+   "new": 53.0,
+   "band": [
+    46.8,
+    63.2
+   ]
+  },
+  {
+   "job_id": "dev-ai-170",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 54.0,
+   "new": 82.7,
+   "band": [
+    63.1,
+    85.4
+   ]
+  },
+  {
+   "job_id": "dev-ai-171",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1789.6,
+   "new": 2066.0,
+   "band": [
+    1680.0,
+    2280.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-172",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 45.0,
+   "new": 56.8,
+   "band": [
+    46.8,
+    63.2
+   ]
+  },
+  {
+   "job_id": "dev-ai-175",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2557.6,
+   "new": 3450.0,
+   "band": [
+    2660.0,
+    3610.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-176",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 45.0,
+   "new": 62.7,
+   "band": [
+    46.8,
+    63.2
+   ]
+  },
+  {
+   "job_id": "dev-ai-177",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 45.0,
+   "new": 59.5,
+   "band": [
+    46.8,
+    63.2
+   ]
+  },
+  {
+   "job_id": "dev-ai-178",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 45.0,
+   "new": 50.3,
+   "band": [
+    46.8,
+    63.2
+   ]
+  },
+  {
+   "job_id": "dev-ai-182",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1315.6,
+   "new": 1211.0,
+   "band": [
+    1050.0,
+    1420.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-184",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": false,
+   "old": 38.2,
+   "new": 45.0,
+   "band": [
+    32.7,
+    44.3
+   ]
+  },
+  {
+   "job_id": "dev-ai-187",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 54.0,
+   "new": 80.6,
+   "band": [
+    63.1,
+    85.4
+   ]
+  },
+  {
+   "job_id": "dev-ai-190",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 54.0,
+   "new": 72.5,
+   "band": [
+    63.1,
+    85.4
+   ]
+  },
+  {
+   "job_id": "dev-ai-191",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1567.6,
+   "new": 1666.0,
+   "band": [
+    1450.0,
+    1960.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-193",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2359.6,
+   "new": 3093.0,
+   "band": [
+    2840.0,
+    3840.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-194",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2515.6,
+   "new": 3374.0,
+   "band": [
+    3130.0,
+    4240.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-195",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1909.6,
+   "new": 2282.0,
+   "band": [
+    1780.0,
+    2400.0
+   ]
+  },
+  {
+   "job_id": "dev-ai-199",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": false,
+   "old": 38.2,
+   "new": 45.0,
+   "band": [
+    32.7,
+    44.3
+   ]
+  },
+  {
+   "job_id": "dev-web-001",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1541.7,
+   "new": 1860.0,
+   "band": [
+    1660.0,
+    2250.0
+   ]
+  },
+  {
+   "job_id": "dev-web-002",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": false,
+   "old": 1778.7,
+   "new": 2287.0,
+   "band": [
+    1640.0,
+    2230.0
+   ]
+  },
+  {
+   "job_id": "dev-web-004",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1274.7,
+   "new": 1379.0,
+   "band": [
+    1180.0,
+    1590.0
+   ]
+  },
+  {
+   "job_id": "dev-web-005",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1742.7,
+   "new": 2222.0,
+   "band": [
+    2030.0,
+    2740.0
+   ]
+  },
+  {
+   "job_id": "dev-web-008",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 40.0,
+   "new": 50.8,
+   "band": [
+    38.2,
+    51.7
+   ]
+  },
+  {
+   "job_id": "dev-web-009",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 40.0,
+   "new": 45.4,
+   "band": [
+    38.2,
+    51.7
+   ]
+  },
+  {
+   "job_id": "dev-web-012",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 48.0,
+   "new": 63.8,
+   "band": [
+    51.6,
+    69.9
+   ]
+  },
+  {
+   "job_id": "dev-web-013",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2075.7,
+   "new": 2823.0,
+   "band": [
+    2530.0,
+    3420.0
+   ]
+  },
+  {
+   "job_id": "dev-web-016",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 998.7,
+   "new": 881.0,
+   "band": [
+    780.0,
+    1050.0
+   ]
+  },
+  {
+   "job_id": "dev-web-017",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 40.0,
+   "new": 48.1,
+   "band": [
+    38.2,
+    51.7
+   ]
+  },
+  {
+   "job_id": "dev-web-022",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1436.7,
+   "new": 1671.0,
+   "band": [
+    1380.0,
+    1860.0
+   ]
+  },
+  {
+   "job_id": "dev-web-025",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": false,
+   "old": 40.0,
+   "new": 53.0,
+   "band": [
+    38.2,
+    51.7
+   ]
+  },
+  {
+   "job_id": "dev-web-026",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1874.7,
+   "new": 2460.0,
+   "band": [
+    2070.0,
+    2790.0
+   ]
+  },
+  {
+   "job_id": "dev-web-027",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1097.7,
+   "new": 1060.0,
+   "band": [
+    880.0,
+    1190.0
+   ]
+  },
+  {
+   "job_id": "dev-web-029",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 983.7,
+   "new": 854.0,
+   "band": [
+    670.0,
+    910.0
+   ]
+  },
+  {
+   "job_id": "dev-web-031",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1013.7,
+   "new": 908.0,
+   "band": [
+    690.0,
+    930.0
+   ]
+  },
+  {
+   "job_id": "dev-web-034",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2348.7,
+   "new": 3315.0,
+   "band": [
+    2750.0,
+    3730.0
+   ]
+  },
+  {
+   "job_id": "dev-web-036",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1286.7,
+   "new": 1401.0,
+   "band": [
+    1110.0,
+    1500.0
+   ]
+  },
+  {
+   "job_id": "dev-web-037",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1196.7,
+   "new": 1238.0,
+   "band": [
+    1110.0,
+    1500.0
+   ]
+  },
+  {
+   "job_id": "dev-web-039",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1811.7,
+   "new": 2347.0,
+   "band": [
+    1950.0,
+    2640.0
+   ]
+  },
+  {
+   "job_id": "dev-web-040",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1328.7,
+   "new": 1476.0,
+   "band": [
+    1220.0,
+    1660.0
+   ]
+  },
+  {
+   "job_id": "dev-web-041",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 40.0,
+   "new": 43.3,
+   "band": [
+    38.2,
+    51.7
+   ]
+  },
+  {
+   "job_id": "dev-web-042",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1721.7,
+   "new": 2185.0,
+   "band": [
+    1760.0,
+    2380.0
+   ]
+  },
+  {
+   "job_id": "dev-web-043",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1367.7,
+   "new": 1547.0,
+   "band": [
+    1420.0,
+    1910.0
+   ]
+  },
+  {
+   "job_id": "dev-web-045",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": false,
+   "old": 1643.7,
+   "new": 2044.0,
+   "band": [
+    1490.0,
+    2020.0
+   ]
+  },
+  {
+   "job_id": "dev-web-046",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2072.7,
+   "new": 2817.0,
+   "band": [
+    2170.0,
+    2930.0
+   ]
+  },
+  {
+   "job_id": "dev-web-055",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 40.0,
+   "new": 51.4,
+   "band": [
+    38.2,
+    51.7
+   ]
+  },
+  {
+   "job_id": "dev-web-060",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2555.7,
+   "new": 3688.0,
+   "band": [
+    2870.0,
+    3880.0
+   ]
+  },
+  {
+   "job_id": "dev-web-063",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1028.7,
+   "new": 935.0,
+   "band": [
+    880.0,
+    1190.0
+   ]
+  },
+  {
+   "job_id": "dev-web-067",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 968.7,
+   "new": 827.0,
+   "band": [
+    640.0,
+    870.0
+   ]
+  },
+  {
+   "job_id": "dev-web-068",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": false,
+   "old": 1373.7,
+   "new": 1557.0,
+   "band": [
+    1150.0,
+    1550.0
+   ]
+  },
+  {
+   "job_id": "dev-web-069",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1535.7,
+   "new": 1849.0,
+   "band": [
+    1500.0,
+    2030.0
+   ]
+  },
+  {
+   "job_id": "dev-web-072",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1112.7,
+   "new": 1087.0,
+   "band": [
+    880.0,
+    1200.0
+   ]
+  },
+  {
+   "job_id": "dev-web-075",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2372.7,
+   "new": 3358.0,
+   "band": [
+    2490.0,
+    3360.0
+   ]
+  },
+  {
+   "job_id": "dev-web-077",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1658.7,
+   "new": 2071.0,
+   "band": [
+    1870.0,
+    2540.0
+   ]
+  },
+  {
+   "job_id": "dev-web-078",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1577.7,
+   "new": 1925.0,
+   "band": [
+    1700.0,
+    2310.0
+   ]
+  },
+  {
+   "job_id": "dev-web-079",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1037.7,
+   "new": 952.0,
+   "band": [
+    760.0,
+    1040.0
+   ]
+  },
+  {
+   "job_id": "dev-web-080",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1250.7,
+   "new": 1336.0,
+   "band": [
+    1140.0,
+    1540.0
+   ]
+  },
+  {
+   "job_id": "dev-web-081",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1598.7,
+   "new": 1963.0,
+   "band": [
+    1760.0,
+    2380.0
+   ]
+  },
+  {
+   "job_id": "dev-web-086",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 40.0,
+   "new": 47.0,
+   "band": [
+    38.2,
+    51.7
+   ]
+  },
+  {
+   "job_id": "dev-web-087",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1250.7,
+   "new": 1336.0,
+   "band": [
+    1080.0,
+    1470.0
+   ]
+  },
+  {
+   "job_id": "dev-web-088",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1160.7,
+   "new": 1173.0,
+   "band": [
+    1070.0,
+    1450.0
+   ]
+  },
+  {
+   "job_id": "dev-web-089",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1541.7,
+   "new": 1860.0,
+   "band": [
+    1760.0,
+    2380.0
+   ]
+  },
+  {
+   "job_id": "dev-web-091",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 40.0,
+   "new": 50.8,
+   "band": [
+    38.2,
+    51.7
+   ]
+  },
+  {
+   "job_id": "dev-web-093",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": false,
+   "old": 40.0,
+   "new": 53.0,
+   "band": [
+    38.2,
+    51.7
+   ]
+  },
+  {
+   "job_id": "dev-web-096",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2060.7,
+   "new": 2796.0,
+   "band": [
+    2300.0,
+    3100.0
+   ]
+  },
+  {
+   "job_id": "dev-web-097",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1556.7,
+   "new": 1887.0,
+   "band": [
+    1640.0,
+    2230.0
+   ]
+  },
+  {
+   "job_id": "dev-web-100",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1025.7,
+   "new": 930.0,
+   "band": [
+    720.0,
+    980.0
+   ]
+  },
+  {
+   "job_id": "dev-web-101",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1748.7,
+   "new": 2233.0,
+   "band": [
+    2060.0,
+    2790.0
+   ]
+  },
+  {
+   "job_id": "dev-web-105",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1913.7,
+   "new": 2531.0,
+   "band": [
+    1960.0,
+    2650.0
+   ]
+  },
+  {
+   "job_id": "dev-web-107",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2003.7,
+   "new": 2693.0,
+   "band": [
+    2100.0,
+    2850.0
+   ]
+  },
+  {
+   "job_id": "dev-web-112",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1619.7,
+   "new": 2001.0,
+   "band": [
+    1610.0,
+    2170.0
+   ]
+  },
+  {
+   "job_id": "dev-web-114",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 40.0,
+   "new": 49.2,
+   "band": [
+    38.2,
+    51.7
+   ]
+  },
+  {
+   "job_id": "dev-web-115",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 40.0,
+   "new": 44.3,
+   "band": [
+    38.2,
+    51.7
+   ]
+  },
+  {
+   "job_id": "dev-web-117",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 48.0,
+   "new": 61.6,
+   "band": [
+    51.6,
+    69.9
+   ]
+  },
+  {
+   "job_id": "dev-web-120",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1043.7,
+   "new": 963.0,
+   "band": [
+    800.0,
+    1090.0
+   ]
+  },
+  {
+   "job_id": "dev-web-123",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 40.0,
+   "new": 49.7,
+   "band": [
+    38.2,
+    51.7
+   ]
+  },
+  {
+   "job_id": "dev-web-124",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1220.7,
+   "new": 1282.0,
+   "band": [
+    1020.0,
+    1380.0
+   ]
+  },
+  {
+   "job_id": "dev-web-125",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1193.7,
+   "new": 1233.0,
+   "band": [
+    920.0,
+    1240.0
+   ]
+  },
+  {
+   "job_id": "dev-web-128",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": false,
+   "old": 34.0,
+   "new": 40.0,
+   "band": [
+    26.8,
+    36.2
+   ]
+  },
+  {
+   "job_id": "dev-web-129",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2384.7,
+   "new": 3380.0,
+   "band": [
+    2950.0,
+    3980.0
+   ]
+  },
+  {
+   "job_id": "dev-web-132",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1748.7,
+   "new": 2233.0,
+   "band": [
+    1910.0,
+    2590.0
+   ]
+  },
+  {
+   "job_id": "dev-web-136",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1340.7,
+   "new": 1498.0,
+   "band": [
+    1150.0,
+    1550.0
+   ]
+  },
+  {
+   "job_id": "dev-web-137",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1112.7,
+   "new": 1087.0,
+   "band": [
+    910.0,
+    1230.0
+   ]
+  },
+  {
+   "job_id": "dev-web-141",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1055.7,
+   "new": 984.0,
+   "band": [
+    830.0,
+    1120.0
+   ]
+  },
+  {
+   "job_id": "dev-web-143",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": false,
+   "old": 782.7,
+   "new": 588.0,
+   "band": [
+    430.0,
+    580.0
+   ]
+  },
+  {
+   "job_id": "dev-web-144",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1028.7,
+   "new": 935.0,
+   "band": [
+    880.0,
+    1190.0
+   ]
+  },
+  {
+   "job_id": "dev-web-149",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 40.0,
+   "new": 49.7,
+   "band": [
+    38.2,
+    51.7
+   ]
+  },
+  {
+   "job_id": "dev-web-151",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 2981.7,
+   "new": 4456.0,
+   "band": [
+    3360.0,
+    4540.0
+   ]
+  },
+  {
+   "job_id": "dev-web-152",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 40.0,
+   "new": 46.0,
+   "band": [
+    38.2,
+    51.7
+   ]
+  },
+  {
+   "job_id": "dev-web-153",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 956.7,
+   "new": 806.0,
+   "band": [
+    760.0,
+    1040.0
+   ]
+  },
+  {
+   "job_id": "dev-web-154",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1115.7,
+   "new": 1092.0,
+   "band": [
+    880.0,
+    1190.0
+   ]
+  },
+  {
+   "job_id": "dev-web-155",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 902.7,
+   "new": 755.0,
+   "band": [
+    610.0,
+    830.0
+   ]
+  },
+  {
+   "job_id": "dev-web-156",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": false,
+   "old": 845.7,
+   "new": 735.0,
+   "band": [
+    540.0,
+    720.0
+   ]
+  },
+  {
+   "job_id": "dev-web-161",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1334.7,
+   "new": 1487.0,
+   "band": [
+    1200.0,
+    1630.0
+   ]
+  },
+  {
+   "job_id": "dev-web-164",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 40.0,
+   "new": 46.5,
+   "band": [
+    38.2,
+    51.7
+   ]
+  },
+  {
+   "job_id": "dev-web-165",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": false,
+   "old": 34.0,
+   "new": 40.0,
+   "band": [
+    26.8,
+    36.2
+   ]
+  },
+  {
+   "job_id": "dev-web-167",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": false,
+   "old": 2006.7,
+   "new": 2698.0,
+   "band": [
+    1960.0,
+    2650.0
+   ]
+  },
+  {
+   "job_id": "dev-web-168",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1715.7,
+   "new": 2174.0,
+   "band": [
+    1860.0,
+    2520.0
+   ]
+  },
+  {
+   "job_id": "dev-web-169",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1994.7,
+   "new": 2677.0,
+   "band": [
+    2370.0,
+    3210.0
+   ]
+  },
+  {
+   "job_id": "dev-web-170",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1127.7,
+   "new": 1114.0,
+   "band": [
+    920.0,
+    1240.0
+   ]
+  },
+  {
+   "job_id": "dev-web-176",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1187.7,
+   "new": 1222.0,
+   "band": [
+    990.0,
+    1340.0
+   ]
+  },
+  {
+   "job_id": "dev-web-177",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1154.7,
+   "new": 1163.0,
+   "band": [
+    880.0,
+    1200.0
+   ]
+  },
+  {
+   "job_id": "dev-web-178",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1547.7,
+   "new": 1871.0,
+   "band": [
+    1390.0,
+    1890.0
+   ]
+  },
+  {
+   "job_id": "dev-web-181",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1061.7,
+   "new": 995.0,
+   "band": [
+    880.0,
+    1190.0
+   ]
+  },
+  {
+   "job_id": "dev-web-184",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1637.7,
+   "new": 2033.0,
+   "band": [
+    1870.0,
+    2540.0
+   ]
+  },
+  {
+   "job_id": "dev-web-185",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1313.7,
+   "new": 1449.0,
+   "band": [
+    1100.0,
+    1490.0
+   ]
+  },
+  {
+   "job_id": "dev-web-186",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 40.0,
+   "new": 44.9,
+   "band": [
+    38.2,
+    51.7
+   ]
+  },
+  {
+   "job_id": "dev-web-187",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 48.0,
+   "new": 60.6,
+   "band": [
+    51.6,
+    69.9
+   ]
+  },
+  {
+   "job_id": "dev-web-191",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 40.0,
+   "new": 49.2,
+   "band": [
+    38.2,
+    51.7
+   ]
+  },
+  {
+   "job_id": "dev-web-192",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1820.7,
+   "new": 2363.0,
+   "band": [
+    1860.0,
+    2520.0
+   ]
+  },
+  {
+   "job_id": "dev-web-193",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1046.7,
+   "new": 968.0,
+   "band": [
+    960.0,
+    1290.0
+   ]
+  },
+  {
+   "job_id": "dev-web-194",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": false,
+   "old": 34.0,
+   "new": 40.0,
+   "band": [
+    26.8,
+    36.2
+   ]
+  },
+  {
+   "job_id": "dev-web-196",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 48.0,
+   "new": 63.8,
+   "band": [
+    51.6,
+    69.9
+   ]
+  },
+  {
+   "job_id": "dev-data-000",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1678.2,
+   "new": 2347.0,
+   "band": [
+    1870.0,
+    2540.0
+   ]
+  },
+  {
+   "job_id": "dev-data-001",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 30.0,
+   "new": 34.1,
+   "band": [
+    29.8,
+    40.2
+   ]
+  },
+  {
+   "job_id": "dev-data-006",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 802.2,
+   "new": 768.0,
+   "band": [
+    650.0,
+    890.0
+   ]
+  },
+  {
+   "job_id": "dev-data-007",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": false,
+   "old": 25.5,
+   "new": 30.0,
+   "band": [
+    20.8,
+    28.2
+   ]
+  },
+  {
+   "job_id": "dev-data-009",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 952.2,
+   "new": 1038.0,
+   "band": [
+    770.0,
+    1050.0
+   ]
+  },
+  {
+   "job_id": "dev-data-010",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1381.2,
+   "new": 1812.0,
+   "band": [
+    1670.0,
+    2250.0
+   ]
+  },
+  {
+   "job_id": "dev-data-011",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1192.2,
+   "new": 1471.0,
+   "band": [
+    1120.0,
+    1520.0
+   ]
+  },
+  {
+   "job_id": "dev-data-012",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 733.2,
+   "new": 643.0,
+   "band": [
+    570.0,
+    760.0
+   ]
+  },
+  {
+   "job_id": "dev-data-014",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 30.0,
+   "new": 38.4,
+   "band": [
+    29.8,
+    40.2
+   ]
+  },
+  {
+   "job_id": "dev-data-016",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1048.2,
+   "new": 1211.0,
+   "band": [
+    960.0,
+    1300.0
+   ]
+  },
+  {
+   "job_id": "dev-data-021",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": false,
+   "old": 36.0,
+   "new": 55.2,
+   "band": [
+    40.2,
+    54.3
+   ]
+  },
+  {
+   "job_id": "dev-data-023",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 832.2,
+   "new": 822.0,
+   "band": [
+    620.0,
+    850.0
+   ]
+  },
+  {
+   "job_id": "dev-data-024",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 36.0,
+   "new": 48.7,
+   "band": [
+    40.2,
+    54.3
+   ]
+  },
+  {
+   "job_id": "dev-data-042",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": false,
+   "old": 25.5,
+   "new": 30.0,
+   "band": [
+    20.8,
+    28.2
+   ]
+  },
+  {
+   "job_id": "dev-data-044",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 889.2,
+   "new": 925.0,
+   "band": [
+    750.0,
+    1010.0
+   ]
+  },
+  {
+   "job_id": "dev-data-045",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 631.2,
+   "new": 525.0,
+   "band": [
+    400.0,
+    540.0
+   ]
+  },
+  {
+   "job_id": "dev-data-046",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1690.2,
+   "new": 2368.0,
+   "band": [
+    1810.0,
+    2450.0
+   ]
+  },
+  {
+   "job_id": "dev-data-047",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 30.0,
+   "new": 36.2,
+   "band": [
+    29.8,
+    40.2
+   ]
+  },
+  {
+   "job_id": "dev-data-050",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": false,
+   "old": 25.5,
+   "new": 30.0,
+   "band": [
+    20.8,
+    28.2
+   ]
+  },
+  {
+   "job_id": "dev-data-053",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 30.0,
+   "new": 34.1,
+   "band": [
+    29.8,
+    40.2
+   ]
+  },
+  {
+   "job_id": "dev-data-058",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": false,
+   "old": 25.5,
+   "new": 30.0,
+   "band": [
+    20.8,
+    28.2
+   ]
+  },
+  {
+   "job_id": "dev-data-061",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1828.2,
+   "new": 2617.0,
+   "band": [
+    2210.0,
+    2990.0
+   ]
+  },
+  {
+   "job_id": "dev-data-062",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1459.2,
+   "new": 1952.0,
+   "band": [
+    1580.0,
+    2130.0
+   ]
+  },
+  {
+   "job_id": "dev-data-063",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 36.0,
+   "new": 48.1,
+   "band": [
+    40.2,
+    54.3
+   ]
+  },
+  {
+   "job_id": "dev-data-064",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": false,
+   "old": 25.5,
+   "new": 30.0,
+   "band": [
+    20.8,
+    28.2
+   ]
+  },
+  {
+   "job_id": "dev-data-066",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 751.2,
+   "new": 676.0,
+   "band": [
+    560.0,
+    760.0
+   ]
+  },
+  {
+   "job_id": "dev-data-067",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 784.2,
+   "new": 735.0,
+   "band": [
+    600.0,
+    800.0
+   ]
+  },
+  {
+   "job_id": "dev-data-070",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1336.2,
+   "new": 1730.0,
+   "band": [
+    1330.0,
+    1790.0
+   ]
+  },
+  {
+   "job_id": "dev-data-075",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 30.0,
+   "new": 37.3,
+   "band": [
+    29.8,
+    40.2
+   ]
+  },
+  {
+   "job_id": "dev-data-076",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": false,
+   "old": 25.5,
+   "new": 30.0,
+   "band": [
+    20.8,
+    28.2
+   ]
+  },
+  {
+   "job_id": "dev-data-079",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1468.2,
+   "new": 1968.0,
+   "band": [
+    1530.0,
+    2060.0
+   ]
+  },
+  {
+   "job_id": "dev-data-082",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 30.0,
+   "new": 36.2,
+   "band": [
+    29.8,
+    40.2
+   ]
+  },
+  {
+   "job_id": "dev-data-084",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1060.2,
+   "new": 1233.0,
+   "band": [
+    1020.0,
+    1380.0
+   ]
+  },
+  {
+   "job_id": "dev-data-089",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 36.0,
+   "new": 48.1,
+   "band": [
+    40.2,
+    54.3
+   ]
+  },
+  {
+   "job_id": "dev-data-090",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": false,
+   "old": 1147.2,
+   "new": 1390.0,
+   "band": [
+    980.0,
+    1330.0
+   ]
+  },
+  {
+   "job_id": "dev-data-091",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 36.0,
+   "new": 52.5,
+   "band": [
+    40.2,
+    54.3
+   ]
+  },
+  {
+   "job_id": "dev-data-092",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 30.0,
+   "new": 35.7,
+   "band": [
+    29.8,
+    40.2
+   ]
+  },
+  {
+   "job_id": "dev-data-093",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 36.0,
+   "new": 47.6,
+   "band": [
+    40.2,
+    54.3
+   ]
+  },
+  {
+   "job_id": "dev-data-095",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 922.2,
+   "new": 984.0,
+   "band": [
+    760.0,
+    1030.0
+   ]
+  },
+  {
+   "job_id": "dev-data-098",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1156.2,
+   "new": 1406.0,
+   "band": [
+    1310.0,
+    1770.0
+   ]
+  },
+  {
+   "job_id": "dev-data-099",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1063.2,
+   "new": 1238.0,
+   "band": [
+    980.0,
+    1330.0
+   ]
+  },
+  {
+   "job_id": "dev-data-101",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 736.2,
+   "new": 649.0,
+   "band": [
+    540.0,
+    720.0
+   ]
+  },
+  {
+   "job_id": "dev-data-102",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1774.2,
+   "new": 2520.0,
+   "band": [
+    2010.0,
+    2720.0
+   ]
+  },
+  {
+   "job_id": "dev-data-103",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 748.2,
+   "new": 671.0,
+   "band": [
+    570.0,
+    760.0
+   ]
+  },
+  {
+   "job_id": "dev-data-105",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": false,
+   "old": 643.2,
+   "new": 547.0,
+   "band": [
+    370.0,
+    510.0
+   ]
+  },
+  {
+   "job_id": "dev-data-107",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1366.2,
+   "new": 1784.0,
+   "band": [
+    1450.0,
+    1960.0
+   ]
+  },
+  {
+   "job_id": "dev-data-109",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1924.2,
+   "new": 2790.0,
+   "band": [
+    2370.0,
+    3210.0
+   ]
+  },
+  {
+   "job_id": "dev-data-110",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1360.2,
+   "new": 1774.0,
+   "band": [
+    1650.0,
+    2230.0
+   ]
+  },
+  {
+   "job_id": "dev-data-111",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 787.2,
+   "new": 741.0,
+   "band": [
+    620.0,
+    850.0
+   ]
+  },
+  {
+   "job_id": "dev-data-112",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 703.2,
+   "new": 589.0,
+   "band": [
+    520.0,
+    700.0
+   ]
+  },
+  {
+   "job_id": "dev-data-115",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 838.2,
+   "new": 833.0,
+   "band": [
+    740.0,
+    1010.0
+   ]
+  },
+  {
+   "job_id": "dev-data-122",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1144.2,
+   "new": 1384.0,
+   "band": [
+    1100.0,
+    1490.0
+   ]
+  },
+  {
+   "job_id": "dev-data-123",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 667.2,
+   "new": 547.0,
+   "band": [
+    450.0,
+    600.0
+   ]
+  },
+  {
+   "job_id": "dev-data-124",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1129.2,
+   "new": 1357.0,
+   "band": [
+    1130.0,
+    1530.0
+   ]
+  },
+  {
+   "job_id": "dev-data-125",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": false,
+   "old": 1048.2,
+   "new": 1211.0,
+   "band": [
+    860.0,
+    1170.0
+   ]
+  },
+  {
+   "job_id": "dev-data-127",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 36.0,
+   "new": 42.2,
+   "band": [
+    40.2,
+    54.3
+   ]
+  },
+  {
+   "job_id": "dev-data-130",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": false,
+   "old": 30.0,
+   "new": 41.6,
+   "band": [
+    29.8,
+    40.2
+   ]
+  },
+  {
+   "job_id": "dev-data-131",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 30.0,
+   "new": 40.0,
+   "band": [
+    29.8,
+    40.2
+   ]
+  },
+  {
+   "job_id": "dev-data-134",
+   "type": "hourly",
+   "old_in": false,
+   "new_in": true,
+   "old": 36.0,
+   "new": 44.3,
+   "band": [
+    40.2,
+    54.3
+   ]
+  },
+  {
+   "job_id": "dev-data-136",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 30.0,
+   "new": 36.8,
+   "band": [
+    29.8,
+    40.2
+   ]
+  },
+  {
+   "job_id": "dev-data-137",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 958.2,
+   "new": 1049.0,
+   "band": [
+    770.0,
+    1050.0
+   ]
+  },
+  {
+   "job_id": "dev-data-139",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 30.0,
+   "new": 38.9,
+   "band": [
+    29.8,
+    40.2
+   ]
+  },
+  {
+   "job_id": "dev-data-142",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1138.2,
+   "new": 1374.0,
+   "band": [
+    1190.0,
+    1610.0
+   ]
+  },
+  {
+   "job_id": "dev-data-143",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1270.2,
+   "new": 1611.0,
+   "band": [
+    1270.0,
+    1720.0
+   ]
+  },
+  {
+   "job_id": "dev-data-148",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 868.2,
+   "new": 887.0,
+   "band": [
+    710.0,
+    960.0
+   ]
+  },
+  {
+   "job_id": "dev-data-149",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 835.2,
+   "new": 827.0,
+   "band": [
+    670.0,
+    900.0
+   ]
+  },
+  {
+   "job_id": "dev-data-151",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1048.2,
+   "new": 1211.0,
+   "band": [
+    920.0,
+    1250.0
+   ]
+  },
+  {
+   "job_id": "dev-data-152",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1750.2,
+   "new": 2477.0,
+   "band": [
+    1890.0,
+    2550.0
+   ]
+  },
+  {
+   "job_id": "dev-data-153",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 30.0,
+   "new": 39.5,
+   "band": [
+    29.8,
+    40.2
+   ]
+  },
+  {
+   "job_id": "dev-data-155",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 30.0,
+   "new": 38.9,
+   "band": [
+    29.8,
+    40.2
+   ]
+  },
+  {
+   "job_id": "dev-data-156",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 30.0,
+   "new": 37.9,
+   "band": [
+    29.8,
+    40.2
+   ]
+  },
+  {
+   "job_id": "dev-data-160",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1015.2,
+   "new": 1152.0,
+   "band": [
+    920.0,
+    1240.0
+   ]
+  },
+  {
+   "job_id": "dev-data-161",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 30.0,
+   "new": 31.9,
+   "band": [
+    29.8,
+    40.2
+   ]
+  },
+  {
+   "job_id": "dev-data-164",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1072.2,
+   "new": 1255.0,
+   "band": [
+    1010.0,
+    1370.0
+   ]
+  },
+  {
+   "job_id": "dev-data-165",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 30.0,
+   "new": 36.2,
+   "band": [
+    29.8,
+    40.2
+   ]
+  },
+  {
+   "job_id": "dev-data-166",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": false,
+   "old": 25.5,
+   "new": 30.0,
+   "band": [
+    20.8,
+    28.2
+   ]
+  },
+  {
+   "job_id": "dev-data-168",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 30.0,
+   "new": 36.2,
+   "band": [
+    29.8,
+    40.2
+   ]
+  },
+  {
+   "job_id": "dev-data-169",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1231.2,
+   "new": 1541.0,
+   "band": [
+    1370.0,
+    1850.0
+   ]
+  },
+  {
+   "job_id": "dev-data-171",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 745.2,
+   "new": 665.0,
+   "band": [
+    650.0,
+    890.0
+   ]
+  },
+  {
+   "job_id": "dev-data-172",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 859.2,
+   "new": 871.0,
+   "band": [
+    650.0,
+    890.0
+   ]
+  },
+  {
+   "job_id": "dev-data-173",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": false,
+   "old": 1345.2,
+   "new": 1747.0,
+   "band": [
+    1250.0,
+    1680.0
+   ]
+  },
+  {
+   "job_id": "dev-data-174",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 30.0,
+   "new": 36.8,
+   "band": [
+    29.8,
+    40.2
+   ]
+  },
+  {
+   "job_id": "dev-data-176",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1819.2,
+   "new": 2601.0,
+   "band": [
+    2130.0,
+    2880.0
+   ]
+  },
+  {
+   "job_id": "dev-data-180",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 952.2,
+   "new": 1038.0,
+   "band": [
+    850.0,
+    1160.0
+   ]
+  },
+  {
+   "job_id": "dev-data-181",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1342.2,
+   "new": 1741.0,
+   "band": [
+    1430.0,
+    1930.0
+   ]
+  },
+  {
+   "job_id": "dev-data-183",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 694.2,
+   "new": 573.0,
+   "band": [
+    480.0,
+    640.0
+   ]
+  },
+  {
+   "job_id": "dev-data-185",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 907.2,
+   "new": 957.0,
+   "band": [
+    840.0,
+    1140.0
+   ]
+  },
+  {
+   "job_id": "dev-data-191",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 754.2,
+   "new": 681.0,
+   "band": [
+    640.0,
+    870.0
+   ]
+  },
+  {
+   "job_id": "dev-data-193",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1732.2,
+   "new": 2444.0,
+   "band": [
+    1850.0,
+    2500.0
+   ]
+  },
+  {
+   "job_id": "dev-data-194",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": false,
+   "old": 1198.2,
+   "new": 1482.0,
+   "band": [
+    1080.0,
+    1470.0
+   ]
+  },
+  {
+   "job_id": "dev-data-195",
+   "type": "hourly",
+   "old_in": true,
+   "new_in": true,
+   "old": 30.0,
+   "new": 36.2,
+   "band": [
+    29.8,
+    40.2
+   ]
+  },
+  {
+   "job_id": "dev-data-196",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 739.2,
+   "new": 654.0,
+   "band": [
+    500.0,
+    680.0
+   ]
+  },
+  {
+   "job_id": "dev-data-197",
+   "type": "fixed",
+   "old_in": true,
+   "new_in": true,
+   "old": 1006.2,
+   "new": 1136.0,
+   "band": [
+    980.0,
+    1330.0
+   ]
+  },
+  {
+   "job_id": "dev-data-198",
+   "type": "fixed",
+   "old_in": false,
+   "new_in": true,
+   "old": 1267.2,
+   "new": 1606.0,
+   "band": [
+    1290.0,
+    1740.0
+   ]
+  }
+ ]
+}
