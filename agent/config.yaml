@@ -107,7 +107,7 @@ rag:
   k: 8
   corrective:
     base: v3_rerank
-    weak_threshold: 0.0            # cross-encoder logit below which a requirement's evidence is "weak"
+    weak_threshold: -7.1           # calibrated: evals/results/grader_calibration.json (F1 0.986)
     max_requeries: 1
 
 # ------------------------------------------------------------------------------------ budgets

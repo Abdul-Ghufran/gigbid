@@ -1,0 +1,14 @@
+{
+ "generated_by": "evals/runners/calibrate_grader.py",
+ "n_requirements": 710,
+ "positives": 512,
+ "best": {
+  "threshold": -7.1,
+  "lexical_net": true,
+  "f1": 0.9855,
+  "accuracy": 0.9789,
+  "tp": 508,
+  "fp": 11,
+  "fn": 4
+ }
+}
