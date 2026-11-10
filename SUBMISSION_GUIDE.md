@@ -7,7 +7,7 @@ Do them in this order; each step says how long it takes.
 
 ## What is already done (no action needed)
 - Full system built, tested and pushed to **https://github.com/Abdul-Ghufran/gigbid** (all commits under your name only).
-- 45 automated tests + 6 Playwright end-to-end tests pass (report: `docs/playwright-report.pdf`); ruff lint clean; repo-rule checks pass.
+- 50 automated tests + 6 Playwright end-to-end tests pass (report: `docs/playwright-report.pdf`); ruff lint clean; repo-rule checks pass.
 - Evaluations run and stored in `evals/results/`: RAG variants V0–V9 + ablation, claim verifier, 600-job decisions, pricing,
   change request, R&D A (tool granularity), injection defence, X2 A/B test, retrieval-vs-outcome significance tests.
 - An unattended finisher (`tools/finish_evals.py`) ran the live-model runs (live proposals, R&D C, model profiles) and
