@@ -118,6 +118,9 @@ llm:
   temperature: 0.2
   cache: true
 
+verification:
+  semantic: bi_encoder             # cross_encoder | bi_encoder - equal F1 on verifier_eval; bi-encoder needs no reranker in RAM
+
 # ---------------------------------------------------------------------------------------- RAG
 rag:
   shipped_variant: v8_corrective   # chosen by evals/results/rag_variants.json (see docs/DATA_CARD.md)
@@ -147,8 +150,8 @@ thresholds:
   max_risk: 0.6
   scam_risk: 0.75
   weak_evidence_fit_cap: 0.4
-  claim_support_min: 0.0           # cross-encoder logit to count a claim as supported
-  claim_partial_min: -3.0
+  claim_support_min: 0.8           # bi-encoder cosine; evals/results/verifier_eval.json (F1 0.99, same as cross-encoder)
+  claim_partial_min: 0.65
   proposal_max_words: 260
   proposal_min_words: 90
   critic_pass_score: 7

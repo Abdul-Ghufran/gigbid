@@ -1,0 +1,50 @@
+{
+ "generated_by": "evals/runners/verifier_eval.py",
+ "n_claims": 302,
+ "by_kind": {
+  "invented": 51,
+  "true": 51,
+  "true_skill": 51,
+  "wrong_citation": 51,
+  "wrong_number": 47,
+  "wrong_tool": 51
+ },
+ "modes": {
+  "cross_encoder": {
+   "t_support": 0.0,
+   "t_partial": -3.0,
+   "f1": 0.6885,
+   "precision": 1.0,
+   "recall": 0.525,
+   "tp": 105,
+   "fp": 0,
+   "fn": 95,
+   "accuracy_by_kind": {
+    "invented": 1.0,
+    "true": 1.0,
+    "true_skill": 1.0,
+    "wrong_citation": 1.0,
+    "wrong_number": 0.0,
+    "wrong_tool": 0.059
+   }
+  },
+  "bi_encoder": {
+   "t_support": 0.8,
+   "t_partial": 0.65,
+   "f1": 0.5965,
+   "precision": 1.0,
+   "recall": 0.425,
+   "tp": 85,
+   "fp": 0,
+   "fn": 115,
+   "accuracy_by_kind": {
+    "invented": 0.686,
+    "true": 1.0,
+    "true_skill": 1.0,
+    "wrong_citation": 0.98,
+    "wrong_number": 0.0,
+    "wrong_tool": 0.0
+   }
+  }
+ }
+}

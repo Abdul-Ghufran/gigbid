@@ -40,10 +40,32 @@ def _nums(t: str) -> set[str]:
     return {n.lower().replace(",", "").replace("$", "") for n in NUM.findall(t)}
 
 
+def _default_mode() -> str:
+    try:
+        from agent.config import config
+
+        return config().get("verification", {}).get("semantic", "cross_encoder")
+    except Exception:
+        return "cross_encoder"
+
+
+SEMANTIC = {"mode": _default_mode()}  # bi_encoder: cosine with the embedding model (no reranker in memory)
+
+
+def _semantic(claim: str, windows: list[str]) -> list[float]:
+    if SEMANTIC["mode"] == "bi_encoder":
+        from rag.index.core import embeddings
+
+        q = embeddings().embed([claim], query=True)[0]
+        m = embeddings().embed(windows)
+        return [float(x) for x in m @ q]
+    return rerank(claim, windows)
+
+
 def _best_passage(claim: str, text: str) -> tuple[float, str]:
     paras = [p for p in re.split(r"\n{1,}", text) if len(p.strip()) > 15] or [text]
     windows = paras + [text[:900]]
-    scores = rerank(claim, windows)
+    scores = _semantic(claim, windows)
     i = max(range(len(scores)), key=lambda j: scores[j])
     return scores[i], windows[i]
 
@@ -61,10 +83,12 @@ def check_claim(claim: str, evidence: dict[str, str], t_support: float, t_partia
         ev_skills = set(extract_skills(txt, code=True))
         nums_ok = claim_nums <= ev_nums
         skills_ok = claim_skills <= ev_skills
-        if sem >= t_support and nums_ok and skills_ok:
+        if not (nums_ok and skills_ok):
+            label = "unsupported"  # a number or tool the evidence does not show is a fabrication (R5), not a detail
+        elif sem >= t_support:
             label = "supported"
-        elif sem >= t_partial and (nums_ok or skills_ok):
-            label = "partly_supported"
+        elif sem >= t_partial:
+            label = "partly_supported"  # right facts, but the evidence only loosely describes the claim
         else:
             label = "unsupported"
         reason = []

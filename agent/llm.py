@@ -211,7 +211,9 @@ async def _call(spec: dict, messages: list[dict], json_mode: bool, node: str, ma
             if r.status_code == 429 or r.status_code >= 500:
                 wait = float(r.headers.get("retry-after", 2 ** attempt * 2))
                 last = LLMUnavailable(f"{spec['model']} HTTP {r.status_code}")
-                await asyncio.sleep(min(wait, 30))
+                if wait > 20:  # daily quota or long throttle: fail over to the fallback model now, do not stall the run
+                    raise last
+                await asyncio.sleep(wait)
                 continue
             if r.status_code >= 400:
                 raise LLMUnavailable(f"{spec['model']} HTTP {r.status_code}: {r.text[:200]}")

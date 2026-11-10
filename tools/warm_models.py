@@ -4,7 +4,7 @@ import os
 
 os.environ.setdefault("LLM_OFFLINE", "1")
 from rag.corpus import get_corpus  # noqa: E402
-from rag.index.core import embeddings, rerank  # noqa: E402
+from rag.index.core import embeddings  # noqa: E402
 
 for p in ("ai", "web", "data"):
     c = get_corpus(p)
@@ -12,5 +12,5 @@ for p in ("ai", "web", "data"):
     c.dense("structured", multivector=True)
     c.proposal_index()
 embeddings().save()
-rerank("warm up", ["warm up"])
+# reranker is not loaded in production (verification uses the bi-encoder; see agent/config.yaml)
 print("models and corpus embeddings ready")

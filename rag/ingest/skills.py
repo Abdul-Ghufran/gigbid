@@ -27,8 +27,16 @@ def _patterns() -> list[tuple[str, list[re.Pattern], list[str]]]:
     return out
 
 
+DASHES = str.maketrans({"‐": "-", "‑": "-", "‒": "-", "–": "-", "—": "-", " ": " "})
+
+
+def normalise(text: str) -> str:
+    """LLMs emit non-breaking hyphens / spaces ("scikit‑learn"); map them to ASCII before matching."""
+    return text.translate(DASHES)
+
+
 def extract_skills(text: str, code: bool = False) -> list[str]:
-    low = text.lower()
+    low = normalise(text).lower()
     found = []
     for skill, pats, signals in _patterns():
         if any(p.search(low) for p in pats) or (code and any(s and s in low for s in signals)):
