@@ -44,8 +44,8 @@ def template_draft(job: dict, spec: dict, fit: dict, price: dict, version: int, 
             elif e["item_id"] not in {p[0] for p in proofs}:
                 proofs.append((e["item_id"], f"My {e['type'].replace('_', ' ')} \"{e['title']}\" covers {m['requirement'].lower().rstrip('.')} [{e['item_id']}]."))
     skills = ", ".join((spec.get("required_skills") or job.get("skills_listed") or [])[:3])
-    opening = (f"Your post \"{job.get('title', 'this project')}\" needs {skills or 'a reliable specialist'}, "
-               f"and I have shipped close to this before.")
+    # v3: the opening restates the client's need without an (uncited) experience claim, so verification keeps it
+    opening = f"Your post \"{job.get('title', 'this project')}\" needs {skills or 'a reliable specialist'}, and this is work I can show evidence for below."
     body = " ".join(p[1] for p in proofs[:3]) or "I would start with a short scoping call to confirm the details."
     approach = ("I would start by confirming the success criteria with you, ship a first working version early, "
                 "and keep you updated at every milestone.")

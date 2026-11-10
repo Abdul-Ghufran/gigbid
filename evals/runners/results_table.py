@@ -26,7 +26,7 @@ def main():
     rag = load("rag_variants_offline")
     abl = load("rag_ablation")
     full = next((r for r in (abl or {}).get("results", []) if r["config"].startswith("full")), None)
-    props = {t: (load(f"proposals_{t}") or {}).get("summary") for t in ("v0_fixedwriter_v2", "best_fixedwriter_v2", "v0_fixedwriter", "best_fixedwriter", "best_live")}
+    props = {t: (load(f"proposals_{t}") or {}).get("summary") for t in ("v0_fixedwriter_v3", "best_fixedwriter_v3", "v0_fixedwriter_v2", "best_fixedwriter_v2", "v0_fixedwriter", "best_fixedwriter", "best_live")}
     judge = (load("judge_scores") or {}).get("sets", {})
 
     # ---- B5 headline table
@@ -34,8 +34,8 @@ def main():
             "| Variant | Evidence Recall@5 | nDCG@10 | Unsupported claims / proposal (before verification) | Judge score (1-5) | GigSim reply rate | p95 latency (s) | Cost / proposal (USD) |",
             "|---|---|---|---|---|---|---|---|"]
     v0 = next((r for r in (rag or {}).get("results", []) if r["variant"] == "v0_naive"), None)
-    for label, retr, pt, jt in (("V0 naive dense", v0["overall"] if v0 else None, props["v0_fixedwriter_v2"], judge.get("v0_fixedwriter_v2")),
-                                ("Shipped: V8 corrective over V9 skill graph", full, props["best_fixedwriter_v2"], judge.get("best_fixedwriter_v2"))):
+    for label, retr, pt, jt in (("V0 naive dense", v0["overall"] if v0 else None, props.get("v0_fixedwriter_v3") or props["v0_fixedwriter_v2"], judge.get("v0_fixedwriter_v2")),
+                                ("Shipped: V8 corrective over V9 skill graph", full, props.get("best_fixedwriter_v3") or props["best_fixedwriter_v2"], judge.get("best_fixedwriter_v2"))):
         live = props.get("best_live") if label.startswith("Shipped") else None
         out.append(f"| {label} | {f(retr and retr['recall@5'])} | {f(retr and retr['ndcg@10'])} | {f(pt and pt['unsupported_per_proposal_before'], 2)} | "
                    f"{f(jt and jt['mean_judge_score'], 2)} | {f(pt and pt['gigsim_reply_rate'], pct=True)} | "
