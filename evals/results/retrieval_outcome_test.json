@@ -1,0 +1,47 @@
+{
+ "generated_by": "evals/runners/retrieval_outcome_test.py",
+ "generated_at": "2026-11-11 02:42",
+ "n_jobs": 90,
+ "sets": [
+  "best_fixedwriter_v3",
+  "v0_fixedwriter_v3"
+ ],
+ "replied": {
+  "shipped": 0.6444,
+  "v0": 0.7222,
+  "mcnemar": {
+   "only_v0": 18,
+   "only_shipped": 11,
+   "p": 0.2649
+  }
+ },
+ "interview": {
+  "shipped": 0.3333,
+  "v0": 0.2111,
+  "mcnemar": {
+   "only_v0": 11,
+   "only_shipped": 22,
+   "p": 0.0801
+  }
+ },
+ "hired": {
+  "shipped": 0.1333,
+  "v0": 0.1444,
+  "mcnemar": {
+   "only_v0": 11,
+   "only_shipped": 10,
+   "p": 1.0
+  }
+ },
+ "client_score": {
+  "shipped": 1.25,
+  "v0": 1.0921,
+  "paired_t": 6.973,
+  "p": 0.0
+ },
+ "unsupported_before": {
+  "shipped": 0.3444,
+  "v0": 1.4778,
+  "wilcoxon_p": 0.0
+ }
+}

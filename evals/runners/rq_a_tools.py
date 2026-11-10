@@ -125,15 +125,26 @@ async def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", default="small")
     a = ap.parse_args()
-    spec = model_for(a.model)
+    from agent.config import config
+
+    spec = {"alias": a.model, **config()["models"][a.model]}  # a model ALIAS (small = gpt-oss-20b), not a node name
     best = await load_schemas()
     ts = tasks()
     results = {}
+    ckpt = H.RESULTS / "rq_a_tools.partial.jsonl"
+    done = {}
+    if ckpt.exists():
+        for line in ckpt.read_text(encoding="utf-8").splitlines():
+            x = json.loads(line)
+            done[(x["kind"], x["task"])] = x
     async with httpx.AsyncClient(timeout=60) as http:
         for kind in ("fine", "coarse", "best"):
             tools = tools_payload(kind, best)
             rows = []
             for t in ts:
+                if (kind, t["text"]) in done:
+                    rows.append(done[(kind, t["text"])])
+                    continue
                 body = {"model": spec["model"], "messages": [
                     {"role": "system", "content": "You are a freelancer's assistant. Call exactly one tool to serve the request."},
                     {"role": "user", "content": t["text"]}], "tools": tools, "tool_choice": "required", "max_tokens": 400}
@@ -143,6 +154,7 @@ async def main():
                     r = await http.post(f"{_base_url(spec)}/chat/completions", json=body, headers={"Authorization": f"Bearer {_api_key(spec)}"})
                     if r.status_code != 429:
                         break
+                    print("429:", r.text[:220], "retry-after", r.headers.get("retry-after"), flush=True)
                     await asyncio.sleep(min(90, float(r.headers.get("retry-after", 10)) + 1))
                 d = r.json()
                 used = (d.get("usage") or {}).get("total_tokens") or 2000
@@ -150,8 +162,11 @@ async def main():
                 calls = (d.get("choices") or [{}])[0].get("message", {}).get("tool_calls") or []
                 call = calls[0]["function"] if calls else None
                 tok, arg = score(kind, call, t)
-                rows.append({"task": t["text"], "call": call, "tool_ok": tok, "args_ok": arg,
+                rows.append({"kind": kind, "task": t["text"], "call": call, "tool_ok": tok, "args_ok": arg,
                              "tokens": d.get("usage", {}).get("total_tokens"), "status": r.status_code})
+                if r.status_code == 200:
+                    with open(ckpt, "a", encoding="utf-8") as fh:
+                        fh.write(json.dumps(rows[-1]) + "\n")
                 await asyncio.sleep(2.2)
             results[kind] = {"n_tools": len(tools), "tool_selection_accuracy": H.mean([r["tool_ok"] for r in rows]),
                              "argument_accuracy": H.mean([r["args_ok"] for r in rows]),
