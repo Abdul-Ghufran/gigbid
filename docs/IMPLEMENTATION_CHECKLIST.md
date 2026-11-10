@@ -1,21 +1,21 @@
-# Student Implementation Checklist
+# Implementation checklist (status)
 
-- [ ] Read the assignment and the supplied GigSim documentation.
-- [ ] Implement the marketplace port and GigSim adapter.
-- [ ] Implement Portfolio MCP tools, resources and prompts.
-- [ ] Implement Marketplace MCP read/write tools with schemas and idempotency.
-- [ ] Implement Workspace MCP tools or documented local mock.
-- [ ] Ingest CVs, case studies, READMEs, code, reviews and past proposals.
-- [ ] Implement V0 dense retrieval and at least four additional required variants.
-- [ ] Implement claim splitting and evidence verification.
-- [ ] Implement the bid graph with parallel analysis branches.
-- [ ] Implement the conversation graph.
-- [ ] Add bounded Critic loop and Compliance Guard.
-- [ ] Add LangGraph interrupts for all external actions and Connects spend.
-- [ ] Add durable checkpointing and crash/resume test.
-- [ ] Build all required UI screens and approval interactions.
-- [ ] Add worker scheduling, tracing, budgets and guardrails.
-- [ ] Add unit, integration, contract and Playwright tests.
-- [ ] Run evaluations and commit reproducible results.
-- [ ] Deploy and verify reviewer access.
-- [ ] Complete report, demo, technical write-up and AI usage disclosure.
+- [x] Read the assignment; the starter kit had no GigSim — documented stand-in built and frozen (`gigsim/`, `docs/DATA_CARD.md`).
+- [x] Marketplace port with GigSim and live Upwork adapters (`mcp_servers/marketplace/adapters/`).
+- [x] Portfolio MCP tools, resource templates and prompts; published via `uvx` (`mcp_servers/portfolio/README.md`).
+- [x] Marketplace MCP read/write tools with schemas, annotations, idempotency, dry_run, bearer auth, rate limit, audit log.
+- [x] Workspace MCP tools (documented mock backend).
+- [x] Ingestion of CVs (PDF), case studies, READMEs and code (local + GitHub MCP), reviews and past proposals.
+- [x] V0 + V1–V9 retrieval variants; one command reruns the comparison (`python -m evals.runners.rag_eval`).
+- [x] Claim splitting and verification with rewrite-then-reverify (`rag/verify.py`, `agent/nodes/verifier.py`).
+- [x] Bid graph with parallel Send branches; conversation graph.
+- [x] Bounded Critic loop and blocking Compliance Guard.
+- [x] Interrupts before every external action and Connects spend; resume from the UI.
+- [x] Postgres checkpointing; crash/resume exactly-once test.
+- [x] All required UI screens; SSE streaming; typed client generated from OpenAPI.
+- [x] Worker scheduling (Arq + in-process fallback), tracing (run viewer + Langfuse), budgets, guardrails.
+- [x] Unit, integration, contract (schema snapshot) and Playwright tests; CI workflows with eval gate.
+- [x] Evaluations run, results committed under `evals/results/`.
+- [ ] Deploy and verify reviewer access — follow `SUBMISSION_GUIDE.md` steps 2–3 (needs your Neon/Render accounts).
+- [x] Report PDF, demo video, technical write-up draft, AI usage disclosure.
+- [ ] Your own judge labels (30 items), classmates' panel, MCP Inspector screenshots, publishing the write-up/video — `SUBMISSION_GUIDE.md`.
