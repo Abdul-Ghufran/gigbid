@@ -61,10 +61,11 @@ account `reviewer@gigbid.app` / `demo-reviewer-pass`). Open http://127.0.0.1:803
   reason; open the item in `evals/datasets/judge_calibration_sheet.csv` (key: `judge_key.json`).
 
 ## 9. "Where does the single-agent baseline beat your graph, and would you ever ship it?"
-- `evals/results/rq_c_architectures.json → accuracy_by_kind / mean_tokens / p95_latency_s`: the ReAct agent is cheaper
-  and faster on clear skips (scams, off-domain posts) because it can stop after one tool call. I would ship it only as a
-  first-pass triage filter, never as the writer: it has no independent verifier or compliance pass and depends on the
-  model emitting valid tool calls.
+- Open `evals/results/rq_c_architectures.json → accuracy_by_kind / mean_tokens / p95_latency_s` and read off the job
+  kinds where ReAct matches or beats the graph (typically clear skips such as scams and off-domain posts, where it can
+  stop after one or two tool calls). I would ship it only as a first-pass triage filter, never as the writer: it has no
+  independent verifier or compliance pass, and it depends on the model emitting valid tool calls (Qwen3 failed at that
+  outright; see `rejected_tool_calls`).
 
 ## 10. "How many lines changed to absorb the change request? Show the diff."
 - `git log --oneline --grep "Change request"` then `git show <sha> --stat`: `agent/config.yaml` +4/−4 and

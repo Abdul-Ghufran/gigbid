@@ -128,13 +128,18 @@ are audited by the same verifier and policy checks (`rq_c_architectures.py`).
 
 {{table:R&D C.}}
 
-**Reading.** Bid/skip accuracy: ReAct {{c_react_acc}}, supervisor {{c_sup_acc}}, graph {{c_graph_acc}}. The tool-calling
-baselines are cheaper on jobs they skip early, but their correctness depends on the model emitting valid tool calls —
-Qwen3 on Groq produced malformed tool names often enough that we had to add a retry wrapper and count rejections, while
-the graph calls tools deterministically. The graph's advantages are structural: the verifier and Compliance Guard run on
-every letter regardless of what the model decided, and its rule-based risk gate is immune to injected instructions.
-Where the single agent wins (fewer tokens and lower latency on clear skips), it would be a reasonable first-pass filter,
-but I would not ship it to write proposals.
+**Reading.** Bid/skip accuracy: ReAct {{c_react_acc}}, supervisor {{c_sup_acc}}, graph {{c_graph_acc}} (best:
+{{c_best_acc_arch}}). Mean tokens per job: ReAct {{c_react_tok}}, supervisor {{c_sup_tok}}, graph {{c_graph_tok}} (fewest:
+{{c_fewest_tokens_arch}}); fastest p95: {{c_fastest_arch}}; fewest unsupported claims per letter: {{c_fewest_unsup_arch}}.
+Letters shipped with a policy violation: ReAct {{c_react_viol}}, graph {{c_graph_viol}}. Rejected (malformed) tool calls:
+ReAct {{c_react_rej}}, supervisor {{c_sup_rej}}; the graph calls tools deterministically, so it has none by construction.
+In an earlier attempt on Qwen3.8-27B the tool-calling baselines failed outright — the model invented tool names
+(`search_eidence`) that Groq rejected — which is why the comparison was re-run on gpt-oss-120b for all three architectures.
+The graph's structural guarantees hold regardless of the scores: the verifier and the Compliance Guard run on every letter
+whatever the model decided, and its rule-based risk gate is not steerable by injected text. Where a baseline is cheaper or
+faster (see the per-kind accuracy in `rq_c_architectures.json`), it is a candidate first-pass triage filter; I would not
+ship it to write proposals without the verifier and compliance stages. Sample size is small ({{c_jobs}} jobs) because of
+the free-tier token budget, so differences of one or two jobs are not meaningful.
 
 ## 6. The change request (2 Nov 2026)
 

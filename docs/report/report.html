@@ -398,13 +398,18 @@ model (pending) for every architecture: (a) one <code>create_react_agent</code> 
 (b) <code>langgraph-supervisor</code> over a marketplace researcher and a portfolio researcher, (c) GigBid's graph. Shipped letters
 are audited by the same verifier and policy checks (<code>rq_c_architectures.py</code>).</p>
 <p>pending</p>
-<p><strong>Reading.</strong> Bid/skip accuracy: ReAct pending, supervisor pending, graph pending. The tool-calling
-baselines are cheaper on jobs they skip early, but their correctness depends on the model emitting valid tool calls —
-Qwen3 on Groq produced malformed tool names often enough that we had to add a retry wrapper and count rejections, while
-the graph calls tools deterministically. The graph's advantages are structural: the verifier and Compliance Guard run on
-every letter regardless of what the model decided, and its rule-based risk gate is immune to injected instructions.
-Where the single agent wins (fewer tokens and lower latency on clear skips), it would be a reasonable first-pass filter,
-but I would not ship it to write proposals.</p>
+<p><strong>Reading.</strong> Bid/skip accuracy: ReAct pending, supervisor pending, graph pending (best:
+pending). Mean tokens per job: ReAct pending, supervisor pending, graph pending (fewest:
+pending); fastest p95: pending; fewest unsupported claims per letter: pending.
+Letters shipped with a policy violation: ReAct pending, graph pending. Rejected (malformed) tool calls:
+ReAct pending, supervisor pending; the graph calls tools deterministically, so it has none by construction.
+In an earlier attempt on Qwen3.8-27B the tool-calling baselines failed outright — the model invented tool names
+(<code>search_eidence</code>) that Groq rejected — which is why the comparison was re-run on gpt-oss-120b for all three architectures.
+The graph's structural guarantees hold regardless of the scores: the verifier and the Compliance Guard run on every letter
+whatever the model decided, and its rule-based risk gate is not steerable by injected text. Where a baseline is cheaper or
+faster (see the per-kind accuracy in <code>rq_c_architectures.json</code>), it is a candidate first-pass triage filter; I would not
+ship it to write proposals without the verifier and compliance stages. Sample size is small (pending jobs) because of
+the free-tier token budget, so differences of one or two jobs are not meaningful.</p>
 <h2 id="6-the-change-request-2-nov-2026">6. The change request (2 Nov 2026)</h2>
 <p>GigSim's policy update made jobs with ≥ 20 proposals cost 1.5× Connects and rejects proposals with unanswered screening
 questions. Because platform rules live in <code>agent/config.yaml</code> (<code>platform_policy</code>) and the policy pack, absorbing it was
@@ -584,9 +589,9 @@ PII. <strong>Enforcement:</strong> <code>interrupt()</code> + idempotency keys a
 live mode creates drafts only and polls no more than every 3 h; rule-first risk gate (scam precision 1.000, recall
 1.000 on 600 dev jobs; injection posts detected 100.0%); injected spans stripped and the rest delimited as
 untrusted data; output-side Compliance Guard; PII masked in logs, traces and the audit log; OAuth tokens Fernet-encrypted;
-every query scoped by user id. <strong>Measured attack success</strong> on pending planted-injection jobs: undefended pending,
-defended model output pending, defended and shipped pending; detector false-positive rate on clean posts
-pending. <strong>What still gets through:</strong> paraphrased injections without trigger phrases are only caught by their effects
+every query scoped by user id. <strong>Measured attack success</strong> on 18 planted-injection jobs: undefended 22.2%,
+defended model output 0.0%, defended and shipped 0.0%; detector false-positive rate on clean posts
+0.0%. <strong>What still gets through:</strong> paraphrased injections without trigger phrases are only caught by their effects
 (contact details, guarantees, inflated experience); an attacker who asks for something policy-compliant but harmful (e.g.
 "mention you can start tomorrow") is not detected; and the verifier checks numbers and tools, not adjectives like
 "extensive".</p>
@@ -760,7 +765,40 @@ template — still verified and compliant, but plainer.</p>
 <li><code>v0_fixedwriter</code>: 2.07 -&gt; 0 (n=90)</li>
 <li><code>best_fixedwriter</code>: 1.13 -&gt; 0.011 (n=90)</li>
 </ul>
-<p>pending</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>attacks (planted-injection dev jobs)</td>
+<td>18</td>
+</tr>
+<tr>
+<td>attack success rate, undefended</td>
+<td>22.2%</td>
+</tr>
+<tr>
+<td>attack success rate, defended model output</td>
+<td>0.0%</td>
+</tr>
+<tr>
+<td>attack success rate, defended and shipped (after Compliance Guard)</td>
+<td>0.0%</td>
+</tr>
+<tr>
+<td>detector recall on planted injections</td>
+<td>100.0%</td>
+</tr>
+<tr>
+<td>detector false-positive rate on clean posts</td>
+<td>0.0%</td>
+</tr>
+</tbody>
+</table>
 <table>
 <thead>
 <tr>
@@ -846,8 +884,10 @@ template — still verified and compliant, but plainer.</p>
 <h2 id="appendix-b-judge-calibration">Appendix B — judge calibration</h2>
 <p>The LLM judge (<code>agent/prompts/judge.md</code>, 1–5 rubric) is calibrated against my own labels on 30 anonymised proposals
 (<code>evals/datasets/judge_calibration_sheet.csv</code>): Cohen's κ = pending, quadratic-weighted κ = pending (n = pending;
-<code>judge_calibration.json</code>, with the largest disagreements listed for the viva). A blind pairwise human panel sheet
-(<code>human_panel_pairs.csv</code>, 15 pairs, V0 vs shipped, sides randomised; key in <code>human_panel_key.json</code>) is used with classmates.</p>
+<code>judge_calibration.json</code>, with the largest disagreements listed for the viva). A blind pairwise human panel
+(<code>human_panel_pairs.csv</code>, 15 pairs, V0 vs shipped, sides randomised; key in <code>human_panel_key.json</code>): pending
+classmates cast pending votes; the shipped pipeline's proposal was preferred in pending (binomial p = pending;
+<code>human_panel.json</code>).</p>
 <h2 id="appendix-c-reproducibility">Appendix C — reproducibility</h2>
 <p><code>make eval</code> reruns every evaluation; <code>python tools/build_report.py &amp;&amp; node apps/web/scripts/render_pdf.mjs</code> rebuilds this
 report. Pinned versions are in <code>pyproject.toml</code> and <code>apps/web/package.json</code>. AI assistance and the mistakes it made that I

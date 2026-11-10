@@ -54,8 +54,18 @@ def values():
     prof = j("model_profiles").get("profiles", {})
     kap = j("judge_calibration")
     gap = j("reply_gap_analysis")
+    def arg(metric, best=max):
+        vals = {k: r.get(metric) for k, r in c.items() if isinstance(r.get(metric), (int, float))}
+        return best(vals, key=vals.get) if vals else "pending"
+
     out = {
-        "v0_r5": num(get(v, "v0_naive.overall.recall@5")), "v0_mrr": num(get(v, "v0_naive.overall.mrr")), "v0_ndcg": num(get(v, "v0_naive.overall.ndcg@10")),
+        "c_best_acc_arch": arg("bid_skip_accuracy"), "c_fewest_tokens_arch": arg("mean_tokens", min),
+        "c_fastest_arch": arg("p95_latency_s", min), "c_fewest_unsup_arch": arg("unsupported_claims_per_letter", min),
+        "c_react_tok": num(get(c, "react.mean_tokens"), 0), "c_graph_tok": num(get(c, "graph.mean_tokens"), 0),
+        "c_sup_tok": num(get(c, "supervisor.mean_tokens"), 0),
+        "c_react_viol": str(get(c, "react.letters_with_violations", "pending")), "c_graph_viol": str(get(c, "graph.letters_with_violations", "pending")),
+        "c_react_rej": str(get(c, "react.rejected_tool_calls", "pending")), "c_sup_rej": str(get(c, "supervisor.rejected_tool_calls", "pending")),
+        "v0_r5":num(get(v, "v0_naive.overall.recall@5")), "v0_mrr": num(get(v, "v0_naive.overall.mrr")), "v0_ndcg": num(get(v, "v0_naive.overall.ndcg@10")),
         "v0_r5_many": num(get(v, "v0_naive.many_requirements(>=4).recall@5")),
         "v1_r5": num(get(v, "v1_decompose.overall.recall@5")), "v2_r5": num(get(v, "v2_hybrid.overall.recall@5")),
         "v3_r5": num(get(v, "v3_rerank.overall.recall@5")), "v3_p95": num(get(v, "v3_rerank.latency_s.p95"), 2),

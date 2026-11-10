@@ -190,13 +190,18 @@ pending
 
 
 
-**Reading.** Bid/skip accuracy: ReAct pending, supervisor pending, graph pending. The tool-calling
-baselines are cheaper on jobs they skip early, but their correctness depends on the model emitting valid tool calls —
-Qwen3 on Groq produced malformed tool names often enough that we had to add a retry wrapper and count rejections, while
-the graph calls tools deterministically. The graph's advantages are structural: the verifier and Compliance Guard run on
-every letter regardless of what the model decided, and its rule-based risk gate is immune to injected instructions.
-Where the single agent wins (fewer tokens and lower latency on clear skips), it would be a reasonable first-pass filter,
-but I would not ship it to write proposals.
+**Reading.** Bid/skip accuracy: ReAct pending, supervisor pending, graph pending (best:
+pending). Mean tokens per job: ReAct pending, supervisor pending, graph pending (fewest:
+pending); fastest p95: pending; fewest unsupported claims per letter: pending.
+Letters shipped with a policy violation: ReAct pending, graph pending. Rejected (malformed) tool calls:
+ReAct pending, supervisor pending; the graph calls tools deterministically, so it has none by construction.
+In an earlier attempt on Qwen3.8-27B the tool-calling baselines failed outright — the model invented tool names
+(`search_eidence`) that Groq rejected — which is why the comparison was re-run on gpt-oss-120b for all three architectures.
+The graph's structural guarantees hold regardless of the scores: the verifier and the Compliance Guard run on every letter
+whatever the model decided, and its rule-based risk gate is not steerable by injected text. Where a baseline is cheaper or
+faster (see the per-kind accuracy in `rq_c_architectures.json`), it is a candidate first-pass triage filter; I would not
+ship it to write proposals without the verifier and compliance stages. Sample size is small (pending jobs) because of
+the free-tier token budget, so differences of one or two jobs are not meaningful.
 
 ## 6. The change request (2 Nov 2026)
 
@@ -259,9 +264,9 @@ PII. **Enforcement:** `interrupt()` + idempotency keys at two layers; Marketplac
 live mode creates drafts only and polls no more than every 3 h; rule-first risk gate (scam precision 1.000, recall
 1.000 on 600 dev jobs; injection posts detected 100.0%); injected spans stripped and the rest delimited as
 untrusted data; output-side Compliance Guard; PII masked in logs, traces and the audit log; OAuth tokens Fernet-encrypted;
-every query scoped by user id. **Measured attack success** on pending planted-injection jobs: undefended pending,
-defended model output pending, defended and shipped pending; detector false-positive rate on clean posts
-pending. **What still gets through:** paraphrased injections without trigger phrases are only caught by their effects
+every query scoped by user id. **Measured attack success** on 18 planted-injection jobs: undefended 22.2%,
+defended model output 0.0%, defended and shipped 0.0%; detector false-positive rate on clean posts
+0.0%. **What still gets through:** paraphrased injections without trigger phrases are only caught by their effects
 (contact details, guarantees, inflated experience); an attacker who asks for something policy-compliant but harmful (e.g.
 "mention you can start tomorrow") is not detected; and the verifier checks numbers and tools, not adjectives like
 "extensive".
@@ -331,7 +336,14 @@ Unsupported claims per proposal before -> after verification:
 
 
 
-pending
+| Metric | Value |
+|---|---|
+| attacks (planted-injection dev jobs) | 18 |
+| attack success rate, undefended | 22.2% |
+| attack success rate, defended model output | 0.0% |
+| attack success rate, defended and shipped (after Compliance Guard) | 0.0% |
+| detector recall on planted injections | 100.0% |
+| detector false-positive rate on clean posts | 0.0% |
 
 
 
@@ -368,8 +380,10 @@ git show <change-request commit>: agent/config.yaml +4/-4, data/policy_pack/mark
 
 The LLM judge (`agent/prompts/judge.md`, 1–5 rubric) is calibrated against my own labels on 30 anonymised proposals
 (`evals/datasets/judge_calibration_sheet.csv`): Cohen's κ = pending, quadratic-weighted κ = pending (n = pending;
-`judge_calibration.json`, with the largest disagreements listed for the viva). A blind pairwise human panel sheet
-(`human_panel_pairs.csv`, 15 pairs, V0 vs shipped, sides randomised; key in `human_panel_key.json`) is used with classmates.
+`judge_calibration.json`, with the largest disagreements listed for the viva). A blind pairwise human panel
+(`human_panel_pairs.csv`, 15 pairs, V0 vs shipped, sides randomised; key in `human_panel_key.json`): pending
+classmates cast pending votes; the shipped pipeline's proposal was preferred in pending (binomial p = pending;
+`human_panel.json`).
 
 ## Appendix C — reproducibility
 
