@@ -152,6 +152,7 @@ async def main():
     ap.add_argument("--per-persona", type=int, default=10)
     ap.add_argument("--only", default="react,supervisor,graph")
     ap.add_argument("--profile", default="eval_qwen")
+    ap.add_argument("--aggregate-only", action="store_true", help="summarise the checkpointed rows without running new jobs")
     a = ap.parse_args()
     os.environ["MODEL_PROFILE"] = a.profile
     init_db()
@@ -171,7 +172,7 @@ async def main():
     for arch in archs:
         rows = done.setdefault(arch, [])
         for i, (p, job) in enumerate(jobs):
-            if any(r["job_id"] == job["job_id"] for r in rows):
+            if any(r["job_id"] == job["job_id"] for r in rows) or a.aggregate_only:
                 continue
             led = Ledger()
             ledger_var.set(led)
@@ -199,6 +200,8 @@ async def main():
                          "rejected_tool_calls": TOOL_CALL_ERRORS["count"] - errs0, "parsed": bool(out.get("decision"))})
             ckpt.write_text(json.dumps(done, indent=1), encoding="utf-8")
             print(arch, i + 1, len(jobs), job["job_id"], pred, rows[-1]["tokens"], "ok" if rows[-1]["correct"] else "WRONG", f"{secs:.0f}s", err or "", flush=True)
+        if not rows:
+            continue
         bids = [r for r in rows if r["pred"] == "bid"]
         results[arch] = {
             "n": len(rows), "errors": sum(1 for r in rows if r["error"]),
@@ -216,7 +219,7 @@ async def main():
             "p95_latency_s": H.pct([r["latency_s"] for r in rows], .95),
             "accuracy_by_kind": {k: H.mean([r["correct"] for r in rows if r["kind"] == k]) for k in sorted(KINDS)},
             "rows": rows}
-        H.write("rq_c_architectures", {"jobs": len(jobs), "profile": a.profile, "model": config()["models"][config()["profiles"][a.profile]["writer"]]["model"],
+        H.write("rq_c_architectures", {"jobs": len(jobs), "rows_completed": {k: v["n"] for k, v in results.items()}, "profile": a.profile, "model": config()["models"][config()["profiles"][a.profile]["writer"]]["model"],
                                          "results": results})
     print({k: {kk: v for kk, v in r.items() if kk not in ("rows", "accuracy_by_kind")} for k, r in results.items()})
 

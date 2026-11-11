@@ -71,7 +71,7 @@ def make_sheets():
 async def judge_one(job, proposal):
     p = prompt("judge")
     user = render(p["user"], job=f"{job['title']}\n{job['description'][:1200]}", proposal=proposal)
-    return await llm.structured("judge", p["system"], user, Verdict, max_tokens=300)
+    return await llm.structured("judge", p["system"], user, Verdict, max_tokens=1200)  # gpt-oss spends part of the budget on reasoning
 
 
 async def run_judge():

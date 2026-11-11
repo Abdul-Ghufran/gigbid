@@ -97,7 +97,8 @@ def values():
         "a_coarse_arg": pct(get(a, "coarse.argument_accuracy")), "a_best_arg": pct(get(a, "best.argument_accuracy")),
         "a_fine_tok": num(get(a, "fine.tokens_per_task"), 0), "a_coarse_tok": num(get(a, "coarse.tokens_per_task"), 0), "a_best_tok": num(get(a, "best.tokens_per_task"), 0),
         "c_react_acc": num(get(c, "react.bid_skip_accuracy")), "c_sup_acc": num(get(c, "supervisor.bid_skip_accuracy")), "c_graph_acc": num(get(c, "graph.bid_skip_accuracy")),
-        "c_jobs": str(j("rq_c_architectures").get("jobs", "pending")), "c_model": str(j("rq_c_architectures").get("model", "pending")),
+        "c_jobs": (lambda rc: (f"{min(rc.values())}–{max(rc.values())}" if len(set(rc.values())) > 1 else str(min(rc.values())))
+                   if rc else str(j("rq_c_architectures").get("jobs", "pending")))(j("rq_c_architectures").get("rows_completed") or {}), "c_model": str(j("rq_c_architectures").get("model", "pending")),
         "inj_n": str(inj.get("n_attacks", "pending")), "inj_before": pct(inj.get("attack_success_rate_undefended")),
         "inj_after": pct(inj.get("attack_success_rate_defended_shipped")), "inj_model_out": pct(inj.get("attack_success_rate_defended_model_output")),
         "inj_fp": pct(inj.get("detector_false_positive_rate_on_clean_posts")),
