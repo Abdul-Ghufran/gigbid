@@ -10,9 +10,10 @@ Do them in this order; each step says how long it takes.
 - 50 automated tests + 6 Playwright end-to-end tests pass (report: `docs/playwright-report.pdf`); ruff lint clean; repo-rule checks pass.
 - Evaluations run and stored in `evals/results/`: RAG variants V0–V9 + ablation, claim verifier, 600-job decisions, pricing,
   change request, R&D A (tool granularity), injection defence, X2 A/B test, retrieval-vs-outcome significance tests.
-- An unattended finisher (`tools/finish_evals.py`) ran the live-model runs (live proposals, R&D C, model profiles) and
-  regenerated the README tables and the report PDF, then committed and pushed. Check it finished:
-  open `data/processed/finish_log.txt`; the last line should be `finisher done`.
+- Live-model runs on Groq's free tier: live proposals on gpt-oss-120b (done), judge scores for the 30 calibration items
+  (done), and three slower runs that are limited by Groq's **200,000 tokens/day per model** cap (≈ 8,000 tokens/hour
+  refill): R&D C (`data/processed/rq_c_log.txt`), the judge's proposal-set means (`data/processed/judge_log.txt`) and
+  the all-20b profile run (`data/processed/finish_log.txt`). Every one of them saves as it goes. See **Step 0**.
 - Docs: README, `docs/ARCHITECTURE.md`, `docs/TOOLS.md`, `docs/DATA_CARD.md`, `docs/RUNBOOK.md`, `docs/EXTENSION.md`,
   `docs/AI_USAGE.md`, six ADRs in `docs/adr/`, `docs/VIVA.md` (answers to all 10 viva questions), `docs/WRITEUP.md`, `docs/RESUME.md`.
 - R&D report PDF: **`docs/report/GigBid_RnD_Report.pdf`**.
@@ -22,6 +23,17 @@ Do them in this order; each step says how long it takes.
   `uvx --from git+https://github.com/Abdul-Ghufran/gigbid gigbid-portfolio-mcp --portfolio-dir <folder>`
 
 ---
+
+## Step 0 — Fold the latest live-model rows into the report (2 min, any time before you submit)
+The slow runs keep going in the background while the laptop is on (plugged in, lid set to "Do nothing"). Whenever you
+want the report to include everything finished so far, run this in the project folder; it is safe while they are running:
+```bash
+.venv/Scripts/python.exe tools/finalize_report.py "Fold in the latest live-model rows"
+```
+It summarises R&D C from the rows that **every** architecture has finished (like-for-like), refreshes the README tables
+and the report PDF, runs the repo checks, commits under your name and pushes. Run it one last time just before Step 9.
+If you want the full R&D C sample sooner, Groq's paid Dev Tier removes the daily cap (R&D C costs well under $1 there);
+that is your call, not needed for submission. The report states the sample size it actually used.
 
 ## Step 1 — Fix GitHub Actions billing (5 min)
 Your CI never started because GitHub says *"the job was not started because your account is locked due to a billing issue."*
