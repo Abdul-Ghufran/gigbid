@@ -169,9 +169,11 @@ async def main():
     ckpt = H.RESULTS / f"rq_c_architectures.{a.profile}.partial.json"
     done = json.loads(ckpt.read_text(encoding="utf-8")) if ckpt.exists() else {}
     done = {k: [r for r in v if not r["error"]] for k, v in done.items()}  # failed runs are retried
-    for arch in archs:
-        rows = done.setdefault(arch, [])
-        for i, (p, job) in enumerate(jobs):
+    # job-major order: every architecture runs on a job before the next job starts, so a partial run is still a
+    # like-for-like comparison; the summary uses only jobs that every architecture has completed
+    for i, (p, job) in enumerate(jobs):
+        for arch in archs:
+            rows = done.setdefault(arch, [])
             if any(r["job_id"] == job["job_id"] for r in rows) or a.aggregate_only:
                 continue
             led = Ledger()
@@ -200,27 +202,32 @@ async def main():
                          "rejected_tool_calls": TOOL_CALL_ERRORS["count"] - errs0, "parsed": bool(out.get("decision"))})
             ckpt.write_text(json.dumps(done, indent=1), encoding="utf-8")
             print(arch, i + 1, len(jobs), job["job_id"], pred, rows[-1]["tokens"], "ok" if rows[-1]["correct"] else "WRONG", f"{secs:.0f}s", err or "", flush=True)
-        if not rows:
-            continue
-        bids = [r for r in rows if r["pred"] == "bid"]
-        results[arch] = {
-            "n": len(rows), "errors": sum(1 for r in rows if r["error"]),
-            "runs_without_parseable_decision": sum(1 for r in rows if not r["parsed"]),
-            "rejected_tool_calls": sum(r["rejected_tool_calls"] for r in rows),
-            "bid_skip_accuracy": H.mean([r["correct"] for r in rows]),
-            "bid_f1": H.f1(sum(r["gold_bid"] and r["pred"] == "bid" for r in rows), sum((not r["gold_bid"]) and r["pred"] == "bid" for r in rows),
-                           sum(r["gold_bid"] and r["pred"] != "bid" for r in rows)),
-            "scams_skipped": f"{sum(r['scam_skipped'] for r in rows)}/{sum(r['gold_scam'] for r in rows)}",
-            "unsupported_claims_per_letter": H.mean([r["unsupported_claims"] for r in bids]),
-            "letters_with_violations": sum(bool(r["violations_shipped"]) for r in bids),
-            "violations_caught_by_guard": sum(r["compliance_caught"] for r in rows),
-            "gigsim_reply_rate": H.mean([r["replied"] for r in bids if r["replied"] is not None]),
-            "mean_tokens": H.mean([r["tokens"] for r in rows]), "p50_latency_s": H.pct([r["latency_s"] for r in rows], .5),
-            "p95_latency_s": H.pct([r["latency_s"] for r in rows], .95),
-            "accuracy_by_kind": {k: H.mean([r["correct"] for r in rows if r["kind"] == k]) for k in sorted(KINDS)},
-            "rows": rows}
-        H.write("rq_c_architectures", {"jobs": len(jobs), "rows_completed": {k: v["n"] for k, v in results.items()}, "profile": a.profile, "model": config()["models"][config()["profiles"][a.profile]["writer"]]["model"],
-                                         "results": results})
+        common = set.intersection(*[{r["job_id"] for r in done.get(x, [])} for x in archs])
+        results = {}
+        for arch in archs:
+            rows = [r for r in done.get(arch, []) if r["job_id"] in common]
+            if not rows:
+                continue
+            bids = [r for r in rows if r["pred"] == "bid"]
+            results[arch] = {
+                "n": len(rows), "errors": sum(1 for r in rows if r["error"]),
+                "runs_without_parseable_decision": sum(1 for r in rows if not r["parsed"]),
+                "rejected_tool_calls": sum(r["rejected_tool_calls"] for r in rows),
+                "bid_skip_accuracy": H.mean([r["correct"] for r in rows]),
+                "bid_f1": H.f1(sum(r["gold_bid"] and r["pred"] == "bid" for r in rows), sum((not r["gold_bid"]) and r["pred"] == "bid" for r in rows),
+                               sum(r["gold_bid"] and r["pred"] != "bid" for r in rows)),
+                "scams_skipped": f"{sum(r['scam_skipped'] for r in rows)}/{sum(r['gold_scam'] for r in rows)}",
+                "unsupported_claims_per_letter": H.mean([r["unsupported_claims"] for r in bids]),
+                "letters_with_violations": sum(bool(r["violations_shipped"]) for r in bids),
+                "violations_caught_by_guard": sum(r["compliance_caught"] for r in rows),
+                "gigsim_reply_rate": H.mean([r["replied"] for r in bids if r["replied"] is not None]),
+                "mean_tokens": H.mean([r["tokens"] for r in rows]), "p50_latency_s": H.pct([r["latency_s"] for r in rows], .5),
+                "p95_latency_s": H.pct([r["latency_s"] for r in rows], .95),
+                "accuracy_by_kind": {k: H.mean([r["correct"] for r in rows if r["kind"] == k]) for k in sorted(KINDS)},
+                "rows": rows}
+        if results:
+            H.write("rq_c_architectures", {"jobs": len(jobs), "rows_completed": {k: v["n"] for k, v in results.items()}, "profile": a.profile,
+                                           "model": config()["models"][config()["profiles"][a.profile]["writer"]]["model"], "results": results})
     print({k: {kk: v for kk, v in r.items() if kk not in ("rows", "accuracy_by_kind")} for k, r in results.items()})
 
 

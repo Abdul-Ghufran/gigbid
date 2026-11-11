@@ -164,11 +164,21 @@ def _retrying_chat_class():
 
     class RetryingChat(ChatOpenAI):
         async def _agenerate(self, *a, **kw):
-            for attempt in range(3):
+            quota_waits = 0
+            attempt = 0
+            while True:
                 try:
                     return await super()._agenerate(*a, **kw)
                 except Exception as e:
-                    if "tool_use_failed" in str(e) and "failed_generation" in str(e) and '"name": "JSON"' not in str(e) and attempt < 2:
+                    # evaluation mode: wait out quota 429s inside the call so an agent keeps its progress
+                    if os.getenv("LLM_WAIT_ON_QUOTA") == "1" and "rate_limit" in str(e) and quota_waits < 60:
+                        quota_waits += 1
+                        m = re.search(r"try again in (?:(\d+)m)?([\d.]+)s", str(e))
+                        wait = (int(m.group(1) or 0) * 60 + float(m.group(2))) if m else 60
+                        await asyncio.sleep(min(max(wait + 2, 5), 300))
+                        continue
+                    attempt += 1
+                    if "tool_use_failed" in str(e) and "failed_generation" in str(e) and '"name": "JSON"' not in str(e) and attempt < 3:
                         TOOL_CALL_ERRORS["count"] += 1
                         continue
                     if "tool_use_failed" in str(e):
