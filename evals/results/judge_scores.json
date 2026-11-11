@@ -1,6 +1,6 @@
 {
  "generated_by": "evals/runners/judge_scores.py",
- "generated_at": "2026-11-11 17:28",
+ "generated_at": "2026-11-11 17:54",
  "model": "judge node (see agent/config.yaml)",
  "calibration_items": {
   "1": {
@@ -126,12 +126,12 @@
  },
  "sets": {
   "best_fixedwriter_v2": {
-   "n": 28,
-   "mean_judge_score": 3.3571
+   "n": 30,
+   "mean_judge_score": 3.3333
   },
   "v0_fixedwriter_v2": {
-   "n": 28,
-   "mean_judge_score": 3.0357
+   "n": 30,
+   "mean_judge_score": 3.0333
   }
  }
 }
