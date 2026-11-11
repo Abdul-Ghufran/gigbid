@@ -38,6 +38,44 @@
      "unsupported_before": 0
     }
    }
+  },
+  "open_mid": {
+   "variant": "v8_corrective",
+   "profile": "open_mid",
+   "n_jobs": 3,
+   "n_drafted": 1,
+   "errors": 2,
+   "n_degraded_excluded": 0,
+   "unsupported_per_proposal_before": 1,
+   "unsupported_per_proposal_after": 0,
+   "claims_per_proposal": 2,
+   "gigsim_reply_rate": 1,
+   "gigsim_interview_rate": 0,
+   "gigsim_hire_rate": 0,
+   "mean_client_score": 0.994,
+   "mean_revisions": 0,
+   "p50_latency_s": 0.53,
+   "p95_latency_s": 0.53,
+   "mean_tokens_per_proposal": 10995,
+   "mean_cost_usd_per_proposal": 0.0018,
+   "p95_cost_usd_per_proposal": 0.002,
+   "by_persona": {
+    "ai": {
+     "n": 0,
+     "reply_rate": null,
+     "unsupported_before": null
+    },
+    "web": {
+     "n": 1,
+     "reply_rate": 1,
+     "unsupported_before": 1
+    },
+    "data": {
+     "n": 0,
+     "reply_rate": null,
+     "unsupported_before": null
+    }
+   }
   }
  }
 }

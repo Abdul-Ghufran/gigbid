@@ -18,6 +18,25 @@
    "error": null,
    "rejected_tool_calls": 2,
    "parsed": true
+  },
+  {
+   "job_id": "dev-web-105",
+   "persona": "web",
+   "kind": "strong",
+   "gold_bid": true,
+   "gold_scam": false,
+   "pred": "bid",
+   "correct": true,
+   "scam_skipped": false,
+   "unsupported_claims": 0,
+   "violations_shipped": [],
+   "compliance_caught": 0,
+   "replied": true,
+   "tokens": 9306,
+   "latency_s": 7411.73,
+   "error": null,
+   "rejected_tool_calls": 2,
+   "parsed": true
   }
  ],
  "supervisor": [

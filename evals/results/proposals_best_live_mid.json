@@ -1,0 +1,83 @@
+{
+ "generated_by": "evals/runners/proposals_best_live_mid.py",
+ "generated_at": "2026-11-11 20:13",
+ "summary": {
+  "variant": "v8_corrective",
+  "profile": "open_mid",
+  "n_jobs": 3,
+  "n_drafted": 1,
+  "errors": 2,
+  "n_degraded_excluded": 0,
+  "unsupported_per_proposal_before": 1,
+  "unsupported_per_proposal_after": 0,
+  "claims_per_proposal": 2,
+  "gigsim_reply_rate": 1,
+  "gigsim_interview_rate": 0,
+  "gigsim_hire_rate": 0,
+  "mean_client_score": 0.994,
+  "mean_revisions": 0,
+  "p50_latency_s": 0.53,
+  "p95_latency_s": 0.53,
+  "mean_tokens_per_proposal": 10995,
+  "mean_cost_usd_per_proposal": 0.0018,
+  "p95_cost_usd_per_proposal": 0.002,
+  "by_persona": {
+   "ai": {
+    "n": 0,
+    "reply_rate": null,
+    "unsupported_before": null
+   },
+   "web": {
+    "n": 1,
+    "reply_rate": 1,
+    "unsupported_before": 1
+   },
+   "data": {
+    "n": 0,
+    "reply_rate": null,
+    "unsupported_before": null
+   }
+  }
+ },
+ "rows": [
+  {
+   "job_id": "dev-ai-184",
+   "persona": "ai",
+   "error": "LLMUnavailable: writer: no JSON found"
+  },
+  {
+   "job_id": "dev-web-009",
+   "persona": "web",
+   "kind": "vague",
+   "title": "Help with our nonprofit project",
+   "claims_before": 2,
+   "unsupported_before": 1,
+   "removed": 0,
+   "rewritten": 1,
+   "unsupported_final_audit": 0,
+   "revisions": 0,
+   "critic_score": 9.0,
+   "compliance": "pass",
+   "compliance_removed": 0,
+   "words": 132,
+   "replied": true,
+   "interview": false,
+   "hired": false,
+   "client_score": 0.994,
+   "latency_s": 0.53,
+   "tokens": 10995,
+   "cost_usd": 0.001786,
+   "fallbacks": 0,
+   "offline_fallbacks": 0,
+   "proposal": "The nonprofit needs a live web app that pushes updates to the browser and can be exported as an image. 1) I\u2019ll build a WebSocket-backed API that streams state changes to a React front-end, 2) I\u2019ll add a server-side rendering layer that captures the UI as a PNG for export, and 3) I\u2019ll write Playwright tests to verify real-time behavior and image integrity. I have used Playwright in projects such as the accessibility overhaul of a government portal [web-case-17] and the SaaS billing portal rebuild [web-case-04]. I used WebSockets to provide real-time updates in a logistics tracking system [web-case-03]. I\u2019ll deliver the final product with hand-over documentation for your non-technical team and ensure accessibility for nonprofit users. Next step: let\u2019s schedule a brief call to discuss your data model and export requirements.",
+   "answers": [
+    "I would design a relational schema with a central \"events\" table capturing timestamped state changes, linked to user and session tables; this allows efficient querying of live data and audit trails while keeping the model simple for a nonprofit team."
+   ]
+  },
+  {
+   "job_id": "dev-data-165",
+   "persona": "data",
+   "error": "FileNotFoundError: [Errno 2] No such file or directory"
+  }
+ ]
+}

@@ -158,4 +158,5 @@ git show <change-request commit>: agent/config.yaml +4/-4, data/policy_pack/mark
 | Profile | Proposals | Unsupported before | Reply rate | p95 latency (s) | Mean tokens | List-price USD / proposal |
 |---|---|---|---|---|---|---|
 | open_strong | 3 | 0 | 0.0% | 3481.5 | 10057 | 0.00250 |
+| open_mid | 1 | 1 | 100.0% | 0.5 | 10995 | 0.00180 |
 
