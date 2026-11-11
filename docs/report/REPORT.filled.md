@@ -180,25 +180,26 @@ and job type: appendix A.
 
 ## 5. R&D question C — single agent vs prebuilt supervisor vs our graph
 
-**Setup.** 1 dev jobs stratified over strong, partial, off-domain, scam, injection and low-budget posts; the same
+**Setup.** Dev jobs stratified over strong, partial, off-domain, scam, injection and low-budget posts (completed by every
+architecture so far: 1); the same
 model (openai/gpt-oss-120b) for every architecture: (a) one `create_react_agent` with all marketplace + portfolio tools,
 (b) `langgraph-supervisor` over a marketplace researcher and a portfolio researcher, (c) GigBid's graph. Shipped letters
 are audited by the same verifier and policy checks (`rq_c_architectures.py`).
 
 
-_3 dev jobs, model `openai/gpt-oss-120b` for every architecture._
+_1 of 3 planned dev jobs completed by every architecture (free-tier daily token cap), model `openai/gpt-oss-120b` for every architecture. n/a = no bid letters to audit._
 
 | Architecture | Bid/skip accuracy | Scams skipped | Unsupported claims / letter | Letters with violations shipped | GigSim reply rate | Rejected tool calls | Mean tokens / job | p95 latency (s) |
 |---|---|---|---|---|---|---|---|---|
-| react | 1 | 0/0 | pending | 0 | pending | 2 | 5499 | 5074.9 |
-| supervisor | 1 | 0/0 | pending | 0 | pending | 3 | 12878 | 8686.2 |
-| graph | 1 | 0/0 | pending | 0 | pending | 0 | 2083 | 645.3 |
+| react | 1 | 0/0 | n/a | 0 | n/a | 2 | 5499 | 5074.9 |
+| supervisor | 1 | 0/0 | n/a | 0 | n/a | 3 | 12878 | 8686.2 |
+| graph | 1 | 0/0 | n/a | 0 | n/a | 0 | 2083 | 645.3 |
 
 
 
 **Reading.** Bid/skip accuracy: ReAct 1, supervisor 1, graph 1 (best:
-react). Mean tokens per job: ReAct 5499, supervisor 12878, graph 2083 (fewest:
-graph); fastest p95: graph; fewest unsupported claims per letter: pending.
+tie (react, supervisor, graph)). Mean tokens per job: ReAct 5499, supervisor 12878, graph 2083 (fewest:
+graph); fastest p95: graph; fewest unsupported claims per letter: n/a (no bid letters yet).
 Letters shipped with a policy violation: ReAct 0, graph 0. Rejected (malformed) tool calls:
 ReAct 2, supervisor 3; the graph calls tools deterministically, so it has none by construction.
 In an earlier attempt on Qwen3.8-27B the tool-calling baselines failed outright — the model invented tool names
@@ -206,8 +207,10 @@ In an earlier attempt on Qwen3.8-27B the tool-calling baselines failed outright 
 The graph's structural guarantees hold regardless of the scores: the verifier and the Compliance Guard run on every letter
 whatever the model decided, and its rule-based risk gate is not steerable by injected text. Where a baseline is cheaper or
 faster (see the per-kind accuracy in `rq_c_architectures.json`), it is a candidate first-pass triage filter; I would not
-ship it to write proposals without the verifier and compliance stages. Sample size is small (1 jobs) because of
-the free-tier token budget, so differences of one or two jobs are not meaningful.
+ship it to write proposals without the verifier and compliance stages. Sample size is small (jobs completed by every
+architecture: 1) because of the free-tier cap of 200,000 tokens per model per day: a single ReAct or supervisor
+run spends 5,000–13,000 tokens and waits on the cap for over an hour, so differences of one or two jobs are not meaningful;
+token cost and latency per job are the robust signal here.
 
 ## 6. The change request (2 Nov 2026)
 

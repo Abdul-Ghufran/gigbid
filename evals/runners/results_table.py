@@ -101,12 +101,14 @@ def main():
     c = load("rq_c_architectures")
     out += ["", "## R&D C. Single agent vs supervisor vs hand-built graph", ""]
     if c:
-        out += [f"_{c['jobs']} dev jobs, model `{c['model']}` for every architecture._", "",
+        done = min((c.get("rows_completed") or {"": c["jobs"]}).values())
+        out += [f"_{done} of {c['jobs']} planned dev jobs completed by every architecture (free-tier daily token cap), model `{c['model']}` "
+                f"for every architecture. n/a = no bid letters to audit._", "",
                 "| Architecture | Bid/skip accuracy | Scams skipped | Unsupported claims / letter | Letters with violations shipped | GigSim reply rate | Rejected tool calls | Mean tokens / job | p95 latency (s) |",
                 "|---|---|---|---|---|---|---|---|---|"]
         for k, v in c["results"].items():
-            out.append(f"| {k} | {f(v['bid_skip_accuracy'])} | {v['scams_skipped']} | {f(v['unsupported_claims_per_letter'], 2)} | {v['letters_with_violations']} | "
-                       f"{f(v['gigsim_reply_rate'], pct=True)} | {v.get('rejected_tool_calls', 'n/a')} | {f(v['mean_tokens'], 0)} | {f(v['p95_latency_s'], 1)} |")
+            out.append(f"| {k} | {f(v['bid_skip_accuracy'])} | {v['scams_skipped']} | {f(v['unsupported_claims_per_letter'], 2) if v['unsupported_claims_per_letter'] is not None else 'n/a'} | {v['letters_with_violations']} | "
+                       f"{f(v['gigsim_reply_rate'], pct=True) if v['gigsim_reply_rate'] is not None else 'n/a'} | {v.get('rejected_tool_calls', 'n/a')} | {f(v['mean_tokens'], 0)} | {f(v['p95_latency_s'], 1)} |")
     else:
         out.append("pending")
     inj = load("injection_eval")
@@ -146,7 +148,7 @@ def main():
     if cmp_:
         out += ["## Model configurations (open profiles)", "", "| Profile | Proposals | Unsupported before | Reply rate | p95 latency (s) | Mean tokens | List-price USD / proposal |", "|---|---|---|---|---|---|---|"]
         for k, v in cmp_["profiles"].items():
-            out.append(f"| {k} | {v['n_drafted']} | {f(v['unsupported_per_proposal_before'], 2)} | {f(v['gigsim_reply_rate'], pct=True)} | {f(v['p95_latency_s'], 1)} | {f(v['mean_tokens_per_proposal'], 0)} | {f(v['mean_cost_usd_per_proposal'], 5)} |")
+            out.append(f"| {k} | {v['n_drafted']} | {f(v['unsupported_per_proposal_before'], 2)} | {f(v['gigsim_reply_rate'], pct=True) if v['gigsim_reply_rate'] is not None else 'n/a'} | {f(v['p95_latency_s'], 1)} | {f(v['mean_tokens_per_proposal'], 0)} | {f(v['mean_cost_usd_per_proposal'], 5)} |")
         out.append("")
     (R / "results_tables.md").write_text("\n".join(out) + "\n", encoding="utf-8")
     print("\n".join(out))

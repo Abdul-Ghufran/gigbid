@@ -75,13 +75,13 @@ Retrieval metrics: `rag_variants_offline.json` (444 scoreable dev jobs), `rag_ab
 
 ### R&D C. Single agent vs supervisor vs hand-built graph
 
-_3 dev jobs, model `openai/gpt-oss-120b` for every architecture._
+_1 of 3 planned dev jobs completed by every architecture (free-tier daily token cap), model `openai/gpt-oss-120b` for every architecture. n/a = no bid letters to audit._
 
 | Architecture | Bid/skip accuracy | Scams skipped | Unsupported claims / letter | Letters with violations shipped | GigSim reply rate | Rejected tool calls | Mean tokens / job | p95 latency (s) |
 |---|---|---|---|---|---|---|---|---|
-| react | 1 | 0/0 | pending | 0 | pending | 2 | 5499 | 5074.9 |
-| supervisor | 1 | 0/0 | pending | 0 | pending | 3 | 12878 | 8686.2 |
-| graph | 1 | 0/0 | pending | 0 | pending | 0 | 2083 | 645.3 |
+| react | 1 | 0/0 | n/a | 0 | n/a | 2 | 5499 | 5074.9 |
+| supervisor | 1 | 0/0 | n/a | 0 | n/a | 3 | 12878 | 8686.2 |
+| graph | 1 | 0/0 | n/a | 0 | n/a | 0 | 2083 | 645.3 |
 
 ### E4. Prompt-injection defence
 

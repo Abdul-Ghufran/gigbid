@@ -121,7 +121,8 @@ and job type: appendix A.
 
 ## 5. R&D question C — single agent vs prebuilt supervisor vs our graph
 
-**Setup.** {{c_jobs}} dev jobs stratified over strong, partial, off-domain, scam, injection and low-budget posts; the same
+**Setup.** Dev jobs stratified over strong, partial, off-domain, scam, injection and low-budget posts (completed by every
+architecture so far: {{c_jobs}}); the same
 model ({{c_model}}) for every architecture: (a) one `create_react_agent` with all marketplace + portfolio tools,
 (b) `langgraph-supervisor` over a marketplace researcher and a portfolio researcher, (c) GigBid's graph. Shipped letters
 are audited by the same verifier and policy checks (`rq_c_architectures.py`).
@@ -138,8 +139,10 @@ In an earlier attempt on Qwen3.8-27B the tool-calling baselines failed outright 
 The graph's structural guarantees hold regardless of the scores: the verifier and the Compliance Guard run on every letter
 whatever the model decided, and its rule-based risk gate is not steerable by injected text. Where a baseline is cheaper or
 faster (see the per-kind accuracy in `rq_c_architectures.json`), it is a candidate first-pass triage filter; I would not
-ship it to write proposals without the verifier and compliance stages. Sample size is small ({{c_jobs}} jobs) because of
-the free-tier token budget, so differences of one or two jobs are not meaningful.
+ship it to write proposals without the verifier and compliance stages. Sample size is small (jobs completed by every
+architecture: {{c_jobs}}) because of the free-tier cap of 200,000 tokens per model per day: a single ReAct or supervisor
+run spends 5,000–13,000 tokens and waits on the cap for over an hour, so differences of one or two jobs are not meaningful;
+token cost and latency per job are the robust signal here.
 
 ## 6. The change request (2 Nov 2026)
 
