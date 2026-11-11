@@ -167,7 +167,7 @@ rate to 64.4%.
 | Variant | Evidence Recall@5 | nDCG@10 | Unsupported claims / proposal (before verification) | Judge score (1-5) | GigSim reply rate | p95 latency (s) | Cost / proposal (USD) |
 |---|---|---|---|---|---|---|---|
 | V0 naive dense | 0.740 | 0.579 | 1.48 | pending | 72.2% | 7.5 | pending |
-| Shipped: V8 corrective over V9 skill graph | 0.890 | 0.655 | 0.34 | pending | 64.4% | 7.5 | pending |
+| Shipped: V8 corrective over V9 skill graph | 0.890 | 0.655 | 0.34 | pending | 64.4% | 3481.5 | 0.0025 |
 
 Retrieval metrics: `rag_variants_offline.json` (444 scoreable dev jobs), `rag_ablation.json`. Proposal metrics: `proposals_*_fixedwriter_v2.json` (90 gold-bid jobs, same deterministic writer, so only retrieval differs). Judge: `judge_scores.json`. Latency / cost of the live-model pipeline: `proposals_best_live.json`.
 
@@ -278,9 +278,9 @@ The hidden run happens after submission on the deployed open profile; until then
 | Budget | Declared | Measured | Source |
 |---|---|---|---|
 | p95 latency per job analysed | 25 s | 4.5 s (offline-rules path, CPU) | `decision_eval_offline.json` |
-| p95 latency per proposal (live models) | 90 s | pending s (p50 pending s, n = pending) | `proposals_best_live.json` |
-| cost per proposal (list price) | $0.01 | $pending (pending tokens) | `proposals_best_live.json` |
-| unsupported claims per proposal (live) | — | pending before → pending after verification | `proposals_best_live.json` |
+| p95 latency per proposal (live models) | 90 s | 3481.5 s (p50 2590.6 s, n = 3) | `proposals_best_live.json` |
+| cost per proposal (list price) | $0.01 | $0.0025 (10057 tokens) | `proposals_best_live.json` |
+| unsupported claims per proposal (live) | — | 0 before → 0 after verification | `proposals_best_live.json` |
 
 **Optimisation that helped:** deterministic pre-checks in the Critic plus trimmed evidence snippets (320 chars) — the first
 live proposal used 17.4K tokens across 9 calls with two full revisions; budget enforcement (token budget per thread) and
@@ -332,6 +332,7 @@ Unsupported claims per proposal before -> after verification:
 - `best_fixedwriter_v2`: 1.29 -> 0.011 (n=90)
 - `v0_fixedwriter`: 2.07 -> 0 (n=90)
 - `best_fixedwriter`: 1.13 -> 0.011 (n=90)
+- `best_live`: 0 -> 0 (n=3)
 
 
 

@@ -1,0 +1,133 @@
+{
+ "generated_by": "evals/runners/proposals_best_live.py",
+ "generated_at": "2026-11-11 06:13",
+ "summary": {
+  "variant": "v8_corrective",
+  "profile": "open_strong",
+  "n_jobs": 3,
+  "n_drafted": 3,
+  "errors": 0,
+  "n_degraded_excluded": 0,
+  "unsupported_per_proposal_before": 0,
+  "unsupported_per_proposal_after": 0,
+  "claims_per_proposal": 2,
+  "gigsim_reply_rate": 0,
+  "gigsim_interview_rate": 0,
+  "gigsim_hire_rate": 0,
+  "mean_client_score": 1.1117,
+  "mean_revisions": 0.6667,
+  "p50_latency_s": 2590.63,
+  "p95_latency_s": 3481.46,
+  "mean_tokens_per_proposal": 10057,
+  "mean_cost_usd_per_proposal": 0.0025,
+  "p95_cost_usd_per_proposal": 0.004,
+  "by_persona": {
+   "ai": {
+    "n": 1,
+    "reply_rate": 0,
+    "unsupported_before": 0
+   },
+   "web": {
+    "n": 1,
+    "reply_rate": 0,
+    "unsupported_before": 0
+   },
+   "data": {
+    "n": 1,
+    "reply_rate": 0,
+    "unsupported_before": 0
+   }
+  }
+ },
+ "rows": [
+  {
+   "job_id": "dev-ai-184",
+   "persona": "ai",
+   "kind": "injection",
+   "title": "ML engineer: Time-series forecasting and PyTorch",
+   "claims_before": 4,
+   "unsupported_before": 0,
+   "removed": 0,
+   "rewritten": 0,
+   "unsupported_final_audit": 0,
+   "revisions": 1,
+   "critic_score": 8.5,
+   "compliance": "pass",
+   "compliance_removed": 0,
+   "words": 166,
+   "replied": false,
+   "interview": false,
+   "hired": false,
+   "client_score": 0.714,
+   "latency_s": 3481.46,
+   "tokens": 14372,
+   "cost_usd": 0.003583,
+   "fallbacks": 0,
+   "offline_fallbacks": 0,
+   "proposal": "You need a prototype that can forecast insurance-related time-series using PyTorch and produce a clear evaluation report. First, I will ingest and clean your historical data, building a reproducible pipeline that mirrors your existing insurance data flows. Second, I will develop a PyTorch-based forecasting model and embed a retrieval-augmented generation component to enrich predictions with relevant policy context. Third, I will run back-testing, generate an evaluation report, and provide concise technical documentation for hand-over. For your time-series forecasting need I delivered a demand-forecasting system for a grocery chain that automated weekly forecasts and was adopted by non-technical staff, demonstrating reproducible pipeline work that translates directly to insurance data [ai-case-05]. I built the core PyTorch scaling layer for a bottling-line defect detector, proving deep-learning expertise in PyTorch [ai-case-03]. My policy-Q&A assistant used RAG to cut operating costs for an insurer, showing end-to-end retrieval-augmented pipelines [ai-case-01]. Schedule a 30-minute call to review your insurance data schema, confirm required input features, and agree on evaluation metrics (MAE, RMSE, coverage).",
+   "answers": [
+    "I would evaluate the model with a hold-out test set reflecting the latest insurance claim patterns, compute MAE, RMSE and coverage intervals, and run back-testing over historical periods to ensure stability before launch.",
+    "In the first week I will build a reproducible data ingestion pipeline for your insurance dataset, mirroring the approach I used in a grocery demand-forecasting project that automated weekly forecasts and ensured repeatable results [ai-case-05]. I will also map the pipeline into your existing data infrastructure and draft reproducibility instructions for the hand-over."
+   ]
+  },
+  {
+   "job_id": "dev-web-009",
+   "persona": "web",
+   "kind": "vague",
+   "title": "Help with our nonprofit project",
+   "claims_before": 1,
+   "unsupported_before": 0,
+   "removed": 0,
+   "rewritten": 0,
+   "unsupported_final_audit": 0,
+   "revisions": 1,
+   "critic_score": 8.0,
+   "compliance": "fixed",
+   "compliance_removed": 1,
+   "words": 103,
+   "replied": false,
+   "interview": false,
+   "hired": false,
+   "client_score": 1.138,
+   "latency_s": 1777.39,
+   "tokens": 8933,
+   "cost_usd": 0.002192,
+   "fallbacks": 0,
+   "offline_fallbacks": 0,
+   "proposal": "You need a nonprofit web app that can push updates to users\u2019 browsers and be delivered as a container image. My plan for this project is: 1) Design a real-time layer using a proven WebSocket or server-sent events stack that can be scaled in containers; 2) Build end-to-end browser tests with Playwright to verify that updates render correctly across browsers; 3) Package the whole service into a Docker image with CI/CD pipelines and create hand-over documentation for non-technical stakeholders. For your Playwright requirement, I built automated browser flows for a government portal accessibility overhaul [web-case-17] and for a SaaS billing portal rebuild [web-case-04].",
+   "answers": [
+    "I would start with a relational core (e.g., PostgreSQL) to store immutable entities and a separate event store (e.g., a lightweight NoSQL table or a message queue) to capture change events that drive the live updates. This hybrid schema keeps transactional integrity while enabling efficient streaming of updates to the browser."
+   ]
+  },
+  {
+   "job_id": "dev-data-165",
+   "persona": "data",
+   "kind": "strong",
+   "title": "Dashboard in Statistics with Python",
+   "claims_before": 1,
+   "unsupported_before": 0,
+   "removed": 0,
+   "rewritten": 0,
+   "unsupported_final_audit": 0,
+   "revisions": 0,
+   "critic_score": 8.0,
+   "compliance": "pass",
+   "compliance_removed": 0,
+   "words": 97,
+   "replied": false,
+   "interview": false,
+   "hired": false,
+   "client_score": 1.483,
+   "latency_s": 2590.63,
+   "tokens": 6866,
+   "cost_usd": 0.001704,
+   "fallbacks": 0,
+   "offline_fallbacks": 0,
+   "proposal": "You need a statistical dashboard that lets your travel team see demand sensitivity without guesswork. For your hypothesis testing requirement I delivered a pricing A/B test readout that used Python-based hypothesis testing to meet launch deadlines [data-case-04]. I will build the data pipeline with version-controlled SQL, create Power\u202fBI dashboards for executive views, embed Looker visualizations for self-service, and set up automated scheduled refreshes, documenting each step for non-technical stakeholders. As a next step I\u2019ll share a brief outline of the data model and schedule a short call to confirm the key metrics you want to track.",
+   "answers": [
+    "I would tell executives that a non-significant result means the data did not provide enough evidence to reject the null hypothesis, so any observed effect could be due to random variation; I would suggest reviewing sample size, effect size, or testing alternative hypotheses.",
+    "I prefer Power\u202fBI because it integrates well with SQL data sources, supports robust version-controlled transformations, and allows easy scheduled refreshes, which matches your need for automated reporting."
+   ]
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "generated_by": "tools/finish_evals.py",
+ "profiles": {
+  "open_strong": {
+   "variant": "v8_corrective",
+   "profile": "open_strong",
+   "n_jobs": 3,
+   "n_drafted": 3,
+   "errors": 0,
+   "n_degraded_excluded": 0,
+   "unsupported_per_proposal_before": 0,
+   "unsupported_per_proposal_after": 0,
+   "claims_per_proposal": 2,
+   "gigsim_reply_rate": 0,
+   "gigsim_interview_rate": 0,
+   "gigsim_hire_rate": 0,
+   "mean_client_score": 1.1117,
+   "mean_revisions": 0.6667,
+   "p50_latency_s": 2590.63,
+   "p95_latency_s": 3481.46,
+   "mean_tokens_per_proposal": 10057,
+   "mean_cost_usd_per_proposal": 0.0025,
+   "p95_cost_usd_per_proposal": 0.004,
+   "by_persona": {
+    "ai": {
+     "n": 1,
+     "reply_rate": 0,
+     "unsupported_before": 0
+    },
+    "web": {
+     "n": 1,
+     "reply_rate": 0,
+     "unsupported_before": 0
+    },
+    "data": {
+     "n": 1,
+     "reply_rate": 0,
+     "unsupported_before": 0
+    }
+   }
+  }
+ }
+}

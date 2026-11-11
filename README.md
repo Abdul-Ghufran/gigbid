@@ -41,7 +41,7 @@ The evaluation world (GigSim, personas, dev set) is a documented stand-in becaus
 | Variant | Evidence Recall@5 | nDCG@10 | Unsupported claims / proposal (before verification) | Judge score (1-5) | GigSim reply rate | p95 latency (s) | Cost / proposal (USD) |
 |---|---|---|---|---|---|---|---|
 | V0 naive dense | 0.740 | 0.579 | 1.48 | pending | 72.2% | 7.5 | pending |
-| Shipped: V8 corrective over V9 skill graph | 0.890 | 0.655 | 0.34 | pending | 64.4% | 7.5 | pending |
+| Shipped: V8 corrective over V9 skill graph | 0.890 | 0.655 | 0.34 | pending | 64.4% | 3481.5 | 0.0025 |
 
 Retrieval metrics: `rag_variants_offline.json` (444 scoreable dev jobs), `rag_ablation.json`. Proposal metrics: `proposals_*_fixedwriter_v2.json` (90 gold-bid jobs, same deterministic writer, so only retrieval differs). Judge: `judge_scores.json`. Latency / cost of the live-model pipeline: `proposals_best_live.json`.
 
