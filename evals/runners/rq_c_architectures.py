@@ -164,9 +164,15 @@ async def main():
     jobs = H.fixed_set(a.per_persona, kinds=KINDS, seed=5)
     archs = a.only.split(",")
     results = {}
+    # rows are checkpointed after every run, so a quota stall or crash loses at most one job
+    ckpt = H.RESULTS / f"rq_c_architectures.{a.profile}.partial.json"
+    done = json.loads(ckpt.read_text(encoding="utf-8")) if ckpt.exists() else {}
+    done = {k: [r for r in v if not r["error"]] for k, v in done.items()}  # failed runs are retried
     for arch in archs:
-        rows = []
+        rows = done.setdefault(arch, [])
         for i, (p, job) in enumerate(jobs):
+            if any(r["job_id"] == job["job_id"] for r in rows):
+                continue
             led = Ledger()
             ledger_var.set(led)
             from agent.llm import TOOL_CALL_ERRORS
@@ -191,7 +197,8 @@ async def main():
                          "compliance_caught": out.get("compliance_removed", 0), "replied": react["replied"] if react else None,
                          "tokens": toks if toks is not None else led.tokens, "latency_s": round(secs, 2), "error": err,
                          "rejected_tool_calls": TOOL_CALL_ERRORS["count"] - errs0, "parsed": bool(out.get("decision"))})
-            print(arch, i + 1, len(jobs), job["job_id"], pred, "ok" if rows[-1]["correct"] else "WRONG", f"{secs:.0f}s", err or "", flush=True)
+            ckpt.write_text(json.dumps(done, indent=1), encoding="utf-8")
+            print(arch, i + 1, len(jobs), job["job_id"], pred, rows[-1]["tokens"], "ok" if rows[-1]["correct"] else "WRONG", f"{secs:.0f}s", err or "", flush=True)
         bids = [r for r in rows if r["pred"] == "bid"]
         results[arch] = {
             "n": len(rows), "errors": sum(1 for r in rows if r["error"]),
