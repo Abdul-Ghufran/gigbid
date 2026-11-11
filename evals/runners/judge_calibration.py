@@ -74,6 +74,9 @@ async def judge_one(job, proposal):
     return await llm.structured("judge", p["system"], user, Verdict, max_tokens=1200)  # gpt-oss spends part of the budget on reasoning
 
 
+SETS_N = 30
+
+
 async def run_judge():
     jobs = {j["job_id"]: j for p in ("ai", "web", "data") for j in H.dev(p)}
     key = json.loads(KEY.read_text(encoding="utf-8"))
@@ -83,14 +86,19 @@ async def run_judge():
         v = await judge_one(jobs[k["job_id"]], r["proposal"])
         by_item[i] = {"score": v.score, "reason": v.reason}
         print("item", i, v.score, flush=True)
-    per_set = {}
-    for t in ("best_fixedwriter_v2", "v0_fixedwriter_v2"):
-        sc = []
-        for r in rows(t)[:30]:
-            sc.append((await judge_one(jobs[r["job_id"]], r["proposal"])).score)
-        per_set[t] = {"n": len(sc), "mean_judge_score": H.mean(sc)}
-        print(t, per_set[t], flush=True)
-    H.write("judge_scores", {"model": "judge node (see agent/config.yaml)", "calibration_items": by_item, "sets": per_set})
+    # calibration items first (all kappa needs), then the proposal-set means, saved after every set item
+    out = {"model": "judge node (see agent/config.yaml)", "calibration_items": by_item, "sets": {}}
+    H.write("judge_scores", out)
+    sets = ("best_fixedwriter_v2", "v0_fixedwriter_v2")
+    sc = {t: [] for t in sets}
+    for idx in range(SETS_N):  # alternate the two sets so a partial run still compares like with like
+        for t in sets:
+            rs = rows(t)
+            if idx < len(rs):
+                sc[t].append((await judge_one(jobs[rs[idx]["job_id"]], rs[idx]["proposal"])).score)
+                out["sets"][t] = {"n": len(sc[t]), "mean_judge_score": H.mean(sc[t])}
+        H.write("judge_scores", out)
+        print("sets", idx + 1, {t: out["sets"].get(t) for t in sets}, flush=True)
 
 
 def kappa(a, b, weighted=False):
