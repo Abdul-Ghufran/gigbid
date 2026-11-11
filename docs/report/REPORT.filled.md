@@ -166,8 +166,8 @@ rate to 64.4%.
 
 | Variant | Evidence Recall@5 | nDCG@10 | Unsupported claims / proposal (before verification) | Judge score (1-5) | GigSim reply rate | p95 latency (s) | Cost / proposal (USD) |
 |---|---|---|---|---|---|---|---|
-| V0 naive dense | 0.740 | 0.579 | 1.48 | pending | 72.2% | 7.5 | pending |
-| Shipped: V8 corrective over V9 skill graph | 0.890 | 0.655 | 0.34 | pending | 64.4% | 3481.5 | 0.0025 |
+| V0 naive dense | 0.740 | 0.579 | 1.48 | 3.04 | 72.2% | 7.5 | pending |
+| Shipped: V8 corrective over V9 skill graph | 0.890 | 0.655 | 0.34 | 3.36 | 64.4% | 3481.5 | 0.0025 |
 
 Retrieval metrics: `rag_variants_offline.json` (444 scoreable dev jobs), `rag_ablation.json`. Proposal metrics: `proposals_*_fixedwriter_v2.json` (90 gold-bid jobs, same deterministic writer, so only retrieval differs). Judge: `judge_scores.json`. Latency / cost of the live-model pipeline: `proposals_best_live.json`.
 
@@ -180,27 +180,33 @@ and job type: appendix A.
 
 ## 5. R&D question C — single agent vs prebuilt supervisor vs our graph
 
-**Setup.** pending dev jobs stratified over strong, partial, off-domain, scam, injection and low-budget posts; the same
-model (pending) for every architecture: (a) one `create_react_agent` with all marketplace + portfolio tools,
+**Setup.** 1 dev jobs stratified over strong, partial, off-domain, scam, injection and low-budget posts; the same
+model (openai/gpt-oss-120b) for every architecture: (a) one `create_react_agent` with all marketplace + portfolio tools,
 (b) `langgraph-supervisor` over a marketplace researcher and a portfolio researcher, (c) GigBid's graph. Shipped letters
 are audited by the same verifier and policy checks (`rq_c_architectures.py`).
 
 
-pending
+_3 dev jobs, model `openai/gpt-oss-120b` for every architecture._
+
+| Architecture | Bid/skip accuracy | Scams skipped | Unsupported claims / letter | Letters with violations shipped | GigSim reply rate | Rejected tool calls | Mean tokens / job | p95 latency (s) |
+|---|---|---|---|---|---|---|---|---|
+| react | 1 | 0/0 | pending | 0 | pending | 2 | 5499 | 5074.9 |
+| supervisor | 1 | 0/0 | pending | 0 | pending | 3 | 12878 | 8686.2 |
+| graph | 1 | 0/0 | pending | 0 | pending | 0 | 2083 | 645.3 |
 
 
 
-**Reading.** Bid/skip accuracy: ReAct pending, supervisor pending, graph pending (best:
-pending). Mean tokens per job: ReAct pending, supervisor pending, graph pending (fewest:
-pending); fastest p95: pending; fewest unsupported claims per letter: pending.
-Letters shipped with a policy violation: ReAct pending, graph pending. Rejected (malformed) tool calls:
-ReAct pending, supervisor pending; the graph calls tools deterministically, so it has none by construction.
+**Reading.** Bid/skip accuracy: ReAct 1, supervisor 1, graph 1 (best:
+react). Mean tokens per job: ReAct 5499, supervisor 12878, graph 2083 (fewest:
+graph); fastest p95: graph; fewest unsupported claims per letter: pending.
+Letters shipped with a policy violation: ReAct 0, graph 0. Rejected (malformed) tool calls:
+ReAct 2, supervisor 3; the graph calls tools deterministically, so it has none by construction.
 In an earlier attempt on Qwen3.8-27B the tool-calling baselines failed outright — the model invented tool names
 (`search_eidence`) that Groq rejected — which is why the comparison was re-run on gpt-oss-120b for all three architectures.
 The graph's structural guarantees hold regardless of the scores: the verifier and the Compliance Guard run on every letter
 whatever the model decided, and its rule-based risk gate is not steerable by injected text. Where a baseline is cheaper or
 faster (see the per-kind accuracy in `rq_c_architectures.json`), it is a candidate first-pass triage filter; I would not
-ship it to write proposals without the verifier and compliance stages. Sample size is small (pending jobs) because of
+ship it to write proposals without the verifier and compliance stages. Sample size is small (1 jobs) because of
 the free-tier token budget, so differences of one or two jobs are not meaningful.
 
 ## 6. The change request (2 Nov 2026)

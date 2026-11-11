@@ -1,0 +1,149 @@
+{
+ "generated_by": "evals/runners/rq_c_architectures.py",
+ "generated_at": "2026-11-11 17:30",
+ "jobs": 3,
+ "rows_completed": {
+  "react": 1,
+  "supervisor": 1,
+  "graph": 1
+ },
+ "profile": "open_strong",
+ "model": "openai/gpt-oss-120b",
+ "results": {
+  "react": {
+   "n": 1,
+   "errors": 0,
+   "runs_without_parseable_decision": 0,
+   "rejected_tool_calls": 2,
+   "bid_skip_accuracy": 1,
+   "bid_f1": 0.0,
+   "scams_skipped": "0/0",
+   "unsupported_claims_per_letter": null,
+   "letters_with_violations": 0,
+   "violations_caught_by_guard": 0,
+   "gigsim_reply_rate": null,
+   "mean_tokens": 5499,
+   "p50_latency_s": 5074.92,
+   "p95_latency_s": 5074.92,
+   "accuracy_by_kind": {
+    "injection": null,
+    "low_budget": null,
+    "off_domain": null,
+    "partial": 1,
+    "scam": null,
+    "strong": null
+   },
+   "rows": [
+    {
+     "job_id": "dev-ai-151",
+     "persona": "ai",
+     "kind": "partial",
+     "gold_bid": false,
+     "gold_scam": false,
+     "pred": "skip",
+     "correct": true,
+     "scam_skipped": false,
+     "unsupported_claims": 0,
+     "violations_shipped": [],
+     "compliance_caught": 0,
+     "replied": null,
+     "tokens": 5499,
+     "latency_s": 5074.92,
+     "error": null,
+     "rejected_tool_calls": 2,
+     "parsed": true
+    }
+   ]
+  },
+  "supervisor": {
+   "n": 1,
+   "errors": 0,
+   "runs_without_parseable_decision": 0,
+   "rejected_tool_calls": 3,
+   "bid_skip_accuracy": 1,
+   "bid_f1": 0.0,
+   "scams_skipped": "0/0",
+   "unsupported_claims_per_letter": null,
+   "letters_with_violations": 0,
+   "violations_caught_by_guard": 0,
+   "gigsim_reply_rate": null,
+   "mean_tokens": 12878,
+   "p50_latency_s": 8686.24,
+   "p95_latency_s": 8686.24,
+   "accuracy_by_kind": {
+    "injection": null,
+    "low_budget": null,
+    "off_domain": null,
+    "partial": 1,
+    "scam": null,
+    "strong": null
+   },
+   "rows": [
+    {
+     "job_id": "dev-ai-151",
+     "persona": "ai",
+     "kind": "partial",
+     "gold_bid": false,
+     "gold_scam": false,
+     "pred": "skip",
+     "correct": true,
+     "scam_skipped": false,
+     "unsupported_claims": 0,
+     "violations_shipped": [],
+     "compliance_caught": 0,
+     "replied": null,
+     "tokens": 12878,
+     "latency_s": 8686.24,
+     "error": null,
+     "rejected_tool_calls": 3,
+     "parsed": true
+    }
+   ]
+  },
+  "graph": {
+   "n": 1,
+   "errors": 0,
+   "runs_without_parseable_decision": 0,
+   "rejected_tool_calls": 0,
+   "bid_skip_accuracy": 1,
+   "bid_f1": 0.0,
+   "scams_skipped": "0/0",
+   "unsupported_claims_per_letter": null,
+   "letters_with_violations": 0,
+   "violations_caught_by_guard": 0,
+   "gigsim_reply_rate": null,
+   "mean_tokens": 2083,
+   "p50_latency_s": 645.31,
+   "p95_latency_s": 645.31,
+   "accuracy_by_kind": {
+    "injection": null,
+    "low_budget": null,
+    "off_domain": null,
+    "partial": 1,
+    "scam": null,
+    "strong": null
+   },
+   "rows": [
+    {
+     "job_id": "dev-ai-151",
+     "persona": "ai",
+     "kind": "partial",
+     "gold_bid": false,
+     "gold_scam": false,
+     "pred": "skip",
+     "correct": true,
+     "scam_skipped": false,
+     "unsupported_claims": 0,
+     "violations_shipped": [],
+     "compliance_caught": 0,
+     "replied": null,
+     "tokens": 2083,
+     "latency_s": 645.31,
+     "error": null,
+     "rejected_tool_calls": 0,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

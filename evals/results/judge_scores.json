@@ -1,0 +1,137 @@
+{
+ "generated_by": "evals/runners/judge_scores.py",
+ "generated_at": "2026-11-11 17:28",
+ "model": "judge node (see agent/config.yaml)",
+ "calibration_items": {
+  "1": {
+   "score": 3,
+   "reason": "The proposal references a prior RAG project and claims to have reduced lookup time, indicating some relevant experience. However, it does not address the specific retail context, nearest\u2011neighbour lookups, or Pinecone usage required for this job. The plan is generic, lacking concrete steps, deliverables, or evidence of fit with the client\u2019s needs. Thus it is relevant but somewhat generic and weakly evidenced."
+  },
+  "2": {
+   "score": 3,
+   "reason": "The proposal shows some relevant Stripe and TypeScript experience and mentions E2E testing, but it lacks specific details about Docker, Shopify, gaming context, handling app\u2011store reviews, unit tests, and cloud deployment. It is not a full, tailored plan but contains enough evidence to be considered relevant, though somewhat generic."
+  },
+  "3": {
+   "score": 5,
+   "reason": "The proposal is tailored to the fintech context, cites concrete past results (reporting cycle reduction, revenue lift from A/B test), outlines a clear plan (confirm success criteria, early version, milestone updates), and includes next steps. It is concise, relevant, and evidence\u2011based."
+  },
+  "4": {
+   "score": 3,
+   "reason": "The proposal references relevant readme files for Python and Power BI, indicating some experience, but it lacks specific evidence of hypothesis testing, Looker, or version-controlled SQL transformations. The plan is generic\u2014confirm success criteria, ship early, update milestones\u2014without concrete next steps or detailed approach. Thus it is relevant but weakly evidenced."
+  },
+  "5": {
+   "score": 3,
+   "reason": "The proposal demonstrates some relevant experience with Power BI dashboards and a clear delivery approach, but it omits critical aspects of the job such as A/B testing, fintech risk decision context, and the requirement for an interactive dashboard with a walkthrough. It provides a concrete example of reducing reporting time, yet lacks evidence of fit with the specific problem described."
+  },
+  "6": {
+   "score": 3,
+   "reason": "The proposal mentions PyTorch and transformers, but it does not address the core requirements of time\u2011series forecasting, RAG, or recommendation systems. It also lacks a concrete plan, evidence of relevant experience, or a clear outline of deliverables such as a prototype, evaluation report, or technical write\u2011up. The content is somewhat relevant but generic and weakly evidenced."
+  },
+  "7": {
+   "score": 3,
+   "reason": "The proposal references the required technologies (FastAPI, NLP, time\u2011series forecasting, scikit\u2011learn) and claims prior experience, but it lacks concrete examples, detailed plan, or evidence of past work. It is relevant but generic and weakly evidenced."
+  },
+  "8": {
+   "score": 2,
+   "reason": "The proposal lists generic performance improvements and e2e testing experience but does not address key requirements such as Docker containerization, caching layers, MongoDB, AWS, or CI/CD for a travel product. It lacks specific evidence of fit with the stated problem and offers a generic plan."
+  },
+  "9": {
+   "score": 3,
+   "reason": "The proposal demonstrates relevant experience with Next.js and GraphQL, citing performance metrics and a traffic boost from a migration. However, it lacks specific evidence of working with MongoDB or relational databases, does not address the component\u2011based front\u2011end requirement, and offers only a vague plan (confirm success criteria, ship early version, update milestones). It is not a template but is somewhat generic and weakly evidenced for the exact insurance product context."
+  },
+  "10": {
+   "score": 4,
+   "reason": "The proposal cites concrete case studies involving PostgreSQL and AWS, showing relevant experience with relational databases and cloud work. It outlines a clear, milestone\u2011based approach and communication plan, and is concise without fluff. However, it does not explicitly mention serverless functions or nonprofit context, leaving a small gap in specificity."
+  },
+  "11": {
+   "score": 3,
+   "reason": "The proposal is generic and does not address the specific requirement of moving CRM data nightly or verifying real differences. It lists past projects that are not directly relevant to an education business or CRM data pipelines, and it lacks a concrete plan or next steps tailored to the job description."
+  },
+  "12": {
+   "score": 4,
+   "reason": "The proposal references relevant real\u2011time and asynchronous work (600\u2011vehicle dashboard, clinic reminders) that likely involved WebSockets and Celery, and provides concrete results. However, it omits explicit mention of docker\u2011compose, Tailwind CSS, API documentation, and testing deliverables, and the plan is somewhat generic. Overall, it is strong and evidence\u2011based but missing a few key specifics."
+  },
+  "13": {
+   "score": 3,
+   "reason": "The proposal references past performance and a general approach, but it does not address the specific requirements of Redis expertise, Next.js proficiency, API documentation, or cloud deployment for an education platform. The evidence provided is generic and not directly relevant to the job description, making it only weakly relevant."
+  },
+  "14": {
+   "score": 2,
+   "reason": "The proposal is generic and does not address the specific legal RAG use case, lacks mention of sklearn or langgraph, and omits the required personal email and phone number. It provides only vague references to other projects and no concrete plan or next steps."
+  },
+  "15": {
+   "score": 3,
+   "reason": "The proposal references concrete past results in forecasting and CV, but lacks specific details about the advertising domain, nearest\u2011neighbour lookups, and the required deliverables (training notebook, model, documentation). It outlines a general plan and next step but remains somewhat generic."
+  },
+  "16": {
+   "score": 4,
+   "reason": "The proposal references relevant CI/CD, MLOps, and vector database experience with concrete case studies, but lacks specific mention of the healthcare domain or the exact deliverables (training notebook, saved model, handover documentation). It is well\u2011structured, evidence\u2011based, and includes a clear plan, but some generic elements remain."
+  },
+  "17": {
+   "score": 3,
+   "reason": "The proposal is relevant to the job, mentioning Excel and SQL experience and giving brief examples of past work. However, it lacks specific details about writing queries behind finance workbook numbers, and the evidence provided is generic and not directly tied to the manufacturing finance context. The approach outlined is also generic, so the fit is moderate but not strongly demonstrated."
+  },
+  "18": {
+   "score": 3,
+   "reason": "The proposal references relevant skills (Excel, pandas) and provides a brief example of past work, but it lacks specific details about building an ecommerce dashboard, Tableau integration, A/B testing, or Microsoft BI dashboards. The plan is generic and does not address the client\u2019s exact needs or deliverables. Thus it scores as relevant but generic with weak evidence."
+  },
+  "19": {
+   "score": 3,
+   "reason": "The proposal acknowledges the need for Pinecone and RAG, but it lacks concrete evidence of relevant experience, a detailed plan, or specific deliverables. It is generic and does not provide a clear roadmap or examples of prior work, making it only moderately relevant."
+  },
+  "20": {
+   "score": 3,
+   "reason": "The proposal acknowledges the project and mentions Pinecone, but it lacks specific evidence of XGBoost experience, a detailed plan, or concrete deliverables. It is generic and weakly evidenced, fitting a 3 on the rubric."
+  },
+  "21": {
+   "score": 3,
+   "reason": "The proposal references MongoDB experience and a case study, but it lacks specific evidence of Apollo/GraphQL expertise, domain relevance (insurance/PDF handling), or a clear plan for unit and end\u2011to\u2011end tests. It is somewhat generic and weakly supported."
+  },
+  "22": {
+   "score": 3,
+   "reason": "The proposal references Apollo and GitHub Actions, which are relevant to the job, and provides some performance metrics. However, it lacks specific details about Celery, background jobs, or how it will address the travel company\u2019s pricing sensitivity problem. The plan and next steps are vague, making it a generic response with weak evidence for full fit."
+  },
+  "23": {
+   "score": 2,
+   "reason": "The proposal is largely generic and template-like, lacking specific details about time\u2011series forecasting, computer vision, or nearest\u2011neighbour lookups. It does not provide concrete evidence of relevant experience or a clear plan for deliverables, making it weakly relevant to the job."
+  },
+  "24": {
+   "score": 2,
+   "reason": "The proposal does not address the key requirements of the job (Pinecone, managed vector index, torch, XGBoost, docker-compose). It only cites unrelated past projects and offers a generic plan. It lacks concrete evidence of relevant experience, making it weakly relevant."
+  },
+  "25": {
+   "score": 4,
+   "reason": "The proposal references concrete past work (chat widget, gate\u2011tix, stock\u2011sync) that demonstrates experience with WebSockets, Celery, and docker\u2011compose, and outlines a clear plan to confirm success criteria, ship an early version, and provide milestone updates. It is concise and free of fluff. However, it omits explicit mention of Tailwind CSS, API documentation, and unit/end\u2011to\u2011end testing, which are key deliverables. Thus it scores a solid 4."
+  },
+  "26": {
+   "score": 3,
+   "reason": "The proposal references relevant technologies (MongoDB, Celery, Django Rest Framework) and provides concrete examples of past work, but it does not address the specific legal product context, Shopify requirement, or a clear plan for the deliverables. It is somewhat generic and lacks detailed evidence of fit for this particular project."
+  },
+  "27": {
+   "score": 3,
+   "reason": "The proposal references past work and provides some evidence of performance, but it does not specifically address the requirement for a flexible query endpoint or an online\u2011store platform plugin. The approach is generic (confirm criteria, ship early, update milestones) and lacks a concrete plan tailored to the nonprofit\u2019s needs. Thus it is relevant but weakly evidenced and generic."
+  },
+  "28": {
+   "score": 3,
+   "reason": "The proposal references relevant data\u2011analysis experience and provides two case studies, but it does not explicitly mention matplotlib, Python, or notebook data cleaning. It also fails to detail how it will deliver a 30\u2011minute walkthrough or an interactive dashboard, and the plan is vague beyond confirming scope. Thus it is relevant but generic and weakly evidenced."
+  },
+  "29": {
+   "score": 2,
+   "reason": "The proposal is largely generic and does not address the key requirements of Docker, AWS, or logistics dispatching. It mentions ML work but omits any reference to Docker, prophet, or the specific deliverables needed for the logistics company."
+  },
+  "30": {
+   "score": 3,
+   "reason": "The proposal cites concrete past projects that demonstrate Tailwind CSS, Apollo, and PostgreSQL experience, which aligns with the core requirements. However, it omits explicit mention of Next.js, live\u2011update implementation, and the requested deliverables (API documentation, unit and end\u2011to\u2011end tests). The plan is brief and lacks a detailed next step or timeline, making it somewhat generic and incomplete for the specific job."
+  }
+ },
+ "sets": {
+  "best_fixedwriter_v2": {
+   "n": 28,
+   "mean_judge_score": 3.3571
+  },
+  "v0_fixedwriter_v2": {
+   "n": 28,
+   "mean_judge_score": 3.0357
+  }
+ }
+}

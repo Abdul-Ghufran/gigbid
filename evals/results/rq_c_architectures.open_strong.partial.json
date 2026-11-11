@@ -1,0 +1,65 @@
+{
+ "react": [
+  {
+   "job_id": "dev-ai-151",
+   "persona": "ai",
+   "kind": "partial",
+   "gold_bid": false,
+   "gold_scam": false,
+   "pred": "skip",
+   "correct": true,
+   "scam_skipped": false,
+   "unsupported_claims": 0,
+   "violations_shipped": [],
+   "compliance_caught": 0,
+   "replied": null,
+   "tokens": 5499,
+   "latency_s": 5074.92,
+   "error": null,
+   "rejected_tool_calls": 2,
+   "parsed": true
+  }
+ ],
+ "supervisor": [
+  {
+   "job_id": "dev-ai-151",
+   "persona": "ai",
+   "kind": "partial",
+   "gold_bid": false,
+   "gold_scam": false,
+   "pred": "skip",
+   "correct": true,
+   "scam_skipped": false,
+   "unsupported_claims": 0,
+   "violations_shipped": [],
+   "compliance_caught": 0,
+   "replied": null,
+   "tokens": 12878,
+   "latency_s": 8686.24,
+   "error": null,
+   "rejected_tool_calls": 3,
+   "parsed": true
+  }
+ ],
+ "graph": [
+  {
+   "job_id": "dev-ai-151",
+   "persona": "ai",
+   "kind": "partial",
+   "gold_bid": false,
+   "gold_scam": false,
+   "pred": "skip",
+   "correct": true,
+   "scam_skipped": false,
+   "unsupported_claims": 0,
+   "violations_shipped": [],
+   "compliance_caught": 0,
+   "replied": null,
+   "tokens": 2083,
+   "latency_s": 645.31,
+   "error": null,
+   "rejected_tool_calls": 0,
+   "parsed": true
+  }
+ ]
+}
