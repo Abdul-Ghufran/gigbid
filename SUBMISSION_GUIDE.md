@@ -125,7 +125,9 @@ Rebuild the report as in Step 4 and push.
 Copy `docs/WRITEUP.md` into a **Medium** story or a **LinkedIn article** (keep the tables and the result-file links),
 publish it, and paste the link in the Classroom submission. It is 1,367 words (required 1,200–1,800).
 
-## Step 8 — Demo video (10 min)
+## Step 8 — Demo video (10 min, or ~45 min to record your own)
+**To record it yourself**, follow `docs/DEMO_WALKTHROUGH.md`: it lists every click, scene by scene, with suggested
+narration and timings for a 3-minute video. Otherwise use the ready-made video:
 Upload `docs/demo/gigbid-demo.mp4` to **YouTube (Unlisted)** or Google Drive (anyone with the link can view) and copy
 the link. Optional: record a voice-over while it plays. To re-record it against live models after deployment:
 ```bash
