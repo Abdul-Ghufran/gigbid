@@ -102,8 +102,8 @@ def main():
     out += ["", "## R&D C. Single agent vs supervisor vs hand-built graph", ""]
     if c:
         done = min((c.get("rows_completed") or {"": c["jobs"]}).values())
-        out += [f"_{done} of {c['jobs']} planned dev jobs completed by every architecture (free-tier daily token cap), model `{c['model']}` "
-                f"for every architecture. n/a = no bid letters to audit._", "",
+        size = f"{done} dev jobs" if done == c["jobs"] else f"{done} of {c['jobs']} planned dev jobs completed by every architecture (free-tier daily token cap)"
+        out += [f"_{size}, model `{c['model']}` for every architecture. n/a = no bid letters to audit._", "",
                 "| Architecture | Bid/skip accuracy | Scams skipped | Unsupported claims / letter | Letters with violations shipped | GigSim reply rate | Rejected tool calls | Mean tokens / job | p95 latency (s) |",
                 "|---|---|---|---|---|---|---|---|---|"]
         for k, v in c["results"].items():

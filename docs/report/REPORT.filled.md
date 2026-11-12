@@ -180,14 +180,14 @@ and job type: appendix A.
 
 ## 5. R&D question C — single agent vs prebuilt supervisor vs our graph
 
-**Setup.** Dev jobs stratified over strong, partial, off-domain, scam, injection and low-budget posts (completed by every
-architecture so far: 6); the same
+**Setup.** Dev jobs stratified over strong, partial, off-domain, scam, injection and low-budget posts (n = 6,
+the same jobs for every architecture); the same
 model (openai/gpt-oss-120b) for every architecture: (a) one `create_react_agent` with all marketplace + portfolio tools,
 (b) `langgraph-supervisor` over a marketplace researcher and a portfolio researcher, (c) GigBid's graph. Shipped letters
 are audited by the same verifier and policy checks (`rq_c_architectures.py`).
 
 
-_6 of 6 planned dev jobs completed by every architecture (free-tier daily token cap), model `openai/gpt-oss-120b` for every architecture. n/a = no bid letters to audit._
+_6 dev jobs, model `openai/gpt-oss-120b` for every architecture. n/a = no bid letters to audit._
 
 | Architecture | Bid/skip accuracy | Scams skipped | Unsupported claims / letter | Letters with violations shipped | GigSim reply rate | Rejected tool calls | Mean tokens / job | p95 latency (s) |
 |---|---|---|---|---|---|---|---|---|

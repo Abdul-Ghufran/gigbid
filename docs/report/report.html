@@ -393,12 +393,12 @@ rate to 64.4%.</p>
 p95 retrieval &lt; 0.1 s, and an explicit "cannot prove this" signal that the writer and the skip decision use. By persona
 and job type: appendix A.</p>
 <h2 id="5-rd-question-c-single-agent-vs-prebuilt-supervisor-vs-our-graph">5. R&amp;D question C — single agent vs prebuilt supervisor vs our graph</h2>
-<p><strong>Setup.</strong> Dev jobs stratified over strong, partial, off-domain, scam, injection and low-budget posts (completed by every
-architecture so far: 6); the same
+<p><strong>Setup.</strong> Dev jobs stratified over strong, partial, off-domain, scam, injection and low-budget posts (n = 6,
+the same jobs for every architecture); the same
 model (openai/gpt-oss-120b) for every architecture: (a) one <code>create_react_agent</code> with all marketplace + portfolio tools,
 (b) <code>langgraph-supervisor</code> over a marketplace researcher and a portfolio researcher, (c) GigBid's graph. Shipped letters
 are audited by the same verifier and policy checks (<code>rq_c_architectures.py</code>).</p>
-<p><em>6 of 6 planned dev jobs completed by every architecture (free-tier daily token cap), model <code>openai/gpt-oss-120b</code> for every architecture. n/a = no bid letters to audit.</em></p>
+<p><em>6 dev jobs, model <code>openai/gpt-oss-120b</code> for every architecture. n/a = no bid letters to audit.</em></p>
 <table>
 <thead>
 <tr>
