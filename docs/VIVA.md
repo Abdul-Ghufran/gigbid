@@ -1,10 +1,10 @@
 # Viva preparation — where everything is, and how to show it live
 
-Run locally for the viva: `make dev` (or `python tools/demo_server.py 8030 --live` for a fresh demo DB with the reviewer
-account `reviewer@gigbid.app` / `demo-reviewer-pass`). Open http://127.0.0.1:8030.
+Run locally for the viva: `.\gb.cmd tools/demo_server.py 8030` (add `--live` for the Groq models) for a fresh demo DB with the reviewer
+account `reviewer@gigbid.app` / `demo-reviewer-pass`. Open http://127.0.0.1:8030.
 
 ## 1. "Kill the marketplace MCP server now. What does the user see, and where is that handled?"
-- Show: start `python tools/e2e_server.py 8011 --degraded` (GigSim pointed at a dead port) or, with docker compose,
+- Show: start `.\gb.cmd tools/e2e_server.py 8011 --degraded` (GigSim pointed at a dead port) or, with docker compose,
   `docker compose -f infra/docker-compose.yml stop gigsim`. Reload the UI → red **Marketplace unavailable** banner.
 - Code: probe `apps/api/routers/settings.py::status` → banner `apps/web/src/components/DegradedBanner.tsx`;
   bounded retries + `MarketplaceDown` in `agent/mcp_client.py::Toolbox.call`; adapter retries/backoff in
@@ -15,7 +15,7 @@ account `reviewer@gigbid.app` / `demo-reviewer-pass`). Open http://127.0.0.1:803
 - Code: `agent/nodes/approval.py::_key` derives idempotency keys from (user, job, draft content, price); the Marketplace
   server stores results in the `idempotency` table (`mcp_servers/marketplace/server.py::_idem_get/_idem_put`) and GigSim
   also honours `Idempotency-Key`. Checkpoints: `AsyncPostgresSaver` (`agent/runner.py::persistence`).
-- Proof: `pytest tests/integration/test_graphs.py::test_crash_while_waiting_then_resume_submits_exactly_once` (new process,
+- Proof: `.\gb.cmd -m pytest tests/integration/test_graphs.py::test_crash_while_waiting_then_resume_submits_exactly_once` (new process,
   same DB, resume, then re-run the submit node from its checkpoint → Connects spent once); audit log rows show the
   replay (`idempotent_replay: true`).
 
@@ -74,4 +74,5 @@ account `reviewer@gigbid.app` / `demo-reviewer-pass`). Open http://127.0.0.1:803
 ## Numbers to remember
 Retrieval Recall@5 0.740 → 0.890 (MRR 0.848 → 0.951) · unsupported claims/proposal 1.48 → 0.34 · verifier F1 0.99 ·
 bid F1 0.976 at threshold 0.70 · scam precision/recall 1.0/1.0 · price in fair band 86% · change request: 6+/4− lines ·
-tool sets: coarse 72.5% vs ours 100% tool selection.
+tool sets: coarse 72.5% vs ours 100% tool selection · R&D C (6 jobs, gpt-oss-120b): bid/skip accuracy graph 1.00 / ReAct 0.83 /
+supervisor 0.67, tokens per job 6,379 / 7,277 / 10,346, unsupported claims per letter 0 / 0 / 1.25.
