@@ -28,6 +28,7 @@ dependencies = [
   "langgraph-checkpoint-postgres==2.0.21",
   "langgraph-checkpoint-sqlite==2.0.10",
   "aiosqlite==0.21.0",
+  "ormsgpack==1.12.2",  # 1.13.1 (8 Nov 2026) has no Windows Smart App Control reputation yet and is blocked on the dev laptop
   "langgraph-supervisor==0.0.27",
   "langgraph-prebuilt==0.2.3",
   "langchain-core==0.3.65",
