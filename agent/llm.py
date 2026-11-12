@@ -218,6 +218,9 @@ async def _call(spec: dict, messages: list[dict], json_mode: bool, node: str, ma
     """One chat completion against an OpenAI-compatible endpoint, with limiter + retries + cache."""
     import httpx
 
+    # gpt-oss counts its hidden reasoning against max_tokens; at medium/high effort the answer budget a node asks for
+    # can be used up by reasoning alone (empty content -> "no JSON found"), so add headroom on top of it
+    max_tokens += {"medium": 1500, "high": 3000}.get(spec.get("reasoning_effort", ""), 0) if "gpt-oss" in spec["model"] else 0
     if spec.get("max_output"):  # provider caps output tokens per minute (e.g. Qwen on Groq: 1000 OTPM)
         max_tokens = min(max_tokens, spec["max_output"])
     body: dict[str, Any] = {"model": spec["model"], "messages": messages, "temperature": config()["llm"]["temperature"],
