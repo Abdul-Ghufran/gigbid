@@ -394,11 +394,11 @@ p95 retrieval &lt; 0.1 s, and an explicit "cannot prove this" signal that the wr
 and job type: appendix A.</p>
 <h2 id="5-rd-question-c-single-agent-vs-prebuilt-supervisor-vs-our-graph">5. R&amp;D question C — single agent vs prebuilt supervisor vs our graph</h2>
 <p><strong>Setup.</strong> Dev jobs stratified over strong, partial, off-domain, scam, injection and low-budget posts (completed by every
-architecture so far: 1); the same
+architecture so far: 6); the same
 model (openai/gpt-oss-120b) for every architecture: (a) one <code>create_react_agent</code> with all marketplace + portfolio tools,
 (b) <code>langgraph-supervisor</code> over a marketplace researcher and a portfolio researcher, (c) GigBid's graph. Shipped letters
 are audited by the same verifier and policy checks (<code>rq_c_architectures.py</code>).</p>
-<p><em>1 of 3 planned dev jobs completed by every architecture (free-tier daily token cap), model <code>openai/gpt-oss-120b</code> for every architecture. n/a = no bid letters to audit.</em></p>
+<p><em>6 of 6 planned dev jobs completed by every architecture (free-tier daily token cap), model <code>openai/gpt-oss-120b</code> for every architecture. n/a = no bid letters to audit.</em></p>
 <table>
 <thead>
 <tr>
@@ -416,53 +416,54 @@ are audited by the same verifier and policy checks (<code>rq_c_architectures.py<
 <tbody>
 <tr>
 <td>react</td>
-<td>1</td>
-<td>0/0</td>
-<td>n/a</td>
+<td>0.833</td>
+<td>1/1</td>
 <td>0</td>
-<td>n/a</td>
-<td>2</td>
-<td>5499</td>
-<td>5074.9</td>
+<td>0</td>
+<td>100.0%</td>
+<td>8</td>
+<td>7277</td>
+<td>7411.7</td>
 </tr>
 <tr>
 <td>supervisor</td>
-<td>1</td>
-<td>0/0</td>
-<td>n/a</td>
+<td>0.667</td>
+<td>1/1</td>
+<td>1.25</td>
 <td>0</td>
-<td>n/a</td>
+<td>50.0%</td>
 <td>3</td>
-<td>12878</td>
+<td>10346</td>
 <td>8686.2</td>
 </tr>
 <tr>
 <td>graph</td>
 <td>1</td>
-<td>0/0</td>
-<td>n/a</td>
+<td>1/1</td>
 <td>0</td>
-<td>n/a</td>
 <td>0</td>
-<td>2083</td>
+<td>50.0%</td>
+<td>0</td>
+<td>6379</td>
 <td>645.3</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Reading.</strong> Bid/skip accuracy: ReAct 1, supervisor 1, graph 1 (best:
-tie (react, supervisor, graph)). Mean tokens per job: ReAct 5499, supervisor 12878, graph 2083 (fewest:
-graph); fastest p95: graph; fewest unsupported claims per letter: n/a (no bid letters yet).
+<p><strong>Reading.</strong> Bid/skip accuracy: ReAct 0.833, supervisor 0.667, graph 1 (best:
+graph). Mean tokens per job: ReAct 7277, supervisor 10346, graph 6379 (fewest:
+graph); fastest p95: graph; fewest unsupported claims per letter: tie (react, graph).
 Letters shipped with a policy violation: ReAct 0, graph 0. Rejected (malformed) tool calls:
-ReAct 2, supervisor 3; the graph calls tools deterministically, so it has none by construction.
+ReAct 8, supervisor 3; the graph calls tools deterministically, so it has none by construction.
 In an earlier attempt on Qwen3.8-27B the tool-calling baselines failed outright — the model invented tool names
 (<code>search_eidence</code>) that Groq rejected — which is why the comparison was re-run on gpt-oss-120b for all three architectures.
 The graph's structural guarantees hold regardless of the scores: the verifier and the Compliance Guard run on every letter
 whatever the model decided, and its rule-based risk gate is not steerable by injected text. Where a baseline is cheaper or
 faster (see the per-kind accuracy in <code>rq_c_architectures.json</code>), it is a candidate first-pass triage filter; I would not
 ship it to write proposals without the verifier and compliance stages. Sample size is small (jobs completed by every
-architecture: 1) because of the free-tier cap of 200,000 tokens per model per day: a single ReAct or supervisor
-run spends 5,000–13,000 tokens and waits on the cap for over an hour, so differences of one or two jobs are not meaningful;
-token cost and latency per job are the robust signal here.</p>
+architecture: 6) because of the free-tier cap of 200,000 tokens per model per day: a single ReAct or supervisor
+run spends roughly 1,000–16,000 tokens and, once the cap is reached, waits on it for over an hour, so differences of one or two jobs are not meaningful.
+Tokens per job are the robust cost signal; latency is not, because runs made while the daily quota was exhausted include
+quota waits of up to two hours (the same jobs took 5–60 s once quota was available).</p>
 <h2 id="6-the-change-request-2-nov-2026">6. The change request (2 Nov 2026)</h2>
 <p>GigSim's policy update made jobs with ≥ 20 proposals cost 1.5× Connects and rejects proposals with unanswered screening
 questions. Because platform rules live in <code>agent/config.yaml</code> (<code>platform_policy</code>) and the policy pack, absorbing it was

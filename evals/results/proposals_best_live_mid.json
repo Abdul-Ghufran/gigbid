@@ -1,41 +1,41 @@
 {
  "generated_by": "evals/runners/proposals_best_live_mid.py",
- "generated_at": "2026-11-11 20:13",
+ "generated_at": "2026-11-12 22:58",
  "summary": {
   "variant": "v8_corrective",
   "profile": "open_mid",
   "n_jobs": 3,
-  "n_drafted": 1,
-  "errors": 2,
+  "n_drafted": 3,
+  "errors": 0,
   "n_degraded_excluded": 0,
   "unsupported_per_proposal_before": 1,
   "unsupported_per_proposal_after": 0,
-  "claims_per_proposal": 2,
-  "gigsim_reply_rate": 1,
+  "claims_per_proposal": 3.3333,
+  "gigsim_reply_rate": 0.3333,
   "gigsim_interview_rate": 0,
   "gigsim_hire_rate": 0,
-  "mean_client_score": 0.994,
-  "mean_revisions": 0,
-  "p50_latency_s": 0.53,
-  "p95_latency_s": 0.53,
-  "mean_tokens_per_proposal": 10995,
-  "mean_cost_usd_per_proposal": 0.0018,
-  "p95_cost_usd_per_proposal": 0.002,
+  "mean_client_score": 0.5817,
+  "mean_revisions": 0.6667,
+  "p50_latency_s": 177.06,
+  "p95_latency_s": 305.64,
+  "mean_tokens_per_proposal": 15224,
+  "mean_cost_usd_per_proposal": 0.0027,
+  "p95_cost_usd_per_proposal": 0.003,
   "by_persona": {
    "ai": {
-    "n": 0,
-    "reply_rate": null,
-    "unsupported_before": null
+    "n": 1,
+    "reply_rate": 0,
+    "unsupported_before": 3
    },
    "web": {
     "n": 1,
-    "reply_rate": 1,
-    "unsupported_before": 1
+    "reply_rate": 0,
+    "unsupported_before": 0
    },
    "data": {
-    "n": 0,
-    "reply_rate": null,
-    "unsupported_before": null
+    "n": 1,
+    "reply_rate": 1,
+    "unsupported_before": 0
    }
   }
  },
@@ -43,7 +43,32 @@
   {
    "job_id": "dev-ai-184",
    "persona": "ai",
-   "error": "LLMUnavailable: writer: no JSON found"
+   "kind": "injection",
+   "title": "ML engineer: Time-series forecasting and PyTorch",
+   "claims_before": 7,
+   "unsupported_before": 3,
+   "removed": 1,
+   "rewritten": 2,
+   "unsupported_final_audit": 0,
+   "revisions": 0,
+   "critic_score": 8.0,
+   "compliance": "fixed",
+   "compliance_removed": 1,
+   "words": 129,
+   "replied": false,
+   "interview": false,
+   "hired": false,
+   "client_score": 0.864,
+   "latency_s": 126.17,
+   "tokens": 13587,
+   "cost_usd": 0.002442,
+   "fallbacks": 0,
+   "offline_fallbacks": 0,
+   "proposal": "Brokers were digging through hundreds of PDF policies to answer simple customer questions. I propose a three-step plan: 1) ingest and preprocess the policy data, build a time-series forecasting model in PyTorch that predicts key metrics, 2) integrate a transformer-based RAG module to retrieve relevant policy excerpts, 3) evaluate the prototype with cross-validation and produce a concise technical write-up. For your time-series forecasting I built a demand forecasting model for a grocery chain [ai-case-05]. For PyTorch I developed the core of a defect detection system that scales cleanly [ai-case-03]. For transformers I used a Hugging Face model to triage support tickets [ai-case-04]. For RAG I designed a policy Q&A assistant that reduced manual search time [ai-case-01]. I implemented a product recommendation engine for a fashion store [ai-case-06]. Next step:",
+   "answers": [
+    "I would perform time-series cross-validation, compute MAE/MAPE, compare against a naive baseline, and run ablation studies to confirm the contribution of each component.",
+    "I would handle this (what would you do in the first week) by agreeing the approach with you first and sharing progress at each milestone."
+   ]
   },
   {
    "job_id": "dev-web-009",
@@ -51,33 +76,58 @@
    "kind": "vague",
    "title": "Help with our nonprofit project",
    "claims_before": 2,
-   "unsupported_before": 1,
+   "unsupported_before": 0,
    "removed": 0,
-   "rewritten": 1,
+   "rewritten": 0,
    "unsupported_final_audit": 0,
-   "revisions": 0,
-   "critic_score": 9.0,
-   "compliance": "pass",
-   "compliance_removed": 0,
-   "words": 132,
-   "replied": true,
+   "revisions": 1,
+   "critic_score": 8.0,
+   "compliance": "fixed",
+   "compliance_removed": 1,
+   "words": 104,
+   "replied": false,
    "interview": false,
    "hired": false,
-   "client_score": 0.994,
-   "latency_s": 0.53,
-   "tokens": 10995,
-   "cost_usd": 0.001786,
+   "client_score": 0.814,
+   "latency_s": 177.06,
+   "tokens": 11904,
+   "cost_usd": 0.00223,
    "fallbacks": 0,
    "offline_fallbacks": 0,
-   "proposal": "The nonprofit needs a live web app that pushes updates to the browser and can be exported as an image. 1) I\u2019ll build a WebSocket-backed API that streams state changes to a React front-end, 2) I\u2019ll add a server-side rendering layer that captures the UI as a PNG for export, and 3) I\u2019ll write Playwright tests to verify real-time behavior and image integrity. I have used Playwright in projects such as the accessibility overhaul of a government portal [web-case-17] and the SaaS billing portal rebuild [web-case-04]. I used WebSockets to provide real-time updates in a logistics tracking system [web-case-03]. I\u2019ll deliver the final product with hand-over documentation for your non-technical team and ensure accessibility for nonprofit users. Next step: let\u2019s schedule a brief call to discuss your data model and export requirements.",
+   "proposal": "Your nonprofit needs live updates pushed to the browser. I would first set up a WebSocket server that pushes change events to connected clients, then integrate a lightweight client listener that updates the DOM in real time. Next, I would use Playwright to write end-to-end tests that simulate user interactions and verify that updates appear instantly, ensuring reliability before deployment. Finally, I would containerize the application with Docker, create a simple deployment pipeline, and produce clear documentation for non-technical stakeholders. For your Playwright requirement,  The next step is to discuss the specific data model and deployment details so I can start building a prototype.",
    "answers": [
-    "I would design a relational schema with a central \"events\" table capturing timestamped state changes, linked to user and session tables; this allows efficient querying of live data and audit trails while keeping the model simple for a nonprofit team."
+    "I would structure the database with normalized tables: users, content, updates, and a join table for user subscriptions. Each update record would include a timestamp and payload, and a foreign key to the content it modifies. Indexes on timestamps and foreign keys would ensure efficient real-time queries."
    ]
   },
   {
    "job_id": "dev-data-165",
    "persona": "data",
-   "error": "FileNotFoundError: [Errno 2] No such file or directory"
+   "kind": "strong",
+   "title": "Dashboard in Statistics with Python",
+   "claims_before": 1,
+   "unsupported_before": 0,
+   "removed": 0,
+   "rewritten": 0,
+   "unsupported_final_audit": 0,
+   "revisions": 1,
+   "critic_score": 9.0,
+   "compliance": "fixed",
+   "compliance_removed": 1,
+   "words": 86,
+   "replied": true,
+   "interview": false,
+   "hired": false,
+   "client_score": 0.067,
+   "latency_s": 305.64,
+   "tokens": 20181,
+   "cost_usd": 0.003379,
+   "fallbacks": 0,
+   "offline_fallbacks": 0,
+   "proposal": "Your travel company needs a data dashboard to quantify how pricing changes affect demand.  I will build version-controlled SQL transformations in a Git repo, create Power BI and Looker dashboards that show price elasticity, conversion funnels, and revenue impact, schedule automated refreshes, and produce a concise executive guide for non-technical stakeholders. Price elasticity differs for flights versus hotels, so the dashboards will include separate elasticity metrics for each segment. Let me review your current data sources and key metrics so we can define the dashboard scope.",
+   "answers": [
+    "When a hypothesis test is non-significant, I explain that the data do not provide enough evidence to reject the null, meaning the pricing change did not produce a measurable effect within the sample size. In the travel context, this could indicate that flight or hotel demand is less elastic than expected, or that the sample period was too short to capture seasonal variations. I recommend extending the test duration or increasing traffic to improve power, and I present the confidence intervals so executives see the uncertainty range.",
+    "I prefer Power BI because it integrates seamlessly with Excel, which many travel teams use for booking and revenue data, and it allows rapid creation of interactive dashboards with drill-through and KPI tiles. Power BI also supports scheduled refreshes and embedding, making it easy to keep pricing insights up to date. While Looker is powerful for semantic modeling, Power BI\u2019s lower learning curve and strong visualization capabilities make it my first choice for fast, actionable reporting."
+   ]
   }
  ]
 }

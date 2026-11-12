@@ -141,8 +141,9 @@ whatever the model decided, and its rule-based risk gate is not steerable by inj
 faster (see the per-kind accuracy in `rq_c_architectures.json`), it is a candidate first-pass triage filter; I would not
 ship it to write proposals without the verifier and compliance stages. Sample size is small (jobs completed by every
 architecture: {{c_jobs}}) because of the free-tier cap of 200,000 tokens per model per day: a single ReAct or supervisor
-run spends 5,000–13,000 tokens and waits on the cap for over an hour, so differences of one or two jobs are not meaningful;
-token cost and latency per job are the robust signal here.
+run spends roughly 1,000–16,000 tokens and, once the cap is reached, waits on it for over an hour, so differences of one or two jobs are not meaningful.
+Tokens per job are the robust cost signal; latency is not, because runs made while the daily quota was exhausted include
+quota waits of up to two hours (the same jobs took 5–60 s once quota was available).
 
 ## 6. The change request (2 Nov 2026)
 

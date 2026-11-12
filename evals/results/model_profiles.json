@@ -43,37 +43,37 @@
    "variant": "v8_corrective",
    "profile": "open_mid",
    "n_jobs": 3,
-   "n_drafted": 1,
-   "errors": 2,
+   "n_drafted": 3,
+   "errors": 0,
    "n_degraded_excluded": 0,
    "unsupported_per_proposal_before": 1,
    "unsupported_per_proposal_after": 0,
-   "claims_per_proposal": 2,
-   "gigsim_reply_rate": 1,
+   "claims_per_proposal": 3.3333,
+   "gigsim_reply_rate": 0.3333,
    "gigsim_interview_rate": 0,
    "gigsim_hire_rate": 0,
-   "mean_client_score": 0.994,
-   "mean_revisions": 0,
-   "p50_latency_s": 0.53,
-   "p95_latency_s": 0.53,
-   "mean_tokens_per_proposal": 10995,
-   "mean_cost_usd_per_proposal": 0.0018,
-   "p95_cost_usd_per_proposal": 0.002,
+   "mean_client_score": 0.5817,
+   "mean_revisions": 0.6667,
+   "p50_latency_s": 177.06,
+   "p95_latency_s": 305.64,
+   "mean_tokens_per_proposal": 15224,
+   "mean_cost_usd_per_proposal": 0.0027,
+   "p95_cost_usd_per_proposal": 0.003,
    "by_persona": {
     "ai": {
-     "n": 0,
-     "reply_rate": null,
-     "unsupported_before": null
+     "n": 1,
+     "reply_rate": 0,
+     "unsupported_before": 3
     },
     "web": {
      "n": 1,
-     "reply_rate": 1,
-     "unsupported_before": 1
+     "reply_rate": 0,
+     "unsupported_before": 0
     },
     "data": {
-     "n": 0,
-     "reply_rate": null,
-     "unsupported_before": null
+     "n": 1,
+     "reply_rate": 1,
+     "unsupported_before": 0
     }
    }
   }

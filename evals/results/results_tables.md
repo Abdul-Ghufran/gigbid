@@ -108,13 +108,13 @@ Unsupported claims per proposal before -> after verification:
 
 ## R&D C. Single agent vs supervisor vs hand-built graph
 
-_1 of 3 planned dev jobs completed by every architecture (free-tier daily token cap), model `openai/gpt-oss-120b` for every architecture. n/a = no bid letters to audit._
+_6 of 6 planned dev jobs completed by every architecture (free-tier daily token cap), model `openai/gpt-oss-120b` for every architecture. n/a = no bid letters to audit._
 
 | Architecture | Bid/skip accuracy | Scams skipped | Unsupported claims / letter | Letters with violations shipped | GigSim reply rate | Rejected tool calls | Mean tokens / job | p95 latency (s) |
 |---|---|---|---|---|---|---|---|---|
-| react | 1 | 0/0 | n/a | 0 | n/a | 2 | 5499 | 5074.9 |
-| supervisor | 1 | 0/0 | n/a | 0 | n/a | 3 | 12878 | 8686.2 |
-| graph | 1 | 0/0 | n/a | 0 | n/a | 0 | 2083 | 645.3 |
+| react | 0.833 | 1/1 | 0 | 0 | 100.0% | 8 | 7277 | 7411.7 |
+| supervisor | 0.667 | 1/1 | 1.25 | 0 | 50.0% | 3 | 10346 | 8686.2 |
+| graph | 1 | 1/1 | 0 | 0 | 50.0% | 0 | 6379 | 645.3 |
 
 ## E4. Prompt-injection defence
 
@@ -158,5 +158,5 @@ git show <change-request commit>: agent/config.yaml +4/-4, data/policy_pack/mark
 | Profile | Proposals | Unsupported before | Reply rate | p95 latency (s) | Mean tokens | List-price USD / proposal |
 |---|---|---|---|---|---|---|
 | open_strong | 3 | 0 | 0.0% | 3481.5 | 10057 | 0.00250 |
-| open_mid | 1 | 1 | 100.0% | 0.5 | 10995 | 0.00180 |
+| open_mid | 3 | 1 | 33.3% | 305.6 | 15224 | 0.00270 |
 
