@@ -1,7 +1,12 @@
 # GigBid — what is done, and the steps only you can do
 
-Deadline: **12 Nov 2026, 11:59 PM PKT**. Commits after the deadline are ignored, so finish steps 1–6 well before it.
-Do them in this order; each step says how long it takes.
+Deadline (extended): **Sunday 15 Nov 2026, midnight PKT**. Commits after the deadline are ignored, so finish steps
+1–6 well before it. Do them in this order; each step says how long it takes.
+
+> **Running commands on this laptop.** Windows Smart App Control now blocks `.venv\Scripts\python.exe`, so every
+> command below uses **`.\gb.cmd`** instead (in the project folder, from PowerShell or Command Prompt). It runs the
+> same project Python with the same packages. Example: `.\gb.cmd -m pytest -q`. Do not run `uv sync` or `uv run`:
+> they rebuild the venv launcher, which Smart App Control blocks.
 
 ---
 
@@ -28,7 +33,7 @@ Do them in this order; each step says how long it takes.
 The slow runs keep going in the background while the laptop is on (plugged in, lid set to "Do nothing"). Whenever you
 want the report to include everything finished so far, run this in the project folder; it is safe while they are running:
 ```bash
-.venv/Scripts/python.exe tools/finalize_report.py "Fold in the latest live-model rows"
+.\gb.cmd tools/finalize_report.py "Fold in the latest live-model rows"
 ```
 It summarises R&D C from the rows that **every** architecture has finished (like-for-like), refreshes the README tables
 and the report PDF, runs the repo checks, commits under your name and pushes. Run it one last time just before Step 9.
@@ -76,16 +81,11 @@ If the build fails, open the deploy log and send me (or any AI assistant) the la
    (5 = specific, proven with relevant evidence, clear plan; 3 = relevant but generic; 1 = irrelevant/unbelievable). Save as CSV.
 3. In a terminal in the project folder:
    ```bash
-   .venv/Scripts/python.exe -m evals.runners.judge_calibration --kappa
+   .\gb.cmd -m evals.runners.judge_calibration --kappa
    ```
+   then rebuild the report and PDF, commit and push in one go:
    ```bash
-   .venv/Scripts/python.exe tools/build_report.py
-   ```
-   ```bash
-   cd apps/web && node scripts/render_pdf.mjs && cd ../..
-   ```
-   ```bash
-   git add -A && git commit -m "Judge calibration with my labels" && git push
+   .\gb.cmd tools/finalize_report.py "Judge calibration with my labels"
    ```
 
 ## Step 5 — Langfuse public traces (15 min) — needed for "links to three public traces"
@@ -111,13 +111,13 @@ I could not run the Inspector myself (the automation sandbox does not allow down
    "proposal not found" for a made-up id — that error is fine to show) → screenshot the tool list with annotations.
 5. Workspace server: Arguments `-m mcp_servers.workspace.server` → run `free_slots` → screenshot.
 6. Save the PNGs as `docs/images/inspector_portfolio.png`, `inspector_marketplace.png`, `inspector_workspace.png`,
-   then `git add docs/images && git commit -m "MCP Inspector screenshots" && git push`.
+   then run `git add docs/images`, `git commit -m "MCP Inspector screenshots"` and `git push` (one at a time).
 
 ## Step 6 — Human panel with classmates (optional but listed in B4; 10 min of your time)
 Send `evals/datasets/human_panel_pairs.csv` to 3–5 classmates; each fills `which_would_you_reply_to_A_or_B` (A or B)
 and `rater_name`, and sends it back. Then:
 ```bash
-.venv/Scripts/python.exe -m evals.runners.human_panel --csv rater1.csv --csv rater2.csv --csv rater3.csv
+.\gb.cmd -m evals.runners.human_panel --csv rater1.csv --csv rater2.csv --csv rater3.csv
 ```
 Rebuild the report as in Step 4 and push.
 
@@ -131,19 +131,19 @@ narration and timings for a 3-minute video. Otherwise use the ready-made video:
 Upload `docs/demo/gigbid-demo.mp4` to **YouTube (Unlisted)** or Google Drive (anyone with the link can view) and copy
 the link. Optional: record a voice-over while it plays. To re-record it against live models after deployment:
 ```bash
-.venv/Scripts/python.exe tools/demo_server.py 8030 --live
+.\gb.cmd tools/demo_server.py 8030 --live
 ```
 then in a second terminal:
 ```bash
-cd apps/web && node scripts/record_demo.mjs http://127.0.0.1:8030
+cd apps/web; node scripts/record_demo.mjs http://127.0.0.1:8030; cd ../..
 ```
 and convert: `ffmpeg -i ../../docs/demo/gigbid-demo.webm -c:v libx264 -pix_fmt yuv420p ../../docs/demo/gigbid-demo.mp4`
 
 ## Step 9 — Build the ZIP (1 min)
 ```bash
-git pull && make zip
+git archive --format=zip -o gigbid_submission.zip HEAD
 ```
-(or `git archive --format=zip -o gigbid_submission.zip HEAD`). It contains only committed files, never `.env`.
+It contains only committed files, never `.env`. Run it after the last Step 0 / Step 4 push.
 
 ## Step 10 — Submit on Google Classroom (5 min)
 Attach / paste, in one submission:
@@ -168,7 +168,7 @@ First load after idle can take ~1 minute (free tier).
 ## Step 11 — Viva preparation (30–60 min)
 Read `docs/VIVA.md` — it answers each of the 10 viva questions with the exact file, function and test to show.
 Practise locally: `make dev` (or `python tools/demo_server.py 8030 --live`), and run the crash/exactly-once proof:
-`.venv/Scripts/python.exe -m pytest tests/integration -q`.
+`.\gb.cmd -m pytest tests/integration -q`.
 
 ---
 

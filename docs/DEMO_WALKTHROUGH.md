@@ -18,7 +18,7 @@ use the badge described next to it to find the right job.
 ### 2. Start the app
 Open a terminal in the project folder (`C:\Users\MABC\Desktop\i230576_AG2`) and run:
 ```bash
-.venv/Scripts/python.exe tools/demo_server.py 8030
+.\gb.cmd tools/demo_server.py 8030
 ```
 (For live mode add `--live` at the end.) Leave this terminal open. It starts a **fresh** demo database every time, with
 the reviewer account already created, so you can redo a take by stopping it (Ctrl+C) and running it again.
@@ -151,7 +151,7 @@ Stop recording.
 ## Part C — Optional extra scene: marketplace down (30 s)
 Shows the degraded-mode banner (viva question 1). Stop the demo server first (Ctrl+C), then:
 ```bash
-.venv/Scripts/python.exe tools/e2e_server.py 8011 --degraded
+.\gb.cmd tools/e2e_server.py 8011 --degraded
 ```
 Open **http://127.0.0.1:8011** → **Create account** (any email such as `demo@test.io` and any password) → complete the
 **Set up GigBid** onboarding → **Finish and find jobs**. A red **Marketplace unavailable** banner appears and jobs are
