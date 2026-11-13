@@ -145,9 +145,11 @@ async def execute(run_id: str, payload: dict) -> dict:
     try:
         if payload.get("resume") is not None:
             inp = Command(resume=payload["resume"])
-        elif payload.get("continue"):
+        elif payload.get("continue") and (await g.aget_state(cfg)).values:
             inp = None  # crash recovery: continue from the last checkpoint
         else:
+            if payload.get("continue"):  # queued but never started before the restart: no checkpoint, start it fresh
+                payload["input"] = _fresh_input(user_id, payload)
             inp = payload["input"] | {"user_id": user_id, "trace_id": trace, "settings": user_settings(user_id)}
         async for _ in g.astream(inp, cfg, stream_mode="updates"):
             pass
@@ -178,6 +180,16 @@ async def execute(run_id: str, payload: dict) -> dict:
         with contextlib.suppress(Exception):
             lf.flush()
     return {"status": status, "error": err, "tokens": led.tokens, "cost_usd": led.cost_usd, "latency_s": latency}
+
+
+def _fresh_input(user_id: str, payload: dict) -> dict:
+    from common.db import User
+
+    with session() as s:
+        persona = s.get(User, user_id).persona_key
+    if payload["kind"] == "bid":
+        return {"job_id": payload["job_id"], "persona": persona, "force_bid": False}
+    return {"thread_id": payload["thread_id"], "persona": persona}
 
 
 def _update_job(user_id, job_id, v: dict, run_status, err, run_id, led, latency):

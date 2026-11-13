@@ -125,3 +125,22 @@ async def test_conversation_graph_classifies_and_waits_for_approval(tmp_path):
         assert st.next == ("approval",) and st.values["intent"]["intent"]
         await g.ainvoke(Command(resume={"action": "approve"}), cfg)
         assert (await g.aget_state(cfg)).values["status"] == "sent"
+
+
+async def test_crash_recovery_starts_a_run_that_never_began():
+    """A run queued (no checkpoint yet) when the process restarted must start fresh, not fail with EmptyInputError."""
+    from agent.runner import bid_thread, create_run, execute
+    from common.db import JobRecord, User, session
+
+    job = pick(lambda r: r["_gold"]["scam"])
+    uid = "persona-web"
+    with session() as s:
+        if not s.get(User, uid):
+            s.add(User(id=uid, email="recover@test.io", password_hash="x", persona_key="web", onboarded=True))
+            s.add(JobRecord(id=f"{uid}:{job['job_id']}", user_id=uid, job_id=job["job_id"], fingerprint="fp-recover",
+                            job={}, status="analysing", summary={}))
+    run = create_run(uid, "bid", bid_thread(uid, job["job_id"]))
+    out = await execute(run.id, {"kind": "bid", "job_id": job["job_id"], "continue": True})
+    assert out["status"] == "done", out
+    with session() as s:
+        assert s.get(JobRecord, f"{uid}:{job['job_id']}").status == "skipped"

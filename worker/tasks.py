@@ -194,6 +194,9 @@ async def recover(ctx=None):
         stale = [(r.id, r.user_id, r.thread_id, r.graph) for r in s.query(Run).filter(Run.status.in_(["running", "queued"])).all()
                  if (r.created_at if r.created_at.tzinfo else r.created_at.replace(tzinfo=dt.UTC)) < cutoff]
         retry = [(j.user_id, j.job_id) for j in s.query(JobRecord).filter_by(status="queued_retry").all()]
+        # jobs that a restart left with no checkpoint (EmptyInputError from an older recovery path): analyse them again
+        retry += [(j.user_id, j.job_id) for j in s.query(JobRecord).filter_by(status="needs_attention").all()
+                  if "EmptyInputError" in str((j.summary or {}).get("error", ""))]
     for rid, _uid, thread, graph in stale:
         kind = "bid" if graph == "bid" else "conv"
         ident = thread.split(":", 2)[2]
