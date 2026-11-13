@@ -1,4 +1,6 @@
 """V3 - cross-encoder reranking (open MiniLM cross-encoder on CPU) of hybrid candidates, per requirement."""
+import asyncio
+
 from rag.index.core import rerank
 from rag.query import decompose, job_text
 from rag.types import Hit
@@ -24,9 +26,10 @@ class V3Rerank(Variant):
         n_cand = self.opts.get("candidates", 15)
         if self.opts.get("decompose", True):
             base = await self.hybrid.retrieve(job, k=n_cand, requirements=requirements, filters=filters)
-            per = {r: self._rerank(r, hits, r)[:k] for r, hits in base.by_requirement.items()}
+            per = await asyncio.to_thread(lambda: {r: self._rerank(r, hits, r)[:k] for r, hits in base.by_requirement.items()})
             return RetrievalResult(hits=merge_round_robin(per, k)[:k], by_requirement=per, requirements=base.requirements)
         self.hybrid.opts["decompose"] = False
         base = await self.hybrid.retrieve(job, k=n_cand, filters=filters)
-        return RetrievalResult(hits=self._rerank(job_text(job), base.hits, None)[:k],
+        hits = await asyncio.to_thread(self._rerank, job_text(job), base.hits, None)
+        return RetrievalResult(hits=hits[:k],
                                requirements=decompose(job, requirements))

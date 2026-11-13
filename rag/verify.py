@@ -12,6 +12,7 @@ Unsupported claims are removed before the Critic sees the draft; partly supporte
 """
 from __future__ import annotations
 
+import asyncio
 import re
 from typing import Awaitable, Callable
 
@@ -129,7 +130,7 @@ async def verify_texts(cover: str, answers: list[str], evidence: dict[str, str],
                     ev.update(await search(CITE.sub("", s)))
                 except Exception:
                     pass
-            c = check_claim(s, ev, t_support, t_partial)
+            c = await asyncio.to_thread(check_claim, s, ev, t_support, t_partial)
             c.location = loc
             checks.append(c)
             if c.label == "unsupported" and remove_unsupported:

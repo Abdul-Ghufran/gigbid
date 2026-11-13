@@ -2,6 +2,8 @@
 
 `decompose=False` (the V2 row) fuses on the whole post; `decompose=True` runs the fusion per requirement
 (used by V3/V4/V8 and the ablation)."""
+import asyncio
+
 from rag.index.core import rrf
 from rag.query import decompose, job_text
 from rag.variants.base import RetrievalResult, Variant, merge_round_robin, to_items
@@ -17,6 +19,10 @@ class V2Hybrid(Variant):
         return fused, chunks
 
     async def retrieve(self, job, k=10, requirements=None, filters=None):
+        # embedding + BM25 are CPU-bound: run them in a worker thread so the event loop (and /health) stays responsive
+        return await asyncio.to_thread(self._retrieve_sync, job, k, requirements, filters)
+
+    def _retrieve_sync(self, job, k, requirements, filters):
         contextual = self.opts.get("contextual", False)
         _, chunks = self.c.dense("structured", contextual)
         mask = self.c.mask(chunks, filters)
