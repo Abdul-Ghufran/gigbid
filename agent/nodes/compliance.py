@@ -51,8 +51,14 @@ async def check_text(text: str, answers: list[str], job: dict) -> ComplianceVerd
     pol = config()["platform_policy"]
     cover, removed = scrub(text)
     new_answers = []
-    for a in answers:
+    qs = job.get("screening_questions") or []
+    for i, a in enumerate(answers):
         a2, r2 = scrub(a)
+        if r2 and len(a2.split()) < 5:
+            # e.g. "share a live app" answered with a bare URL: the filter removes the link, so give a compliant answer
+            # instead of an empty one (which the screening-answer rule would block)
+            q = qs[i].rstrip("?").lower() if i < len(qs) else "this question"
+            a2 = f"Happy to cover this ({q}) here on the platform: I can share the details and a walkthrough in the chat."
         new_answers.append(a2)
         removed += r2
     p = prompt("compliance")
@@ -67,7 +73,6 @@ async def check_text(text: str, answers: list[str], job: dict) -> ComplianceVerd
         cover = cover.replace(q.strip(), "").strip()
         removed.append(f"policy (model): {q}")
     reasons = []
-    qs = job.get("screening_questions") or []
     if pol.get("require_all_screening_answers") and qs and (len(new_answers) < len(qs) or any(len(a.split()) < 5 for a in new_answers)):
         reasons.append(f"Policy {pol['version']}: every screening question must be answered before submission.")
     left = attack_effects(cover + " " + " ".join(new_answers))

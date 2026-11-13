@@ -144,3 +144,16 @@ async def test_crash_recovery_starts_a_run_that_never_began():
     assert out["status"] == "done", out
     with session() as s:
         assert s.get(JobRecord, f"{uid}:{job['job_id']}").status == "skipped"
+
+
+
+async def test_answer_that_was_only_a_link_does_not_block_the_draft():
+    """'Share a live app' answered with a bare URL: Compliance removes the link but must not leave an empty answer
+    (which the 2026-11-02 screening-answer rule would block)."""
+    from agent.nodes.compliance import check_text
+
+    job = {"screening_questions": ["Share a live app you built with this stack.", "How do you test?"]}
+    cover = " ".join(["I build and ship production web apps with tests and clear milestones for every client."] * 5)
+    v = await check_text(cover, ["Here it is: https://myapp.example.com", "I write unit and integration tests for every feature."], job)
+    assert v.status != "block", v.reasons
+    assert "https://" not in v.screening_answers[0] and len(v.screening_answers[0].split()) >= 5
