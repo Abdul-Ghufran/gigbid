@@ -14,7 +14,7 @@ import datetime as dt
 import logging
 
 from agent.config import config
-from agent.runner import bid_thread, conv_thread, create_run, execute
+from agent.runner import bid_thread, conv_thread, create_run, execute, is_transient
 from common.db import Conversation, JobRecord, Run, User, UserSettings, init_db, session
 from common.settings import get_settings
 from common.tracing import configure_logging
@@ -55,7 +55,12 @@ async def enqueue(run_id: str, payload: dict):
 
 
 async def start_bid(user_id: str, job_id: str, force_bid: bool = False) -> str:
-    run = create_run(user_id, "bid", bid_thread(user_id, job_id))
+    thread = bid_thread(user_id, job_id)
+    with session() as s:
+        j = s.get(JobRecord, f"{user_id}:{job_id}")
+        if j and j.thread_id:  # re-analysis: new thread, so token/step budgets and attention notes start from zero
+            thread = f"{thread}#r{dt.datetime.now(dt.UTC):%Y%m%d%H%M%S%f}"
+    run = create_run(user_id, "bid", thread)
     with session() as s:
         j = s.get(JobRecord, f"{user_id}:{job_id}")
         persona = s.get(User, user_id).persona_key
@@ -68,7 +73,10 @@ async def start_bid(user_id: str, job_id: str, force_bid: bool = False) -> str:
 
 
 async def resume_bid(user_id: str, job_id: str, decision: dict) -> str:
-    run = create_run(user_id, "bid", bid_thread(user_id, job_id))
+    with session() as s:
+        j = s.get(JobRecord, f"{user_id}:{job_id}")
+        thread = (j.thread_id if j else None) or bid_thread(user_id, job_id)
+    run = create_run(user_id, "bid", thread)
     await enqueue(run.id, {"kind": "bid", "job_id": job_id, "resume": decision})
     return run.id
 
@@ -177,6 +185,10 @@ async def run_graph(ctx, run_id: str, payload: dict):
 async def scout_all(ctx=None):
     with session() as s:
         users = [u.id for u in s.query(User).filter_by(onboarded=True).all()]
+    with session() as s:
+        parked = [(j.user_id, j.job_id) for j in s.query(JobRecord).filter_by(status="queued_retry").all()]
+    for uid, job_id in parked:  # degraded mode / dropped DB connection: retry on the next cycle
+        await start_bid(uid, job_id)
     out = []
     for u in users:
         try:
@@ -194,12 +206,12 @@ async def recover(ctx=None):
         stale = [(r.id, r.user_id, r.thread_id, r.graph) for r in s.query(Run).filter(Run.status.in_(["running", "queued"])).all()
                  if (r.created_at if r.created_at.tzinfo else r.created_at.replace(tzinfo=dt.UTC)) < cutoff]
         retry = [(j.user_id, j.job_id) for j in s.query(JobRecord).filter_by(status="queued_retry").all()]
-        # jobs that a restart left with no checkpoint (EmptyInputError from an older recovery path): analyse them again
+        # jobs an infrastructure failure left in "needs attention" (older builds did not park them): analyse again
         retry += [(j.user_id, j.job_id) for j in s.query(JobRecord).filter_by(status="needs_attention").all()
-                  if "EmptyInputError" in str((j.summary or {}).get("error", ""))]
+                  if is_transient(str((j.summary or {}).get("error", "")))]
     for rid, _uid, thread, graph in stale:
         kind = "bid" if graph == "bid" else "conv"
-        ident = thread.split(":", 2)[2]
+        ident = thread.split(":", 2)[2].split("#")[0]
         await enqueue(rid, {"kind": kind, ("job_id" if kind == "bid" else "thread_id"): ident, "continue": True})
     for uid, job_id in retry:
         await start_bid(uid, job_id)

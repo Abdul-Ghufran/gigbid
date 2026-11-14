@@ -157,3 +157,34 @@ async def test_answer_that_was_only_a_link_does_not_block_the_draft():
     v = await check_text(cover, ["Here it is: https://myapp.example.com", "I write unit and integration tests for every feature."], job)
     assert v.status != "block", v.reasons
     assert "https://" not in v.screening_answers[0] and len(v.screening_answers[0].split()) >= 5
+
+
+async def test_reanalysis_starts_a_fresh_thread_with_zeroed_budgets():
+    """tokens/steps/attention are add-reducers: re-analysing on the old thread kept the old totals and error notes."""
+    import asyncio
+
+    from agent import runner
+    from agent.runner import bid_thread, thread_values
+    from common.db import JobRecord, User, session
+    from worker import tasks
+
+    runner._P.clear()  # checkpointer cached by an earlier test belongs to that test's event loop
+    job = pick(lambda r: r["_gold"]["scam"] and r["job_id"] != pick(lambda x: x["_gold"]["scam"])["job_id"])
+    uid, key = "persona-web", f"persona-web:{job['job_id']}"
+    with session() as s:
+        if not s.get(User, uid):
+            s.add(User(id=uid, email="re@test.io", password_hash="x", persona_key="web", onboarded=True))
+        if not s.get(JobRecord, key):
+            s.add(JobRecord(id=key, user_id=uid, job_id=job["job_id"], fingerprint="fp-re", job={}, status="new", summary={}))
+
+    async def analyse():
+        await tasks.start_bid(uid, job["job_id"])
+        await asyncio.gather(*list(tasks._local_tasks))
+        with session() as s:
+            return s.get(JobRecord, key).thread_id
+
+    first = await analyse()
+    second = await analyse()
+    assert first == bid_thread(uid, job["job_id"]) and second.startswith(first + "#r")
+    v1, v2 = await thread_values(first), await thread_values(second)
+    assert v2["tokens"] == v1["tokens"] and v2["steps"] == v1["steps"], "second run must not carry the first run's totals"

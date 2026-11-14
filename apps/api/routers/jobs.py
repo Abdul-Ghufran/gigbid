@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from fastapi import APIRouter, Depends, HTTPException, Query
+from sqlalchemy import or_
 
 from agent.runner import bid_thread, history, pending_interrupt, replay_from, thread_values
 from apps.api.auth.users import current_user
@@ -55,7 +56,9 @@ async def detail(job_id: str, u: User = Depends(current_user)):
     with session() as s:
         runs = [{"run_id": r.id, "status": r.status, "trace_id": r.trace_id, "tokens": r.tokens, "cost_usd": r.cost_usd,
                  "latency_s": r.latency_s, "created_at": r.created_at.isoformat(), "error": r.error}
-                for r in s.query(Run).filter_by(user_id=u.id, thread_id=bid_thread(u.id, job_id)).order_by(Run.created_at.desc()).all()]
+                for r in s.query(Run).filter(Run.user_id == u.id, or_(Run.thread_id == bid_thread(u.id, job_id),
+                                                                      Run.thread_id.like(bid_thread(u.id, job_id) + "#%")))
+                .order_by(Run.created_at.desc()).all()]
     return JobDetail(card=card(j), job=v.get("job") or j.job, analyses=v.get("analyses", {}), decision=v.get("decision", {}),
                      price=v.get("price", {}), draft=v.get("draft"), verification=v.get("verification"),
                      critiques=v.get("critiques", []), compliance=v.get("compliance"), approvals=v.get("approvals", []),

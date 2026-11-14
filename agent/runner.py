@@ -43,10 +43,18 @@ async def persistence():
         if url.startswith("postgres"):
             from langgraph.checkpoint.postgres.aio import AsyncPostgresSaver
             from langgraph.store.postgres.aio import AsyncPostgresStore
+            from psycopg.rows import dict_row
+            from psycopg_pool import AsyncConnectionPool
 
             pg = url.replace("postgresql+psycopg://", "postgresql://")
-            cp = await stack.enter_async_context(AsyncPostgresSaver.from_conn_string(pg))
-            st = await stack.enter_async_context(AsyncPostgresStore.from_conn_string(pg))
+            # a pool, not one long-lived connection: Neon drops idle connections when its compute suspends
+            # (AdminShutdown / "connection is closed"); `check` replaces a dead connection before it is handed out
+            pool = AsyncConnectionPool(pg, min_size=1, max_size=5, max_idle=120, open=False,
+                                       check=AsyncConnectionPool.check_connection,
+                                       kwargs={"autocommit": True, "prepare_threshold": None, "row_factory": dict_row})
+            await pool.open()
+            stack.push_async_callback(pool.close)
+            cp, st = AsyncPostgresSaver(pool), AsyncPostgresStore(pool)
         else:
             import os
             from pathlib import Path
@@ -182,6 +190,15 @@ async def execute(run_id: str, payload: dict) -> dict:
     return {"status": status, "error": err, "tokens": led.tokens, "cost_usd": led.cost_usd, "latency_s": latency}
 
 
+TRANSIENT = ("OperationalError", "AdminShutdown", "connection is closed", "server closed the connection", "InterfaceError",
+             "EmptyInputError")
+
+
+def is_transient(err: str | None) -> bool:
+    """Infrastructure failures (database connection dropped, restart mid-run) that a plain retry fixes."""
+    return any(t in (err or "") for t in TRANSIENT)
+
+
 def _fresh_input(user_id: str, payload: dict) -> dict:
     from common.db import User
 
@@ -203,7 +220,7 @@ def _update_job(user_id, job_id, v: dict, run_status, err, run_id, led, latency)
         summ["last_run"] = run_id
         if run_status == "failed":
             summ["attempts"] = summ.get("attempts", 0) + 1
-            degraded = (err or "").startswith("marketplace_unavailable")
+            degraded = (err or "").startswith("marketplace_unavailable") or is_transient(err)
             j.status = "dead_letter" if summ["attempts"] >= MAX_ATTEMPTS else ("queued_retry" if degraded else "needs_attention")
             summ["error"] = err
         else:
