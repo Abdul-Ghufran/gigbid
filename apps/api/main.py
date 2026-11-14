@@ -15,7 +15,7 @@ from agent.mcp_client import MarketplaceDown, ToolCallError
 from apps.api.routers import analytics, auth, jobs, messages, proposals, runs, settings
 from common.db import User, init_db, session
 from common.settings import get_settings
-from common.tracing import configure_logging, new_trace_id, trace_id_var
+from common.tracing import check_langfuse, configure_logging, new_trace_id, trace_id_var
 
 log = logging.getLogger("gigbid.api")
 
@@ -55,6 +55,10 @@ async def lifespan(app: FastAPI):
     from agent.mcp_client import load_schemas
 
     await load_schemas()
+    try:
+        log.warning(await asyncio.wait_for(asyncio.to_thread(check_langfuse), 20))
+    except Exception as e:  # noqa: BLE001  never block startup on tracing
+        log.warning("Langfuse self-check could not run: %s", e)
     bg = None
     if not get_settings().redis_url and os.getenv("INPROCESS_SCHEDULER", "1") == "1":
         from worker.tasks import recover, scout_all
