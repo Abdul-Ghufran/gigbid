@@ -113,7 +113,7 @@ def kappa(a, b, weighted=False):
 
 def run_kappa():
     human = {}
-    with open(SHEET, encoding="utf-8") as f:
+    with open(SHEET, encoding="utf-8-sig") as f:
         for r in csv.DictReader(f):
             if r["your_score_1_to_5"].strip():
                 human[r["item"]] = int(r["your_score_1_to_5"])

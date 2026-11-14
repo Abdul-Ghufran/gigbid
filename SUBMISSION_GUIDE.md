@@ -76,10 +76,17 @@ If the build fails, open the deploy log and send me (or any AI assistant) the la
 `infra/docker/render.Dockerfile`.
 
 ## Step 4 — Label 30 proposals for judge calibration (20 min) — required by the rubric
-1. Open `evals/datasets/judge_calibration_sheet.csv` in Excel.
-2. For each row, read the job and the proposal and type a score **1–5** in `your_score_1_to_5`
-   (5 = specific, proven with relevant evidence, clear plan; 3 = relevant but generic; 1 = irrelevant/unbelievable). Save as CSV.
-3. In a terminal in the project folder:
+The scores must be **yours**: this step measures how well the LLM judge agrees with a human (Cohen's kappa).
+1. Open the labelling page: double-click `evals\datasets\label_helper.html` (or run `.\gb.cmd tools/label_helper.py`).
+   It shows one job and its proposal at a time, with the rubric.
+2. For each item, read the job, then the proposal, and click a score **1–5** (or press the 1–5 key). It moves to the
+   next item by itself. Optionally type a short note on why (useful in the viva). About 30–60 seconds per item.
+   (5 = answers this client's need with relevant evidence and a clear plan; 3 = on topic but generic;
+   1 = irrelevant/unbelievable.) Your progress is kept if you close the tab.
+3. When the counter says **All 30 scored**, click **Save CSV**. Move the downloaded `judge_calibration_sheet.csv` from
+   your Downloads folder into `evals\datasets\`, replacing the old one.
+   (Alternative: fill the `your_score_1_to_5` column of that CSV directly in Excel.)
+4. In a terminal in the project folder:
    ```bash
    .\gb.cmd -m evals.runners.judge_calibration --kappa
    ```
