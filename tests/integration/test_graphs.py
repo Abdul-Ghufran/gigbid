@@ -183,10 +183,19 @@ async def test_reanalysis_starts_a_fresh_thread_with_zeroed_budgets():
         with session() as s:
             return s.get(JobRecord, key).thread_id
 
-    first = await analyse()
-    second = await analyse()
-    assert first == bid_thread(uid, job["job_id"]) and second.startswith(first + "#r")
-    v1, v2 = await thread_values(first), await thread_values(second)
+    try:
+        first = await analyse()
+        second = await analyse()
+        assert first == bid_thread(uid, job["job_id"]) and second.startswith(first + "#r")
+        v1, v2 = await thread_values(first), await thread_values(second)
+    finally:  # the runner's checkpointer and memory store belong to this test's event loop: do not leak them
+        from agent.memory import store as memstore
+
+        await asyncio.gather(*list(tasks._local_tasks))
+        if runner._P.get("stack"):
+            await runner._P["stack"].aclose()  # closes the aiosqlite threads, or the test process never exits
+        runner._P.clear()
+        memstore._STORE = None
     assert v2["tokens"] == v1["tokens"] and v2["steps"] == v1["steps"], "second run must not carry the first run's totals"
 
 
