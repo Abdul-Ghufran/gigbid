@@ -95,14 +95,11 @@ The scores must be **yours**: this step measures how well the LLM judge agrees w
    .\gb.cmd tools/finalize_report.py "Judge calibration with my labels"
    ```
 
-## Step 5 — Langfuse public traces (15 min) — needed for "links to three public traces"
-1. **cloud.langfuse.com** → your project → **Settings → API keys** → create keys.
-2. Render → service → Environment → add `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY` (host is already set) → Save.
-3. In the deployed app: Inbox → **Scout now**; open a scam job; open a good job → Proposal studio → **Approve**; to get a
-   critic loop, open any job and click **Re-analyse** until a run shows two `writer` steps in the Run viewer.
-4. In Langfuse → **Traces** → open each (scam skip, approved proposal, critic loop) → **Share → Public** → copy links into
-   `docs/TRACES.md` → commit and push.
-   *(If you skip Langfuse, the in-app Run viewer shows the same traces, but those links need a login.)*
+## Step 5 — Langfuse public traces — DONE (2026-11-15)
+Traces are exported over OpenTelemetry (Langfuse Cloud v4 no longer accepts the old SDK-v2 batch API, which is why the
+first attempts showed nothing). The public links are in `docs/TRACES.md`, recorded and verified with
+`.\gb.cmd tools/publish_traces.py` (needs `LANGFUSE_PUBLIC_KEY` / `LANGFUSE_SECRET_KEY` in your local `.env`; re-run it to
+record fresh ones). Runs in the deployed app are also traced and marked public automatically (Render needs the same keys).
 
 ## Step 5b — MCP Inspector screenshots (10 min) — required by A7
 I could not run the Inspector myself (the automation sandbox does not allow downloading and running npm tools).
