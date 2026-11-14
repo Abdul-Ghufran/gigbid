@@ -13,6 +13,26 @@ ROOT = Path(__file__).resolve().parents[1]
 RES = ROOT / "evals" / "results"
 
 
+
+def _judge_bias(kap: dict) -> dict:
+    """Direction of human-vs-judge disagreement on the calibration items (for Appendix B)."""
+    import csv
+    sheet = ROOT / "evals" / "datasets" / "judge_calibration_sheet.csv"
+    js = ROOT / "evals" / "results" / "judge_scores.json"
+    out = {"kappa_exact": pct(kap.get("exact_agreement")), "kappa_within1": pct(kap.get("within_one")),
+           "judge_higher": "pending", "judge_lower": "pending", "judge_gap": "pending"}
+    try:
+        with open(sheet, encoding="utf-8-sig") as f:
+            h = {r["item"]: int(r["your_score_1_to_5"]) for r in csv.DictReader(f) if r["your_score_1_to_5"].strip()}
+        jd = json.loads(js.read_text(encoding="utf-8"))["calibration_items"]
+        d = [int(jd[k]["score"] if isinstance(jd[k], dict) else jd[k]) - v for k, v in h.items() if k in jd]
+        if d:
+            out.update(judge_higher=str(sum(x > 0 for x in d)), judge_lower=str(sum(x < 0 for x in d)),
+                       judge_gap=f"{sum(d) / len(d):+.1f}")
+    except (OSError, KeyError, ValueError):
+        pass
+    return out
+
 def j(name):
     p = RES / f"{name}.json"
     return json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
@@ -113,6 +133,7 @@ def values():
         "live_unsup_before": num(live.get("unsupported_per_proposal_before"), 2), "live_unsup_after": num(live.get("unsupported_per_proposal_after"), 2),
         "live_reply": pct(live.get("gigsim_reply_rate")),
         "dec_p95": num(get(dec, "overall.p95_latency_s"), 1),
+        **_judge_bias(kap),
         "kappa": num(kap.get("cohen_kappa"), 2), "wkappa": num(kap.get("quadratic_weighted_kappa"), 2), "kappa_n": str(kap.get("n_labelled", "pending")),
         "panel_win": pct(j("human_panel").get("shipped_win_rate")), "panel_n": str(j("human_panel").get("votes", "pending")),
         "panel_raters": str(j("human_panel").get("raters", "pending")), "panel_p": num(j("human_panel").get("binomial_p"), 3),

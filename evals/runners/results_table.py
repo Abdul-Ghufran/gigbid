@@ -8,6 +8,24 @@ from evals.runners import harness as H
 R = H.RESULTS
 
 
+
+def _judge_note() -> str:
+    """Caveat the judge column with its calibration against the human labels, once those exist."""
+    import json
+    from pathlib import Path
+
+    f = Path(__file__).resolve().parents[2] / "evals" / "results" / "judge_calibration.json"
+    try:
+        k = json.loads(f.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return ""
+    kap = k.get("cohen_kappa")
+    if kap is None:
+        return ""
+    return (f" (calibrated against my own labels: Cohen's kappa {kap:.2f}, exact agreement {k.get('exact_agreement', 0):.0%};"
+            + (" the judge is lenient and weakly calibrated, so treat its column as a secondary signal, see report Appendix B)"
+               if kap < 0.4 else " see report Appendix B)"))
+
 def load(name):
     p = R / f"{name}.json"
     return json.loads(p.read_text(encoding="utf-8")) if p.exists() else None
@@ -42,7 +60,7 @@ def main():
                    f"{f((live or pt) and (live or pt)['p95_latency_s'], 1)} | {f(live and live['mean_cost_usd_per_proposal'], 4)} |")
     out += ["", "Retrieval metrics: `rag_variants_offline.json` (444 scoreable dev jobs), `rag_ablation.json`. Proposal metrics: "
             "`proposals_*_fixedwriter_v2.json` (90 gold-bid jobs, same deterministic writer, so only retrieval differs). Judge: "
-            "`judge_scores.json`. Latency / cost of the live-model pipeline: `proposals_best_live.json`.", ""]
+            f"`judge_scores.json`{_judge_note()}. Latency / cost of the live-model pipeline: `proposals_best_live.json`.", ""]
 
     # ---- all variants
     if rag:

@@ -43,7 +43,7 @@ The evaluation world (GigSim, personas, dev set) is a documented stand-in becaus
 | V0 naive dense | 0.740 | 0.579 | 1.48 | 3.03 | 72.2% | 7.5 | pending |
 | Shipped: V8 corrective over V9 skill graph | 0.890 | 0.655 | 0.34 | 3.33 | 64.4% | 3481.5 | 0.0025 |
 
-Retrieval metrics: `rag_variants_offline.json` (444 scoreable dev jobs), `rag_ablation.json`. Proposal metrics: `proposals_*_fixedwriter_v2.json` (90 gold-bid jobs, same deterministic writer, so only retrieval differs). Judge: `judge_scores.json`. Latency / cost of the live-model pipeline: `proposals_best_live.json`.
+Retrieval metrics: `rag_variants_offline.json` (444 scoreable dev jobs), `rag_ablation.json`. Proposal metrics: `proposals_*_fixedwriter_v2.json` (90 gold-bid jobs, same deterministic writer, so only retrieval differs). Judge: `judge_scores.json` (calibrated against my own labels: Cohen's kappa 0.04, exact agreement 23%; the judge is lenient and weakly calibrated, so treat its column as a secondary signal, see report Appendix B). Latency / cost of the live-model pipeline: `proposals_best_live.json`.
 
 ### B4. Decisions (600 dev jobs)
 

@@ -228,7 +228,15 @@ template — still verified and compliant, but plainer.
 
 The LLM judge (`agent/prompts/judge.md`, 1–5 rubric) is calibrated against my own labels on 30 anonymised proposals
 (`evals/datasets/judge_calibration_sheet.csv`): Cohen's κ = {{kappa}}, quadratic-weighted κ = {{wkappa}} (n = {{kappa_n}};
-`judge_calibration.json`, with the largest disagreements listed for the viva). A blind pairwise human panel
+`judge_calibration.json`, with the largest disagreements listed for the viva). Agreement is close to chance (exact
+{{kappa_exact}}, within one point {{kappa_within1}}), and the disagreement is systematic rather than noise: the judge scored
+higher than me on {{judge_higher}} of {{kappa_n}} items and lower on {{judge_lower}} (mean gap {{judge_gap}} points). It
+compresses the scale towards 3, and it rewards letters whose evidence is on-topic in wording but does not cover what
+the client actually asked for, which I scored 1–2. So the judge is **lenient and poorly calibrated in absolute terms**:
+its scores (the "Judge score" column) are reported only as a secondary signal, and the R&D conclusions rest on the
+deterministic metrics (evidence recall, nDCG, unsupported claims after verification, GigSim reply rate). Next step: give
+the judge the requirement → evidence matrix with a per-requirement coverage check and few-shot anchors from my labels,
+then re-calibrate. A blind pairwise human panel
 (`human_panel_pairs.csv`, 15 pairs, V0 vs shipped, sides randomised; key in `human_panel_key.json`): {{panel_raters}}
 classmates cast {{panel_n}} votes; the shipped pipeline's proposal was preferred in {{panel_win}} (binomial p = {{panel_p}};
 `human_panel.json`).

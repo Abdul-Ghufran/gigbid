@@ -387,7 +387,7 @@ rate to 64.4%.</p>
 </tr>
 </tbody>
 </table>
-<p>Retrieval metrics: <code>rag_variants_offline.json</code> (444 scoreable dev jobs), <code>rag_ablation.json</code>. Proposal metrics: <code>proposals_*_fixedwriter_v2.json</code> (90 gold-bid jobs, same deterministic writer, so only retrieval differs). Judge: <code>judge_scores.json</code>. Latency / cost of the live-model pipeline: <code>proposals_best_live.json</code>.</p>
+<p>Retrieval metrics: <code>rag_variants_offline.json</code> (444 scoreable dev jobs), <code>rag_ablation.json</code>. Proposal metrics: <code>proposals_*_fixedwriter_v2.json</code> (90 gold-bid jobs, same deterministic writer, so only retrieval differs). Judge: <code>judge_scores.json</code> (calibrated against my own labels: Cohen's kappa 0.04, exact agreement 23%; the judge is lenient and weakly calibrated, so treat its column as a secondary signal, see report Appendix B). Latency / cost of the live-model pipeline: <code>proposals_best_live.json</code>.</p>
 <p><strong>Decision on what ships.</strong> The corrective loop over the skill graph (V8 on V9, grader cosine 0.83 calibrated to F1
 0.985) with bi-encoder verification: best Recall@5/MRR/nDCG, 4× fewer unsupported claims than V0, no reranker in memory,
 p95 retrieval &lt; 0.1 s, and an explicit "cannot prove this" signal that the writer and the skip decision use. By persona
@@ -939,7 +939,15 @@ template — still verified and compliant, but plainer.</p>
 <h2 id="appendix-b-judge-calibration">Appendix B — judge calibration</h2>
 <p>The LLM judge (<code>agent/prompts/judge.md</code>, 1–5 rubric) is calibrated against my own labels on 30 anonymised proposals
 (<code>evals/datasets/judge_calibration_sheet.csv</code>): Cohen's κ = 0.04, quadratic-weighted κ = 0.01 (n = 30;
-<code>judge_calibration.json</code>, with the largest disagreements listed for the viva). A blind pairwise human panel
+<code>judge_calibration.json</code>, with the largest disagreements listed for the viva). Agreement is close to chance (exact
+23.3%, within one point 53.3%), and the disagreement is systematic rather than noise: the judge scored
+higher than me on 22 of 30 items and lower on 1 (mean gap +1.2 points). It
+compresses the scale towards 3, and it rewards letters whose evidence is on-topic in wording but does not cover what
+the client actually asked for, which I scored 1–2. So the judge is <strong>lenient and poorly calibrated in absolute terms</strong>:
+its scores (the "Judge score" column) are reported only as a secondary signal, and the R&amp;D conclusions rest on the
+deterministic metrics (evidence recall, nDCG, unsupported claims after verification, GigSim reply rate). Next step: give
+the judge the requirement → evidence matrix with a per-requirement coverage check and few-shot anchors from my labels,
+then re-calibrate. A blind pairwise human panel
 (<code>human_panel_pairs.csv</code>, 15 pairs, V0 vs shipped, sides randomised; key in <code>human_panel_key.json</code>): pending
 classmates cast pending votes; the shipped pipeline's proposal was preferred in pending (binomial p = pending;
 <code>human_panel.json</code>).</p>

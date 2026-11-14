@@ -169,7 +169,7 @@ rate to 64.4%.
 | V0 naive dense | 0.740 | 0.579 | 1.48 | 3.03 | 72.2% | 7.5 | pending |
 | Shipped: V8 corrective over V9 skill graph | 0.890 | 0.655 | 0.34 | 3.33 | 64.4% | 3481.5 | 0.0025 |
 
-Retrieval metrics: `rag_variants_offline.json` (444 scoreable dev jobs), `rag_ablation.json`. Proposal metrics: `proposals_*_fixedwriter_v2.json` (90 gold-bid jobs, same deterministic writer, so only retrieval differs). Judge: `judge_scores.json`. Latency / cost of the live-model pipeline: `proposals_best_live.json`.
+Retrieval metrics: `rag_variants_offline.json` (444 scoreable dev jobs), `rag_ablation.json`. Proposal metrics: `proposals_*_fixedwriter_v2.json` (90 gold-bid jobs, same deterministic writer, so only retrieval differs). Judge: `judge_scores.json` (calibrated against my own labels: Cohen's kappa 0.04, exact agreement 23%; the judge is lenient and weakly calibrated, so treat its column as a secondary signal, see report Appendix B). Latency / cost of the live-model pipeline: `proposals_best_live.json`.
 
 
 
@@ -391,7 +391,15 @@ git show <change-request commit>: agent/config.yaml +4/-4, data/policy_pack/mark
 
 The LLM judge (`agent/prompts/judge.md`, 1–5 rubric) is calibrated against my own labels on 30 anonymised proposals
 (`evals/datasets/judge_calibration_sheet.csv`): Cohen's κ = 0.04, quadratic-weighted κ = 0.01 (n = 30;
-`judge_calibration.json`, with the largest disagreements listed for the viva). A blind pairwise human panel
+`judge_calibration.json`, with the largest disagreements listed for the viva). Agreement is close to chance (exact
+23.3%, within one point 53.3%), and the disagreement is systematic rather than noise: the judge scored
+higher than me on 22 of 30 items and lower on 1 (mean gap +1.2 points). It
+compresses the scale towards 3, and it rewards letters whose evidence is on-topic in wording but does not cover what
+the client actually asked for, which I scored 1–2. So the judge is **lenient and poorly calibrated in absolute terms**:
+its scores (the "Judge score" column) are reported only as a secondary signal, and the R&D conclusions rest on the
+deterministic metrics (evidence recall, nDCG, unsupported claims after verification, GigSim reply rate). Next step: give
+the judge the requirement → evidence matrix with a per-requirement coverage check and few-shot anchors from my labels,
+then re-calibrate. A blind pairwise human panel
 (`human_panel_pairs.csv`, 15 pairs, V0 vs shipped, sides randomised; key in `human_panel_key.json`): pending
 classmates cast pending votes; the shipped pipeline's proposal was preferred in pending (binomial p = pending;
 `human_panel.json`).
