@@ -390,7 +390,7 @@ git show <change-request commit>: agent/config.yaml +4/-4, data/policy_pack/mark
 ## Appendix B — judge calibration
 
 The LLM judge (`agent/prompts/judge.md`, 1–5 rubric) is calibrated against my own labels on 30 anonymised proposals
-(`evals/datasets/judge_calibration_sheet.csv`): Cohen's κ = pending, quadratic-weighted κ = pending (n = pending;
+(`evals/datasets/judge_calibration_sheet.csv`): Cohen's κ = 0.04, quadratic-weighted κ = 0.01 (n = 30;
 `judge_calibration.json`, with the largest disagreements listed for the viva). A blind pairwise human panel
 (`human_panel_pairs.csv`, 15 pairs, V0 vs shipped, sides randomised; key in `human_panel_key.json`): pending
 classmates cast pending votes; the shipped pipeline's proposal was preferred in pending (binomial p = pending;

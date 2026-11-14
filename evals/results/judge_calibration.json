@@ -1,0 +1,95 @@
+{
+ "generated_by": "evals/runners/judge_calibration.py",
+ "generated_at": "2026-11-14 19:53",
+ "n_labelled": 30,
+ "cohen_kappa": 0.0417,
+ "quadratic_weighted_kappa": 0.0053,
+ "exact_agreement": 0.2333,
+ "within_one": 0.5333,
+ "big_disagreements": [
+  {
+   "item": "2",
+   "human": 1,
+   "judge": 3,
+   "judge_reason": "The proposal shows some relevant Stripe and TypeScript experience and mentions E2E testing, but it lacks specific details about Docker, Shopify, gaming context, handling app\u2011store reviews, unit tests, and cloud deployment. It is not a full, tailored plan but contains enough evidence to be considered relevant, though somewhat generic."
+  },
+  {
+   "item": "3",
+   "human": 3,
+   "judge": 5,
+   "judge_reason": "The proposal is tailored to the fintech context, cites concrete past results (reporting cycle reduction, revenue lift from A/B test), outlines a clear plan (confirm success criteria, early version, milestone updates), and includes next steps. It is concise, relevant, and evidence\u2011based."
+  },
+  {
+   "item": "4",
+   "human": 1,
+   "judge": 3,
+   "judge_reason": "The proposal references relevant readme files for Python and Power BI, indicating some experience, but it lacks specific evidence of hypothesis testing, Looker, or version-controlled SQL transformations. The plan is generic\u2014confirm success criteria, ship early, update milestones\u2014without concrete next steps or detailed approach. Thus it is relevant but weakly evidenced."
+  },
+  {
+   "item": "6",
+   "human": 1,
+   "judge": 3,
+   "judge_reason": "The proposal mentions PyTorch and transformers, but it does not address the core requirements of time\u2011series forecasting, RAG, or recommendation systems. It also lacks a concrete plan, evidence of relevant experience, or a clear outline of deliverables such as a prototype, evaluation report, or technical write\u2011up. The content is somewhat relevant but generic and weakly evidenced."
+  },
+  {
+   "item": "10",
+   "human": 2,
+   "judge": 4,
+   "judge_reason": "The proposal cites concrete case studies involving PostgreSQL and AWS, showing relevant experience with relational databases and cloud work. It outlines a clear, milestone\u2011based approach and communication plan, and is concise without fluff. However, it does not explicitly mention serverless functions or nonprofit context, leaving a small gap in specificity."
+  },
+  {
+   "item": "12",
+   "human": 2,
+   "judge": 4,
+   "judge_reason": "The proposal references relevant real\u2011time and asynchronous work (600\u2011vehicle dashboard, clinic reminders) that likely involved WebSockets and Celery, and provides concrete results. However, it omits explicit mention of docker\u2011compose, Tailwind CSS, API documentation, and testing deliverables, and the plan is somewhat generic. Overall, it is strong and evidence\u2011based but missing a few key specifics."
+  },
+  {
+   "item": "16",
+   "human": 1,
+   "judge": 4,
+   "judge_reason": "The proposal references relevant CI/CD, MLOps, and vector database experience with concrete case studies, but lacks specific mention of the healthcare domain or the exact deliverables (training notebook, saved model, handover documentation). It is well\u2011structured, evidence\u2011based, and includes a clear plan, but some generic elements remain."
+  },
+  {
+   "item": "18",
+   "human": 1,
+   "judge": 3,
+   "judge_reason": "The proposal references relevant skills (Excel, pandas) and provides a brief example of past work, but it lacks specific details about building an ecommerce dashboard, Tableau integration, A/B testing, or Microsoft BI dashboards. The plan is generic and does not address the client\u2019s exact needs or deliverables. Thus it scores as relevant but generic with weak evidence."
+  },
+  {
+   "item": "19",
+   "human": 1,
+   "judge": 3,
+   "judge_reason": "The proposal acknowledges the need for Pinecone and RAG, but it lacks concrete evidence of relevant experience, a detailed plan, or specific deliverables. It is generic and does not provide a clear roadmap or examples of prior work, making it only moderately relevant."
+  },
+  {
+   "item": "20",
+   "human": 1,
+   "judge": 3,
+   "judge_reason": "The proposal acknowledges the project and mentions Pinecone, but it lacks specific evidence of XGBoost experience, a detailed plan, or concrete deliverables. It is generic and weakly evidenced, fitting a 3 on the rubric."
+  },
+  {
+   "item": "21",
+   "human": 1,
+   "judge": 3,
+   "judge_reason": "The proposal references MongoDB experience and a case study, but it lacks specific evidence of Apollo/GraphQL expertise, domain relevance (insurance/PDF handling), or a clear plan for unit and end\u2011to\u2011end tests. It is somewhat generic and weakly supported."
+  },
+  {
+   "item": "25",
+   "human": 1,
+   "judge": 4,
+   "judge_reason": "The proposal references concrete past work (chat widget, gate\u2011tix, stock\u2011sync) that demonstrates experience with WebSockets, Celery, and docker\u2011compose, and outlines a clear plan to confirm success criteria, ship an early version, and provide milestone updates. It is concise and free of fluff. However, it omits explicit mention of Tailwind CSS, API documentation, and unit/end\u2011to\u2011end testing, which are key deliverables. Thus it scores a solid 4."
+  },
+  {
+   "item": "26",
+   "human": 1,
+   "judge": 3,
+   "judge_reason": "The proposal references relevant technologies (MongoDB, Celery, Django Rest Framework) and provides concrete examples of past work, but it does not address the specific legal product context, Shopify requirement, or a clear plan for the deliverables. It is somewhat generic and lacks detailed evidence of fit for this particular project."
+  },
+  {
+   "item": "30",
+   "human": 1,
+   "judge": 3,
+   "judge_reason": "The proposal cites concrete past projects that demonstrate Tailwind CSS, Apollo, and PostgreSQL experience, which aligns with the core requirements. However, it omits explicit mention of Next.js, live\u2011update implementation, and the requested deliverables (API documentation, unit and end\u2011to\u2011end tests). The plan is brief and lacks a detailed next step or timeline, making it somewhat generic and incomplete for the specific job."
+  }
+ ]
+}
