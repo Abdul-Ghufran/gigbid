@@ -89,6 +89,21 @@ async def check_text(text: str, answers: list[str], job: dict) -> ComplianceVerd
 async def comply(state: dict) -> dict:
     d = state["draft"]
     v = await check_text(d["cover_letter"], d.get("screening_answers", []), state["job"])
+    edited = any(a.get("action") == "edit" for a in state.get("approvals") or [])
+    if v.status == "block" and any(r.startswith("Too little") for r in v.reasons) and not edited:
+        # verification removed most of the model's claims and no revision is left: fall back to the deterministic,
+        # evidence-cited template letter (never over text the freelancer wrote) instead of handing over a blocked draft
+        from agent.nodes.writer import template_draft
+
+        an = state.get("analyses", {})
+        t = template_draft(state["job"], an.get("job_spec", {}), an.get("fit", {}), state.get("price", {}),
+                           d.get("version") or state.get("revision") or 1, d.get("strategy") or "proof_first")
+        v2 = await check_text(t.cover_letter, d.get("screening_answers") or t.screening_answers, state["job"])
+        if v2.status != "block":
+            v2.status = "fixed"
+            v2.reasons = ["Model draft was too short after verification; replaced by the evidence-cited template letter."] + v2.reasons
+            v = v2
+            d = {**d, "cover_letter_model": d["cover_letter"], "fallback": "evidence_template"}
     out = {"compliance": v.model_dump(), "draft": {**d, "cover_letter": v.cover_letter, "screening_answers": v.screening_answers}}
     if v.status == "block":
         out["attention"] = [f"Compliance Guard blocked the draft: {'; '.join(v.reasons)}"]

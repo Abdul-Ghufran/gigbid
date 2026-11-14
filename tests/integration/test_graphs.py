@@ -188,3 +188,22 @@ async def test_reanalysis_starts_a_fresh_thread_with_zeroed_budgets():
     assert first == bid_thread(uid, job["job_id"]) and second.startswith(first + "#r")
     v1, v2 = await thread_values(first), await thread_values(second)
     assert v2["tokens"] == v1["tokens"] and v2["steps"] == v1["steps"], "second run must not carry the first run's totals"
+
+
+
+async def test_too_short_draft_falls_back_to_the_evidence_template(tmp_path):
+    """Live run: verification left one sentence, no revision left. Compliance must not hand over a blocked draft."""
+    from agent.nodes import compliance
+
+    job = pick(lambda r: r["_gold"]["kind"] == "strong" and r["_gold"]["bid"])
+    async with AsyncSqliteSaver.from_conn_string(str(tmp_path / "cp.sqlite")) as cp:
+        g = build_bid_graph(cp)
+        cfg = {"configurable": {"thread_id": "short"}}
+        await g.ainvoke({"user_id": "persona-web", "job_id": job["job_id"], "settings": S}, cfg)
+        v = (await g.aget_state(cfg)).values
+    short = {**v, "approvals": [], "draft": {**v["draft"], "cover_letter": "The clinic booking work handled large volumes."}}
+    out = await compliance.comply(short)
+    assert out["compliance"]["status"] != "block", out["compliance"]
+    assert len(out["draft"]["cover_letter"].split()) >= 40 and out["draft"]["fallback"] == "evidence_template"
+    edited = {**short, "approvals": [{"action": "edit"}]}  # the freelancer's own text is never replaced
+    assert (await compliance.comply(edited))["compliance"]["status"] == "block"
