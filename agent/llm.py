@@ -288,10 +288,9 @@ def _trace_generation(node, spec, messages, text, tin, tout, secs):
     if not lf:
         return
     try:
-        lf.generation(trace_id=current_trace_id(), name=node, model=spec["model"], input=mask_obj(messages),
-                      output=mask_obj(text), usage={"input": tin, "output": tout, "unit": "TOKENS",
-                                                    "total_cost": _price(spec, tin, tout)},
-                      metadata={"latency_s": round(secs, 3), "alias": spec["alias"]})
+        lf.generation(trace_id=current_trace_id(), name=f"{node}.llm", model=spec["model"], input=mask_obj(messages),
+                      output=mask_obj(text), usage={"input": tin, "output": tout, "total_cost": _price(spec, tin, tout)},
+                      metadata={"latency_s": round(secs, 3), "alias": spec["alias"]}, latency_s=secs)
     except Exception:
         pass
 

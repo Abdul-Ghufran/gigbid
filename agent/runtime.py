@@ -38,6 +38,14 @@ def emit(kind: str, node: str, payload: dict | None = None):
         except Exception:
             pass
     try:
+        from common.tracing import langfuse, trace_id_var
+
+        lf, tid = langfuse(), trace_id_var.get()
+        if lf and tid:
+            lf.observe(tid, kind, node, payload)
+    except Exception:
+        pass
+    try:
         from langgraph.config import get_stream_writer
 
         get_stream_writer()({"kind": kind, "node": node, **payload})

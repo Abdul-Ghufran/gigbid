@@ -145,8 +145,10 @@ async def execute(run_id: str, payload: dict) -> dict:
     tokens = [ledger_var.set(led), trace_id_var.set(trace), user_id_var.set(user_id), event_sink.set(_sink(run_id, user_id))]
     lf = langfuse()
     if lf:
+        mode = "resume" if payload.get("resume") is not None else "continue" if payload.get("continue") else "start"
         lf.trace(id=trace, name=f"{payload['kind']}_graph", user_id=user_id, session_id=thread,
-                 metadata={"run_id": run_id, "job_id": payload.get("job_id"), "thread_id": payload.get("thread_id")})
+                 metadata={"run_id": run_id, "job_id": payload.get("job_id"), "thread_id": payload.get("thread_id"), "mode": mode},
+                 input={"mode": mode, "job_id": payload.get("job_id"), "resume": payload.get("resume")})
     cfg = {"configurable": {"thread_id": thread}, "recursion_limit": 80}
     t0 = time.perf_counter()
     status, err = "done", None
@@ -186,7 +188,8 @@ async def execute(run_id: str, payload: dict) -> dict:
         _update_conv(user_id, payload["thread_id"], values, status, err)
     if lf:
         with contextlib.suppress(Exception):
-            lf.flush()
+            lf.end_trace(trace, output={"status": status, "graph_status": (values or {}).get("status"), "tokens": led.tokens,
+                                        "cost_usd": round(led.cost_usd, 6), "latency_s": round(latency, 2)}, error=err)
     return {"status": status, "error": err, "tokens": led.tokens, "cost_usd": led.cost_usd, "latency_s": latency}
 
 
