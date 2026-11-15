@@ -106,10 +106,13 @@ Tested end to end on this laptop (all three servers over stdio through `gb.cmd`;
 `.venv\Scripts\python.exe`, so do not use that as the command).
 
 **Start the Inspector**
-1. Open a terminal **in the project folder** (`C:\Users\MABC\Desktop\i230576_AG2`) and run
-   `npx @modelcontextprotocol/inspector` (answer `y` if npx asks to install it). Your browser opens
-   `http://localhost:6274` (if not, copy the full URL with `MCP_PROXY_AUTH_TOKEN=...` from the terminal). Keep the terminal open.
-2. In the left panel open **Configuration** and set **Request Timeout** to `300000` (the first portfolio start loads models).
+1. In a terminal run `npx @modelcontextprotocol/inspector`; the browser opens the Inspector. Keep the terminal open.
+2. Inspector v2 (server cards): **Add Servers ▾ → Import from client config → From file…** → pick
+   `C:\Users\MABC\Desktop\i230576_AG2\docs\inspector\gigbid_servers.json` → **Import**. Three cards appear:
+   `gigbid-portfolio`, `gigbid-marketplace`, `gigbid-workspace` (all start through `tools\mcp_stdio.cmd`, tested).
+   Turn a card's switch on to connect it (portfolio needs 10–60 s), then use its Tools / Resources / Prompts views for the
+   screenshots below. Older Inspector (single form): use the Command / Arguments / Environment values from that JSON
+   file and set Configuration → Request Timeout to `300000`.
 
 **Server 1: Portfolio** (screenshot `inspector_portfolio.png`)
 3. **Transport Type** = `STDIO`; **Command** = `C:\Users\MABC\Desktop\i230576_AG2\gb.cmd`;
