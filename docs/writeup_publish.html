@@ -1,0 +1,123 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>Write-up: paste-ready</title>
+<style>
+body{margin:0;background:#f4f3ef;color:#1d1d1b;font:16px/1.6 Georgia,serif}
+.bar{position:sticky;top:0;background:#1d1d1b;color:#fff;padding:10px 16px;display:flex;gap:10px;align-items:center;
+flex-wrap:wrap;font:14px system-ui,sans-serif}
+button{font:600 14px system-ui,sans-serif;border:0;border-radius:6px;padding:8px 14px;cursor:pointer;background:#fff}
+button.main{background:#3b6cf6;color:#fff}#msg{color:#9fe0b4}
+.paper{max-width:720px;margin:20px auto;background:#fff;padding:24px 32px;border-radius:8px}
+h1.t{font-size:30px;line-height:1.25;margin:0 0 6px}.note{color:#666;font:13px system-ui,sans-serif;margin:0 0 18px}
+#body h2{font-size:22px;margin:28px 0 8px}a{color:#1a5fb4}
+</style></head><body>
+<div class="bar"><b>Paste-ready write-up</b> · 1372 words
+<button id="ct">1. Copy title</button><button class="main" id="cb">2. Copy article body</button><span id="msg"></span></div>
+<div class="paper"><h1 class="t" id="title">Better retrieval made my simulated clients reply less — and that was the most useful bug I found</h1>
+<p class="note">Title above goes in the Medium/LinkedIn title field; everything below is the body. The results table is a
+list because Medium and LinkedIn articles have no tables.</p>
+<div id="body"><p><em>Abdul Ghufran · AI-4016 R&amp;D project "GigBid" · every number links to a results file in the
+<a href="https://github.com/Abdul-Ghufran/gigbid/tree/main/evals/results">GigBid repository</a></em></p>
+<p>I spent two weeks building GigBid, a multi-agent copilot for freelancers. A Scout pulls new jobs; an Analyst, a Risk
+Assessor and a Fit Matcher read each post in parallel; a Writer drafts a proposal in which every claim has to point at a
+piece of the freelancer's portfolio; a verifier, a Critic and a Compliance Guard check it; and nothing is sent until a
+human approves it. The system is graded against GigSim, a marketplace simulator whose clients have hidden preferences
+and decide whether to reply, interview or hire.</p>
+<p>I expected the hard part to be the agents. It wasn't. The most surprising result came from the least glamorous
+component — retrieval — and it was a negative one.</p>
+<h2>The retrieval work went exactly as planned</h2>
+<p>The portfolio corpus is built to defeat naive RAG: the same project described three different ways (case study,
+README, the phrase used in old proposals), skills implied by code imports but never named in prose, and client job
+posts that paraphrase ("background jobs that run off the request path" instead of "Celery").</p>
+<p>I implemented ten retrieval variants and measured them on 444 dev jobs with gold evidence labels
+(<a href="https://github.com/Abdul-Ghufran/gigbid/blob/main/evals/results/rag_variants_offline.json"><code>rag_variants_offline.json</code></a>).
+The naive baseline — fixed chunks, cosine similarity against the whole job post — reached evidence Recall@5 of 0.740.
+Splitting the post into one query per requirement helped a little (0.762). A cross-encoder reranker helped a little
+more (0.769) while being sixty times slower. "Outcome-aware" ranking, which boosts projects that appeared in proposals
+that won, made things <em>worse</em> (0.642): winning projects are not the relevant ones for a new job.</p>
+<p>The winner was unexpectedly old-fashioned: a skill graph. Normalise every requirement and every portfolio item to
+canonical skills (with synonyms and code-import signals), connect skills to projects, industries and outcomes, and walk
+the graph — with dense retrieval only as a fallback for requirements that name no recognisable skill. Recall@5 0.911,
+MRR 0.875, p95 latency 3 ms. On top of it I put a corrective loop: grade each requirement's evidence, re-query weak
+ones, and mark requirements with no evidence as <strong>unsupported</strong> so the Writer is forbidden from claiming them. That
+traded two points of recall (0.890) for eight points of MRR (0.951) and gave the system the ability to say "I have not done
+this" (<a href="https://github.com/Abdul-Ghufran/gigbid/blob/main/evals/results/rag_ablation.json"><code>rag_ablation.json</code></a>).</p>
+<p>So far, a tidy story: measure, pick the best, ship it.</p>
+<h2>Then I connected it to the simulated clients</h2>
+<p>To see whether better evidence produced better <em>outcomes</em>, I held everything else fixed: the same 90 gold-bid jobs, the
+same deterministic writer, the same price. The only difference was the retrieval pipeline. The shipped pipeline's
+letters contained 1.13 unsupported claims per proposal before verification versus 2.07 for the naive baseline. Good.</p>
+<p>And GigSim's clients replied to <strong>15.6 %</strong> of the shipped pipeline's proposals — versus <strong>37.8 %</strong> for the naive
+baseline (<a href="https://github.com/Abdul-Ghufran/gigbid/blob/main/evals/results/proposals_best_fixedwriter.json"><code>proposals_best_fixedwriter.json</code></a>,
+<a href="https://github.com/Abdul-Ghufran/gigbid/blob/main/evals/results/proposals_v0_fixedwriter.json"><code>proposals_v0_fixedwriter.json</code></a>).</p>
+<p>Better retrieval, more honest proposals, less than half the replies.</p>
+<h2>Why it happened</h2>
+<p>I re-scored both sets and logged the simulated client's internal features
+(<a href="https://github.com/Abdul-Ghufran/gigbid/blob/main/evals/results/reply_gap_analysis.json"><code>reply_gap_analysis.json</code></a>).
+The difference was almost entirely one feature: <strong>must-have coverage</strong> — whether the proposal names the client's
+must-have skills. 0.47 for the naive pipeline, 0.20 for the good one.</p>
+<p>The mechanism was subtle. The naive retriever often returns READMEs and code files with no measurable outcome. When the
+writer has a weak piece of evidence like that, it falls back to restating the requirement: <em>"My README for
+fleet-live covers real-time updates with WebSockets."</em> That sentence is barely evidence — but it repeats the client's
+own words. The good retriever returns case studies with concrete results, so the writer leads with the result:
+<em>"In the live fleet map project, the work tracked 600 vehicles with sub-second updates."</em> A stronger claim — that never
+mentions "WebSockets".</p>
+<p>The simulator rewards keyword coverage. It cannot check whether a claim is true. My better system was losing to my
+worse one because it was <em>more specific and less parroting</em>, and the grader only noticed the parroting.</p>
+<p>Two lessons were tangled together here:</p>
+<ol>
+<li><strong>A simulator measures what it measures.</strong> GigSim's clients are a reasonable proxy for "does this proposal speak to
+   my requirements", and a terrible proxy for "is this true". A reply-rate number from it is only meaningful next to an
+   independent truthfulness metric — which is why every proposal result in GigBid reports unsupported claims alongside
+   reply rate, and why the verifier is calibrated on its own labelled set rather than trusted.</li>
+<li><strong>The simulator was also right about something.</strong> Real clients skim. A proof that never names their requirement
+   makes them do the mapping. The fix was not to retrieve worse evidence; it was to <em>name the requirement next to the
+   proof that covers it</em>: <em>"For your real-time tracking with WebSockets: in the live fleet map project, the work tracked
+   600 vehicles…"</em>. That is honest — the requirement is only named when the evidence for it passed the grader.</li>
+</ol>
+<h2>What the fix did</h2>
+<p>I changed one line of the writer (and the equivalent instruction in the LLM writer's prompt), re-ran both pipelines on the
+same 90 jobs, and later removed an uncited "I have done this before" opening that the verifier was — correctly —
+deleting from every letter. With the final writer
+(<a href="https://github.com/Abdul-Ghufran/gigbid/blob/main/evals/results/retrieval_outcome_test.json"><code>retrieval_outcome_test.json</code></a>):</p>
+<ul>
+<li><strong>Naive retrieval</strong>: Unsupported claims / proposal: 1.48; Simulated client score: 1.09; Interview rate: 21 %; Reply rate: 72 %</li>
+<li><strong>Shipped retrieval</strong>: Unsupported claims / proposal: <strong>0.34</strong>; Simulated client score: <strong>1.25</strong>; Interview rate: <strong>33 %</strong>; Reply rate: 64 %</li>
+</ul>
+<p>Unsupported claims fell more than four-fold (Wilcoxon p &lt; 0.001) and the client's score rose (paired t-test
+p &lt; 0.001). Interviews rose by twelve points (McNemar p = 0.08). Reply rate was <em>lower</em> but not significantly (p = 0.26).
+In other words: on the measures that track truth and depth, better retrieval clearly wins; on the shallowest measure it is
+a coin flip. I would ship it without hesitation — a proposal that gets a reply by implying experience you don't have is
+a liability, not a lead.</p>
+<h2>The second surprise: my own verifier was lying to me</h2>
+<p>The claim verifier splits each draft into claims and checks each against the cited evidence: semantic similarity, plus
+"every number in the claim appears in the evidence" and "every tool named in the claim is demonstrated by the evidence".
+I built a labelled set of 302 claims — true ones, and fabrications with a wrong number, a tool the project never used, a
+wrong citation, or invented years of experience.</p>
+<p>The first version caught 100 % of invented experience and wrong citations — and <strong>0 %</strong> of wrong numbers and <strong>6 %</strong> of
+wrong tools (<a href="https://github.com/Abdul-Ghufran/gigbid/blob/main/evals/results/verifier_eval_v1_rule.json"><code>verifier_eval_v1_rule.json</code></a>).
+It was labelling "cut lookup time by 85 %" against evidence that said 9 minutes to 40 seconds as <em>partly supported</em>:
+the gist matched, only "a detail" was off. But for a freelancer, the number <em>is</em> the claim. Making any unmatched number or
+tool an automatic "unsupported" took F1 from 0.69 to 0.99 — and a lightweight bi-encoder then performed exactly as well as
+the cross-encoder, which let me drop the reranker from the 512 MB deployment
+(<a href="https://github.com/Abdul-Ghufran/gigbid/blob/main/evals/results/verifier_eval.json"><code>verifier_eval.json</code></a>).</p>
+<h2>What I'd tell someone building the next one</h2>
+<ul>
+<li><strong>Put a truth metric next to every outcome metric.</strong> Reply rate alone would have pushed me to ship the worse retriever.</li>
+<li><strong>Read your simulator's features, not just its verdicts.</strong> The explanation was one column away.</li>
+<li><strong>Old ideas are underrated.</strong> A skill graph with a synonym list beat dense retrieval, hybrid search and a reranker on
+  this corpus — because the corpus is about <em>skills</em>, and the graph encodes exactly that.</li>
+<li><strong>Label your own checker.</strong> Thirty minutes of building a labelled claim set found the bug that would otherwise have
+  let fabricated numbers through every proposal.</li>
+</ul>
+<p>The code, the simulator, all evaluation scripts and every result file are public in the repository.</p></div></div>
+<script>
+function copyNode(id, label){
+  const r = document.createRange(); r.selectNodeContents(document.getElementById(id));
+  const s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+  let ok = false; try { ok = document.execCommand("copy"); } catch (e) {}
+  s.removeAllRanges();
+  document.getElementById("msg").textContent = ok ? label + " copied - now paste it (Ctrl+V)" : "Select it with the mouse and press Ctrl+C";
+}
+document.getElementById("ct").onclick = () => copyNode("title", "Title");
+document.getElementById("cb").onclick = () => copyNode("body", "Article body");
+</script></body></html>

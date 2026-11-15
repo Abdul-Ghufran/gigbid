@@ -30,7 +30,7 @@ canonical skills (with synonyms and code-import signals), connect skills to proj
 the graph — with dense retrieval only as a fallback for requirements that name no recognisable skill. Recall@5 0.911,
 MRR 0.875, p95 latency 3 ms. On top of it I put a corrective loop: grade each requirement's evidence, re-query weak
 ones, and mark requirements with no evidence as **unsupported** so the Writer is forbidden from claiming them. That
-traded half a point of recall for eight points of MRR (0.951) and gave the system the ability to say "I have not done
+traded two points of recall (0.890) for eight points of MRR (0.951) and gave the system the ability to say "I have not done
 this" ([`rag_ablation.json`](https://github.com/Abdul-Ghufran/gigbid/blob/main/evals/results/rag_ablation.json)).
 
 So far, a tidy story: measure, pick the best, ship it.

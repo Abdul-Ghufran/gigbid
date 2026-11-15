@@ -157,9 +157,18 @@ Classmates were not available, so the panel has two clearly separated parts (the
      `finalize_report.py` command yourself).
   If classmates do send filled CSVs later, add each with another `--csv`.
 
-## Step 7 — Publish the technical write-up (10 min)
-Copy `docs/WRITEUP.md` into a **Medium** story or a **LinkedIn article** (keep the tables and the result-file links),
-publish it, and paste the link in the Classroom submission. It is 1,367 words (required 1,200–1,800).
+## Step 7 — Publish the technical write-up (15 min)
+1. Double-click `docs\writeup_publish.html` (or run `.\gb.cmd tools/writeup_publish.py`): the article, paste-ready
+   (1,372 words; the results table is a list because Medium/LinkedIn articles have no tables).
+2. **Medium:** medium.com → sign in (Google is fine) → **Write** (pencil icon, top right).
+   In the paste-ready page click **1. Copy title** → click Medium's **Title** line → Ctrl+V → press **Enter**.
+   Click **2. Copy article body** → Ctrl+V into the story body. Check the links are blue and the headings are bold.
+   Optional cover image: on an empty line click **+** → image icon → `docs\images\bid_graph.png`.
+3. **Publish** (top right) → Topics: `Artificial Intelligence`, `Machine Learning`, `LLM`, `Retrieval Augmented Generation`,
+   `Software Engineering` → **Publish now**. Copy the story URL from the address bar.
+   (LinkedIn instead: linkedin.com → **Write article** → same paste steps → **Next** → **Publish**.)
+4. Open the URL in a private window to confirm it is public, then send the link to Claude (it goes in the Classroom
+   submission and the README).
 
 ## Step 8 — Demo video (10 min, or ~45 min to record your own)
 **To record it yourself**, follow `docs/DEMO_WALKTHROUGH.md`: it lists every click, scene by scene, with suggested
