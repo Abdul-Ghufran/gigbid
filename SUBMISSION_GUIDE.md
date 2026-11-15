@@ -172,7 +172,7 @@ Published: https://medium.com/@abdulghufran114/better-retrieval-made-my-simulate
 4. Open the URL in a private window to confirm it is public, then send the link to Claude (it goes in the Classroom
    submission and the README).
 
-## Step 8 — Demo video (10 min, or ~45 min to record your own)
+## Step 8 — Demo video — DONE (2026-11-15): https://youtu.be/pMQluUse11M
 **To record it yourself**, follow `docs/DEMO_WALKTHROUGH.md`: it lists every click, scene by scene, with suggested
 narration and timings for a 3-minute video. Otherwise use the ready-made video:
 Upload `docs/demo/gigbid-demo.mp4` (4 min, recorded 2026-11-15 with a visible cursor, click highlights and typed sign-in) to **YouTube (Unlisted)** or Google Drive (anyone with the link can view) and copy
@@ -196,9 +196,9 @@ It contains only committed files, never `.env`. Run it after the last Step 0 / S
 Attach / paste, in one submission:
 - **R&D report PDF:** `docs/report/GigBid_RnD_Report.pdf`
 - **ZIP:** `gigbid_submission.zip`
-- **Deployed URL:** your Render URL
+- **Deployed URL:** https://gigbid-8201.onrender.com
 - **GitHub repo:** https://github.com/Abdul-Ghufran/gigbid
-- **Demo video link** (Step 8)
+- **Demo video link** (Step 8): https://youtu.be/pMQluUse11M
 - **Portfolio MCP server:** https://github.com/Abdul-Ghufran/gigbid/tree/main/mcp_servers/portfolio
   (install command in its README)
 - **Technical write-up link** (Step 7): https://medium.com/@abdulghufran114/better-retrieval-made-my-simulated-clients-reply-less-and-that-was-the-most-useful-bug-i-found-921cc1e0cede

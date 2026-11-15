@@ -7,7 +7,7 @@ to real portfolio evidence — and nothing reaches a client until the freelancer
 A team of LangGraph agents does the reading, judging and drafting; you make the decisions.
 
 - **Live app:** _see the submission (Render URL)_ · reviewer login is in the private Classroom comment
-- **3-minute demo video:** _link in the submission_ · **Technical write-up:** [published on Medium](https://medium.com/@abdulghufran114/better-retrieval-made-my-simulated-clients-reply-less-and-that-was-the-most-useful-bug-i-found-921cc1e0cede) (source: [docs/WRITEUP.md](docs/WRITEUP.md))
+- **Demo video (4 min):** [YouTube](https://youtu.be/pMQluUse11M) · **Technical write-up:** [published on Medium](https://medium.com/@abdulghufran114/better-retrieval-made-my-simulated-clients-reply-less-and-that-was-the-most-useful-bug-i-found-921cc1e0cede) (source: [docs/WRITEUP.md](docs/WRITEUP.md))
 - **Portfolio MCP server (installable):** [`mcp_servers/portfolio`](mcp_servers/portfolio/README.md) —
   `uvx --from git+https://github.com/Abdul-Ghufran/gigbid gigbid-portfolio-mcp --portfolio-dir ./my_portfolio`
 - **Public traces:** three Langfuse trace links (a skipped scam, an approved proposal, a critic loop) are listed in
