@@ -25,6 +25,9 @@ def main():
                 choice = (r.get("which_would_you_reply_to_A_or_B") or "").strip().upper()[:1]
                 if choice in ("A", "B"):
                     votes.append({"pair": r["pair"], "rater": r.get("rater_name") or path, "picked": key[r["pair"]][choice]})
+    ids = {}  # publish raters as rater_1, rater_2 ... (names stay out of the public results)
+    for v in votes:
+        v["rater"] = ids.setdefault(v["rater"], f"rater_{len(ids) + 1}")
     wins = sum(v["picked"] == "shipped" for v in votes)
     n = len(votes)
     p = stats.binomtest(wins, n, 0.5).pvalue if n else None

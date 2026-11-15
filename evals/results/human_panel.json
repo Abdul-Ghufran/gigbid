@@ -1,0 +1,85 @@
+{
+ "generated_by": "evals/runners/human_panel.py",
+ "generated_at": "2026-11-15 18:39",
+ "votes": 15,
+ "raters": 1,
+ "shipped_win_rate": 0.9333,
+ "binomial_p": 0.001,
+ "detail": [
+  {
+   "pair": "1",
+   "rater": "rater_1",
+   "picked": "shipped"
+  },
+  {
+   "pair": "2",
+   "rater": "rater_1",
+   "picked": "shipped"
+  },
+  {
+   "pair": "3",
+   "rater": "rater_1",
+   "picked": "v0"
+  },
+  {
+   "pair": "4",
+   "rater": "rater_1",
+   "picked": "shipped"
+  },
+  {
+   "pair": "5",
+   "rater": "rater_1",
+   "picked": "shipped"
+  },
+  {
+   "pair": "6",
+   "rater": "rater_1",
+   "picked": "shipped"
+  },
+  {
+   "pair": "7",
+   "rater": "rater_1",
+   "picked": "shipped"
+  },
+  {
+   "pair": "8",
+   "rater": "rater_1",
+   "picked": "shipped"
+  },
+  {
+   "pair": "9",
+   "rater": "rater_1",
+   "picked": "shipped"
+  },
+  {
+   "pair": "10",
+   "rater": "rater_1",
+   "picked": "shipped"
+  },
+  {
+   "pair": "11",
+   "rater": "rater_1",
+   "picked": "shipped"
+  },
+  {
+   "pair": "12",
+   "rater": "rater_1",
+   "picked": "shipped"
+  },
+  {
+   "pair": "13",
+   "rater": "rater_1",
+   "picked": "shipped"
+  },
+  {
+   "pair": "14",
+   "rater": "rater_1",
+   "picked": "shipped"
+  },
+  {
+   "pair": "15",
+   "rater": "rater_1",
+   "picked": "shipped"
+  }
+ ]
+}

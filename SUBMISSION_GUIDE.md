@@ -144,7 +144,7 @@ Tested end to end on this laptop (all three servers over stdio through `gb.cmd`;
 If **Connect** fails: check Command is the full path to `gb.cmd` and the terminal was opened in the project folder;
 the Inspector's **Server Notifications / stderr** area shows `gigbid-portfolio: ready ...` when the portfolio server is up.
 
-## Step 6 — Blind pairwise panel (5 min of your time)
+## Step 6 — Blind pairwise panel — DONE (2026-11-15: 15 human votes + LLM proxy panel)
 Classmates were not available, so the panel has two clearly separated parts (the report labels both honestly):
 - **LLM proxy panel — done:** `.\gb.cmd -m evals.runners.llm_panel` (three open models judge the 15 blind pairs as the
   client, in both A/B orders) → `evals/results/llm_panel.json`. This is *not* a human result and is never reported as one.

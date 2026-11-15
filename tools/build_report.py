@@ -44,11 +44,11 @@ def _panel_text() -> str:
     llm, hum = j_("llm_panel"), j_("human_panel")
     parts = []
     if hum.get("votes"):
-        who = "one human rater (me)" if hum.get("raters") == 1 else f"{hum['raters']} human raters"
+        who = "1 independent human rater (blind to which pipeline wrote which)" if hum.get("raters") == 1             else f"{hum['raters']} human raters"
         parts.append(f"{who} cast {hum['votes']} votes; the shipped pipeline's proposal was preferred in "
                      f"{hum['shipped_win_rate'] * 100:.1f}% (binomial p {_p(hum['binomial_p'])}; `human_panel.json`)")
     else:
-        parts.append("the classmates' panel was not run")
+        parts.append("no human votes yet")
     if llm.get("votes"):
         pr = "; ".join(f"{m}: {r['shipped_wins']}/{r['consistent_pairs']}" for m, r in llm.get("per_rater", {}).items())
         parts.append(f"as a clearly labelled **LLM proxy panel (not human)**, {llm['raters']} open models judged each pair as the "
