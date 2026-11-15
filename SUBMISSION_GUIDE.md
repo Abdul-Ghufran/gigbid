@@ -175,7 +175,7 @@ Published: https://medium.com/@abdulghufran114/better-retrieval-made-my-simulate
 ## Step 8 — Demo video (10 min, or ~45 min to record your own)
 **To record it yourself**, follow `docs/DEMO_WALKTHROUGH.md`: it lists every click, scene by scene, with suggested
 narration and timings for a 3-minute video. Otherwise use the ready-made video:
-Upload `docs/demo/gigbid-demo.mp4` to **YouTube (Unlisted)** or Google Drive (anyone with the link can view) and copy
+Upload `docs/demo/gigbid-demo.mp4` (4 min, recorded 2026-11-15 with a visible cursor, click highlights and typed sign-in) to **YouTube (Unlisted)** or Google Drive (anyone with the link can view) and copy
 the link. Optional: record a voice-over while it plays. To re-record it against live models after deployment:
 ```bash
 .\gb.cmd tools/demo_server.py 8030 --live
