@@ -16,7 +16,9 @@ jobs:
         run: .venv/bin/python -m tools.ci_checks
       - run: .venv/bin/python -m ruff check .
       - uses: actions/cache@v4
-        with: {path: .cache/fastembed, key: fastembed-${{ hashFiles('agent/config.yaml') }}}
+        with:
+          path: .cache/fastembed
+          key: fastembed-${{ hashFiles('agent/config.yaml') }}
       - name: Unit + integration tests (MCP in-memory clients, graph against GigSim)
         run: .venv/bin/python -m pytest -q tests/unit tests/integration mcp_servers
       - name: Contract tests (MCP tool-schema snapshots)
