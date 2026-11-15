@@ -236,10 +236,8 @@ the client actually asked for, which I scored 1–2. So the judge is **lenient a
 its scores (the "Judge score" column) are reported only as a secondary signal, and the R&D conclusions rest on the
 deterministic metrics (evidence recall, nDCG, unsupported claims after verification, GigSim reply rate). Next step: give
 the judge the requirement → evidence matrix with a per-requirement coverage check and few-shot anchors from my labels,
-then re-calibrate. A blind pairwise human panel
-(`human_panel_pairs.csv`, 15 pairs, V0 vs shipped, sides randomised; key in `human_panel_key.json`): {{panel_raters}}
-classmates cast {{panel_n}} votes; the shipped pipeline's proposal was preferred in {{panel_win}} (binomial p = {{panel_p}};
-`human_panel.json`).
+then re-calibrate. Blind pairwise panel
+(`human_panel_pairs.csv`, 15 pairs, V0 vs shipped, sides randomised; key in `human_panel_key.json`): {{panel_text}}
 
 ## Appendix C — reproducibility
 

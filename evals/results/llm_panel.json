@@ -1,0 +1,444 @@
+{
+ "generated_by": "evals/runners/llm_panel.py",
+ "generated_at": "2026-11-15 18:29",
+ "kind": "LLM proxy panel (not human)",
+ "pairs": 15,
+ "raters": 3,
+ "rater_models": [
+  "openai/gpt-oss-120b",
+  "openai/gpt-oss-20b",
+  "qwen/qwen3.8-27b"
+ ],
+ "votes": 35,
+ "position_inconsistent": 10,
+ "shipped_win_rate": 0.9429,
+ "binomial_p": 0.0,
+ "majority_shipped": 12,
+ "majority_v0": 0,
+ "majority_none": 3,
+ "per_rater": {
+  "openai/gpt-oss-120b": {
+   "consistent_pairs": 11,
+   "shipped_wins": 11,
+   "shipped_win_rate": 1.0
+  },
+  "openai/gpt-oss-20b": {
+   "consistent_pairs": 14,
+   "shipped_wins": 13,
+   "shipped_win_rate": 0.9286
+  },
+  "qwen/qwen3.8-27b": {
+   "consistent_pairs": 10,
+   "shipped_wins": 9,
+   "shipped_win_rate": 0.9
+  }
+ },
+ "caveat": "Proposals were written by gpt-oss models; gpt-oss raters may share that style. Qwen is the out-of-family rater.",
+ "detail": [
+  {
+   "pair": "1",
+   "rater": "openai/gpt-oss-120b",
+   "order_AB": "B",
+   "order_BA": "B",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "B provides concrete, relevant WebSocket and Celery examples and a clear plan, making its evidence more believable for our needs"
+  },
+  {
+   "pair": "2",
+   "rater": "openai/gpt-oss-120b",
+   "order_AB": "B",
+   "order_BA": "B",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "B explicitly cites relevant MongoDB experience, matching the job\u2019s requirement."
+  },
+  {
+   "pair": "3",
+   "rater": "openai/gpt-oss-120b",
+   "order_AB": "B",
+   "order_BA": "B",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "B highlights relevant ecommerce experience with a multi\u2011vendor marketplace, aligning better with the store\u2019s needs."
+  },
+  {
+   "pair": "4",
+   "rater": "openai/gpt-oss-120b",
+   "order_AB": "A",
+   "order_BA": "A",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "A provides a concrete, relevant success metric (WCAG compliance) showing applicable experience, making its evidence more believable for the project"
+  },
+  {
+   "pair": "5",
+   "rater": "openai/gpt-oss-120b",
+   "order_AB": "A",
+   "order_BA": "A",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "Proposal A directly addresses the required Prophet experience and provides relevant evidence, matching the job needs."
+  },
+  {
+   "pair": "6",
+   "rater": "openai/gpt-oss-120b",
+   "order_AB": "A",
+   "order_BA": "A",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "A provides concrete FAISS experience and relevant metrics, directly matching the job requirements"
+  },
+  {
+   "pair": "7",
+   "rater": "openai/gpt-oss-120b",
+   "order_AB": "A",
+   "order_BA": "B",
+   "consistent": false,
+   "picked": null,
+   "reason": "A explicitly cites FastAPI experience plus Docker and MLflow, matching all required skills"
+  },
+  {
+   "pair": "8",
+   "rater": "openai/gpt-oss-120b",
+   "order_AB": "A",
+   "order_BA": "A",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "Proposal A explicitly demonstrates Tailwind CSS experience, matching the core requirement."
+  },
+  {
+   "pair": "9",
+   "rater": "openai/gpt-oss-120b",
+   "order_AB": "B",
+   "order_BA": "B",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "B directly cites relevant healthcare data\u2011visualization and python3 experience and matches all required skills"
+  },
+  {
+   "pair": "10",
+   "rater": "openai/gpt-oss-120b",
+   "order_AB": "A",
+   "order_BA": "A",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "It directly addresses caching, DRF, Stripe checkout, and the required testing and production build"
+  },
+  {
+   "pair": "11",
+   "rater": "openai/gpt-oss-120b",
+   "order_AB": "B",
+   "order_BA": "B",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "Provides concrete, relevant experience with MongoDB, Celery, and DRF, showing fit for the legal product"
+  },
+  {
+   "pair": "12",
+   "rater": "openai/gpt-oss-120b",
+   "order_AB": "A",
+   "order_BA": "B",
+   "consistent": false,
+   "picked": null,
+   "reason": "A provides concrete, relevant examples and clear steps, showing stronger evidence of matching the healthcare server\u2011rendered React need"
+  },
+  {
+   "pair": "13",
+   "rater": "openai/gpt-oss-120b",
+   "order_AB": "A",
+   "order_BA": "A",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "A provides concrete WebSocket experience and relevant GraphQL/React examples, directly matching the project needs"
+  },
+  {
+   "pair": "14",
+   "rater": "openai/gpt-oss-120b",
+   "order_AB": "A",
+   "order_BA": "B",
+   "consistent": false,
+   "picked": null,
+   "reason": "A directly references dbt models and semantic\u2011layer work, matching the Looker focus, and offers a clear milestone plan"
+  },
+  {
+   "pair": "15",
+   "rater": "openai/gpt-oss-120b",
+   "order_AB": "A",
+   "order_BA": "B",
+   "consistent": false,
+   "picked": null,
+   "reason": "Shows directly relevant e\u2011commerce marketplace experience, matching the client\u2019s domain"
+  },
+  {
+   "pair": "1",
+   "rater": "openai/gpt-oss-20b",
+   "order_AB": "B",
+   "order_BA": "B",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "Proposal B gives more demanding real\u2011time WebSocket and Celery examples that align better with a travel pricing app."
+  },
+  {
+   "pair": "2",
+   "rater": "openai/gpt-oss-20b",
+   "order_AB": "B",
+   "order_BA": "B",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "Proposal B demonstrates experience with Next.js, MongoDB, and GraphQL\u2014all required skills, whereas Proposal A lacks MongoDB evidence."
+  },
+  {
+   "pair": "3",
+   "rater": "openai/gpt-oss-20b",
+   "order_AB": "B",
+   "order_BA": "B",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "B provides a relevant e-commerce Next.js example and GMV metric, better aligning with Shopify and sales focus."
+  },
+  {
+   "pair": "4",
+   "rater": "openai/gpt-oss-20b",
+   "order_AB": "B",
+   "order_BA": "B",
+   "consistent": true,
+   "picked": "v0",
+   "reason": "Proposal B references source code that likely includes live browser updates, aligning with the job's requirement."
+  },
+  {
+   "pair": "5",
+   "rater": "openai/gpt-oss-20b",
+   "order_AB": "A",
+   "order_BA": "A",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "Proposal A addresses Docker, Prophet, and AWS, matching all job requirements."
+  },
+  {
+   "pair": "6",
+   "rater": "openai/gpt-oss-20b",
+   "order_AB": "A",
+   "order_BA": "A",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "Proposal A provides relevant Hugging Face and FAISS experience and a clear plan."
+  },
+  {
+   "pair": "7",
+   "rater": "openai/gpt-oss-20b",
+   "order_AB": "B",
+   "order_BA": "A",
+   "consistent": false,
+   "picked": null,
+   "reason": "Proposal B covers all required skills: typed API, Docker, and MLflow, while A lacks MLflow evidence."
+  },
+  {
+   "pair": "8",
+   "rater": "openai/gpt-oss-20b",
+   "order_AB": "A",
+   "order_BA": "A",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "Proposal A demonstrates Tailwind CSS experience, which is required."
+  },
+  {
+   "pair": "9",
+   "rater": "openai/gpt-oss-20b",
+   "order_AB": "B",
+   "order_BA": "B",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "Proposal B demonstrates relevant experience in all required areas: data visualization, python3, and web analytics."
+  },
+  {
+   "pair": "10",
+   "rater": "openai/gpt-oss-20b",
+   "order_AB": "A",
+   "order_BA": "A",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "Proposal A addresses all required skills and deliverables."
+  },
+  {
+   "pair": "11",
+   "rater": "openai/gpt-oss-20b",
+   "order_AB": "B",
+   "order_BA": "B",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "Proposal B provides relevant evidence for MongoDB, Celery, and DRF experience, aligning with job requirements."
+  },
+  {
+   "pair": "12",
+   "rater": "openai/gpt-oss-20b",
+   "order_AB": "A",
+   "order_BA": "A",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "Proposal A cites a SaaS billing portal case with server\u2011rendered React that directly aligns with healthcare billing needs, providing relevant metrics and a clear, milestone\u2011based approach."
+  },
+  {
+   "pair": "13",
+   "rater": "openai/gpt-oss-20b",
+   "order_AB": "A",
+   "order_BA": "A",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "Proposal A provides concrete WebSocket experience relevant to real-time updates, matching the need."
+  },
+  {
+   "pair": "14",
+   "rater": "openai/gpt-oss-20b",
+   "order_AB": "B",
+   "order_BA": "B",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "B demonstrates relevant data visualization experience and retail context, aligning better with the job's focus on Looker and semantic-layer BI."
+  },
+  {
+   "pair": "15",
+   "rater": "openai/gpt-oss-20b",
+   "order_AB": "A",
+   "order_BA": "A",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "Proposal A demonstrates relevant ecommerce experience with a marketplace and GMV, directly matching the client's needs."
+  },
+  {
+   "pair": "1",
+   "rater": "qwen/qwen3.8-27b",
+   "order_AB": "B",
+   "order_BA": "B",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "Proposal B provides specific, relevant examples of WebSockets and Celery usage in production environments (logistics tracking and booking systems), whereas Proposal A cites vague or irrelevant evidence (chat widget, stock sync) that does not demonstrate the required technical depth."
+  },
+  {
+   "pair": "2",
+   "rater": "qwen/qwen3.8-27b",
+   "order_AB": "A",
+   "order_BA": "B",
+   "consistent": false,
+   "picked": null,
+   "reason": "Proposal A cites a Next.js migration case study, which is directly relevant to the job's requirement for a senior Next.js engineer, whereas Proposal B cites a marketplace case study that is less specific to the core technical stack requested."
+  },
+  {
+   "pair": "3",
+   "rater": "qwen/qwen3.8-27b",
+   "order_AB": "A",
+   "order_BA": "B",
+   "consistent": false,
+   "picked": null,
+   "reason": "Proposal A explicitly confirms experience with Shopify, which is listed as a 'must' in the job description, whereas Proposal B omits any mention of Shopify experience."
+  },
+  {
+   "pair": "4",
+   "rater": "qwen/qwen3.8-27b",
+   "order_AB": "B",
+   "order_BA": "A",
+   "consistent": false,
+   "picked": null,
+   "reason": "Proposal B provides a specific, verifiable code artifact that directly addresses the mandatory requirement for Playwright experience, whereas Proposal A cites an irrelevant accessibility case study."
+  },
+  {
+   "pair": "5",
+   "rater": "qwen/qwen3.8-27b",
+   "order_AB": "A",
+   "order_BA": "A",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "Proposal A directly addresses the mandatory 'Prophet' requirement with a relevant case study, whereas Proposal B ignores it and cites an irrelevant AWS example."
+  },
+  {
+   "pair": "6",
+   "rater": "qwen/qwen3.8-27b",
+   "order_AB": "A",
+   "order_BA": "A",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "Proposal A provides specific, relevant evidence for all three required skills (LLM fine-tuning, Hugging Face, and FAISS), whereas Proposal B fails to demonstrate Hugging Face experience and uses incoherent phrasing for the FAISS requirement."
+  },
+  {
+   "pair": "7",
+   "rater": "qwen/qwen3.8-27b",
+   "order_AB": "B",
+   "order_BA": "A",
+   "consistent": false,
+   "picked": null,
+   "reason": "Proposal B explicitly addresses the mandatory MLflow requirement with a relevant case study, whereas Proposal A omits it entirely."
+  },
+  {
+   "pair": "8",
+   "rater": "qwen/qwen3.8-27b",
+   "order_AB": "A",
+   "order_BA": "A",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "Proposal A explicitly addresses the 'Tailwind CSS' requirement with a relevant case study, whereas Proposal B omits it entirely, making A a better fit for the specific skill set requested."
+  },
+  {
+   "pair": "9",
+   "rater": "qwen/qwen3.8-27b",
+   "order_AB": "B",
+   "order_BA": "B",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "Proposal B directly addresses the specific technical requirements (Python3, Data Visualization, Web Analytics) with relevant examples, whereas Proposal A only addresses web analytics and ignores the other two mandatory skills."
+  },
+  {
+   "pair": "10",
+   "rater": "qwen/qwen3.8-27b",
+   "order_AB": "A",
+   "order_BA": "A",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "Proposal A explicitly addresses the 'caching layer' requirement mentioned in the job description, whereas Proposal B incorrectly maps the 'drf is a must' requirement to an unrelated HR SaaS case study and omits the caching layer entirely."
+  },
+  {
+   "pair": "11",
+   "rater": "qwen/qwen3.8-27b",
+   "order_AB": "B",
+   "order_BA": "B",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "Proposal B provides specific, relevant evidence of experience with the required technologies (MongoDB, Celery, DRF) through concrete case studies, whereas Proposal A offers vague and irrelevant claims about source code."
+  },
+  {
+   "pair": "12",
+   "rater": "qwen/qwen3.8-27b",
+   "order_AB": "A",
+   "order_BA": "B",
+   "consistent": false,
+   "picked": null,
+   "reason": "Proposal A provides specific, relevant evidence of experience with server-rendered React and Node.js (JavaScript server) in a SaaS context, whereas Proposal B's primary case study is a PWA which may not align as closely with the specific server-side rendering requirement."
+  },
+  {
+   "pair": "13",
+   "rater": "qwen/qwen3.8-27b",
+   "order_AB": "A",
+   "order_BA": "A",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "Proposal A provides specific, relevant evidence of WebSocket experience (real-time logistics dashboard) that directly addresses the client's requirement, whereas Proposal B cites irrelevant source code for that skill."
+  },
+  {
+   "pair": "14",
+   "rater": "qwen/qwen3.8-27b",
+   "order_AB": "A",
+   "order_BA": "A",
+   "consistent": true,
+   "picked": "v0",
+   "reason": "Proposal A directly addresses the specific technical requirement for 'documented SQL / models' by citing relevant dbt experience, whereas Proposal B cites unrelated cases (hospital beds, marketing funnels) that do not demonstrate the required semantic-layer BI or SQL modeling skills."
+  },
+  {
+   "pair": "15",
+   "rater": "qwen/qwen3.8-27b",
+   "order_AB": "A",
+   "order_BA": "A",
+   "consistent": true,
+   "picked": "shipped",
+   "reason": "Proposal A provides a relevant e-commerce case study that directly addresses the client's business context, whereas Proposal B cites an unrelated government accessibility project."
+  }
+ ]
+}

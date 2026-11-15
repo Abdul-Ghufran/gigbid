@@ -33,6 +33,34 @@ def _judge_bias(kap: dict) -> dict:
         pass
     return out
 
+
+def _panel_text() -> str:
+    """Blind pairwise panel sentence: the LLM proxy panel (always labelled as such) and any real human votes."""
+    def j_(n):
+        p = RES / f"{n}.json"
+        return json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
+    def _p(x):
+        return "< 0.001" if x < 0.001 else f"= {x:.3f}"
+    llm, hum = j_("llm_panel"), j_("human_panel")
+    parts = []
+    if hum.get("votes"):
+        who = "one human rater (me)" if hum.get("raters") == 1 else f"{hum['raters']} human raters"
+        parts.append(f"{who} cast {hum['votes']} votes; the shipped pipeline's proposal was preferred in "
+                     f"{hum['shipped_win_rate'] * 100:.1f}% (binomial p {_p(hum['binomial_p'])}; `human_panel.json`)")
+    else:
+        parts.append("the classmates' panel was not run")
+    if llm.get("votes"):
+        pr = "; ".join(f"{m}: {r['shipped_wins']}/{r['consistent_pairs']}" for m, r in llm.get("per_rater", {}).items())
+        parts.append(f"as a clearly labelled **LLM proxy panel (not human)**, {llm['raters']} open models judged each pair as the "
+                     f"client in both A/B orders; {llm['votes']} order-consistent votes ({llm['position_inconsistent']} flipped with "
+                     f"position and were dropped) preferred the shipped proposal in {llm['shipped_win_rate'] * 100:.1f}% "
+                     f"(binomial p {_p(llm['binomial_p'])}; per model, shipped wins / consistent pairs: {pr}; majority per pair: "
+                     f"shipped {llm['majority_shipped']}, V0 {llm['majority_v0']}, no majority {llm['majority_none']}; "
+                     "`llm_panel.json`). Caveat: the proposals were written by gpt-oss models, so the two gpt-oss raters may "
+                     "share their style; Qwen is the out-of-family rater")
+    return "; ".join(parts) + "."
+
+
 def j(name):
     p = RES / f"{name}.json"
     return json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
@@ -135,6 +163,7 @@ def values():
         "dec_p95": num(get(dec, "overall.p95_latency_s"), 1),
         **_judge_bias(kap),
         "kappa": num(kap.get("cohen_kappa"), 2), "wkappa": num(kap.get("quadratic_weighted_kappa"), 2), "kappa_n": str(kap.get("n_labelled", "pending")),
+        "panel_text": _panel_text(),
         "panel_win": pct(j("human_panel").get("shipped_win_rate")), "panel_n": str(j("human_panel").get("votes", "pending")),
         "panel_raters": str(j("human_panel").get("raters", "pending")), "panel_p": num(j("human_panel").get("binomial_p"), 3),
         "prof_open_cost":num(get(prof, "open.mean_cost_usd_per_proposal"), 5), "prof_mid_cost": num(get(prof, "open_mid.mean_cost_usd_per_proposal"), 5),

@@ -144,13 +144,18 @@ Tested end to end on this laptop (all three servers over stdio through `gb.cmd`;
 If **Connect** fails: check Command is the full path to `gb.cmd` and the terminal was opened in the project folder;
 the Inspector's **Server Notifications / stderr** area shows `gigbid-portfolio: ready ...` when the portfolio server is up.
 
-## Step 6 — Human panel with classmates (optional but listed in B4; 10 min of your time)
-Send `evals/datasets/human_panel_pairs.csv` to 3–5 classmates; each fills `which_would_you_reply_to_A_or_B` (A or B)
-and `rater_name`, and sends it back. Then:
-```bash
-.\gb.cmd -m evals.runners.human_panel --csv rater1.csv --csv rater2.csv --csv rater3.csv
-```
-Rebuild the report as in Step 4 and push.
+## Step 6 — Blind pairwise panel (5 min of your time)
+Classmates were not available, so the panel has two clearly separated parts (the report labels both honestly):
+- **LLM proxy panel — done:** `.\gb.cmd -m evals.runners.llm_panel` (three open models judge the 15 blind pairs as the
+  client, in both A/B orders) → `evals/results/llm_panel.json`. This is *not* a human result and is never reported as one.
+- **Your own votes (the human rater):**
+  1. Double-click `evals\datasets\panel_helper.html` (or run `.\gb.cmd tools/panel_helper.py`).
+  2. Type your name, then for each of the 15 pairs click the proposal **you would reply to** as the client (keys A / B).
+     Which pipeline wrote which is hidden and the sides are shuffled. About 20 seconds per pair.
+  3. **Save CSV** → move `human_panel_votes.csv` from Downloads into `evals\datasets\` → tell Claude "panel votes saved"
+     (or run `.\gb.cmd -m evals.runners.human_panel --csv evals/datasets/human_panel_votes.csv` and Step 4's
+     `finalize_report.py` command yourself).
+  If classmates do send filled CSVs later, add each with another `--csv`.
 
 ## Step 7 — Publish the technical write-up (10 min)
 Copy `docs/WRITEUP.md` into a **Medium** story or a **LinkedIn article** (keep the tables and the result-file links),

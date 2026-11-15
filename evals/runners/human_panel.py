@@ -20,7 +20,7 @@ def main():
     key = json.loads((H.DS / "human_panel_key.json").read_text(encoding="utf-8"))
     votes = []
     for path in a.csv:
-        with open(path, encoding="utf-8") as f:
+        with open(path, encoding="utf-8-sig") as f:  # the picker page writes a BOM for Excel
             for r in csv.DictReader(f):
                 choice = (r.get("which_would_you_reply_to_A_or_B") or "").strip().upper()[:1]
                 if choice in ("A", "B"):
