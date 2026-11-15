@@ -67,7 +67,25 @@ def main():
         init_db()
         uvicorn.run(mcp.streamable_http_app(), host="0.0.0.0", port=a.port)
     else:
+        warm_search()
         mcp.run("stdio")
+
+
+def warm_search():
+    """Run one search before serving stdio.  On Windows, loading numpy/torch DLLs on a worker thread while the stdio
+    transport is blocked reading stdin can deadlock (the first tool call then hangs forever, e.g. in MCP Inspector);
+    loading everything first also makes the first real call fast.  Logs go to stderr; failures never stop the server."""
+    import asyncio
+    import sys
+    import time
+
+    t0 = time.time()
+    print("gigbid-portfolio: loading models and indexing the portfolio...", file=sys.stderr, flush=True)
+    try:
+        asyncio.run(mcp.call_tool("search_evidence", {"requirement": "background jobs"}))
+        print(f"gigbid-portfolio: ready in {time.time() - t0:.0f}s; serving on stdio.", file=sys.stderr, flush=True)
+    except Exception as e:  # noqa: BLE001
+        print(f"gigbid-portfolio: warm-up failed ({type(e).__name__}: {e}); serving anyway.", file=sys.stderr, flush=True)
 
 
 if __name__ == "__main__":

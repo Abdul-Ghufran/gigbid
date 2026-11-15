@@ -101,21 +101,45 @@ first attempts showed nothing). The public links are in `docs/TRACES.md`, record
 `.\gb.cmd tools/publish_traces.py` (needs `LANGFUSE_PUBLIC_KEY` / `LANGFUSE_SECRET_KEY` in your local `.env`; re-run it to
 record fresh ones). Runs in the deployed app are also traced and marked public automatically (Render needs the same keys).
 
-## Step 5b — MCP Inspector screenshots (10 min) — required by A7
-I could not run the Inspector myself (the automation sandbox does not allow downloading and running npm tools).
-1. In a terminal in the project folder run `npx @modelcontextprotocol/inspector` (it opens http://localhost:6274 in your browser).
-2. Left panel: **Transport = STDIO**, **Command** = `C:\Users\MABC\Desktop\i230576_AG2\.venv\Scripts\python.exe`,
-   **Arguments** = `-m mcp_servers.portfolio.server --persona web`, **Environment**: add `AUDIT_DISABLED=1`. Click **Connect**
-   (first connect takes ~1 minute while the portfolio is indexed).
-3. **Tools → List Tools → search_evidence** → requirement `Celery background jobs` → **Run Tool** → screenshot.
-   Also screenshot **Resources** (resource templates) and **Prompts** (`answer_screening_question`).
-4. Disconnect, then the Marketplace server: Arguments `-m mcp_servers.marketplace.server`, Environment
-   `GIGSIM_INPROCESS=1`, `GIGSIM_TOKEN=gigsim-dev-token-web`, `MCP_USER_ID=persona-web`, `GIGSIM_ERROR_RATE=0` →
-   Connect → run `search_jobs` (category `web`, limit 3) and `submit_proposal` with `dry_run` true (it will say
-   "proposal not found" for a made-up id — that error is fine to show) → screenshot the tool list with annotations.
-5. Workspace server: Arguments `-m mcp_servers.workspace.server` → run `free_slots` → screenshot.
-6. Save the PNGs as `docs/images/inspector_portfolio.png`, `inspector_marketplace.png`, `inspector_workspace.png`,
-   then run `git add docs/images`, `git commit -m "MCP Inspector screenshots"` and `git push` (one at a time).
+## Step 5b — MCP Inspector screenshots (15 min) — required by A7
+Tested end to end on this laptop (all three servers over stdio through `gb.cmd`; Smart App Control blocks
+`.venv\Scripts\python.exe`, so do not use that as the command).
+
+**Start the Inspector**
+1. Open a terminal **in the project folder** (`C:\Users\MABC\Desktop\i230576_AG2`) and run
+   `npx @modelcontextprotocol/inspector` (answer `y` if npx asks to install it). Your browser opens
+   `http://localhost:6274` (if not, copy the full URL with `MCP_PROXY_AUTH_TOKEN=...` from the terminal). Keep the terminal open.
+2. In the left panel open **Configuration** and set **Request Timeout** to `300000` (the first portfolio start loads models).
+
+**Server 1: Portfolio** (screenshot `inspector_portfolio.png`)
+3. **Transport Type** = `STDIO`; **Command** = `C:\Users\MABC\Desktop\i230576_AG2\gb.cmd`;
+   **Arguments** = `-m mcp_servers.portfolio.server --persona web`.
+   **Environment Variables** → Add: `AUDIT_DISABLED` = `1`. Click **Connect** (10–60 s; it shows *Connected*).
+4. **Tools** tab → **List Tools** → click `search_evidence` → requirement `Celery background jobs` → **Run Tool**.
+   Screenshot with the tool list and the green result visible.
+5. **Resources** tab → **List Templates** (shows `portfolio://case/{id}` …) → screenshot.
+   **Prompts** tab → **List Prompts** → `answer_screening_question` → question `How do you handle background jobs?` →
+   **Get Prompt** → screenshot. Click **Disconnect**.
+
+**Server 2: Marketplace** (screenshot `inspector_marketplace.png`)
+6. **Arguments** = `-m mcp_servers.marketplace.server`. Environment: remove `AUDIT_DISABLED` row or keep it, and add
+   `GIGSIM_INPROCESS`=`1`, `GIGSIM_TOKEN`=`gigsim-dev-token-web`, `MCP_USER_ID`=`persona-web`, `GIGSIM_ERROR_RATE`=`0`.
+   **Connect** → **Tools → List Tools** (13 tools; read tools vs write tools carry different annotations) →
+   `search_jobs`: category `web`, limit `3` → **Run Tool** → screenshot.
+7. Optional second shot: `submit_proposal` with proposal_id `p-demo`, idempotency_key `demo-key-0001`, dry_run ticked →
+   Run → it returns a "not found" problem for the made-up id: that is the guard working. **Disconnect**.
+
+**Server 3: Workspace** (screenshot `inspector_workspace.png`)
+8. **Arguments** = `-m mcp_servers.workspace.server` (same environment is fine) → **Connect** → **List Tools** →
+   `free_slots` → **Run Tool** with the defaults → screenshot (three slots in Asia/Karachi).
+
+**Save and push**
+9. Save the PNGs as `docs\images\inspector_portfolio.png`, `inspector_marketplace.png`, `inspector_workspace.png`
+   (extra shots: `inspector_portfolio_prompts.png` etc. are fine). Then, one at a time:
+   `git add docs/images` · `git commit -m "MCP Inspector screenshots"` · `git push` — or just tell Claude "screenshots saved".
+
+If **Connect** fails: check Command is the full path to `gb.cmd` and the terminal was opened in the project folder;
+the Inspector's **Server Notifications / stderr** area shows `gigbid-portfolio: ready ...` when the portfolio server is up.
 
 ## Step 6 — Human panel with classmates (optional but listed in B4; 10 min of your time)
 Send `evals/datasets/human_panel_pairs.csv` to 3–5 classmates; each fills `which_would_you_reply_to_A_or_B` (A or B)
