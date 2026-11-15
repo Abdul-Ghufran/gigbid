@@ -1,20 +1,41 @@
 {
   "mcpServers": {
     "gigbid-portfolio": {
-      "command": "C:\Users\MABC\Desktop\i230576_AG2\tools\mcp_stdio.cmd",
-      "args": ["-m", "mcp_servers.portfolio.server", "--persona", "web"],
-      "env": {"AUDIT_DISABLED": "1"}
+      "command": "C:\\Users\\MABC\\Desktop\\i230576_AG2\\tools\\mcp_stdio.cmd",
+      "args": [
+        "-m",
+        "mcp_servers.portfolio.server",
+        "--persona",
+        "web"
+      ],
+      "env": {
+        "AUDIT_DISABLED": "1"
+      }
     },
     "gigbid-marketplace": {
-      "command": "C:\Users\MABC\Desktop\i230576_AG2\tools\mcp_stdio.cmd",
-      "args": ["-m", "mcp_servers.marketplace.server"],
-      "env": {"AUDIT_DISABLED": "1", "GIGSIM_INPROCESS": "1", "GIGSIM_TOKEN": "gigsim-dev-token-web",
-              "MCP_USER_ID": "persona-web", "GIGSIM_ERROR_RATE": "0"}
+      "command": "C:\\Users\\MABC\\Desktop\\i230576_AG2\\tools\\mcp_stdio.cmd",
+      "args": [
+        "-m",
+        "mcp_servers.marketplace.server"
+      ],
+      "env": {
+        "AUDIT_DISABLED": "1",
+        "GIGSIM_INPROCESS": "1",
+        "GIGSIM_TOKEN": "gigsim-dev-token-web",
+        "MCP_USER_ID": "persona-web",
+        "GIGSIM_ERROR_RATE": "0"
+      }
     },
     "gigbid-workspace": {
-      "command": "C:\Users\MABC\Desktop\i230576_AG2\tools\mcp_stdio.cmd",
-      "args": ["-m", "mcp_servers.workspace.server"],
-      "env": {"AUDIT_DISABLED": "1", "MCP_USER_ID": "persona-web"}
+      "command": "C:\\Users\\MABC\\Desktop\\i230576_AG2\\tools\\mcp_stdio.cmd",
+      "args": [
+        "-m",
+        "mcp_servers.workspace.server"
+      ],
+      "env": {
+        "AUDIT_DISABLED": "1",
+        "MCP_USER_ID": "persona-web"
+      }
     }
   }
 }
