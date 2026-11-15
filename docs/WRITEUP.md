@@ -1,7 +1,7 @@
 # Better retrieval made my simulated clients reply less — and that was the most useful bug I found
 
 *Abdul Ghufran · AI-4016 R&D project "GigBid" · every number links to a results file in the
-[GigBid repository](https://github.com/Abdul-Ghufran/gigbid/tree/main/evals/results)*
+[GigBid repository](https://github.com/Abdul-Ghufran/gigbid/tree/main/evals/results) · published on [Medium](https://medium.com/@abdulghufran114/better-retrieval-made-my-simulated-clients-reply-less-and-that-was-the-most-useful-bug-i-found-921cc1e0cede)*
 
 I spent two weeks building GigBid, a multi-agent copilot for freelancers. A Scout pulls new jobs; an Analyst, a Risk
 Assessor and a Fit Matcher read each post in parallel; a Writer drafts a proposal in which every claim has to point at a

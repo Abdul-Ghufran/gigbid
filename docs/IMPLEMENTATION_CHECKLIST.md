@@ -19,4 +19,5 @@
 - [ ] Deploy and verify reviewer access — follow `SUBMISSION_GUIDE.md` steps 2–3 (needs your Neon/Render accounts).
 - [x] Report PDF, demo video, technical write-up draft, AI usage disclosure.
 - [x] Your own judge labels (30 items), public Langfuse traces (docs/TRACES.md), MCP Inspector screenshots (docs/MCP_INSPECTOR.md)
-- [ ] Classmates' panel, publishing the write-up/video — `SUBMISSION_GUIDE.md`.
+- [x] Blind pairwise panel (classmate + LLM proxy panel), write-up published on Medium
+- [ ] Demo video link — `SUBMISSION_GUIDE.md`.

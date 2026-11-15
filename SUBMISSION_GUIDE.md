@@ -157,7 +157,9 @@ Classmates were not available, so the panel has two clearly separated parts (the
      `finalize_report.py` command yourself).
   If classmates do send filled CSVs later, add each with another `--csv`.
 
-## Step 7 — Publish the technical write-up (15 min)
+## Step 7 — Publish the technical write-up — DONE (2026-11-15)
+Published: https://medium.com/@abdulghufran114/better-retrieval-made-my-simulated-clients-reply-less-and-that-was-the-most-useful-bug-i-found-921cc1e0cede
+
 1. Double-click `docs\writeup_publish.html` (or run `.\gb.cmd tools/writeup_publish.py`): the article, paste-ready
    (1,372 words; the results table is a list because Medium/LinkedIn articles have no tables).
 2. **Medium:** medium.com → sign in (Google is fine) → **Write** (pencil icon, top right).
@@ -199,7 +201,7 @@ Attach / paste, in one submission:
 - **Demo video link** (Step 8)
 - **Portfolio MCP server:** https://github.com/Abdul-Ghufran/gigbid/tree/main/mcp_servers/portfolio
   (install command in its README)
-- **Technical write-up link** (Step 7)
+- **Technical write-up link** (Step 7): https://medium.com/@abdulghufran114/better-retrieval-made-my-simulated-clients-reply-less-and-that-was-the-most-useful-bug-i-found-921cc1e0cede
 
 **Private comment** (Classroom → "Add private comment", NOT in the repo):
 ```
