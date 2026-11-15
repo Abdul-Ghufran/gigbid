@@ -1,7 +1,6 @@
 # AI usage disclosure
 
-**Tool:** Claude Code (Anthropic), used as a pair programmer in the terminal throughout the project. I reviewed,
-ran and tested everything that was committed, and I am accountable for every line.
+**Tool:** Claude Code (Anthropic), used as a pair programmer in the terminal throughout the project.
 
 | Area | Files | How the assistant was used |
 |---|---|---|
