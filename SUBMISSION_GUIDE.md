@@ -101,7 +101,7 @@ first attempts showed nothing). The public links are in `docs/TRACES.md`, record
 `.\gb.cmd tools/publish_traces.py` (needs `LANGFUSE_PUBLIC_KEY` / `LANGFUSE_SECRET_KEY` in your local `.env`; re-run it to
 record fresh ones). Runs in the deployed app are also traced and marked public automatically (Render needs the same keys).
 
-## Step 5b — MCP Inspector screenshots (15 min) — required by A7
+## Step 5b — MCP Inspector screenshots — DONE (2026-11-15, see docs/MCP_INSPECTOR.md)
 Tested end to end on this laptop (all three servers over stdio through `gb.cmd`; Smart App Control blocks
 `.venv\Scripts\python.exe`, so do not use that as the command).
 

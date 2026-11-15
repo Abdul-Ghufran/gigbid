@@ -18,4 +18,5 @@
 - [x] Evaluations run, results committed under `evals/results/`.
 - [ ] Deploy and verify reviewer access — follow `SUBMISSION_GUIDE.md` steps 2–3 (needs your Neon/Render accounts).
 - [x] Report PDF, demo video, technical write-up draft, AI usage disclosure.
-- [ ] Your own judge labels (30 items), classmates' panel, MCP Inspector screenshots, publishing the write-up/video — `SUBMISSION_GUIDE.md`.
+- [x] Your own judge labels (30 items), public Langfuse traces (docs/TRACES.md), MCP Inspector screenshots (docs/MCP_INSPECTOR.md)
+- [ ] Classmates' panel, publishing the write-up/video — `SUBMISSION_GUIDE.md`.

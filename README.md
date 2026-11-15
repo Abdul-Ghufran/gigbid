@@ -25,7 +25,7 @@ A team of LangGraph agents does the reading, judging and drafting; you make the 
 ![bid graph](docs/images/bid_graph.png)
 
 - Bid graph and conversation graph are hand-written LangGraph `StateGraph`s with Postgres checkpointing, `interrupt()` approvals that survive restarts, per-node retries, fallback models and step / token budgets. Details: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
-- Agents never touch the marketplace, files or databases directly: everything is an **MCP tool** with a schema, annotations and a test — three servers of our own (Portfolio, Marketplace with idempotent writes + dry-run + bearer auth + audit log, Workspace) plus Upwork's official MCP server and GitHub's. Inventory: [docs/TOOLS.md](docs/TOOLS.md).
+- Agents never touch the marketplace, files or databases directly: everything is an **MCP tool** with a schema, annotations and a test — three servers of our own (Portfolio, Marketplace with idempotent writes + dry-run + bearer auth + audit log, Workspace) plus Upwork's official MCP server and GitHub's. Inventory: [docs/TOOLS.md](docs/TOOLS.md). MCP Inspector screenshots of all three servers: [docs/MCP_INSPECTOR.md](docs/MCP_INSPECTOR.md).
 - **One marketplace port, two adapters** (GigSim / live Upwork), switched by config; in live mode every write is a draft you confirm on Upwork.
 - Open models only: gpt-oss-20b for cheap nodes, gpt-oss-120b for writer / critic (Groq), bge-small embeddings on CPU. Every node's model is in [`agent/config.yaml`](agent/config.yaml).
 
